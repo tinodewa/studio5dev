@@ -16,19 +16,19 @@ class HasilFoto extends Seeder
                 'hasil_foto' => 'https://drive.google.com/drive/folders/11zGoAjnjZs4LwD5yLIDHWsgQwe0xk-2p?usp=sharing',
             ],
             [
-                'id_hasil_foto' => 1,
+                'id_hasil_foto' => 2,
                 'id_fotografer' => 3,
                 'id_pesanan'  => 2,
                 'hasil_foto' => 'https://drive.google.com/drive/folders/11zGoAjnjZs4LwD5yLIDHWsgQwe0xk-2p?usp=sharing',
             ],
             [
-                'id_hasil_foto' => 1,
+                'id_hasil_foto' => 3,
                 'id_fotografer' => 3,
                 'id_pesanan'  => 3,
                 'hasil_foto' => 'https://drive.google.com/drive/folders/11zGoAjnjZs4LwD5yLIDHWsgQwe0xk-2p?usp=sharing',
             ]
         ];
 
-        $this->db->table('hasil_foto')->insert($data);
+        $this->db->table('hasil_foto')->insertBatch($data);
     }
 }

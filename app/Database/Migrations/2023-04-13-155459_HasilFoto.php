@@ -23,8 +23,7 @@ class HasilFoto extends Migration
                 'constraint'     => 9,
             ],
             'hasil_foto' => [
-                'type'       => 'VARCHAR',
-                'constraint' => '255',
+                'type'       => 'TEXT',
             ],
             'created_at datetime default current_timestamp',
             'updated_at datetime default current_timestamp on update current_timestamp',
