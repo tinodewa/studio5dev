@@ -10,6 +10,7 @@ use App\Models\Pesanan;
 use App\Models\PesananWithUserAndPaket;
 use App\Models\PesananWithUserPaketAndPembayaran;
 use App\Models\Ulasan;
+use App\Models\UlasanWithUserAndPaket;
 use CodeIgniter\Database\Exceptions\DataException;
 use PhpParser\Node\Expr\Cast\String_;
 
@@ -23,7 +24,9 @@ class HomeUser extends BaseController
 
         $data['title'] = 'Home Page';
         $paket = new Paket();
+        $ulasanUserPaket = new UlasanWithUserAndPaket();
         $data['pakets'] = $paket->where('id_paket <=', 8)->orderBy('id_paket', 'ASC')->findAll();
+        $data['ulasanUserPakets'] = $ulasanUserPaket->getUlasanWithUserAndPaket();
 
         if ($session->has('logged_in')) {
             //cek position dari session
