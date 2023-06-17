@@ -7,7 +7,7 @@ use App\Models\Pesanan as ModelsPesanan;
 use App\Models\PesananWithUserAndPaket;
 use CodeIgniter\API\ResponseTrait;
 
-class Pesanan extends BaseController
+class AdminPesananController extends BaseController
 {
     use ResponseTrait;
     // protected $modelName = 'App\Models\PostModel';

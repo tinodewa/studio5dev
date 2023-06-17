@@ -6,7 +6,7 @@ use App\Controllers\BaseController;
 use App\Models\Paket as ModelsPaket;
 use CodeIgniter\API\ResponseTrait;
 
-class Paket extends BaseController
+class AdminPaketController extends BaseController
 {
     use ResponseTrait;
     // protected $modelName = 'App\Models\PostModel';

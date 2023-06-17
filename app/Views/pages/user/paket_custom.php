@@ -1,4 +1,4 @@
-<?= $this->extend('layout/page_layout.php') ?>
+<?= $this->extend('pages/user/template/page_layout.php') ?>
 
 <?= $this->section('content') ?>
 
@@ -13,7 +13,7 @@ function shortNumber($num)
     return round($num, 1) . $units[$i];
 }
 ?>
-<?= $this->include('pages/user/layout/user_navbar.php') ?>
+<?= $this->include('pages/user/template/navbar.php') ?>
 
 <main id="main">
     <!-- ======= Breadcrumbs ======= -->
@@ -74,6 +74,6 @@ function shortNumber($num)
 
 </main>
 <!-- End #main -->
-<?= $this->include('pages/user/layout/user_footer.php') ?>
+<?= $this->include('pages/user/template/footer.php') ?>
 
 <?= $this->endSection() ?>

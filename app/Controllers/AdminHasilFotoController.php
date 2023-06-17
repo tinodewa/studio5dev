@@ -7,7 +7,7 @@ use App\Models\HasilFoto as ModelsHasilFoto;
 use App\Models\HasilFotoWithUserAndPesanan;
 use CodeIgniter\API\ResponseTrait;
 
-class HasilFoto extends BaseController
+class AdminHasilFotoController extends BaseController
 {
     use ResponseTrait;
     // protected $modelName = 'App\Models\PostModel';

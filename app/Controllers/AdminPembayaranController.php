@@ -7,7 +7,7 @@ use App\Models\Pembayaran as ModelsPembayaran;
 use App\Models\PembayaranWithPesanan;
 use CodeIgniter\API\ResponseTrait;
 
-class Pembayaran extends BaseController
+class AdminPembayaranController extends BaseController
 {
     use ResponseTrait;
     // protected $modelName = 'App\Models\PostModel';
@@ -16,12 +16,8 @@ class Pembayaran extends BaseController
     //all pembayaran
     public function index()
     {
-        // $pembayaran = new ModelsPembayaran();
-        // $data['pembayaran'] = $pembayaran->orderBy('id_pembayaran', 'DESC')->findAll();
-        // return $this->respond($data);
-
-        $pembayaran = new PembayaranWithPesanan();
-        $data['pembayaran'] = $pembayaran->getPembayaranWithPesanan();
+        $pembayaran = new ModelsPembayaran();
+        $data['pembayaran'] = $pembayaran->orderBy('id_pembayaran', 'DESC')->findAll();
         return $this->respond($data);
     }
 
@@ -49,16 +45,8 @@ class Pembayaran extends BaseController
     // single pembayaran
     public function show($id_pembayaran = null)
     {
-        // $pembayaran = new ModelsPembayaran();
-        // $data = $pembayaran->where('id_pembayaran', $id_pembayaran)->first();
-        // if ($data) {
-        //     return $this->respond($data);
-        // } else {
-        //     return $this->failNotFound('Data tidak ditemukan.');
-        // }
-
-        $pembayaran = new PembayaranWithPesanan();
-        $data['pembayaran'] = $pembayaran->getPembayaranWithPesananById($id_pembayaran);
+        $pembayaran = new ModelsPembayaran();
+        $data = $pembayaran->where('id_pembayaran', $id_pembayaran)->first();
         if ($data) {
             return $this->respond($data);
         } else {

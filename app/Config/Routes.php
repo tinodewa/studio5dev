@@ -2,13 +2,6 @@
 
 namespace Config;
 
-use App\Controllers\HasilFoto;
-use App\Controllers\Paket;
-use App\Controllers\Pembayaran;
-use App\Controllers\Pesanan;
-use App\Controllers\Ulasan;
-use App\Controllers\User;
-
 // Create a new instance of our RouteCollection class.
 $routes = Services::routes();
 
@@ -46,8 +39,18 @@ $routes->get('/register', 'Register::index');
 $routes->post('/register/process', 'Register::process');
 
 //admin route
-$routes->get('/admin', 'Home::admin');
-// $routes->resource('user', [User::class]);
+$routes->get('/admin', 'AdminController::index');
+
+//admin user route
+$routes->get('/admin/user', 'AdminUserController::index');
+$routes->get('/admin/user/(:segment)', 'AdminUserController::show/$1', ['$1' => '[0-9]+']);
+$routes->get('/admin/user/new', 'AdminUserController::new');
+$routes->post('/admin/user', 'AdminUserController::create');
+$routes->get('/admin/user/(:segment)/edit', 'AdminUserController::edit/$1', ['$1' => '[0-9]+']);
+$routes->put('/admin/user/(:segment)', 'AdminUserController::update/$1', ['$1' => '[0-9]+']);
+$routes->delete('/admin/user/(:segment)', 'AdminUserController::delete/$1', ['$1' => '[0-9]+']);
+
+
 // $routes->resource('pesanan', [Pesanan::class]);
 // $routes->resource('hasilfoto', [HasilFoto::class]);
 // $routes->resource('paket', [Paket::class]);

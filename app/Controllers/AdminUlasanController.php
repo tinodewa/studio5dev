@@ -7,7 +7,7 @@ use App\Models\Ulasan as ModelsUlasan;
 use App\Models\UlasanWithUserAndPaket;
 use CodeIgniter\API\ResponseTrait;
 
-class Ulasan extends BaseController
+class AdminUlasanController extends BaseController
 {
     use ResponseTrait;
     // protected $modelName = 'App\Models\PostModel';

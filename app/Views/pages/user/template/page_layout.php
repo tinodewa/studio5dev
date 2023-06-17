@@ -6,8 +6,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <meta content="" name="description">
-  <meta content="" name="keywords">
+  <meta content="Studio 5" name="description">
+  <meta content="photography" name="keywords">
 
   <!-- Favicons -->
   <link href="assets/img/favicon.png" rel="icon">

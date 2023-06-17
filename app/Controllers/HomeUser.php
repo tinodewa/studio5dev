@@ -22,7 +22,6 @@ class HomeUser extends BaseController
         helper('number');
         helper('text');
 
-        $data['title'] = 'Home Page';
         $paket = new Paket();
         $ulasanUserPaket = new UlasanWithUserAndPaket();
         $data['pakets'] = $paket->where('id_paket <=', 8)->orderBy('id_paket', 'ASC')->findAll();
@@ -31,7 +30,7 @@ class HomeUser extends BaseController
         if ($session->has('logged_in')) {
             //cek position dari session
             if ($session->get('role') == 'admin') {
-                return redirect()->to('/home/admin');
+                return redirect()->to('/admin');
             } else if ($session->get('role') == 'user') {
                 $data['title'] = 'Beranda';
                 return view('pages/user/index', $data);
@@ -50,7 +49,7 @@ class HomeUser extends BaseController
         if ($session->has('logged_in')) {
             //cek position dari session
             if ($session->get('role') == 'admin') {
-                return redirect()->to('/home/admin');
+                return redirect()->to('/admin');
             } else if ($session->get('role') == 'user') {
                 helper('number');
                 $data['title'] = 'Detail Paket';
@@ -60,7 +59,7 @@ class HomeUser extends BaseController
 
                 return view('pages/user/paket_detail', $data);
             } else if ($session->get('role') == 'fotografer') {
-                return redirect()->to('/home/fotografer');
+                return redirect()->to('/fotografer');
             }
         }
         return redirect()->to('/login');
@@ -73,7 +72,7 @@ class HomeUser extends BaseController
         if ($session->has('logged_in')) {
             //cek position dari session
             if ($session->get('role') == 'admin') {
-                return redirect()->to('/home/admin');
+                return redirect()->to('/admin');
             } else if ($session->get('role') == 'user') {
                 helper('number');
                 $data['title'] = 'Detail Paket';
@@ -96,7 +95,7 @@ class HomeUser extends BaseController
                     return $this->response->setJSON(['status' => 'success']);
                 }
             } else if ($session->get('role') == 'fotografer') {
-                return redirect()->to('/home/fotografer');
+                return redirect()->to('/fotografer');
             }
         }
         return redirect()->to('/login');
@@ -109,7 +108,7 @@ class HomeUser extends BaseController
         if ($session->has('logged_in')) {
             //cek position dari session
             if ($session->get('role') == 'admin') {
-                return redirect()->to('/home/admin');
+                return redirect()->to('/admin');
             } else if ($session->get('role') == 'user') {
                 helper('number');
                 $data['title'] = 'Detail Paket';
@@ -126,7 +125,7 @@ class HomeUser extends BaseController
 
                 return redirect()->to('/checkout');
             } else if ($session->get('role') == 'fotografer') {
-                return redirect()->to('/home/fotografer');
+                return redirect()->to('/fotografer');
             }
         }
         return redirect()->to('/login');
@@ -139,7 +138,7 @@ class HomeUser extends BaseController
         if ($session->has('logged_in')) {
             //cek position dari session
             if ($session->get('role') == 'admin') {
-                return redirect()->to('/home/admin');
+                return redirect()->to('/admin');
             } else if ($session->get('role') == 'user') {
                 helper('number');
                 $data['title'] = 'Checkout Paket';
@@ -149,7 +148,7 @@ class HomeUser extends BaseController
 
                 return view('pages/user/checkout_pesanan', $data);
             } else if ($session->get('role') == 'fotografer') {
-                return redirect()->to('/home/fotografer');
+                return redirect()->to('/fotografer');
             }
         }
         return redirect()->to('/login');
@@ -162,7 +161,7 @@ class HomeUser extends BaseController
         if ($session->has('logged_in')) {
             //cek position dari session
             if ($session->get('role') == 'admin') {
-                return redirect()->to('/home/admin');
+                return redirect()->to('/admin');
             } else if ($session->get('role') == 'user') {
                 $pesanan = new Pesanan();
                 $pembayaran = new Pembayaran();
@@ -213,7 +212,7 @@ class HomeUser extends BaseController
 
                 return redirect()->to('/list-pesanan');
             } else if ($session->get('role') == 'fotografer') {
-                return redirect()->to('/home/fotografer');
+                return redirect()->to('/fotografer');
             }
         }
         return redirect()->to('/login');
@@ -226,7 +225,7 @@ class HomeUser extends BaseController
         if ($session->has('logged_in')) {
             //cek position dari session
             if ($session->get('role') == 'admin') {
-                return redirect()->to('/home/admin');
+                return redirect()->to('/admin');
             } else if ($session->get('role') == 'user') {
                 //data
                 try {
@@ -244,7 +243,7 @@ class HomeUser extends BaseController
                     return $this->response->setJSON(['error' => $e]);
                 }
             } else if ($session->get('role') == 'fotografer') {
-                return redirect()->to('/home/fotografer');
+                return redirect()->to('/fotografer');
             }
         }
         return redirect()->to('/login');
@@ -257,7 +256,7 @@ class HomeUser extends BaseController
         if ($session->has('logged_in')) {
             //cek position dari session
             if ($session->get('role') == 'admin') {
-                return redirect()->to('/home/admin');
+                return redirect()->to('/admin');
             } else if ($session->get('role') == 'user') {
                 helper('number');
 
@@ -267,7 +266,7 @@ class HomeUser extends BaseController
 
                 return view('pages/user/paket_custom', $data);
             } else if ($session->get('role') == 'fotografer') {
-                return redirect()->to('/home/fotografer');
+                return redirect()->to('/fotografer');
             }
         }
         return redirect()->to('/login');
@@ -280,7 +279,7 @@ class HomeUser extends BaseController
         if ($session->has('logged_in')) {
             //cek position dari session
             if ($session->get('role') == 'admin') {
-                return redirect()->to('/home/admin');
+                return redirect()->to('/admin');
             } else if ($session->get('role') == 'user') {
                 helper('number');
                 try {
@@ -349,7 +348,7 @@ class HomeUser extends BaseController
 
                 // return redirect()->to('/checkout');
             } else if ($session->get('role') == 'fotografer') {
-                return redirect()->to('/home/fotografer');
+                return redirect()->to('/fotografer');
             }
         }
         return redirect()->to('/login');
@@ -362,7 +361,7 @@ class HomeUser extends BaseController
         if ($session->has('logged_in')) {
             //cek position dari session
             if ($session->get('role') == 'admin') {
-                return redirect()->to('/home/admin');
+                return redirect()->to('/admin');
             } else if ($session->get('role') == 'user') {
                 helper('number');
                 $data['title'] = 'Checkout Paket';
@@ -372,7 +371,7 @@ class HomeUser extends BaseController
 
                 return view('pages/user/list_pesanan', $data);
             } else if ($session->get('role') == 'fotografer') {
-                return redirect()->to('/home/fotografer');
+                return redirect()->to('/fotografer');
             }
         }
         return redirect()->to('/login');
@@ -385,7 +384,7 @@ class HomeUser extends BaseController
         if ($session->has('logged_in')) {
             //cek position dari session
             if ($session->get('role') == 'admin') {
-                return redirect()->to('/home/admin');
+                return redirect()->to('/admin');
             } else if ($session->get('role') == 'user') {
                 helper('number');
                 $data['title'] = 'Detail Paket';
@@ -398,7 +397,7 @@ class HomeUser extends BaseController
 
                 return view('pages/user/pesanan_detail.php', $data);
             } else if ($session->get('role') == 'fotografer') {
-                return redirect()->to('/home/fotografer');
+                return redirect()->to('/fotografer');
             }
         }
         return redirect()->to('/login');
@@ -411,7 +410,7 @@ class HomeUser extends BaseController
         if ($session->has('logged_in')) {
             //cek position dari session
             if ($session->get('role') == 'admin') {
-                return redirect()->to('/home/admin');
+                return redirect()->to('/admin');
             } else if ($session->get('role') == 'user') {
                 helper('number');
                 $data['title'] = 'Detail Pesanan';
