@@ -4,7 +4,6 @@ namespace App\Controllers;
 
 use App\Controllers\BaseController;
 use App\Models\User as ModelsUser;
-use CodeIgniter\API\ResponseTrait;
 
 class AdminUserController extends BaseController
 {
@@ -31,7 +30,7 @@ class AdminUserController extends BaseController
         return redirect()->to('/');
     }
 
-    //create page
+    //new
     public function new()
     {
         $session = session();
@@ -54,39 +53,25 @@ class AdminUserController extends BaseController
     // create
     public function create()
     {
-        $user = new ModelsUser();
-        $data = [
-            'email' => $this->request->getVar('email'),
-            'nama_lengkap'  => $this->request->getVar('nama_lengkap'),
-            'no_telp' => $this->request->getVar('no_telp'),
-            'password' => $this->request->getVar('password'),
-            'role' => $this->request->getVar('role')
-        ];
-        $user->insert($data);
-        $response = [
-            'status'   => 201,
-            'error'    => null,
-            'messages' => [
-                'success' => 'Data user berhasil ditambahkan.'
-            ]
-        ];
-        // return $this->respondCreated($response);
-        return 'create page';
-    }
-
-    // single user
-    public function show($id_user)
-    {
         $session = session();
 
         if ($session->has('logged_in')) {
             //cek position dari session
             if ($session->get('role') == 'admin') {
-                $data['title'] = 'Detail User';
                 $user = new ModelsUser();
-                $data['users'] = $user->find($id_user);
 
-                return view('pages/admin/user/form', $data);
+                $password = $this->request->getVar('password');
+                $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
+                $data = [
+                    'nama_lengkap'  => $this->request->getVar('nama-lengkap'),
+                    'email' => $this->request->getVar('email'),
+                    'no_telp' => $this->request->getVar('telpon'),
+                    'role' => $this->request->getVar('role'),
+                    'password' => $hashedPassword,
+                ];
+                $user->insert($data);
+                return redirect()->to('/admin/user');
             } else if ($session->get('role') == 'user') {
                 return redirect()->to('/');
             } else if ($session->get('role') == 'fotografer') {
@@ -97,6 +82,7 @@ class AdminUserController extends BaseController
         return redirect()->to('/');
     }
 
+    //edit page
     public function edit($id_user = null)
     {
         $session = session();
@@ -104,7 +90,6 @@ class AdminUserController extends BaseController
         if ($session->has('logged_in')) {
             //cek position dari session
             if ($session->get('role') == 'admin') {
-                $data['typeForm'] = 'edit';
                 $data['title'] = 'Edit User';
 
                 $user = new ModelsUser();
@@ -122,15 +107,67 @@ class AdminUserController extends BaseController
     }
 
     // update
-    public function update($id_user = null)
+    public function update()
     {
+        $session = session();
 
-        return 'edit page';
+        if ($session->has('logged_in')) {
+            //cek position dari session
+            if ($session->get('role') == 'admin') {
+                $user = new ModelsUser();
+
+                $id_user = $this->request->getVar('id');
+
+                $password = $this->request->getVar('password');
+                $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
+                $data = [
+                    'nama_lengkap'  => $this->request->getVar('nama-lengkap'),
+                    'email' => $this->request->getVar('email'),
+                    'no_telp' => $this->request->getVar('telpon'),
+                    'role' => $this->request->getVar('role'),
+                    'password' => $hashedPassword,
+                ];
+                $user->update($id_user, $data);
+                return redirect()->to('/admin/user');
+            } else if ($session->get('role') == 'user') {
+                return redirect()->to('/');
+            } else if ($session->get('role') == 'fotografer') {
+                return redirect()->to('/fotografer');
+            }
+        }
+        $data['title'] = 'Beranda';
+        return redirect()->to('/');
     }
 
     // delete
-    public function delete($id_user = null)
+    public function delete()
     {
-        return 'edit page';
+        $session = session();
+
+        if ($session->has('logged_in')) {
+            //cek position dari session
+            if ($session->get('role') == 'admin') {
+                try {
+                    $user = new ModelsUser();
+                    $id_user = $this->request->getVar('id_user');
+
+                    $deleted = $user->where('id_user', $id_user)->delete();
+
+                    if ($deleted) {
+                        return $this->response->setJSON(['status' => 'Data berhasil dihapus!']);
+                    } else {
+                        return $this->response->setJSON(['status' => 'Data gagal dihapus!']);
+                    }
+                } catch (\Exception $e) {
+                    return $this->response->setJSON(['error' => $e]);
+                }
+            } else if ($session->get('role') == 'user') {
+                return redirect()->to('/');
+            } else if ($session->get('role') == 'fotografer') {
+                return redirect()->to('/fotografer');
+            }
+        }
+        return redirect()->to('/login');
     }
 }

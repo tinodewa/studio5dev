@@ -15,7 +15,7 @@
             <div class="bg-primary-dark-op">
                 <div class="content content-top text-center overflow-hidden">
                     <div class="pt-50 pb-20">
-                        <h1 class="font-w700 text-white mb-10 invisible" data-toggle="appear" data-class="animated fadeInUp">Form User</h1>
+                        <h1 class="font-w700 text-white mb-10 invisible" data-toggle="appear" data-class="animated fadeInUp">Form Pembayaran</h1>
                     </div>
                 </div>
             </div>
@@ -30,67 +30,63 @@
                     <!-- Floating Labels -->
                     <div class="block">
                         <div class="block-header block-header-default">
-                            <h3 class="block-title">Update User</h3>
+                            <h3 class="block-title">Tambah Pembayaran</h3>
                         </div>
                         <div class="block-content">
-                            <form action="/admin/user/<?= $user->id_user ?>/edit" method="post">
+                            <form action="/admin/pembayaran/new" method="post">
                                 <div class="form-group row">
                                     <div class="col-md-9">
                                         <div class="form-material floating">
-                                            <input type="text" id="input-id" class="form-control d-none" name="id" value="<?= $user->id_user ?>">
-                                            <input type="text" id="input-id" class="form-control" name="id_show" value="<?= $user->id_user ?>" disabled>
-                                            <label for="input-id">ID</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <div class="col-md-9">
-                                        <div class="form-material floating">
-                                            <input type="text" id="input-nama-lengkap" class="form-control" name="nama-lengkap" value="<?= $user->nama_lengkap ?>" required>
-                                            <label for="input-nama-lengkap">Nama Lengkap</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <div class="col-9">
-                                        <div class="form-material floating">
-                                            <input type="text" id="input-email" class="form-control" name="email" value="<?= $user->email ?>" required>
-                                            <label for="input-email">Email</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <div class="col-9">
-                                        <div class="form-material floating">
-                                            <input type="text" id="input-telpon" class="form-control" name="telpon" value="<?= $user->no_telp ?>" required>
-                                            <label for="input-telepon">Telpon</label>
+                                            <input type="text" id="input-id" name="id" class="form-control" disabled required>
+                                            <label for="input-id">ID Auto</label>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-md-9">
                                         <div class="form-material">
-                                            <select class="form-control" id="input-role" name="role">
-                                                <option value="user" <?php if ($user->role == "user") {
-                                                                            echo 'selected';
-                                                                        } ?>>User</option>
-                                                <option value="admin" <?php if ($user->role == "admin") {
-                                                                            echo 'selected';
-                                                                        } ?>>Admin</option>
-                                                <option value="fotografer" <?php if ($user->role == "fotografer") {
-                                                                                echo 'selected';
-                                                                            } ?>>Fotografer</option>
+                                            <select class="form-control" id="input-id-pesanan" name="id_pesanan">
+                                                <?php foreach ($pesanans as $key => $pesanan) : ?>
+                                                    <option value="<?= $pesanan->id_pesanan ?>"><?= $pesanan->id_pesanan ?></option>
+                                                <?php endforeach; ?>
                                             </select>
-                                            <label for="input-role">Role</label>
+                                            <label for="input-id-pesanan">ID Pesanan</label>
                                         </div>
                                     </div>
                                 </div>
-
+                                <div class="form-group row">
+                                    <div class="col-md-9">
+                                        <div class="form-material floating">
+                                            <input type="text" id="input-type-pembayaran" name="type_pembayaran" class="form-control" value="" required>
+                                            <label for="input-type-pembayaran">Type Pembayaran</label>
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="form-group row">
                                     <div class="col-9">
                                         <div class="form-material floating">
-                                            <input type="password" id="input-password" name="password" class="form-control" value="" required>
-                                            <label for="input-password">Password</label>
+                                            <input type="number" id="input-jumlah-bayar" name="jumlah_bayar" class="form-control" value="" required>
+                                            <label for="input-jumlah-bayar">Jumlah Bayar</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-md-9">
+                                        <div class="form-material floating">
+                                            <input type="text" id="input-bukti" name="bukti" class="form-control" value="" required>
+                                            <label for="input-bukti">Bukti Pembayaran</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-md-9">
+                                        <div class="form-material">
+                                            <select class="form-control" id="input-status" name="status">
+                                                <option value="belum dibayar" selected>Belum Dibayar</option>
+                                                <option value="sudah upload bukti">Sudah Upload Bukti</option>
+                                                <option value="Done">Done</option>
+                                            </select>
+                                            <label for="input-status">Status</label>
                                         </div>
                                     </div>
                                 </div>

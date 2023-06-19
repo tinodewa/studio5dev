@@ -15,7 +15,7 @@
             <div class="bg-primary-dark-op">
                 <div class="content content-top text-center overflow-hidden">
                     <div class="pt-50 pb-20">
-                        <h1 class="font-w700 text-white mb-10 invisible" data-toggle="appear" data-class="animated fadeInUp">Form User</h1>
+                        <h1 class="font-w700 text-white mb-10 invisible" data-toggle="appear" data-class="animated fadeInUp">Form Pesanan</h1>
                     </div>
                 </div>
             </div>
@@ -30,67 +30,79 @@
                     <!-- Floating Labels -->
                     <div class="block">
                         <div class="block-header block-header-default">
-                            <h3 class="block-title">Update User</h3>
+                            <h3 class="block-title">Tambah Pesanan</h3>
                         </div>
                         <div class="block-content">
-                            <form action="/admin/user/<?= $user->id_user ?>/edit" method="post">
+                            <form action="/admin/pesanan/new" method="post">
                                 <div class="form-group row">
                                     <div class="col-md-9">
                                         <div class="form-material floating">
-                                            <input type="text" id="input-id" class="form-control d-none" name="id" value="<?= $user->id_user ?>">
-                                            <input type="text" id="input-id" class="form-control" name="id_show" value="<?= $user->id_user ?>" disabled>
-                                            <label for="input-id">ID</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <div class="col-md-9">
-                                        <div class="form-material floating">
-                                            <input type="text" id="input-nama-lengkap" class="form-control" name="nama-lengkap" value="<?= $user->nama_lengkap ?>" required>
-                                            <label for="input-nama-lengkap">Nama Lengkap</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <div class="col-9">
-                                        <div class="form-material floating">
-                                            <input type="text" id="input-email" class="form-control" name="email" value="<?= $user->email ?>" required>
-                                            <label for="input-email">Email</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <div class="col-9">
-                                        <div class="form-material floating">
-                                            <input type="text" id="input-telpon" class="form-control" name="telpon" value="<?= $user->no_telp ?>" required>
-                                            <label for="input-telepon">Telpon</label>
+                                            <input type="text" id="input-id" name="id" class="form-control" disabled required>
+                                            <label for="input-id">ID Auto</label>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-md-9">
                                         <div class="form-material">
-                                            <select class="form-control" id="input-role" name="role">
-                                                <option value="user" <?php if ($user->role == "user") {
-                                                                            echo 'selected';
-                                                                        } ?>>User</option>
-                                                <option value="admin" <?php if ($user->role == "admin") {
-                                                                            echo 'selected';
-                                                                        } ?>>Admin</option>
-                                                <option value="fotografer" <?php if ($user->role == "fotografer") {
-                                                                                echo 'selected';
-                                                                            } ?>>Fotografer</option>
+                                            <select class="form-control" id="input-id-user" name="id_user">
+                                                <?php foreach ($users as $key => $user) : ?>
+                                                    <option value="<?= $user->id_user ?>"><?= $user->id_user ?></option>
+                                                <?php endforeach; ?>
                                             </select>
-                                            <label for="input-role">Role</label>
+                                            <label for="input-id-user">ID User</label>
                                         </div>
                                     </div>
                                 </div>
-
+                                <div class="form-group row">
+                                    <div class="col-md-9">
+                                        <div class="form-material">
+                                            <select class="form-control" id="input-id-paket" name="id_paket">
+                                                <?php foreach ($pakets as $key => $paket) : ?>
+                                                    <option value="<?= $paket->id_paket ?>"><?= $paket->id_paket ?></option>
+                                                <?php endforeach; ?>
+                                            </select>
+                                            <label for="input-id-paket">ID Paket</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-md-9">
+                                        <div class="form-material floating">
+                                            <input type="text" id="input-nama-lengkap" name="nama_lengkap" class="form-control" value="" required>
+                                            <label for="input-nama-lengkap">Nama Lengkap</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-md-9">
+                                        <div class="form-material">
+                                            <input type="date" id="input-tanggal" name="tanggal" class="form-control" value="" required>
+                                            <label for="input-tanggal">Tanggal</label>
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="form-group row">
                                     <div class="col-9">
                                         <div class="form-material floating">
-                                            <input type="password" id="input-password" name="password" class="form-control" value="" required>
-                                            <label for="input-password">Password</label>
+                                            <input type="number" id="input-telpon" name="telp" class="form-control" value="" required>
+                                            <label for="input-telepon">Telpon</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-9">
+                                        <div class="form-material floating">
+                                            <input type="text" id="input-alamat" name="alamat" class="form-control" value="" required>
+                                            <label for="input-alamat">Alamat</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-9">
+                                        <div class="form-material floating">
+                                            <input type="text" id="input-catatan" name="catatan" class="form-control" value="" required>
+                                            <label for="input-catatan">Catatan</label>
                                         </div>
                                     </div>
                                 </div>

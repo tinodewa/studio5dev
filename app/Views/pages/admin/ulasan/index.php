@@ -15,7 +15,7 @@
             <div class="bg-primary-dark-op">
                 <div class="content content-top text-center overflow-hidden">
                     <div class="pt-50 pb-20">
-                        <h1 class="font-w700 text-white mb-10 invisible" data-toggle="appear" data-class="animated fadeInUp">Data User</h1>
+                        <h1 class="font-w700 text-white mb-10 invisible" data-toggle="appear" data-class="animated fadeInUp">Data Ulasan</h1>
                     </div>
                 </div>
             </div>
@@ -29,7 +29,7 @@
                 <div class="block-content block-content-full">
                     <div class="form-group row">
                         <div class="col-md-9">
-                            <a href="/admin/user/new" class="btn btn-alt-primary">Tambah</a>
+                            <a href="/admin/ulasan/new" class="btn btn-alt-primary">Tambah</a>
                         </div>
                     </div>
                     <!-- DataTables functionality is initialized with .js-dataTable-full class in js/pages/be_tables_datatables.min.js which was auto compiled from _es6/pages/be_tables_datatables.js -->
@@ -37,34 +37,28 @@
                         <thead>
                             <tr>
                                 <th class="text-center">ID</th>
-                                <th>Nama</th>
-                                <th class="d-none d-sm-table-cell">Email</th>
-                                <th class="d-none d-sm-table-cell" style="width: 15%;">Telpon</th>
-                                <th class="d-none d-sm-table-cell" style="width: 15%;">Role</th>
+                                <th>ID User</th>
+                                <th>ID Paket</th>
+                                <th class="d-none d-sm-table-cell">Tanggal</th>
+                                <th class="d-none d-sm-table-cell">Deskripsi</th>
+                                <th class="d-none d-sm-table-cell" style="width: 15%;">Bintang</th>
                                 <th class="text-center" style="width: 15%;">Kontrol</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach ($users as $key => $user) : ?>
-                                <tr id="user-row-<?= $key ?>">
-                                    <td class="text-center"><?= $user->id_user ?></td>
-                                    <td class="font-w600"><?= $user->nama_lengkap ?></td>
-                                    <td class="d-sm-table-cell"><?= $user->email ?></td>
-                                    <td class="d-sm-table-cell"><?= $user->no_telp ?></td>
-                                    <td class="d-sm-table-cell">
-                                        <?php if ($user->role == 'admin') { ?>
-                                            <span class="badge badge-danger">Admin</span>
-                                        <?php } else if ($user->role == 'fotografer') { ?>
-                                            <span class="badge badge-warning">Fotografer</span>
-                                        <?php } else { ?>
-                                            <span class="badge badge-primary">User</span>
-                                        <?php } ?>
-                                    </td>
+                            <?php foreach ($ulasans as $key => $ulasan) : ?>
+                                <tr id="ulasan-row-<?= $key ?>">
+                                    <td class="text-center"><?= $ulasan->id_ulasan ?></td>
+                                    <td class="text-center"><?= $ulasan->id_user ?></td>
+                                    <td class="text-center"><?= $ulasan->id_paket ?></td>
+                                    <td class="d-sm-table-cell"><?= $ulasan->tanggal ?></td>
+                                    <td class="d-sm-table-cell"><?= $ulasan->deskripsi ?></td>
+                                    <td class="d-sm-table-cell"><?= $ulasan->bintang ?></td>
                                     <td class="text-center">
                                         <button type="button" class="btn btn-sm btn-secondary" title="Detail" data-toggle="modal" data-target="#modal<?= $key ?>">
                                             <i class="fa fa-info"></i>
                                         </button>
-                                        <a href="/admin/user/<?= $user->id_user ?>/edit" class="btn btn-sm btn-secondary" title="Edit">
+                                        <a href="/admin/ulasan/<?= $ulasan->id_ulasan ?>/edit" class="btn btn-sm btn-secondary" title="Edit">
                                             <i class="fa fa-pencil-square-o"></i>
                                         </a>
                                         <button type="button" class="btn btn-sm btn-secondary" title="Hapus" data-toggle="modal" data-target="#modal-confirmation-<?= $key ?>">
@@ -75,7 +69,7 @@
                                         <div class="modal-dialog">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h5 class="modal-title" id="exampleModalLabel">Detail User</h5>
+                                                    <h5 class="modal-title" id="exampleModalLabel">Detail Ulasan</h5>
                                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                         <span aria-hidden="true">&times;</span>
                                                     </button>
@@ -85,7 +79,7 @@
                                                         <div class="form-group row">
                                                             <div class="col-md-12">
                                                                 <div class="form-material floating">
-                                                                    <input type="text" id="id" class="form-control" value="<?= $user->id_user ?>" disabled>
+                                                                    <input type="text" id="id" class="form-control" value="<?= $ulasan->id_ulasan ?>" disabled>
                                                                     <label for="id">ID</label>
                                                                 </div>
                                                             </div>
@@ -93,39 +87,47 @@
                                                         <div class="form-group row">
                                                             <div class="col-md-12">
                                                                 <div class="form-material floating">
-                                                                    <input type="text" id="nama_lengkap" class="form-control" value="<?= $user->nama_lengkap ?>" disabled>
-                                                                    <label for="nama_lengkap">Nama Lengkap</label>
+                                                                    <input type="text" id="id_user" class="form-control" value="<?= $ulasan->id_user ?>" disabled>
+                                                                    <label for="id_user">ID User</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <div class="col-md-12">
+                                                                <div class="form-material floating">
+                                                                    <input type="text" id="id_paket" class="form-control" value="<?= $ulasan->id_paket ?>" disabled>
+                                                                    <label for="id_paket">ID Paket</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <div class="col-md-12">
+                                                                <div class="form-material floating">
+                                                                    <input type="text" id="tanggal" class="form-control" value="<?= $ulasan->tanggal ?>" disabled>
+                                                                    <label for="tanggal">Tanggal</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <div class="col-md-12">
+                                                                <div class="form-material floating">
+                                                                    <textarea class="form-control" id="deskripsi" name="deskripsi" rows="4" disabled><?= $ulasan->deskripsi ?></textarea>
+                                                                    <label for="deskripsi">Deskripsi</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <div class="col-md-12">
+                                                                <div class="form-material floating">
+                                                                    <input type="number" id="bintang" class="form-control" value="<?= $ulasan->bintang ?>" disabled>
+                                                                    <label for="bintang">Bintang</label>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                         <div class="form-group row">
                                                             <div class="col-12">
                                                                 <div class="form-material floating">
-                                                                    <input type="text" id="email" class="form-control" value="<?= $user->email ?>" disabled>
-                                                                    <label for="email">Email</label>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group row">
-                                                            <div class="col-12">
-                                                                <div class="form-material floating">
-                                                                    <input type="text" id="telpon" class="form-control" value="<?= $user->no_telp ?>" disabled>
-                                                                    <label for="telpon">Telpon</label>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group row">
-                                                            <div class="col-12">
-                                                                <div class="form-material floating">
-                                                                    <input type="text" id="role" class="form-control" value="<?= $user->role ?>" disabled>
-                                                                    <label for="role">Role</label>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group row">
-                                                            <div class="col-12">
-                                                                <div class="form-material floating">
-                                                                    <input type="text" id="role" class="form-control" value="<?= $user->created_at ?>" disabled>
+                                                                    <input type="text" id="role" class="form-control" value="<?= $ulasan->created_at ?>" disabled>
                                                                     <label for="role">Created At</label>
                                                                 </div>
                                                             </div>
@@ -133,7 +135,7 @@
                                                         <div class="form-group row">
                                                             <div class="col-12">
                                                                 <div class="form-material floating">
-                                                                    <input type="text" id="role" class="form-control" value="<?= $user->updated_at ?>" disabled>
+                                                                    <input type="text" id="role" class="form-control" value="<?= $ulasan->updated_at ?>" disabled>
                                                                     <label for="role">Updated At</label>
                                                                 </div>
                                                             </div>
@@ -156,7 +158,7 @@
                                                     </button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    Yakin hapus user <?= $user->nama_lengkap; ?>?
+                                                    Yakin hapus ulasan ini?
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
@@ -170,14 +172,14 @@
                                     document.addEventListener('DOMContentLoaded', function() {
                                         $(document).ready(function() {
                                             $('#btn-remove-<?= $key ?>').click(function() {
-                                                var row = document.getElementById('user-row-<?= $key ?>');
+                                                var row = document.getElementById('ulasan-row-<?= $key ?>');
                                                 if (row) {
                                                     // perform AJAX request here
                                                     $.ajax({
-                                                        url: '<?= site_url('/admin/user/remove') ?>',
+                                                        url: '<?= site_url('/admin/ulasan/remove') ?>',
                                                         type: 'POST',
                                                         data: {
-                                                            id_user: <?= $user->id_user ?>,
+                                                            id_ulasan: <?= $ulasan->id_ulasan ?>,
                                                         },
                                                         success: function(response) {
                                                             console.log(response);

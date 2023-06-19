@@ -39,14 +39,14 @@
         <div class="content-side content-side-full content-side-user px-10 align-parent">
             <!-- Visible only in mini mode -->
             <div class="sidebar-mini-visible-b align-v animated fadeIn">
-                <img class="img-avatar img-avatar32" src="assets/admin/media/avatars/avatar15.jpg" alt="">
+                <img class="img-avatar img-avatar32" src="<?= base_url('assets/admin/media/avatars/avatar15.jpg') ?>" alt="">
             </div>
             <!-- END Visible only in mini mode -->
 
             <!-- Visible only in normal mode -->
             <div class="sidebar-mini-hidden-b text-center">
                 <a class="img-link" href="be_pages_generic_profile.html">
-                    <img class="img-avatar" src="assets/admin/media/avatars/avatar15.jpg" alt="">
+                    <img class="img-avatar" src="<?= base_url('assets/admin/media/avatars/avatar15.jpg') ?>" alt="">
                 </a>
                 <ul class="list-inline mt-10">
                     <li class="list-inline-item">
@@ -67,26 +67,56 @@
         <div class="content-side content-side-full">
             <ul class="nav-main">
                 <li>
-                    <a href="be_pages_dashboard.html"><i class="si si-cup"></i><span class="sidebar-mini-hide">Dashboard</span></a>
+                    <a href="/admin" class="<?php if (str_contains(esc($title), "Beranda")) {
+                                                echo 'active';
+                                            }  ?>">
+                        <i class="si si-cup"></i><span class="sidebar-mini-hide">Beranda</span>
+                    </a>
                 </li>
-                <li class="nav-main-heading"><span class="sidebar-mini-visible">DB</span><span class="sidebar-mini-hidden">Database</span></li>
-                <li>
-                    <a href="/admin/user"><i class="si si-layers"></i><span class="sidebar-mini-hide">User</span></a>
-                </li>
-                <li>
-                    <a href="be_pages_dashboard.html"><i class="si si-layers"></i><span class="sidebar-mini-hide">Paket</span></a>
-                </li>
-                <li>
-                    <a href="be_pages_dashboard.html"><i class="si si-layers"></i><span class="sidebar-mini-hide">Pesanan</span></a>
+                <li class="nav-main-heading">
+                    <span class="sidebar-mini-visible">DB</span><span class="sidebar-mini-hidden">Database</span>
                 </li>
                 <li>
-                    <a href="be_pages_dashboard.html"><i class="si si-layers"></i><span class="sidebar-mini-hide">Pembayaran</span></a>
+                    <a href="/admin/user" class="<?php if (str_contains(esc($title), "User")) {
+                                                        echo 'active';
+                                                    }  ?>">
+                        <i class="si si-layers"></i><span class="sidebar-mini-hide">User</span>
+                    </a>
                 </li>
                 <li>
-                    <a href="be_pages_dashboard.html"><i class="si si-layers"></i><span class="sidebar-mini-hide">Ulasan</span></a>
+                    <a href="/admin/paket" class="<?php if (str_contains(esc($title), "Paket")) {
+                                                        echo 'active';
+                                                    }  ?>">
+                        <i class="si si-layers"></i><span class="sidebar-mini-hide">Paket</span>
+                    </a>
                 </li>
                 <li>
-                    <a href="be_pages_dashboard.html"><i class="si si-layers"></i><span class="sidebar-mini-hide">Hasil Foto</span></a>
+                    <a href="/admin/pesanan" class="<?php if (str_contains(esc($title), "Pesanan")) {
+                                                        echo 'active';
+                                                    }  ?>">
+                        <i class="si si-layers"></i><span class="sidebar-mini-hide">Pesanan</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/admin/pembayaran" class="<?php if (str_contains(esc($title), "Pembayaran")) {
+                                                            echo 'active';
+                                                        }  ?>">
+                        <i class="si si-layers"></i><span class="sidebar-mini-hide">Pembayaran</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/admin/ulasan" class="<?php if (str_contains(esc($title), "Ulasan")) {
+                                                        echo 'active';
+                                                    }  ?>">
+                        <i class="si si-layers"></i><span class="sidebar-mini-hide">Ulasan</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/admin/hasil-foto" class="<?php if (str_contains(esc($title), "Hasil Foto")) {
+                                                            echo 'active';
+                                                        }  ?>">
+                        <i class="si si-layers"></i><span class="sidebar-mini-hide">Hasil Foto</span>
+                    </a>
                 </li>
             </ul>
         </div>

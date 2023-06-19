@@ -15,7 +15,7 @@
             <div class="bg-primary-dark-op">
                 <div class="content content-top text-center overflow-hidden">
                     <div class="pt-50 pb-20">
-                        <h1 class="font-w700 text-white mb-10 invisible" data-toggle="appear" data-class="animated fadeInUp">Form User</h1>
+                        <h1 class="font-w700 text-white mb-10 invisible" data-toggle="appear" data-class="animated fadeInUp">Form Hasil Foto</h1>
                     </div>
                 </div>
             </div>
@@ -30,10 +30,10 @@
                     <!-- Floating Labels -->
                     <div class="block">
                         <div class="block-header block-header-default">
-                            <h3 class="block-title">Tambah User</h3>
+                            <h3 class="block-title">Tambah Hasil Foto</h3>
                         </div>
                         <div class="block-content">
-                            <form action="/admin/user/new" method="post">
+                            <form action="/admin/hasil-foto/new" method="post">
                                 <div class="form-group row">
                                     <div class="col-md-9">
                                         <div class="form-material floating">
@@ -44,45 +44,33 @@
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-md-9">
-                                        <div class="form-material floating">
-                                            <input type="text" id="input-nama-lengkap" name="nama-lengkap" class="form-control" value="" required>
-                                            <label for="input-nama-lengkap">Nama Lengkap</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <div class="col-9">
-                                        <div class="form-material floating">
-                                            <input type="email" id="input-email" name="email" class="form-control" value="" required>
-                                            <label for="input-email">Email</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <div class="col-9">
-                                        <div class="form-material floating">
-                                            <input type="number" id="input-telpon" name="telpon" class="form-control" value="" required>
-                                            <label for="input-telepon">Telpon</label>
+                                        <div class="form-material">
+                                            <select class="form-control" id="input-id-fotografer" name="id_fotografer">
+                                                <?php foreach ($fotografers as $key => $fotografer) : ?>
+                                                    <option value="<?= $fotografer->id_user ?>"><?= $fotografer->id_user ?></option>
+                                                <?php endforeach; ?>
+                                            </select>
+                                            <label for="input-id-fotografer">ID Fotografer</label>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-md-9">
                                         <div class="form-material">
-                                            <select class="form-control" id="input-role" name="role">
-                                                <option value="User" selected>User</option>
-                                                <option value="Admin">Admin</option>
-                                                <option value="Fotografer">Fotografer</option>
+                                            <select class="form-control" id="input-id-pesanan" name="id_pesanan">
+                                                <?php foreach ($pesanans as $key => $pesanan) : ?>
+                                                    <option value="<?= $pesanan->id_pesanan ?>"><?= $pesanan->id_pesanan ?></option>
+                                                <?php endforeach; ?>
                                             </select>
-                                            <label for="input-role">Role</label>
+                                            <label for="input-id-pesanan">ID Pesanan</label>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <div class="col-9">
+                                    <div class="col-md-9">
                                         <div class="form-material floating">
-                                            <input type="password" id="input-password" name="password" class="form-control" value="" required>
-                                            <label for="input-password">Password</label>
+                                            <input type="text" id="input-hasil-foto" name="hasil_foto" class="form-control" value="" required>
+                                            <label for="input-hasil-foto">Hasil Foto</label>
                                         </div>
                                     </div>
                                 </div>
