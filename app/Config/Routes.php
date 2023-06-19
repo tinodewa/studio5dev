@@ -2,13 +2,6 @@
 
 namespace Config;
 
-use App\Controllers\HasilFoto;
-use App\Controllers\Paket;
-use App\Controllers\Pembayaran;
-use App\Controllers\Pesanan;
-use App\Controllers\Ulasan;
-use App\Controllers\User;
-
 // Create a new instance of our RouteCollection class.
 $routes = Services::routes();
 
@@ -46,13 +39,55 @@ $routes->get('/register', 'Register::index');
 $routes->post('/register/process', 'Register::process');
 
 //admin route
-$routes->get('/admin', 'Home::admin');
-// $routes->resource('user', [User::class]);
-// $routes->resource('pesanan', [Pesanan::class]);
-// $routes->resource('hasilfoto', [HasilFoto::class]);
-// $routes->resource('paket', [Paket::class]);
-// $routes->resource('pembayaran', [Pembayaran::class]);
-// $routes->resource('ulasan', [Ulasan::class]);
+$routes->get('/admin', 'AdminController::index');
+
+//admin user route
+$routes->get('/admin/user', 'AdminUserController::index');
+$routes->get('/admin/user/new', 'AdminUserController::new');
+$routes->post('/admin/user/new', 'AdminUserController::create');
+$routes->get('/admin/user/(:segment)/edit', 'AdminUserController::edit/$1', ['$1' => '[0-9]+']);
+$routes->post('/admin/user/(:segment)/edit', 'AdminUserController::update');
+$routes->post('/admin/user/remove', 'AdminUserController::delete');
+
+//admin paket route
+$routes->get('/admin/paket', 'AdminPaketController::index');
+$routes->get('/admin/paket/new', 'AdminPaketController::new');
+$routes->post('/admin/paket/new', 'AdminPaketController::create');
+$routes->get('/admin/paket/(:segment)/edit', 'AdminPaketController::edit/$1', ['$1' => '[0-9]+']);
+$routes->post('/admin/paket/(:segment)/edit', 'AdminPaketController::update');
+$routes->post('/admin/paket/remove', 'AdminPaketController::delete');
+
+//admin pesanan route
+$routes->get('/admin/pesanan', 'AdminPesananController::index');
+$routes->get('/admin/pesanan/new', 'AdminPesananController::new');
+$routes->post('/admin/pesanan/new', 'AdminPesananController::create');
+$routes->get('/admin/pesanan/(:segment)/edit', 'AdminPesananController::edit/$1', ['$1' => '[0-9]+']);
+$routes->post('/admin/pesanan/(:segment)/edit', 'AdminPesananController::update');
+$routes->post('/admin/pesanan/remove', 'AdminPesananController::delete');
+
+//admin pembayaran route
+$routes->get('/admin/pembayaran', 'AdminPembayaranController::index');
+$routes->get('/admin/pembayaran/new', 'AdminPembayaranController::new');
+$routes->post('/admin/pembayaran/new', 'AdminPembayaranController::create');
+$routes->get('/admin/pembayaran/(:segment)/edit', 'AdminPembayaranController::edit/$1', ['$1' => '[0-9]+']);
+$routes->post('/admin/pembayaran/(:segment)/edit', 'AdminPembayaranController::update');
+$routes->post('/admin/pembayaran/remove', 'AdminPembayaranController::delete');
+
+//admin ulasan route
+$routes->get('/admin/ulasan', 'AdminUlasanController::index');
+$routes->get('/admin/ulasan/new', 'AdminUlasanController::new');
+$routes->post('/admin/ulasan/new', 'AdminUlasanController::create');
+$routes->get('/admin/ulasan/(:segment)/edit', 'AdminUlasanController::edit/$1', ['$1' => '[0-9]+']);
+$routes->post('/admin/ulasan/(:segment)/edit', 'AdminUlasanController::update');
+$routes->post('/admin/ulasan/remove', 'AdminUlasanController::delete');
+
+//admin hasil foto route
+$routes->get('/admin/hasil-foto', 'AdminHasilFotoController::index');
+$routes->get('/admin/hasil-foto/new', 'AdminHasilFotoController::new');
+$routes->post('/admin/hasil-foto/new', 'AdminHasilFotoController::create');
+$routes->get('/admin/hasil-foto/(:segment)/edit', 'AdminHasilFotoController::edit/$1', ['$1' => '[0-9]+']);
+$routes->post('/admin/hasil-foto/(:segment)/edit', 'AdminHasilFotoController::update');
+$routes->post('/admin/hasil-foto/remove', 'AdminHasilFotoController::delete');
 
 //fotografer route
 $routes->get('/fotografer', 'Fotografer::index');

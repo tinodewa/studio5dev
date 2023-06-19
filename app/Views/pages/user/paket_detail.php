@@ -1,10 +1,10 @@
-<?= $this->extend('layout/page_layout.php') ?>
+<?= $this->extend('pages/user/template/page_layout.php') ?>
 
 <?= $this->section('content') ?>
 
 <?php $session = session() ?>
 
-<?= $this->include('pages/user/layout/user_navbar.php') ?>
+<?= $this->include('pages/user/template/navbar.php') ?>
 
 <main id="main">
     <!-- ======= Breadcrumbs ======= -->
@@ -180,7 +180,7 @@
     <!-- End Portfolio Details Section -->
 </main>
 <!-- End #main -->
-<?= $this->include('pages/user/layout/user_footer.php') ?>
+<?= $this->include('pages/user/template/footer.php') ?>
 
 <?= $this->endSection() ?>
 

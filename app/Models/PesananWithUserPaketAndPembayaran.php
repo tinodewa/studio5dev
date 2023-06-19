@@ -46,4 +46,13 @@ class PesananWithUserPaketAndPembayaran extends Model
         $query = $builder->get();
         return $query->getResult();
     }
+
+    public function getSumJumlahPembayaranWithDoneOrder()
+    {
+        $db = db_connect();
+        $builder = $db->table('pesanan')->selectSum('jumlah_bayar');
+        $builder->where('pesanan.status = ', 'done');
+        $query = $builder->get();
+        return $query->getResult();
+    }
 }

@@ -7,6 +7,7 @@ use CodeIgniter\Entity\Entity;
 class User extends Entity
 {
     protected $attributes = [
+        'id_user' => null,
         'email' => null,
         'nama_lengkap' => null,
         'no_telp' => null,
@@ -15,6 +16,11 @@ class User extends Entity
         'foto_profil' => null
     ];
 
+    public function setIdUser(string $id_user): self
+    {
+        $this->attributes['id_user'] = $id_user;
+        return $this;
+    }
     public function setEmail(string $email): self
     {
         $this->attributes['email'] = $email;

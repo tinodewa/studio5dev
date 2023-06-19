@@ -1,4 +1,4 @@
-<?= $this->extend('layout/page_layout.php') ?>
+<?= $this->extend('pages/user/template/page_layout.php') ?>
 
 <?= $this->section('content') ?>
 
@@ -14,7 +14,7 @@ function shortNumber($num)
 }
 ?>
 
-<?= $this->include('pages/user/layout/user_navbar_beranda.php') ?>
+<?= $this->include('pages/user/template/navbar.php') ?>
 
 <!-- ======= Hero Section ======= -->
 <section id="hero" class="hero d-flex align-items-center">
@@ -531,6 +531,6 @@ function shortNumber($num)
 </main>
 <!-- End #main -->
 
-<?= $this->include('pages/user/layout/user_footer.php') ?>
+<?= $this->include('pages/user/template/footer.php') ?>
 
 <?= $this->endSection() ?>
