@@ -40,7 +40,7 @@ function shortNumber($num)
                                                 <th sortable="false">Paket</th>
                                                 <th sortable="false">Harga</th>
                                                 <th sortable="false">Tanggal</th>
-                                                <th sortable="false">Status</th>
+                                                <th sortable="false" class="text-center">Status</th>
                                                 <th sortable="false" class="text-center">Remove</th>
                                             </tr>
                                         </thead>
@@ -66,8 +66,14 @@ function shortNumber($num)
                                                     <td class="align-middle">
                                                         <?= $listPesanan->tanggal; ?>
                                                     </td>
-                                                    <td class="align-middle">
-                                                        <?= $listPesanan->status; ?>
+                                                    <td class="align-middle text-center">
+                                                        <?php if (str_contains($listPesanan->status, "sudah review")) { ?>
+                                                            <button type="button" class="btn btn-success" disabled>Done</button>
+                                                        <?php } else if (str_contains($listPesanan->status, "belum review")) { ?>
+                                                            <button type="button" class="btn btn-primary" disabled>Done</button>
+                                                        <?php } else { ?>
+                                                            <button type="button" class="btn btn-warning" disabled><?= $listPesanan->status; ?></button>
+                                                        <?php } ?>
                                                     </td>
                                                     <td class="align-middle text-center">
                                                         <a class="btn btn-sm btn-grey" href="/list-pesanan/<?= $listPesanan->id_pesanan; ?>/detail">
