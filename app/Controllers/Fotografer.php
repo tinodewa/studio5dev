@@ -74,10 +74,10 @@ class Fotografer extends BaseController
                 $pesananUserPaketAndPembayaran = new PesananWithUserPaketAndPembayaran();
                 $data['detailPesanan'] = $pesananUserPaketAndPembayaran->getPesananWithUserPaketAndPembayaranById($id_pesanan);
 
-                //rubah status di pembayaran menjadi done
+                //rubah status di pembayaran menjadi done bleum review
                 $pembayaran = new Pembayaran();
                 $dataPembayaran = [
-                    'status' => 'done',
+                    'status' => 'done belum review',
                 ];
 
                 $pembayaran->update($data['detailPesanan'][0]->id_pembayaran, $dataPembayaran);

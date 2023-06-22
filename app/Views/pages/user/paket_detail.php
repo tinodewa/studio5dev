@@ -215,9 +215,12 @@
                         duration: 3000
                     }).showToast();
                 },
-                // error: function() {
-                //     //handle AJAX error, if any
-                // }
+                error: function() {
+                    Toastify({
+                        text: "Gagal!",
+                        duration: 3000
+                    }).showToast();
+                }
             })
         });
     });

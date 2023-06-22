@@ -53,7 +53,7 @@
                         <a class="link-effect text-dual-primary-dark font-size-sm font-w600 text-uppercase" href="be_pages_generic_profile.html"><?php echo $_SESSION['nama_lengkap'] ?></a>
                     </li>
                     <li class="list-inline-item">
-                        <a class="link-effect text-dual-primary-dark" href="op_auth_signin.html">
+                        <a class="link-effect text-dual-primary-dark" href="/logout">
                             <i class="si si-logout"></i>
                         </a>
                     </li>
@@ -155,7 +155,7 @@
                         <i class="si si-user mr-5"></i> Profile
                     </a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="op_auth_signin.html">
+                    <a class="dropdown-item" href="/logout">
                         <i class="si si-logout mr-5"></i> Sign Out
                     </a>
                 </div>

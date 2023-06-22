@@ -73,6 +73,11 @@ function shortNumber($num)
                                                         <a class="btn btn-sm btn-grey" href="/list-pesanan/<?= $listPesanan->id_pesanan; ?>/detail">
                                                             Detail
                                                         </a>
+                                                        <?php if (str_contains($listPesanan->status, "belum")) { ?>
+                                                            <button id="buttonReview<?= $key ?>" type="button" class="btn btn-sm btn-grey" data-bs-toggle="modal" data-bs-target="#exampleModal<?= $key ?>">
+                                                                Review
+                                                            </button>
+                                                        <?php } ?>
                                                     </td>
                                                 </tr>
                                             <?php endforeach; ?>
@@ -88,6 +93,85 @@ function shortNumber($num)
     </section>
     <!-- End Contact Section -->
 
+    <?php foreach ($listPesanans as $key => $listPesanan) : ?>
+        <!-- Modal -->
+        <?php if (str_contains($listPesanan->status, "belum")) { ?>
+            <div class="modal fade" id="exampleModal<?= $key ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <form action="#">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Review</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <!-- star rating -->
+                                <input id="input-rating<?= $key ?>" value="0" type="text" class="rating" data-theme="krajee-fas" data-min=0 data-max=5 data-step=0.5>
+
+                                <textarea class="form-control" id="deskripsiUlasan<?= $key ?>" name="ulasan" rows="4" placeholder="Ulasan" required></textarea>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                                <a href="#" id="simpanUlasan<?= $key ?>" class="btn btn-primary col-4">
+                                    <span id="simpanText<?= $key ?>">Simpan</span>
+                                    <div id="simpanLoading<?= $key ?>" class="spinner-border text-light col-4 d-none" role="status">
+                                        <span class="sr-only"></span>
+                                    </div>
+                                </a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        <?php } ?>
+        <script type="text/javascript">
+            jQuery(document).ready(function() {
+                var nilaiUlasan = 0;
+                var deskripsiUlasan = document.getElementById('deskripsiUlasan<?= $key ?>');
+                var simpanText = document.getElementById("simpanText<?= $key ?>");
+                var simpanLoading = document.getElementById("simpanLoading<?= $key ?>");
+                var anchorBtn = document.getElementById('simpanUlasan<?= $key ?>');
+                $('#input-rating<?= $key ?>').on('rating:change', function(event, value, caption) {
+                    nilaiUlasan = value;
+                });
+                $('#simpanUlasan<?= $key ?>').on('click', function(e) {
+                    e.preventDefault();
+                    simpanText.classList.add("d-none");
+                    simpanLoading.classList.remove("d-none");
+                    anchorBtn.disabled = true;
+
+                    $.ajax({
+                        url: '<?= site_url('/list-pesanan/simpan-ulasan') ?>',
+                        type: 'POST',
+                        data: {
+                            id_paket: <?= $listPesanan->id_paket ?>,
+                            rating: nilaiUlasan,
+                            deskripsi: deskripsiUlasan.value,
+                            id_pembayaran: <?= $listPesanan->id_pembayaran ?>
+                        },
+                        success: function(response) {
+                            anchorBtn.disabled = false;
+                            simpanText.classList.remove("d-none");
+                            simpanLoading.classList.add("d-none");
+                            Toastify({
+                                text: "Berhasil!",
+                                duration: 3000
+                            }).showToast();
+                            $('#exampleModal<?= $key ?>').modal('hide');
+                            console.log(response);
+                            location.reload();
+                        },
+                        error: function() {
+                            Toastify({
+                                text: "Gagal!",
+                                duration: 3000
+                            }).showToast();
+                        }
+                    })
+                });
+            });
+        </script>
+    <?php endforeach; ?>
 </main>
 <!-- End #main -->
 <?= $this->include('pages/user/template/footer.php') ?>

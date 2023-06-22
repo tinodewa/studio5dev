@@ -12,6 +12,7 @@ use App\Models\PesananWithUserPaketAndPembayaran;
 use App\Models\Ulasan;
 use App\Models\UlasanWithUserAndPaket;
 use CodeIgniter\Database\Exceptions\DataException;
+use CodeIgniter\I18n\Time;
 use PhpParser\Node\Expr\Cast\String_;
 
 class HomeUser extends BaseController
@@ -428,6 +429,60 @@ class HomeUser extends BaseController
                 $pembayaran->update($idPembayaran, $dataBukti);
 
                 return redirect()->to('/list-pesanan/' . $id_pesanan . '/detail');
+            } else if ($session->get('role') == 'fotografer') {
+                return redirect()->to('/fotografer');
+            }
+        }
+        return redirect()->to('/login');
+    }
+
+    public function simpanUlasan()
+    {
+        $session = session();
+
+        if ($session->has('logged_in')) {
+            //cek position dari session
+            if ($session->get('role') == 'admin') {
+                return redirect()->to('/admin');
+            } else if ($session->get('role') == 'user') {
+                //data
+                try {
+                    //insert ulasan
+                    helper('time');
+                    $ulasan = new Ulasan();
+
+                    $currentDate = Time::now();
+                    $formattedDate = $currentDate->toLocalizedString('yyyy-MM-dd');
+
+                    $id_paket = $this->request->getVar('id_paket');
+                    $rating = $this->request->getVar('rating');
+                    $deskripsi = $this->request->getVar('deskripsi');
+
+                    $dataUlasan = [
+                        'id_user' => $session->get('id_user'),
+                        'id_paket' => $id_paket,
+                        'tanggal' => $formattedDate,
+                        'deskripsi' => $deskripsi,
+                        'bintang' => $rating,
+                    ];
+
+                    $ulasan->insert($dataUlasan);
+
+                    //rubah status di pembayaran menjadi done sudah review
+                    $pembayaran = new Pembayaran();
+
+                    $id_pembayaran = $this->request->getVar('id_pembayaran');
+
+                    $dataPembayaran = [
+                        'status' => 'done sudah review',
+                    ];
+
+                    $pembayaran->update($id_pembayaran, $dataPembayaran);
+
+                    return $this->response->setJSON(['status' => 'Berhasil disimpan!']);
+                } catch (\Exception $e) {
+                    return $this->response->setJSON(['error' => $e]);
+                }
             } else if ($session->get('role') == 'fotografer') {
                 return redirect()->to('/fotografer');
             }
