@@ -107,6 +107,7 @@ $routes->get('/list-pesanan', 'HomeUser::listPesanan');
 $routes->get('/list-pesanan/(:num)/detail', 'HomeUser::listPesananDetail/$1');
 $routes->post('/list-pesanan/(:num)/detail/simpan-bukti', 'HomeUser::simpanBukti/$1');
 $routes->post('/list-pesanan/simpan-ulasan', 'HomeUser::simpanUlasan');
+$routes->get('/profil', 'HomeUser::profil');
 
 //payment
 $routes->get('payment', 'PaymentController::index');

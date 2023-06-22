@@ -31,7 +31,7 @@
                 ?>
                     <li class="dropdown"><a href="#"><span><i class="bi bi-person-circle"></i> <?php echo $_SESSION['nama_lengkap'] ?></span> <i class="bi bi-chevron-down"></i></a>
                         <ul>
-                            <li><a href="#">Profil</a></li>
+                            <li><a href="/profil">Profil</a></li>
                             <li><a href="/list-pesanan">List Pesanan</a></li>
                             <li><a href="/logout">Logout</a></li>
                         </ul>

@@ -11,6 +11,7 @@ use App\Models\PesananWithUserAndPaket;
 use App\Models\PesananWithUserPaketAndPembayaran;
 use App\Models\Ulasan;
 use App\Models\UlasanWithUserAndPaket;
+use App\Models\User;
 use CodeIgniter\Database\Exceptions\DataException;
 use CodeIgniter\I18n\Time;
 use PhpParser\Node\Expr\Cast\String_;
@@ -488,6 +489,29 @@ class HomeUser extends BaseController
             }
         }
         return redirect()->to('/login');
+    }
+
+    public function profil()
+    {
+        $session = session();
+
+        if ($session->has('logged_in')) {
+            //cek position dari session
+            if ($session->get('role') == 'admin') {
+                return redirect()->to('/admin');
+            } else if ($session->get('role') == 'user') {
+                $data['title'] = 'Profil';
+
+                $user = new User();
+                $data['user'] = $user->find($session->get('id_user'));
+
+                return view('pages/user/profil_pengguna', $data);
+            } else if ($session->get('role') == 'fotografer') {
+                return redirect()->to('/fotografer');
+            }
+        }
+        $data['title'] = 'Beranda';
+        return view('pages/user/index', $data);
     }
 }
 
