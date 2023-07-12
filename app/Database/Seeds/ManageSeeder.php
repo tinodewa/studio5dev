@@ -10,9 +10,9 @@ class ManageSeeder extends Seeder
     {
         $this->call('User');
         $this->call('Paket');
-        $this->call('Pesanan');
-        $this->call('Pembayaran');
+        // $this->call('Pesanan');
+        // $this->call('Pembayaran');
         $this->call('Ulasan');
-        $this->call('HasilFoto');
+        // $this->call('HasilFoto');
     }
 }

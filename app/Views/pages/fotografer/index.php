@@ -63,7 +63,7 @@ function shortNumber($num)
                                                     <td class="align-middle">
                                                         <span class="amount cart-price-<?= $key ?>">
                                                             <?=
-                                                            number_to_currency($listPesanan->harga_paket, 'IDR', 'id_ID');
+                                                            number_to_currency($listPesanan->jumlah_bayar, 'IDR', 'id_ID');
                                                             ?>
                                                         </span>
                                                     </td>
@@ -71,7 +71,17 @@ function shortNumber($num)
                                                         <?= $listPesanan->tanggal; ?>
                                                     </td>
                                                     <td class="align-middle">
-                                                        <?= $listPesanan->status; ?>
+                                                        <?php if (str_contains($listPesanan->status, "sudah review")) { ?>
+                                                            <button type="button" class="btn btn-success" disabled>Done</button>
+                                                        <?php } else if (str_contains($listPesanan->status, "belum review")) { ?>
+                                                            <button type="button" class="btn btn-primary" disabled>Done</button>
+                                                        <?php } else if (str_contains($listPesanan->status, "expire")) { ?>
+                                                            <button type="button" class="btn btn-dark" disabled><?= $listPesanan->status; ?></button>
+                                                        <?php } else if (str_contains($listPesanan->status, "dalam proses")) { ?>
+                                                            <button type="button" class="btn btn-info" disabled><?= $listPesanan->status; ?></button>
+                                                        <?php } else { ?>
+                                                            <button type="button" class="btn btn-warning" disabled><?= $listPesanan->status; ?></button>
+                                                        <?php } ?>
                                                     </td>
                                                     <td class="align-middle text-center">
                                                         <a class="btn btn-sm btn-grey" href="/fotografer/pesanan/<?= $listPesanan->id_pesanan; ?>/detail">

@@ -18,25 +18,9 @@ class Paket extends Migration
                 'type'       => 'VARCHAR',
                 'constraint' => '255',
             ],
-            'warna_nama_paket' => [
-                'type'       => 'VARCHAR',
-                'constraint' => '255',
-            ],
-            'gambar_paket' => [
-                'type'       => 'VARCHAR',
-                'constraint' => '255',
-            ],
             'harga_paket' => [
                 'type'       => 'INT',
                 'constraint' => '50',
-            ],
-            'keterangan_harga_paket' => [
-                'type'       => 'INT',
-                'constraint' => '50',
-            ],
-            'status_paket' => [
-                'type'       => 'VARCHAR',
-                'constraint' => '255',
             ],
             'fotografer' => [
                 'type'       => 'INT',
@@ -46,37 +30,35 @@ class Paket extends Migration
                 'type'       => 'INT',
                 'constraint' => '50',
             ],
-            'waktu' => [
+            'asisten' => [
                 'type'       => 'INT',
                 'constraint' => '50',
             ],
-            'dua_tempat' => [
-                'type'      => 'BOOLEAN',
-            ],
-            'tempat_indoor' => [
-                'type'       => 'INT',
-                'constraint' => '50',
-            ],
-            'tempat_outdoor' => [
-                'type'       => 'INT',
-                'constraint' => '50',
-            ],
-            'hasil_jumlah' => [
-                'type'       => 'INT',
-                'constraint' => '50',
-            ],
-            'hasil_ukuran_cetak' => [
+            'waktu_kerja' => [
                 'type'       => 'VARCHAR',
                 'constraint' => '255',
             ],
-            'hasil_editing' => [
-                'type'       => 'INT',
-                'constraint' => '50',
+            'jumlah_foto' => [
+                'type'       => 'VARCHAR',
+                'constraint' => '255',
             ],
-            'hasil_cinematic' => [
-                'type'       => 'BOOLEAN',
+            'jumlah_foto_edit' => [
+                'type'       => 'VARCHAR',
+                'constraint' => '255',
             ],
-            'kapasitas' => [
+            'cetak_foto' => [
+                'type'       => 'VARCHAR',
+                'constraint' => '255',
+            ],
+            'videografi' => [
+                'type'       => 'VARCHAR',
+                'constraint' => '255',
+            ],
+            'penyimpanan' => [
+                'type'       => 'VARCHAR',
+                'constraint' => '255',
+            ],
+            'note' => [
                 'type'       => 'VARCHAR',
                 'constraint' => '255',
             ],

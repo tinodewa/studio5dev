@@ -3,7 +3,7 @@
     <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
         <a href="/" class="logo d-flex align-items-center">
             <img src="/assets/img/newlogo2.png" alt="">
-            <span>STUDIO 5</span>
+            <!-- <span>STUDIO 5</span> -->
         </a>
         <nav id="navbar" class="navbar">
             <ul>
@@ -31,16 +31,40 @@
                 ?>
                     <li class="dropdown"><a href="#"><span><i class="bi bi-person-circle"></i> <?php echo $_SESSION['nama_lengkap'] ?></span> <i class="bi bi-chevron-down"></i></a>
                         <ul>
-                            <li><a href="#">Profil</a></li>
+                            <li><a href="/profil">Profil</a></li>
                             <li><a href="/list-pesanan">List Pesanan</a></li>
+                            <li><a href="" id="checkout">Checkout</a></li>
                             <li><a href="/logout">Logout</a></li>
                         </ul>
                     </li>
+                    <script type="text/javascript">
+                        jQuery(document).ready(function() {
+                            $('#checkout').click(function(e) {
+                                e.preventDefault();
+                                $.ajax({
+                                    url: '<?= site_url('/check') ?>',
+                                    type: 'POST',
+                                    success: function(response) {
+                                        if (response.status == 'Belum ada pesanan!') {
+                                            Toastify({
+                                                text: response.status,
+                                                duration: 3000
+                                            }).showToast();
+                                        } else {
+                                            window.location.href = '<?= base_url('/checkout') ?>';
+                                        }
+                                    },
+                                    error: function(response) {
+                                        console.log(response);
+                                    }
+                                });
+                            });
+                        });
+                    </script>
                 <?php
                 } else {
-                    echo '<li><a class="getstarted scrollto" href="/login">LOGIN</a></li>';
+                    echo '<li><a class="getstarted getstarted-btn scrollto" href="/login">Sign In</a></li>';
                 }
-
                 ?>
             </ul>
             <i class="bi bi-list mobile-nav-toggle"></i>

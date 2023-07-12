@@ -8,22 +8,17 @@ class Paket extends Entity
 {
     protected $attributes = [
         'nama_paket' => null,
-        'warna_nama_paket' => null,
-        'gambar_paket' => null,
         'harga_paket' => null,
-        'keterangan_harga_paket' => null,
-        'status_paket' => null,
         'fotografer' => null,
         'videografer' => null,
-        'waktu' => null,
-        'dua_tempat' => null,
-        'tempat_indoor' => null,
-        'tempat_outdoor' => null,
-        'hasil_jumlah' => null,
-        'hasil_ukuran_cetak' => null,
-        'hasil_editing' => null,
-        'hasil_cinematic' => null,
-        'kapasitas' => null,
+        'asisten' => null,
+        'waktu_kerja' => null,
+        'jumlah_foto' => null,
+        'jumlah_foto_edit' => null,
+        'cetak_foto' => null,
+        'videografi' => null,
+        'penyimpanan' => null,
+        'note' => null,
         'deskripsi_paket' => null,
     ];
 
@@ -32,29 +27,9 @@ class Paket extends Entity
         $this->attributes['nama_paket'] = $namaPaket;
         return $this;
     }
-    public function setWarnaNamaPaket(string $warnaNamaPaket): self
-    {
-        $this->attributes['warna_nama_paket'] = $warnaNamaPaket;
-        return $this;
-    }
-    public function setGambarPaket(string $gambarPaket): self
-    {
-        $this->attributes['gambar_paket'] = $gambarPaket;
-        return $this;
-    }
     public function setHargaPaket(string $hargaPaket): self
     {
         $this->attributes['harga_paket'] = $hargaPaket;
-        return $this;
-    }
-    public function setKeteranganHargaPaket(string $keteranganHargaPaket): self
-    {
-        $this->attributes['keterangan_harga_paket'] = $keteranganHargaPaket;
-        return $this;
-    }
-    public function setStatusPaket(string $statusPaket): self
-    {
-        $this->attributes['status_paket'] = $statusPaket;
         return $this;
     }
     public function setFotografer(string $fotografer): self
@@ -67,49 +42,44 @@ class Paket extends Entity
         $this->attributes['videografer'] = $videografer;
         return $this;
     }
-    public function setWaktu(string $waktu): self
+    public function setasisten(string $asisten): self
     {
-        $this->attributes['waktu'] = $waktu;
+        $this->attributes['asisten'] = $asisten;
         return $this;
     }
-    public function setDuaTempat(string $duaTempat): self
+    public function setwaktu_kerja(string $waktu_kerja): self
     {
-        $this->attributes['dua_tempat'] = $duaTempat;
+        $this->attributes['waktu_kerja'] = $waktu_kerja;
         return $this;
     }
-    public function setTempatIndoor(string $tempatIndoor): self
+    public function setjumlah_foto(string $jumlah_foto): self
     {
-        $this->attributes['tempat_indoor'] = $tempatIndoor;
+        $this->attributes['jumlah_foto'] = $jumlah_foto;
         return $this;
     }
-    public function setTempatOutdoor(string $tempatOutdoor): self
+    public function setjumlah_foto_edit(string $jumlah_foto_edit): self
     {
-        $this->attributes['tempat_outdoor'] = $tempatOutdoor;
+        $this->attributes['jumlah_foto_edit'] = $jumlah_foto_edit;
         return $this;
     }
-    public function setHasilJumlah(string $hasilJumlah): self
+    public function setcetak_foto(string $cetak_foto): self
     {
-        $this->attributes['hasil_jumlah'] = $hasilJumlah;
+        $this->attributes['cetak_foto'] = $cetak_foto;
         return $this;
     }
-    public function setHasilUkuranCetak(string $hasilUkuranCetak): self
+    public function setvideografi(string $videografi): self
     {
-        $this->attributes['hasil_ukuran_cetak'] = $hasilUkuranCetak;
+        $this->attributes['videografi'] = $videografi;
         return $this;
     }
-    public function setHasilEditing(string $hasilEditing): self
+    public function setpenyimpanan(string $penyimpanan): self
     {
-        $this->attributes['hasil_editing'] = $hasilEditing;
+        $this->attributes['penyimpanan'] = $penyimpanan;
         return $this;
     }
-    public function setHasilCinematic(string $hasilCinematic): self
+    public function setnote(string $note): self
     {
-        $this->attributes['hasil_cinematic'] = $hasilCinematic;
-        return $this;
-    }
-    public function setKapasitas(string $kapasitas): self
-    {
-        $this->attributes['kapasitas'] = $kapasitas;
+        $this->attributes['note'] = $note;
         return $this;
     }
     public function setDeskripsiPaket(string $deskripsiPaket): self

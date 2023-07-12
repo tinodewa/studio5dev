@@ -27,7 +27,7 @@ class Pesanan extends Migration
                 'constraint' => '255',
             ],
             'tanggal' => [
-                'type'       => 'DATE',
+                'type'       => 'DATETIME',
             ],
             'telp' => [
                 'type'       => 'VARCHAR',
@@ -38,6 +38,20 @@ class Pesanan extends Migration
             ],
             'catatan' => [
                 'type'       => 'TEXT',
+            ],
+            'extra_waktu_kerja' => [
+                'type'           => 'INT',
+                'constraint'     => 9,
+            ],
+            // magazine album 500(engagement), album magnetic(engagement) 250, premium magazine(akad) 400
+            'extra_premium_magazine' => [
+                'type'           => 'INT',
+                'constraint'     => 9,
+            ],
+            // prewedding indoor-maternity-wisuda-family-couple 50, personal 25
+            'extra_background_dan_outfit' => [
+                'type'           => 'INT',
+                'constraint'     => 9,
             ],
             'created_at datetime default current_timestamp',
             'updated_at datetime default current_timestamp on update current_timestamp',

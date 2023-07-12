@@ -164,13 +164,20 @@
                         <p>
                             <?= $paket->deskripsi_paket ?>
                         </p>
-                        <a href="/paket/detail/<?= $paket->id_paket ?>/checkout" button class="btn btn-primary btn-sm col-sm-5">PESAN SEKARANG</a>
-                        <a href="#" id="masukkanKeranjang" button class="btn btn-primary btn-sm col-sm-5">
-                            <span id="keranjangText">MASUKKAN KERANJANG</span>
-                            <div id="keranjangLoading" class="spinner-border text-light d-none" role="status">
-                                <span class="sr-only"></span>
-                            </div>
-                        </a>
+                        <div class="row justify-content-around">
+                            <a href="#" id="pesanSekarang" button class="btn btn-primary btn-sm col-sm-5 mr-2">
+                                <span id="pesanText">PESAN SEKARANG</span>
+                                <div id="pesanLoading" class="spinner-border text-light d-none" role="status">
+                                    <span class="sr-only"></span>
+                                </div>
+                            </a>
+                            <a href="#" id="masukkanKeranjang" button class="btn btn-primary btn-sm col-sm-5 ml-2">
+                                <span id="keranjangText">MASUKKAN KERANJANG</span>
+                                <div id="keranjangLoading" class="spinner-border text-light d-none" role="status">
+                                    <span class="sr-only"></span>
+                                </div>
+                            </a>
+                        </div>
                         <a href="/paket/custom/<?= $paket->id_paket ?>" button class="btn btn-primary btn-sm col-sm-12 mt-20">CUSTOM PESANAN INI</a>
                     </div>
                 </div>
@@ -187,6 +194,62 @@
 <?= $this->section('custom_js') ?>
 <script type="text/javascript">
     $(document).ready(function() {
+        $('#pesanSekarang').on('click', function(e) {
+            e.preventDefault();
+
+            var pesanText = document.getElementById("pesanText");
+            var pesanLoading = document.getElementById("pesanLoading");
+
+            pesanText.classList.add("d-none");
+            pesanLoading.classList.remove("d-none");
+
+            $.ajax({
+                url: '<?= site_url('/check') ?>',
+                type: 'POST',
+                success: function(response) {
+                    if (response.status == 'Belum ada pesanan!') {
+                        $.ajax({
+                            url: '<?= site_url('/paket/detail') ?>',
+                            type: 'POST',
+                            data: {
+                                id_paket: <?= $paket->id_paket ?>,
+                                type: 'pesan',
+                            },
+                            success: function(response) {
+                                pesanText.classList.remove("d-none");
+                                pesanLoading.classList.add("d-none");
+                                Toastify({
+                                    text: "Berhasil!",
+                                    duration: 3000
+                                }).showToast();
+                                window.location.href = '<?= base_url('/checkout') ?>';
+                            },
+                            error: function() {
+                                pesanText.classList.remove("d-none");
+                                pesanLoading.classList.add("d-none");
+                                Toastify({
+                                    text: "Gagal!",
+                                    duration: 3000
+                                }).showToast();
+                            }
+                        });
+                    } else {
+                        pesanText.classList.remove("d-none");
+                        pesanLoading.classList.add("d-none");
+                        Toastify({
+                            text: response.status,
+                            duration: 3000
+                        }).showToast();
+                    }
+                },
+                error: function() {
+                    Toastify({
+                        text: "Gagal!",
+                        duration: 3000
+                    }).showToast();
+                }
+            });
+        });
         $('#masukkanKeranjang').on('click', function(e) {
             e.preventDefault();
 
@@ -200,25 +263,48 @@
             anchorBtn.disabled = true;
             // perform AJAX request here
             $.ajax({
-                url: '<?= site_url('/paket/detail') ?>',
+                url: '<?= site_url('/check') ?>',
                 type: 'POST',
-                data: {
-                    id_paket: <?= $paket->id_paket ?>,
-                    type: 'keranjang',
-                },
                 success: function(response) {
-                    anchorBtn.disabled = false;
-                    keranjangText.classList.remove("d-none");
-                    keranjangLoading.classList.add("d-none");
+                    if (response.status == 'Belum ada pesanan!') {
+                        $.ajax({
+                            url: '<?= site_url('/paket/detail') ?>',
+                            type: 'POST',
+                            data: {
+                                id_paket: <?= $paket->id_paket ?>,
+                                type: 'keranjang',
+                            },
+                            success: function(response) {
+                                keranjangText.classList.remove("d-none");
+                                keranjangLoading.classList.add("d-none");
+                                Toastify({
+                                    text: "Berhasil!",
+                                    duration: 3000
+                                }).showToast();
+                            },
+                            error: function() {
+                                Toastify({
+                                    text: "Gagal!",
+                                    duration: 3000
+                                }).showToast();
+                            }
+                        });
+                    } else {
+                        keranjangText.classList.remove("d-none");
+                        keranjangLoading.classList.add("d-none");
+                        Toastify({
+                            text: response.status,
+                            duration: 3000
+                        }).showToast();
+                    }
+                },
+                error: function() {
                     Toastify({
-                        text: "Berhasil!",
+                        text: "Gagal!",
                         duration: 3000
                     }).showToast();
-                },
-                // error: function() {
-                //     //handle AJAX error, if any
-                // }
-            })
+                }
+            });
         });
     });
 </script>

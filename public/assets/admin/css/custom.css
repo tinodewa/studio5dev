@@ -1,0 +1,15 @@
+.sidebar-inverse #sidebar .nav-main a.active>i, .sidebar-inverse #sidebar .nav-main a:focus>i, .sidebar-inverse #sidebar .nav-main a:hover>i, .text-primary {
+    color: #B67909 !important;
+}
+
+.btn-alt-primary {
+    color: #ffffff !important;
+    background-color: #B67909 !important;
+}
+
+.btn-alt-primary.focus, .btn-alt-primary:focus, .btn-alt-primary:hover {
+    color: #ffffff !important;
+    background-color: #e4a633 !important;
+    border-color: #e4a633 !important;
+    box-shadow: none;
+}
