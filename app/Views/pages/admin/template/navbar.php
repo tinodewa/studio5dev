@@ -8,7 +8,7 @@
             <div class="content-header-section sidebar-mini-visible-b">
                 <!-- Logo -->
                 <span class="content-header-item font-w700 font-size-xl float-left animated fadeIn">
-                    <span class="text-dual-primary-dark">S</span><span class="text-primary">5</span>
+                    <span class="text-dual-primary-dark">S</span><span class="text-primary">J</span>
                 </span>
                 <!-- END Logo -->
             </div>
@@ -26,7 +26,7 @@
                 <!-- Logo -->
                 <div class="content-header-item">
                     <a class="link-effect font-w700" href="index.html">
-                        <span class="font-size-xl text-dual-primary-dark">Studio </span><span class="font-size-xl text-primary">5</span>
+                        <span class="font-size-xl text-dual-primary-dark">Studio </span><span class="font-size-xl text-primary">Jingga</span>
                     </a>
                 </div>
                 <!-- END Logo -->

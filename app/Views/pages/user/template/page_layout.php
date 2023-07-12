@@ -2,11 +2,11 @@
 <html lang="en">
 
 <head>
-  <title>STUDIO 5 | <?= esc($title) ?></title>
+  <title>Jingga | <?= esc($title) ?></title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <meta content="Studio 5" name="description">
+  <meta content="Studio Jingga" name="description">
   <meta content="photography" name="keywords">
 
   <!-- Favicons -->
@@ -41,6 +41,7 @@
   <?= link_tag('assets/css/style.css') ?>
   <?= link_tag('css/custom.css') ?>
 
+  <?= $this->renderSection('head_resource') ?>
   <!-- =======================================================
   * Template Name: FlexStart - v1.7.0
   * Template URL: https://bootstrapmade.com/flexstart-bootstrap-startup-template/

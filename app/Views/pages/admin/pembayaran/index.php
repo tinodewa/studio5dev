@@ -29,7 +29,7 @@
                 <div class="block-content block-content-full">
                     <div class="form-group row">
                         <div class="col-md-9">
-                            <a href="/admin/pembayaran/new" class="btn btn-alt-primary">Tambah</a>
+                            <button href="/admin/pembayaran/new" class="btn btn-alt-danger" disabled>Data Pembayaran Tidak Dapat Dibuat Sendiri</button>
                         </div>
                     </div>
                     <!-- DataTables functionality is initialized with .js-dataTable-full class in js/pages/be_tables_datatables.min.js which was auto compiled from _es6/pages/be_tables_datatables.js -->
@@ -38,9 +38,8 @@
                             <tr>
                                 <th class="text-center">ID</th>
                                 <th>ID Pesanan</th>
-                                <th class="d-none d-sm-table-cell">Type Pembayaran</th>
+                                <th class="d-none d-sm-table-cell">Order ID</th>
                                 <th class="d-none d-sm-table-cell" style="width: 15%;">Jumlah Bayar</th>
-                                <th class="d-none d-sm-table-cell">Bukti</th>
                                 <th class="d-none d-sm-table-cell" style="width: 15%;">Status</th>
                                 <th class="text-center" style="width: 15%;">Kontrol</th>
                             </tr>
@@ -50,17 +49,13 @@
                                 <tr id="pembayaran-row-<?= $key ?>">
                                     <td class="text-center"><?= $pembayaran->id_pembayaran ?></td>
                                     <td><?= $pembayaran->id_pesanan ?></td>
-                                    <td class="d-sm-table-cell"><?= $pembayaran->type_pembayaran ?></td>
+                                    <td class="d-sm-table-cell"><?= $pembayaran->order_id ?></td>
                                     <td class="d-sm-table-cell"><?= $pembayaran->jumlah_bayar ?></td>
-                                    <td class="d-sm-table-cell"><?= $pembayaran->bukti ?></td>
                                     <td class="d-sm-table-cell"><?= $pembayaran->status ?></td>
                                     <td class="text-center">
                                         <button type="button" class="btn btn-sm btn-secondary" title="Detail" data-toggle="modal" data-target="#modal<?= $key ?>">
                                             <i class="fa fa-info"></i>
                                         </button>
-                                        <a href="/admin/pembayaran/<?= $pembayaran->id_pembayaran ?>/edit" class="btn btn-sm btn-secondary" title="Edit">
-                                            <i class="fa fa-pencil-square-o"></i>
-                                        </a>
                                         <button type="button" class="btn btn-sm btn-secondary" title="Hapus" data-toggle="modal" data-target="#modal-confirmation-<?= $key ?>">
                                             <i class="fa fa-trash"></i>
                                         </button>
@@ -96,8 +91,8 @@
                                                         <div class="form-group row">
                                                             <div class="col-md-12">
                                                                 <div class="form-material floating">
-                                                                    <input type="text" id="type_pembayaran" class="form-control" value="<?= $pembayaran->type_pembayaran ?>" disabled>
-                                                                    <label for="type_pembayaran">Type Pembayaran</label>
+                                                                    <input type="text" id="order_id" class="form-control" value="<?= $pembayaran->order_id ?>" disabled>
+                                                                    <label for="order_id">Order ID</label>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -106,14 +101,6 @@
                                                                 <div class="form-material floating">
                                                                     <input type="text" id="jumlah_bayar" class="form-control" value="<?= $pembayaran->jumlah_bayar ?>" disabled>
                                                                     <label for="jumlah_bayar">Jumlah Bayar</label>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group row">
-                                                            <div class="col-md-12">
-                                                                <div class="form-material floating">
-                                                                    <input type="text" id="bukti" class="form-control" value="<?= $pembayaran->bukti ?>" disabled>
-                                                                    <label for="bukti">Bukti</label>
                                                                 </div>
                                                             </div>
                                                         </div>

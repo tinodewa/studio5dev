@@ -139,6 +139,36 @@
                                                         <div class="form-group row">
                                                             <div class="col-12">
                                                                 <div class="form-material floating">
+                                                                    <input type="text" id="extra_waktu_kerja" class="form-control" value="<?= $pesanan->extra_waktu_kerja ?> jam" disabled>
+                                                                    <label for="extra_waktu_kerja">Extra Waktu Kerja</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <div class="col-12">
+                                                                <div class="form-material floating">
+                                                                    <input type="text" id="extra_premium_magazine" class="form-control" value="<?php if ($pesanan->extra_premium_magazine == 1) { ?>
+                                                                                                                                                    'Album Magnetic'
+                                                                                                                                                <?php } else if ($pesanan->extra_premium_magazine == 2) { ?>
+                                                                                                                                                    'Premium Magazine'
+                                                                                                                                                <?php } else if ($pesanan->extra_premium_magazine == 3) { ?>
+                                                                                                                                                    'Magazine Album'
+                                                                                                                                                <?php }  ?>" disabled>
+                                                                    <label for="extra_premium_magazine">Extra Hasil Cetak</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <div class="col-12">
+                                                                <div class="form-material floating">
+                                                                    <input type="text" id="extra_background_dan_outfit" class="form-control" value="<?= $pesanan->extra_background_dan_outfit ?> set" disabled>
+                                                                    <label for="extra_background_dan_outfit">Extra Background dan Outfit</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <div class="col-12">
+                                                                <div class="form-material floating">
                                                                     <input type="text" id="catatan" class="form-control" value="<?= $pesanan->catatan ?>" disabled>
                                                                     <label for="catatan">Catatan</label>
                                                                 </div>

@@ -7,6 +7,7 @@ use CodeIgniter\Entity\Entity;
 class Pesanan extends Entity
 {
     protected $attributes = [
+        'id' => null,
         'id_pesanan' => null,
         'id_user' => null,
         'id_paket' => null,
@@ -15,8 +16,17 @@ class Pesanan extends Entity
         'telp' => null,
         'alamat'  => null,
         'catatan' => null,
+        'extra_waktu_kerja' => null,
+        'extra_premium_magazine' => null,
+        'extra_background_dan_outfit' => null,
     ];
 
+
+    public function setId(string $id): self
+    {
+        $this->attributes['id'] = $id;
+        return $this;
+    }
     public function setIdPesanan(string $id_pesanan): self
     {
         $this->attributes['id_pesanan'] = $id_pesanan;
@@ -55,6 +65,21 @@ class Pesanan extends Entity
     public function setCatatan(string $catatan): self
     {
         $this->attributes['catatan'] = $catatan;
+        return $this;
+    }
+    public function setextra_waktu_kerja(string $extra_waktu_kerja): self
+    {
+        $this->attributes['extra_waktu_kerja'] = $extra_waktu_kerja;
+        return $this;
+    }
+    public function setextra_premium_magazine(string $extra_premium_magazine): self
+    {
+        $this->attributes['extra_premium_magazine'] = $extra_premium_magazine;
+        return $this;
+    }
+    public function setextra_background_dan_outfit(string $extra_background_dan_outfit): self
+    {
+        $this->attributes['extra_background_dan_outfit'] = $extra_background_dan_outfit;
         return $this;
     }
 }

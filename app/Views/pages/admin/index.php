@@ -43,8 +43,11 @@
                             <div class="float-left mt-10 d-none d-sm-block">
                                 <i class="si si-trophy fa-3x text-earth-light"></i>
                             </div>
-                            <div class="font-size-h3 font-w600 text-white">Rp<span data-toggle="countTo" data-speed="1000" data-to="<?= $pembayarans ?>">0</span></div>
+                            <div class="font-size-h3 font-w600 text-white">Rp <span data-toggle="countTo" data-speed="1000" data-to="<?php if ($pembayarans != null) {
+                                                                                                                                            echo $pembayarans[0]->jumlah_bayar;
+                                                                                                                                        } ?>">0</span></div>
                             <div class="font-size-sm font-w600 text-uppercase text-white-op">Pendapatan</div>
+
                         </div>
                     </a>
                 </div>

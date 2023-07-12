@@ -10,11 +10,13 @@ use App\Models\Pesanan;
 use App\Models\PesananWithUserAndPaket;
 use App\Models\PesananWithUserPaketAndPembayaran;
 use App\Models\Ulasan;
-use App\Models\UlasanWithUserAndPaket;
+use App\Models\UlasanWithUser;
 use App\Models\User;
 use CodeIgniter\Database\Exceptions\DataException;
 use CodeIgniter\I18n\Time;
-use PhpParser\Node\Expr\Cast\String_;
+use Midtrans\Config as MidtransConfig;
+use Midtrans\Snap;
+use Midtrans\Transaction;
 
 class HomeUser extends BaseController
 {
@@ -25,8 +27,20 @@ class HomeUser extends BaseController
         helper('text');
 
         $paket = new Paket();
-        $ulasanUserPaket = new UlasanWithUserAndPaket();
-        $data['pakets'] = $paket->where('id_paket <=', 8)->orderBy('id_paket', 'ASC')->findAll();
+        $ulasanUserPaket = new UlasanWithUser();
+        // $data['pakets'] = $paket->where('id_paket <=', 8)->orderBy('id_paket', 'ASC')->findAll();
+        $data['paketsEngagement'] = $paket->where('id_paket >=', 20)->where('id_paket <=', 21)->orderBy('id_paket', 'ASC')->findAll();
+        $data['paketsAkad'] = $paket->where('id_paket >=', 6)->where('id_paket <=', 8)->orderBy('id_paket', 'ASC')->findAll();
+        $data['paketsResepsi'] = $paket->where('id_paket >=', 9)->where('id_paket <=', 13)->orderBy('id_paket', 'ASC')->findAll();
+        $data['paketsPreweddingIndoor'] = $paket->where('id_paket =', 1)->orderBy('id_paket', 'ASC')->findAll();
+        $data['paketsPreweddingOutdoor'] = $paket->where('id_paket >=', 2)->where('id_paket <=', 5)->orderBy('id_paket', 'ASC')->findAll();
+        $data['paketsMaternity'] = $paket->where('id_paket =', 16)->orderBy('id_paket', 'ASC')->findAll();
+        $data['paketsGraduation'] = $paket->where('id_paket =', 17)->orderBy('id_paket', 'ASC')->findAll();
+        $data['paketsFamily'] = $paket->where('id_paket =', 18)->orderBy('id_paket', 'ASC')->findAll();
+        $data['paketsGroup'] = $paket->where('id_paket =', 15)->orderBy('id_paket', 'ASC')->findAll();
+        $data['paketsEvent'] = $paket->where('id_paket =', 19)->orderBy('id_paket', 'ASC')->findAll();
+        $data['paketsCouple'] = $paket->where('id_paket =', 22)->orderBy('id_paket', 'ASC')->findAll();
+        $data['paketsPersonal'] = $paket->where('id_paket =', 14)->orderBy('id_paket', 'ASC')->findAll();
         $data['ulasanUserPakets'] = $ulasanUserPaket->getUlasanWithUserAndPaket();
 
         if ($session->has('logged_in')) {
@@ -92,7 +106,7 @@ class HomeUser extends BaseController
                 $pesanan->insert($data);
 
                 if ($type == 'pesan') {
-                    return redirect()->to('/checkout');
+                    return $this->response->setJSON(['status' => 'success']);
                 } else if ($type == 'keranjang') {
                     return $this->response->setJSON(['status' => 'success']);
                 }
@@ -133,6 +147,39 @@ class HomeUser extends BaseController
         return redirect()->to('/login');
     }
 
+    public function checkPesananIfExist()
+    {
+        $session = session();
+
+        if ($session->has('logged_in')) {
+            //cek position dari session
+            if ($session->get('role') == 'admin') {
+                return redirect()->to('/admin');
+            } else if ($session->get('role') == 'user') {
+                helper('number');
+                $data['title'] = 'Checkout Pesanan';
+
+                try {
+                    $pesananUserPaket = new PesananWithUserAndPaket();
+                    // $pesananUserPaketPembayaran = new PesananWithUserPaketAndPembayaran();
+                    $data['pesananUserPaket'] = $pesananUserPaket->getPesananWithUserAndPaketInCartByIduser($session->get('id_user'));
+                    // $data['pendingPesanan'] = $pesananUserPaketPembayaran->getPendingPesananByIdUser($session->get('id_user'));
+
+                    if ($data['pesananUserPaket'] == null) {
+                        return $this->response->setJSON(['status' => 'Belum ada pesanan!']);
+                    } else {
+                        return $this->response->setJSON(['status' => 'Sudah ada pesanan!']);
+                    }
+                } catch (\Exception $e) {
+                    return $this->response->setJSON(['error' => $e]);
+                }
+            } else if ($session->get('role') == 'fotografer') {
+                return redirect()->to('/fotografer');
+            }
+        }
+        return $this->response->setJSON(['status' => 'Belum login!']);
+    }
+
     public function checkoutPesanan()
     {
         $session = session();
@@ -143,11 +190,14 @@ class HomeUser extends BaseController
                 return redirect()->to('/admin');
             } else if ($session->get('role') == 'user') {
                 helper('number');
-                $data['title'] = 'Checkout Paket';
+                $data['title'] = 'Checkout Pesanan';
 
                 $pesananUserPaket = new PesananWithUserAndPaket();
-                $data['pesananUserPakets'] = $pesananUserPaket->getPesananWithUserAndPaketInCartByIduser($session->get('id_user'));
+                $data['pesananUserPaket'] = $pesananUserPaket->getPesananWithUserAndPaketInCartByIduser($session->get('id_user'));
 
+                if ($data['pesananUserPaket'] == null) {
+                    return redirect()->to('/');
+                }
                 return view('pages/user/checkout_pesanan', $data);
             } else if ($session->get('role') == 'fotografer') {
                 return redirect()->to('/fotografer');
@@ -165,59 +215,141 @@ class HomeUser extends BaseController
             if ($session->get('role') == 'admin') {
                 return redirect()->to('/admin');
             } else if ($session->get('role') == 'user') {
-                $pesanan = new Pesanan();
-                $pembayaran = new Pembayaran();
-                $paket = new Paket();
-                $hasilFoto = new HasilFoto();
+                //data
+                try {
+                    $pesanan = new Pesanan();
+                    $pembayaran = new Pembayaran();
+                    $paket = new Paket();
+                    $hasilFoto = new HasilFoto();
 
-                $nama = $this->request->getVar('nama');
-                $alamat = $this->request->getVar('alamat');
-                $tanggal = $this->request->getVar('tanggal');
-                $telp = $this->request->getVar('telp');
-                $catatan = $this->request->getVar('catatan');
+                    $id_paket = $this->request->getVar('id_paket');
+                    $nama = $this->request->getVar('nama');
+                    $alamat = $this->request->getVar('alamat');
+                    $tanggal = $this->request->getVar('tanggal');
+                    $telp = $this->request->getVar('telp');
+                    $catatan = $this->request->getVar('catatan');
+                    $extra_waktu_kerja = $this->request->getVar('extra_waktu_kerja');
+                    $extra_premium_magazine = $this->request->getVar('extra_premium_magazine');
+                    $extra_background_dan_outfit = $this->request->getVar('extra_background_dan_outfit');
 
-                $pesanans = $pesanan->getCheckoutPesananByIduser($session->get('id_user'));
+                    $pesanans = $pesanan->getCheckoutPesananByIduser($session->get('id_user'));
 
-                foreach ($pesanans as $row) {
-                    //mengubah data pesanan
-                    $dataPesanan = [
-                        'id_user' => $row->id_user,
-                        'id_paket' => $row->id_paket,
-                        'nama_lengkap' => $nama,
-                        'tanggal' => $tanggal,
-                        'telp' => $telp,
-                        'alamat' => $alamat,
-                        'catatan' => $catatan,
-                    ];
+                    if ($pesanans != null) {
+                        foreach ($pesanans as $row) {
+                            //mengubah data pesanan
+                            $dataPesanan = [
+                                'id_user' => $session->get('id_user'),
+                                'id_paket' => $id_paket,
+                                'nama_lengkap' => $nama,
+                                'tanggal' => $tanggal,
+                                'telp' => $telp,
+                                'alamat' => $alamat,
+                                'catatan' => $catatan,
+                                'extra_waktu_kerja' => $extra_waktu_kerja,
+                                'extra_premium_magazine' => $extra_premium_magazine,
+                                'extra_background_dan_outfit' => $extra_background_dan_outfit,
+                            ];
 
-                    $pesanan->update($row->id_pesanan, $dataPesanan);
+                            $pesanan->update($row->id_pesanan, $dataPesanan);
 
-                    //mengirim data pembayaran
-                    $pakets = $paket->find($row->id_paket);
+                            //mengirim data untuk hasil foto
+                            $dataHasilFoto = [
+                                'id_fotografer' => 3,
+                                'id_pesanan' => $row->id_pesanan,
+                            ];
 
-                    $dataPembayaran = [
-                        'id_pesanan' => $row->id_pesanan,
-                        'jumlah_bayar' => $pakets->harga_paket,
-                        'status' => 'belum dibayar',
-                    ];
+                            $hasilFoto->insert($dataHasilFoto);
+                        }
 
-                    $pembayaran->insert($dataPembayaran);
+                        // //Set Midtrans configuration
+                        $midtransConfig = new \Config\Midtrans();
+                        MidtransConfig::$serverKey = $midtransConfig->serverKey;
+                        MidtransConfig::$isProduction = $midtransConfig->isProduction;
 
-                    //mengirim data untuk hasil foto
-                    $dataHasilFoto = [
-                        'id_fotografer' => 3,
-                        'id_pesanan' => $row->id_pesanan,
-                    ];
+                        $orderID = 'ORDER-CUST-' . $session->get('id_user') . '-' . time();
 
-                    $hasilFoto->insert($dataHasilFoto);
+                        //mengirim data pembayaran
+                        $pakets = $paket->find($row->id_paket);
+
+                        //hitung total pesanan
+                        $harga_magazine = 0;
+                        if ($extra_premium_magazine == 1) {
+                            $harga_magazine = $harga_magazine * 250000;
+                        } else if ($extra_premium_magazine == 2) {
+                            $harga_magazine = $harga_magazine * 400000;
+                        } else if ($extra_premium_magazine == 3) {
+                            $harga_magazine = $harga_magazine * 500000;
+                        } else {
+                            $harga_magazine = 0;
+                        }
+
+                        $harga_pesanan = $pakets->harga_paket + (250000 * $extra_waktu_kerja) + $harga_magazine + (50000 * $extra_background_dan_outfit);
+
+                        $dataPembayaran = [
+                            'id_pesanan' => $row->id_pesanan,
+                            'order_id' => $orderID,
+                            'jumlah_bayar' => $harga_pesanan,
+                            'status' => 'pending',
+                        ];
+
+                        $pembayaran->insert($dataPembayaran);
+
+                        // Item details production
+                        // $params = array(
+                        //     'transaction_details' => array(
+                        //         'order_id' => $orderID,
+                        //         'gross_amount' => $harga_pesanan,
+                        //     ),
+                        //     "callbacks" => array(
+                        //         "finish" => "http://localhost:8080/list-pesanan",
+                        //     ),
+                        //     'customer_details' => array(
+                        //         'first_name' => $nama,
+                        //         'email' => $session->get('email'),
+                        //         'phone' => $telp,
+                        //     )
+                        // );
+
+                        // Item details testing
+                        $params = array(
+                            'transaction_details' => array(
+                                'order_id' => $orderID,
+                                'gross_amount' => 1,
+                            ),
+                            "callbacks" => array(
+                                "finish" => "http://localhost:8080/list-pesanan",
+                            ),
+                            'customer_details' => array(
+                                'first_name' => $nama,
+                                'email' => $session->get('email'),
+                                'phone' => $telp,
+                            )
+                        );
+
+                        //Generate Snap token
+                        $snapToken = Snap::getSnapToken($params);
+
+                        //Load payment view with Snap token
+                        return $this->response->setJSON([
+                            'success' => true,
+                            'status' => 'Sudah ada Pesanan!',
+                            'snapToken' => $snapToken
+                        ]);
+                    } else {
+                        return $this->response->setJSON(['status' => 'Belum ada pesanan!']);
+                    }
+                } catch (\Exception $e) {
+                    return $this->response->setJSON(['error' => $e]);
                 }
 
-                return redirect()->to('/list-pesanan');
+
+                // return redirect()->to('/payment');
+                // return redirect()->to('/list-pesanan');
             } else if ($session->get('role') == 'fotografer') {
                 return redirect()->to('/fotografer');
             }
         }
-        return redirect()->to('/login');
+        return $this->response->setJSON(['status' => 'Belum login!']);
     }
 
     public function checkoutHapusKeranjang()
@@ -366,7 +498,7 @@ class HomeUser extends BaseController
                 return redirect()->to('/admin');
             } else if ($session->get('role') == 'user') {
                 helper('number');
-                $data['title'] = 'Checkout Paket';
+                $data['title'] = 'List Pesanan';
 
                 $pesananUserPaketAndPembayaran = new PesananWithUserPaketAndPembayaran();
                 $data['listPesanans'] = $pesananUserPaketAndPembayaran->getPesananWithUserPaketAndPembayaranByIdUser($session->get('id_user'));
@@ -389,16 +521,30 @@ class HomeUser extends BaseController
                 return redirect()->to('/admin');
             } else if ($session->get('role') == 'user') {
                 helper('number');
-                $data['title'] = 'Detail Paket';
+                $data['title'] = 'Detail Pesanan';
+
+                // //Set Midtrans configuration
+                $midtransConfig = new \Config\Midtrans();
+                MidtransConfig::$serverKey = $midtransConfig->serverKey;
+                MidtransConfig::$isProduction = $midtransConfig->isProduction;
 
                 $pesananUserPaketAndPembayaran = new PesananWithUserPaketAndPembayaran();
                 $data['detailPesanan'] = $pesananUserPaketAndPembayaran->getPesananWithUserPaketAndPembayaranById($id_pesanan);
 
-                $hasilFoto = new HasilFoto();
-                $data['hasilFoto'] = $hasilFoto->getHasilFotoByIdPesanan($id_pesanan);
+                if ($data['detailPesanan'] != null) {
+                    //get hasil foto
+                    $hasilFoto = new HasilFoto();
+                    $data['hasilFoto'] = $hasilFoto->getHasilFotoByIdPesanan($id_pesanan);
 
-                return view('pages/user/pesanan_detail.php', $data);
-            } else if ($session->get('role') == 'fotografer') {
+                    //get detail transaksi
+                    $status = Transaction::status($data['detailPesanan'][0]->order_id);
+                    $data['transaksi'] = $status;
+
+                    return view('pages/user/pesanan_detail.php', $data);
+                } else {
+                    return redirect()->to('/');
+                }
+            } else if ($session->get('role') == '') {
                 return redirect()->to('/fotografer');
             }
         }
@@ -475,7 +621,7 @@ class HomeUser extends BaseController
                     $id_pembayaran = $this->request->getVar('id_pembayaran');
 
                     $dataPembayaran = [
-                        'status' => 'done sudah review',
+                        'status' => 'done, sudah review',
                     ];
 
                     $pembayaran->update($id_pembayaran, $dataPembayaran);
@@ -514,12 +660,3 @@ class HomeUser extends BaseController
         return view('pages/user/index', $data);
     }
 }
-
-
-// 20 x 25
-// 20 x 30
-// 25 x 38
-// 30 x 40
-// 50 x 60
-// 60 x 80
-// 75 x 100

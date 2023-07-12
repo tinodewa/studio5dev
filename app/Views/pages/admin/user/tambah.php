@@ -70,9 +70,9 @@
                                     <div class="col-md-9">
                                         <div class="form-material">
                                             <select class="form-control" id="input-role" name="role">
-                                                <option value="User" selected>User</option>
-                                                <option value="Admin">Admin</option>
-                                                <option value="Fotografer">Fotografer</option>
+                                                <option value="user">User</option>
+                                                <option value="admin">Admin</option>
+                                                <option value="fotografer">Fotografer</option>
                                             </select>
                                             <label for="input-role">Role</label>
                                         </div>

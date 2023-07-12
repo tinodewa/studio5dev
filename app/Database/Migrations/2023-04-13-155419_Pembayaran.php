@@ -18,7 +18,7 @@ class Pembayaran extends Migration
                 'type'           => 'INT',
                 'constraint'     => 9,
             ],
-            'type_pembayaran' => [
+            'order_id' => [
                 'type'       => 'VARCHAR',
                 'constraint' => '255',
             ],
@@ -29,9 +29,6 @@ class Pembayaran extends Migration
             'status' => [
                 'type'       => 'VARCHAR',
                 'constraint' => '255',
-            ],
-            'bukti' => [
-                'type'       => 'TEXT',
             ],
             'created_at datetime default current_timestamp',
             'updated_at datetime default current_timestamp on update current_timestamp',

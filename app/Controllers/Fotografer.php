@@ -7,6 +7,10 @@ use App\Models\HasilFoto;
 use App\Models\Pembayaran;
 use App\Models\PesananWithUserAndPaket;
 use App\Models\PesananWithUserPaketAndPembayaran;
+use App\Models\User;
+use Midtrans\Config as MidtransConfig;
+use Midtrans\Snap;
+use Midtrans\Transaction;
 
 class Fotografer extends BaseController
 {
@@ -47,13 +51,27 @@ class Fotografer extends BaseController
                 helper('number');
                 $data['title'] = 'Detail Pesanan';
 
+                // //Set Midtrans configuration
+                $midtransConfig = new \Config\Midtrans();
+                MidtransConfig::$serverKey = $midtransConfig->serverKey;
+                MidtransConfig::$isProduction = $midtransConfig->isProduction;
+
                 $pesananUserPaketAndPembayaran = new PesananWithUserPaketAndPembayaran();
                 $data['detailPesanan'] = $pesananUserPaketAndPembayaran->getPesananWithUserPaketAndPembayaranById($id_pesanan);
 
-                $hasilFoto = new HasilFoto();
-                $data['hasilFoto'] = $hasilFoto->getHasilFotoByIdPesanan($id_pesanan);
+                if ($data['detailPesanan'] != null) {
+                    //get hasil foto
+                    $hasilFoto = new HasilFoto();
+                    $data['hasilFoto'] = $hasilFoto->getHasilFotoByIdPesanan($id_pesanan);
 
-                return view('pages/fotografer/pesanan_detail.php', $data);
+                    //get detail transaksi
+                    $status = Transaction::status($data['detailPesanan'][0]->order_id);
+                    $data['transaksi'] = $status;
+
+                    return view('pages/fotografer/pesanan_detail.php', $data);
+                } else {
+                    return redirect()->to('/fotografer');
+                }
             }
         }
         return redirect()->to('/login');
@@ -77,7 +95,7 @@ class Fotografer extends BaseController
                 //rubah status di pembayaran menjadi done bleum review
                 $pembayaran = new Pembayaran();
                 $dataPembayaran = [
-                    'status' => 'done belum review',
+                    'status' => 'done, belum review',
                 ];
 
                 $pembayaran->update($data['detailPesanan'][0]->id_pembayaran, $dataPembayaran);
@@ -95,6 +113,28 @@ class Fotografer extends BaseController
                 $hasilFoto->update($idHasilFoto, $dataHasilFoto);
 
                 return redirect()->to('/fotografer/pesanan/' . $id_pesanan . '/detail');
+            }
+        }
+        return redirect()->to('/login');
+    }
+
+    public function profilFotografer()
+    {
+        $session = session();
+
+        if ($session->has('logged_in')) {
+            //cek position dari session
+            if ($session->get('role') == 'admin') {
+                return redirect()->to('/admin');
+            } else if ($session->get('role') == 'user') {
+                return redirect()->to('/');
+            } else if ($session->get('role') == 'fotografer') {
+                $data['title'] = 'Profil';
+
+                $user = new User();
+                $data['user'] = $user->find($session->get('id_user'));
+
+                return view('pages/fotografer/profil_pengguna', $data);
             }
         }
         return redirect()->to('/login');

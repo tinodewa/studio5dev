@@ -12,26 +12,23 @@ class Pembayaran extends Seeder
             [
                 'id_pembayaran' => 1,
                 'id_pesanan' => 1,
-                'type_pembayaran'  => 'Cash',
-                'jumlah_bayar' => 1500000,
+                'order_id'  => 'ORDER-CUST-2-1687707343',
+                'jumlah_bayar' => 4500000,
                 'status' => 'done',
-                'bukti' => 'Bukti pembayaran adam 1.jpeg',
             ],
             [
                 'id_pembayaran' => 2,
                 'id_pesanan' => 2,
-                'type_pembayaran'  => 'Cash',
-                'jumlah_bayar' => 3000000,
+                'order_id'  => 'ORDER-CUST-2-1687707344',
+                'jumlah_bayar' => 900000,
                 'status' => 'done',
-                'bukti' => 'Bukti pembayaran adam 1.jpeg',
             ],
             [
                 'id_pembayaran' => 3,
                 'id_pesanan' => 3,
-                'type_pembayaran'  => 'Cash',
-                'jumlah_bayar' => 900000,
+                'order_id'  => 'ORDER-CUST-2-1687707345',
+                'jumlah_bayar' => 4500000,
                 'status' => 'done',
-                'bukti' => 'Bukti pembayaran adam 1.jpeg',
             ],
         ];
 
