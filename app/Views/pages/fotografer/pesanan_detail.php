@@ -203,20 +203,6 @@ function shortNumber($num)
                                 <label class="form-label">Merchant</label>
                                 <input type="text" class="form-control" name="bank" placeholder="Jumlah" value="Gopay" disabled>
                             </div>
-                            <div class="col-12">
-                                <label class="form-label">Qr Code</label>
-                                <div class="row">
-                                    <div class="col-10">
-                                        <!-- <input type="text" class="form-control" id="virtual_account" name="virtual_account" placeholder="Jumlah" value="<?= $transaksi->signature_key ?>" disabled> -->
-                                        <img src='<?= $qrCodeUrl ?>' alt='QR Code'>
-
-                                    </div>
-                                    <!-- <div class="col-2">
-                                        <button class="form-control" id="copyClipboard"><i class="bi bi-clipboard"></i></button>
-                                    </div> -->
-                                </div>
-                            </div>
-
                         <?php elseif ($transaksi->payment_type == 'echannel') : ?>
                             <div class="col-md-12">
                                 <label class="form-label">Bank</label>
