@@ -16,6 +16,7 @@ class UlasanWithUser extends Model
         $builder->select('ulasan.id_ulasan, ulasan.id_user, ulasan.id_paket, ulasan.tanggal, ulasan.deskripsi, ulasan.bintang, user.email, user.nama_lengkap, user.foto_profil, user.no_telp, paket.nama_paket, paket.deskripsi_paket, paket.harga_paket, ulasan.created_at, ulasan.updated_at');
         $builder->join('user', 'user.id_user = ulasan.id_user');
         $builder->join('paket', 'paket.id_paket = ulasan.id_paket');
+        $builder->orderBy('ulasan.id_ulasan', 'DESC');
         $builder->limit(5);
         $query = $builder->get();
         return $query->getResult();
