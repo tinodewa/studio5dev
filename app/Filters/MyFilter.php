@@ -42,6 +42,12 @@ class MyFilter implements FilterInterface
                     ];
 
                     $pembayaran->update($pesanan->id_pembayaran, $dataPembayaran);
+                } else if ($status->transaction_status == 'cancel') {
+                    $dataPembayaran = [
+                        'status' => $status->transaction_status,
+                    ];
+
+                    $pembayaran->update($pesanan->id_pembayaran, $dataPembayaran);
                 }
             }
         }

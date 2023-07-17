@@ -82,6 +82,8 @@ function shortNumber($num)
                                                                 <button type="button" class="btn btn-dark" disabled><?= $listPesanan->status; ?></button>
                                                             <?php } else if (str_contains($listPesanan->status, "dalam proses")) { ?>
                                                                 <button type="button" class="btn btn-info" disabled><?= $listPesanan->status; ?></button>
+                                                            <?php } else if (str_contains($listPesanan->status, "cancel")) { ?>
+                                                                <button type="button" class="btn btn-danger" disabled><?= $listPesanan->status; ?></button>
                                                             <?php } else { ?>
                                                                 <button type="button" class="btn btn-warning" disabled><?= $listPesanan->status; ?></button>
                                                             <?php } ?>

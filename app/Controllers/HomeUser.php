@@ -17,6 +17,7 @@ use CodeIgniter\I18n\Time;
 use Midtrans\Config as MidtransConfig;
 use Midtrans\Snap;
 use Midtrans\Transaction;
+use GuzzleHttp\Client;
 
 class HomeUser extends BaseController
 {
@@ -323,8 +324,14 @@ class HomeUser extends BaseController
                                 'first_name' => $nama,
                                 'email' => $session->get('email'),
                                 'phone' => $telp,
-                            )
+                            ),
+                            'enabled_payments' => ['bca_va'],
+                            'bank_transfer' => array(
+                                'bank' => 'bca',
+                            ),
                         );
+
+
 
                         //Generate Snap token
                         $snapToken = Snap::getSnapToken($params);
@@ -539,6 +546,14 @@ class HomeUser extends BaseController
                     //get detail transaksi
                     $status = Transaction::status($data['detailPesanan'][0]->order_id);
                     $data['transaksi'] = $status;
+                    $data['qrCodeUrl'] = '';
+
+                    // if ($data['transaksi']->payment_type == 'qris') {
+                    //     $qrCode = new QrCode();
+                    //     // if (isset($data['transaksi']->actions->qr_codes[0]->url)) {
+                    //     //     $data['qrCodeUrl'] = $data['transaksi']->actions->qr_codes['0']->url;
+                    //     // }
+                    // }
 
                     return view('pages/user/pesanan_detail.php', $data);
                 } else {
