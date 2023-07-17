@@ -326,13 +326,7 @@ class HomeUser extends BaseController
                                 'email' => $session->get('email'),
                                 'phone' => $telp,
                             ),
-                            'enabled_payments' => ['bca_va'],
-                            'bank_transfer' => array(
-                                'bank' => 'bca',
-                            ),
                         );
-
-
 
                         //Generate Snap token
                         $snapToken = Snap::getSnapToken($params);
