@@ -38,6 +38,8 @@ function shortNumber($num)
                         <button type="button" class="btn btn-dark" disabled><?= $detailPesanan[0]->status; ?></button>
                     <?php } else if (str_contains($detailPesanan[0]->status, "dalam proses")) { ?>
                         <button type="button" class="btn btn-info" disabled><?= $detailPesanan[0]->status; ?></button>
+                    <?php } else if (str_contains($detailPesanan[0]->status, "cancel")) { ?>
+                        <button type="button" class="btn btn-danger" disabled><?= $detailPesanan[0]->status; ?></button>
                     <?php } else { ?>
                         <button type="button" class="btn btn-warning" disabled><?= $detailPesanan[0]->status; ?></button>
                     <?php } ?>
@@ -180,21 +182,74 @@ function shortNumber($num)
                             <label class="form-label">Status</label>
                             <input type="text" class="form-control" name="status" placeholder="Jumlah" value="<?= $transaksi->transaction_status ?>" disabled>
                         </div>
-                        <div class="col-md-12">
-                            <label class="form-label">Bank</label>
-                            <input type="text" class="form-control" name="bank" placeholder="Jumlah" value="<?= $transaksi->va_numbers[0]->bank ?>" disabled>
-                        </div>
-                        <div class="col-12">
-                            <label class="form-label">Virtual Account</label>
-                            <div class="row">
-                                <div class="col-10">
-                                    <input type="text" class="form-control" id="virtual_account" name="virtual_account" placeholder="Jumlah" value="<?= $transaksi->va_numbers[0]->va_number ?>" disabled>
-                                </div>
-                                <div class="col-2">
-                                    <button class="form-control" id="copyClipboard"><i class="bi bi-clipboard"></i></button>
+                        <?php if (isset($transaksi->permata_va_number)) : ?>
+                            <div class="col-md-12">
+                                <label class="form-label">Bank</label>
+                                <input type="text" class="form-control" name="bank" placeholder="Jumlah" value="Permata" disabled>
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label">Virtual Account</label>
+                                <div class="row">
+                                    <div class="col-10">
+                                        <input type="text" class="form-control" id="virtual_account" name="virtual_account" placeholder="Jumlah" value="<?= $transaksi->permata_va_number ?>" disabled>
+                                    </div>
+                                    <div class="col-2">
+                                        <button class="form-control" id="copyClipboard"><i class="bi bi-clipboard"></i></button>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        <?php elseif ($transaksi->payment_type == 'qris') : ?>
+                            <div class="col-md-12">
+                                <label class="form-label">Merchant</label>
+                                <input type="text" class="form-control" name="bank" placeholder="Jumlah" value="Gopay" disabled>
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label">Qr Code</label>
+                                <div class="row">
+                                    <div class="col-10">
+                                        <!-- <input type="text" class="form-control" id="virtual_account" name="virtual_account" placeholder="Jumlah" value="<?= $transaksi->signature_key ?>" disabled> -->
+                                        <img src='<?= $qrCodeUrl ?>' alt='QR Code'>
+
+                                    </div>
+                                    <!-- <div class="col-2">
+                                        <button class="form-control" id="copyClipboard"><i class="bi bi-clipboard"></i></button>
+                                    </div> -->
+                                </div>
+                            </div>
+
+                        <?php elseif ($transaksi->payment_type == 'echannel') : ?>
+                            <div class="col-md-12">
+                                <label class="form-label">Bank</label>
+                                <input type="text" class="form-control" name="bank" placeholder="Jumlah" value="Mandiri" disabled>
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label">Virtual Account</label>
+                                <div class="row">
+                                    <div class="col-10">
+                                        <input type="text" class="form-control" id="virtual_account" name="virtual_account" placeholder="Jumlah" value="<?= $transaksi->bill_key ?>" disabled>
+                                    </div>
+                                    <div class="col-2">
+                                        <button class="form-control" id="copyClipboard"><i class="bi bi-clipboard"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php else : ?>
+                            <div class="col-md-12">
+                                <label class="form-label">Bank</label>
+                                <input type="text" class="form-control" name="bank" placeholder="Jumlah" value="<?= $transaksi->va_numbers[0]->bank ?>" disabled>
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label">Virtual Account</label>
+                                <div class="row">
+                                    <div class="col-10">
+                                        <input type="text" class="form-control" id="virtual_account" name="virtual_account" placeholder="Jumlah" value="<?= $transaksi->va_numbers[0]->va_number ?>" disabled>
+                                    </div>
+                                    <div class="col-2">
+                                        <button class="form-control" id="copyClipboard"><i class="bi bi-clipboard"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php endif; ?>
                         <div class="col-md-12">
                             <label class="form-label">Kadaluarsa</label>
                             <input type="text" class="form-control" name="kadaluarsa" placeholder="Jumlah" value="<?= $transaksi->expiry_time ?>" disabled>
