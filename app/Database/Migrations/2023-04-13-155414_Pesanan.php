@@ -53,6 +53,10 @@ class Pesanan extends Migration
                 'type'           => 'INT',
                 'constraint'     => 9,
             ],
+            'extra_orang' => [
+                'type'           => 'INT',
+                'constraint'     => 9,
+            ],
             'created_at datetime default current_timestamp',
             'updated_at datetime default current_timestamp on update current_timestamp',
         ]);

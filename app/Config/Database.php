@@ -29,7 +29,7 @@ class Database extends Config
         'hostname' => 'localhost',
         'username' => 'root',
         'password' => '',
-        'database' => 'studio5',
+        'database' => 'studiojingga',
         'DBDriver' => 'MySQLi',
         'DBPrefix' => '',
         'pConnect' => false,

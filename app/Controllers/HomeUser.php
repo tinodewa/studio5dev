@@ -17,6 +17,7 @@ use CodeIgniter\I18n\Time;
 use Midtrans\Config as MidtransConfig;
 use Midtrans\Snap;
 use Midtrans\Transaction;
+use GuzzleHttp\Client;
 
 class HomeUser extends BaseController
 {
@@ -29,18 +30,19 @@ class HomeUser extends BaseController
         $paket = new Paket();
         $ulasanUserPaket = new UlasanWithUser();
         // $data['pakets'] = $paket->where('id_paket <=', 8)->orderBy('id_paket', 'ASC')->findAll();
-        $data['paketsEngagement'] = $paket->where('id_paket >=', 20)->where('id_paket <=', 21)->orderBy('id_paket', 'ASC')->findAll();
+        $data['paketsEngagement'] = $paket->where('id_paket >=', 26)->where('id_paket <=', 27)->orderBy('id_paket', 'ASC')->findAll();
         $data['paketsAkad'] = $paket->where('id_paket >=', 6)->where('id_paket <=', 8)->orderBy('id_paket', 'ASC')->findAll();
         $data['paketsResepsi'] = $paket->where('id_paket >=', 9)->where('id_paket <=', 13)->orderBy('id_paket', 'ASC')->findAll();
         $data['paketsPreweddingIndoor'] = $paket->where('id_paket =', 1)->orderBy('id_paket', 'ASC')->findAll();
         $data['paketsPreweddingOutdoor'] = $paket->where('id_paket >=', 2)->where('id_paket <=', 5)->orderBy('id_paket', 'ASC')->findAll();
-        $data['paketsMaternity'] = $paket->where('id_paket =', 16)->orderBy('id_paket', 'ASC')->findAll();
-        $data['paketsGraduation'] = $paket->where('id_paket =', 17)->orderBy('id_paket', 'ASC')->findAll();
-        $data['paketsFamily'] = $paket->where('id_paket =', 18)->orderBy('id_paket', 'ASC')->findAll();
-        $data['paketsGroup'] = $paket->where('id_paket =', 15)->orderBy('id_paket', 'ASC')->findAll();
-        $data['paketsEvent'] = $paket->where('id_paket =', 19)->orderBy('id_paket', 'ASC')->findAll();
-        $data['paketsCouple'] = $paket->where('id_paket =', 22)->orderBy('id_paket', 'ASC')->findAll();
-        $data['paketsPersonal'] = $paket->where('id_paket =', 14)->orderBy('id_paket', 'ASC')->findAll();
+        $data['paketsMaternity'] = $paket->where('id_paket =', 18)->orderBy('id_paket', 'ASC')->findAll();
+        $data['paketsGraduationIndoor'] = $paket->where('id_paket =', 19)->orderBy('id_paket', 'ASC')->findAll();
+        $data['paketsGraduationOutdoor'] = $paket->where('id_paket >=', 20)->where('id_paket <=', 23)->orderBy('id_paket', 'ASC')->findAll();
+        $data['paketsFamily'] = $paket->where('id_paket =', 24)->orderBy('id_paket', 'ASC')->findAll();
+        $data['paketsGroup'] = $paket->where('id_paket >=', 16)->where('id_paket <=', 17)->orderBy('id_paket', 'DESC')->findAll();
+        $data['paketsEvent'] = $paket->where('id_paket =', 25)->orderBy('id_paket', 'ASC')->findAll();
+        $data['paketsCouple'] = $paket->where('id_paket =', 28)->orderBy('id_paket', 'ASC')->findAll(); //BELUM
+        $data['paketsPersonal'] = $paket->where('id_paket >=', 14)->where('id_paket <=', 15)->orderBy('id_paket', 'ASC')->findAll();
         $data['ulasanUserPakets'] = $ulasanUserPaket->getUlasanWithUserAndPaket();
 
         if ($session->has('logged_in')) {
@@ -323,8 +325,14 @@ class HomeUser extends BaseController
                                 'first_name' => $nama,
                                 'email' => $session->get('email'),
                                 'phone' => $telp,
-                            )
+                            ),
+                            'enabled_payments' => ['bca_va'],
+                            'bank_transfer' => array(
+                                'bank' => 'bca',
+                            ),
                         );
+
+
 
                         //Generate Snap token
                         $snapToken = Snap::getSnapToken($params);
@@ -539,6 +547,14 @@ class HomeUser extends BaseController
                     //get detail transaksi
                     $status = Transaction::status($data['detailPesanan'][0]->order_id);
                     $data['transaksi'] = $status;
+                    $data['qrCodeUrl'] = '';
+
+                    // if ($data['transaksi']->payment_type == 'qris') {
+                    //     $qrCode = new QrCode();
+                    //     // if (isset($data['transaksi']->actions->qr_codes[0]->url)) {
+                    //     //     $data['qrCodeUrl'] = $data['transaksi']->actions->qr_codes['0']->url;
+                    //     // }
+                    // }
 
                     return view('pages/user/pesanan_detail.php', $data);
                 } else {

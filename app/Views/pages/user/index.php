@@ -69,32 +69,6 @@ function shortNumber($num)
                 <p>PAKET</p>
             </header>
             <div class="row gy-4 justify-content-center" data-aos="fade-left">
-                <!-- <div class="col-lg-3 col-md-6" data-aos="zoom-in" data-aos-delay="100">
-                    <div class="box">
-                        <h3 style="color: #484A74;">Custom</h3>
-                        <img src="/assets/img/package/custom.png" class="img-fluid" alt="">
-                        <button type="button" class="btn btn-buy" data-bs-toggle="modal" data-bs-target="#modalCustom">
-                            Pilih
-                        </button>
-                        <div class="modal fade" id="modalCustom" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        ...
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                        <button type="button" class="btn btn-primary">Save changes</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div> -->
                 <div class="col-lg-3 col-md-6" data-aos="zoom-in" data-aos-delay="100">
                     <div class="box">
                         <h3 style="color: #9F8B56;">Engagement</h3>
@@ -211,14 +185,16 @@ function shortNumber($num)
                 <div class="col-lg-12 d-flex justify-content-center">
                     <ul id="portfolio-flters">
                         <li data-filter="*" class="filter-active">All</li>
+                        <li data-filter=".filter-engagement">Engagement</li>
                         <li data-filter=".filter-prewedding">Pre-Wedding</li>
                         <li data-filter=".filter-wedding">Wedding</li>
                         <li data-filter=".filter-maternity">Maternity</li>
-                        <li data-filter=".filter-family">Family</li>
-                        <li data-filter=".filter-birthday">Birthday</li>
-                        <li data-filter=".filter-group">Group</li>
                         <li data-filter=".filter-graduation">Graduation</li>
+                        <li data-filter=".filter-family">Family</li>
+                        <li data-filter=".filter-group">Group</li>
                         <li data-filter=".filter-event">Event</li>
+                        <li data-filter=".filter-couple">Couple</li>
+                        <li data-filter=".filter-personal">Personal</li>
                     </ul>
                 </div>
             </div>
@@ -228,22 +204,14 @@ function shortNumber($num)
                         <img src="/assets/img/portfolio/1.png" class="img-fluid" alt="">
                         <div class="portfolio-info">
                             <h4>Pre-Wedding</h4>
-                            <div class="portfolio-links">
-                                <a href="/assets/img/portfolio/1.png" data-gallery="portfolioGallery" class="portfokio-lightbox" title="Paket Pre-Wedding"><i class="bi bi-plus"></i></a>
-                                <a href="#" title="More Details"><i class="bi bi-link"></i></a>
-                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6 portfolio-item filter-wedding">
+                <div class="col-lg-4 col-md-6 portfolio-item filter-engagement">
                     <div class="portfolio-wrap">
                         <img src="/assets/img/portfolio/4.png" class="img-fluid" alt="">
                         <div class="portfolio-info">
-                            <h4>Wedding</h4>
-                            <div class="portfolio-links">
-                                <a href="/assets/img/portfolio/4.png" data-gallery="portfolioGallery" class="portfokio-lightbox" title="Paket Wedding"><i class="bi bi-plus"></i></a>
-                                <a href="#" title="More Details"><i class="bi bi-link"></i></a>
-                            </div>
+                            <h4>Engagement</h4>
                         </div>
                     </div>
                 </div>
@@ -252,10 +220,6 @@ function shortNumber($num)
                         <img src="/assets/img/portfolio/7.png" class="img-fluid" alt="">
                         <div class="portfolio-info">
                             <h4>Family</h4>
-                            <div class="portfolio-links">
-                                <a href="/assets/img/portfolio/7.png" data-gallery="portfolioGallery" class="portfokio-lightbox" title="Paket Family"><i class="bi bi-plus"></i></a>
-                                <a href="#" title="More Details"><i class="bi bi-link"></i></a>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -264,10 +228,6 @@ function shortNumber($num)
                         <img src="/assets/img/portfolio/8.png" class="img-fluid" alt="">
                         <div class="portfolio-info">
                             <h4>Group</h4>
-                            <div class="portfolio-links">
-                                <a href="/assets/img/portfolio/8.png" data-gallery="portfolioGallery" class="portfokio-lightbox" title="Paket Group"><i class="bi bi-plus"></i></a>
-                                <a href="#" title="More Details"><i class="bi bi-link"></i></a>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -276,22 +236,14 @@ function shortNumber($num)
                         <img src="/assets/img/portfolio/9.png" class="img-fluid" alt="">
                         <div class="portfolio-info">
                             <h4>Maternity</h4>
-                            <div class="portfolio-links">
-                                <a href="/assets/img/portfolio/9.png" data-gallery="portfolioGallery" class="portfokio-lightbox" title="Paket Maternity"><i class="bi bi-plus"></i></a>
-                                <a href="#" title="More Details"><i class="bi bi-link"></i></a>
-                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6 portfolio-item filter-birthday">
+                <div class="col-lg-4 col-md-6 portfolio-item filter-personal">
                     <div class="portfolio-wrap">
                         <img src="/assets/img/portfolio/11.png" class="img-fluid" alt="">
                         <div class="portfolio-info">
                             <h4>Birthday</h4>
-                            <div class="portfolio-links">
-                                <a href="/assets/img/portfolio/11.png" data-gallery="portfolioGallery" class="portfokio-lightbox" title="Paket Birthday"><i class="bi bi-plus"></i></a>
-                                <a href="#" title="More Details"><i class="bi bi-link"></i></a>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -300,10 +252,6 @@ function shortNumber($num)
                         <img src="/assets/img/portfolio/10.png" class="img-fluid" alt="">
                         <div class="portfolio-info">
                             <h4>Graduation</h4>
-                            <div class="portfolio-links">
-                                <a href="/assets/img/portfolio/10.png" data-gallery="portfolioGallery" class="portfokio-lightbox" title="Paket Graduation"><i class="bi bi-plus"></i></a>
-                                <a href="#" title="More Details"><i class="bi bi-link"></i></a>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -312,10 +260,6 @@ function shortNumber($num)
                         <img src="/assets/img/portfolio/2.png" class="img-fluid" alt="">
                         <div class="portfolio-info">
                             <h4>Pre-Wedding</h4>
-                            <div class="portfolio-links">
-                                <a href="/assets/img/portfolio/2.png" data-gallery="portfolioGallery" class="portfokio-lightbox" title="Paket Pre-Wedding"><i class="bi bi-plus"></i></a>
-                                <a href="#" title="More Details"><i class="bi bi-link"></i></a>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -324,10 +268,6 @@ function shortNumber($num)
                         <img src="/assets/img/portfolio/12.png" class="img-fluid" alt="">
                         <div class="portfolio-info">
                             <h4>Event</h4>
-                            <div class="portfolio-links">
-                                <a href="/assets/img/portfolio/12.png" data-gallery="portfolioGallery" class="portfokio-lightbox" title="Paket Event"><i class="bi bi-plus"></i></a>
-                                <a href="#" title="More Details"><i class="bi bi-link"></i></a>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -336,10 +276,6 @@ function shortNumber($num)
                         <img src="/assets/img/portfolio/5.png" class="img-fluid" alt="">
                         <div class="portfolio-info">
                             <h4>Wedding</h4>
-                            <div class="portfolio-links">
-                                <a href="/assets/img/portfolio/5.png" data-gallery="portfolioGallery" class="portfokio-lightbox" title="Paket Wedding"><i class="bi bi-plus"></i></a>
-                                <a href="#" title="More Details"><i class="bi bi-link"></i></a>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -348,10 +284,6 @@ function shortNumber($num)
                         <img src="/assets/img/portfolio/13.png" class="img-fluid" alt="">
                         <div class="portfolio-info">
                             <h4>Wedding</h4>
-                            <div class="portfolio-links">
-                                <a href="/assets/img/portfolio/13.png" data-gallery="portfolioGallery" class="portfokio-lightbox" title="Paket Wedding"><i class="bi bi-plus"></i></a>
-                                <a href="#" title="More Details"><i class="bi bi-link"></i></a>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -360,10 +292,14 @@ function shortNumber($num)
                         <img src="/assets/img/portfolio/14.png" class="img-fluid" alt="">
                         <div class="portfolio-info">
                             <h4>Graduation</h4>
-                            <div class="portfolio-links">
-                                <a href="/assets/img/portfolio/14.png" data-gallery="portfolioGallery" class="portfokio-lightbox" title="Paket Graduation"><i class="bi bi-plus"></i></a>
-                                <a href="#" title="More Details"><i class="bi bi-link"></i></a>
-                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 portfolio-item filter-couple">
+                    <div class="portfolio-wrap">
+                        <img src="/assets/img/Prewedding/pw-1.jpg" class="img-fluid" alt="">
+                        <div class="portfolio-info">
+                            <h4>Couple</h4>
                         </div>
                     </div>
                 </div>
@@ -637,6 +573,40 @@ function shortNumber($num)
                                 <button type="button" class="btn btn-buy" data-bs-toggle="modal" data-bs-target="#modalResepsi">
                                     <img src="/assets/img/wedding/resepsi.png" class="img-fluid" width="135" alt="">
                                     <h4 style="color: #141414;" class="mt-1">Resepsi</h4>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- modal graduation -->
+    <div class="modal fade" id="modalGraduation" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Paket Graduation</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row gy-4 justify-content-center" data-aos="fade-left">
+                        <div class="col-md-6" data-aos="zoom-in" data-aos-delay="100">
+                            <div class="box text-center">
+                                <!-- Button trigger modal -->
+                                <button type="button" class="btn btn-buy" data-bs-toggle="modal" data-bs-target="#modalGraduationIndoor">
+                                    <img src="/assets/img/Graduation/g-1.jpg" class="img-fluid" width="135" alt="">
+                                    <h4 style="color: #141414;" class="mt-1">Graduation Indoor</h4>
+                                </button>
+                                <!-- Modal -->
+                            </div>
+                        </div>
+                        <div class="col-md-6" data-aos="zoom-in" data-aos-delay="100">
+                            <div class="box text-center">
+                                <!-- Button trigger modal -->
+                                <button type="button" class="btn btn-buy" data-bs-toggle="modal" data-bs-target="#modalGraduationOutdoor">
+                                    <img src="/assets/img/portfolio/10.png" class="img-fluid" width="135" alt="">
+                                    <h4 style="color: #141414;" class="mt-1">Graduation Outdoor</h4>
                                 </button>
                             </div>
                         </div>
@@ -2190,10 +2160,12 @@ function shortNumber($num)
                                                                         <strong>Jumlah foto edit </strong>:
                                                                         <?= $paketMaternity->jumlah_foto_edit; ?>
                                                                     </li>
-                                                                    <li>
-                                                                        <strong>Cetak </strong>:
-                                                                        <?= $paketMaternity->cetak_foto; ?>
-                                                                    </li>
+                                                                    <?php if ($paketMaternity->cetak_foto != '') { ?>
+                                                                        <li>
+                                                                            <strong>Cetak </strong>:
+                                                                            <?= $paketMaternity->cetak_foto; ?>
+                                                                        </li>
+                                                                    <?php } ?>
                                                                     <?php if ($paketMaternity->videografi != '') { ?>
                                                                         <li>
                                                                             <strong>Videografi </strong>:
@@ -2405,297 +2377,6 @@ function shortNumber($num)
             </div>
         </div>
     </div>
-    <!-- Modal Graduation -->
-    <div class="modal fade" id="modalGraduation" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-xl">
-            <div class="modal-content">
-                <div class="modal-header" style="border:none;">
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <!-- ======= Portfolio Details Section ======= -->
-                    <section id="portfolio-details" class="portfolio-details" style="padding-top:0;">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-lg-4">
-                                    <div class="portfolio-details-slider swiper">
-                                        <div class="swiper-wrapper align-items-center">
-                                            <div class="swiper-slide">
-                                                <img src="/assets/img/portfolio/10.png" alt="">
-                                            </div>
-                                            <div class="swiper-slide">
-                                                <img src="/assets/img/portfolio/14.png" alt="">
-                                            </div>
-                                        </div>
-                                        <div class="swiper-pagination"></div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-8">
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <h5 class="modal-title me-4" id="exampleModalLabel">Paket Graduation</h5>
-                                            <input id="input-rating" value="4.5" type="text" class="rating" data-theme="krajee-fas" data-min=0 data-max=5 data-step=0.5 disabled>
-                                            <div class="list-group flex-row mt-4" id="list-tab" role="tablist">
-                                                <a class="list-group-item list-group-item-action list-group-item-subpackage active" id="list-controller-graduation-0" data-bs-toggle="list" href="#list-graduation-0" role="tab" aria-controls="list-graduation-0">GRADUATION PACKAGE</a>
-                                            </div>
-                                        </div>
-                                        <div class="col-12">
-                                            <div class="tab-content" id="nav-tabContent">
-                                                <?php foreach ($paketsGraduation as $key => $paketGraduation) : ?>
-                                                    <div class="tab-pane fade show <?php if ($key == 0) {
-                                                                                        echo 'active';
-                                                                                    } ?>" id="list-graduation-<?= $key ?>" role="tabpanel" aria-labelledby="list-graduation-<?= $key ?>">
-                                                        <div class="portfolio-wrap">
-                                                            <div class="portfolio-info">
-                                                                <ul>
-                                                                    <li>
-                                                                        <strong>Harga </strong>:
-                                                                        <?=
-                                                                        helper('number');
-                                                                        echo number_to_currency($paketGraduation->harga_paket, 'IDR', 'id_ID');
-                                                                        ?>
-                                                                    </li>
-                                                                    <li><strong>Tenaga Kerja </strong>:
-
-                                                                        <?php if ($paketGraduation->fotografer != 0) {
-                                                                            echo $paketGraduation->fotografer ?>
-                                                                            Fotografer
-                                                                            <?php if ($paketGraduation->videografer != 0) { ?>
-                                                                                <?= $paketGraduation->videografer ?> Videografer
-                                                                            <?php } ?>
-                                                                        <?php } ?>
-                                                                        <?php if ($paketGraduation->asisten != 0) {
-                                                                            echo $paketGraduation->asisten ?>
-                                                                            Asisten
-                                                                        <?php } ?>
-                                                                    </li>
-                                                                    <li>
-                                                                        <strong>Waktu kerja </strong>:
-                                                                        <?= $paketGraduation->waktu_kerja; ?>
-                                                                    </li>
-                                                                    <li>
-                                                                        <strong>Jumlah foto </strong>:
-                                                                        <?= $paketGraduation->jumlah_foto; ?>
-                                                                    </li>
-                                                                    <li>
-                                                                        <strong>Jumlah foto edit </strong>:
-                                                                        <?= $paketGraduation->jumlah_foto_edit; ?>
-                                                                    </li>
-                                                                    <li>
-                                                                        <strong>Cetak </strong>:
-                                                                        <?= $paketGraduation->cetak_foto; ?>
-                                                                    </li>
-                                                                    <?php if ($paketGraduation->videografi != '') { ?>
-                                                                        <li>
-                                                                            <strong>Videografi </strong>:
-                                                                            <?= $paketGraduation->videografi; ?>
-                                                                        </li>
-                                                                    <?php } ?>
-                                                                    <li>
-                                                                        <strong>Penyimpanan </strong>:
-                                                                        <?= $paketGraduation->penyimpanan; ?>
-                                                                    </li>
-                                                                    <li>
-                                                                        <strong>Deskripsi Paket </strong>:
-                                                                        <?= $paketGraduation->deskripsi_paket; ?>
-                                                                    </li>
-                                                                </ul>
-                                                                <div class="portfolio-description">
-                                                                    <div class="row">
-                                                                        <div class="col-4">
-                                                                            <a href="#" id="pesanSekarangGraduation<?= $key ?>" button class="btn btn-package btn-md w-100 mb-3 mr-2">
-                                                                                <span id="pesanTextGraduation<?= $key ?>">Pesan Sekarang</span>
-                                                                                <div id="pesanLoadingGraduation<?= $key ?>" class="spinner-border text-light d-none" role="status">
-                                                                                    <span class="sr-only"></span>
-                                                                                </div>
-                                                                            </a>
-                                                                        </div>
-                                                                        <div class="col-4">
-                                                                            <a href="#" id="masukkanKeranjangGraduation<?= $key ?>" button class="btn btn-package btn-md w-100 mb-3 mr-2">
-                                                                                <span id="keranjangTextGraduation<?= $key ?>">Masukkan Keranjang</span>
-                                                                                <div id="keranjangLoadingGraduation<?= $key ?>" class="spinner-border text-light d-none" role="status">
-                                                                                    <span class="sr-only"></span>
-                                                                                </div>
-                                                                            </a>
-                                                                        </div>
-                                                                        <div class="col-4">
-                                                                            <a href="https://wa.me/6285156443674" button class="btn btn-package btn-md w-100 mb-3 mr-2">
-                                                                                Konsultasi
-                                                                            </a>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <!-- js untuk pesanan -->
-                                                    <script type="text/javascript">
-                                                        $(document).ready(function() {
-                                                            $('#pesanSekarangGraduation<?= $key ?>').on('click', function(e) {
-                                                                e.preventDefault();
-
-                                                                var pesanText = document.getElementById("pesanTextGraduation<?= $key ?>");
-                                                                var pesanLoading = document.getElementById("pesanLoadingGraduation<?= $key ?>");
-
-                                                                pesanText.classList.add("d-none");
-                                                                pesanLoading.classList.remove("d-none");
-
-                                                                $.ajax({
-                                                                    url: '<?= site_url('/check') ?>',
-                                                                    type: 'POST',
-                                                                    success: function(response) {
-                                                                        if (response.status == 'Belum ada pesanan!') {
-                                                                            $.ajax({
-                                                                                url: '<?= site_url('/paket/detail') ?>',
-                                                                                type: 'POST',
-                                                                                data: {
-                                                                                    id_paket: <?= $paketGraduation->id_paket ?>,
-                                                                                    type: 'pesan',
-                                                                                },
-                                                                                success: function(response) {
-                                                                                    pesanText.classList.remove("d-none");
-                                                                                    pesanLoading.classList.add("d-none");
-                                                                                    Toastify({
-                                                                                        text: "Berhasil!",
-                                                                                        duration: 3000,
-                                                                                        offset: {
-                                                                                            x: 50,
-                                                                                        },
-                                                                                    }).showToast();
-                                                                                    window.location.href = '<?= base_url('/checkout') ?>';
-                                                                                },
-                                                                                error: function() {
-                                                                                    pesanText.classList.remove("d-none");
-                                                                                    pesanLoading.classList.add("d-none");
-                                                                                    Toastify({
-                                                                                        text: "Gagal!",
-                                                                                        duration: 3000,
-                                                                                        offset: {
-                                                                                            x: 50,
-                                                                                        },
-                                                                                    }).showToast();
-                                                                                }
-                                                                            });
-                                                                        } else if (response.status == 'Belum login!') {
-                                                                            pesanText.classList.remove("d-none");
-                                                                            pesanLoading.classList.add("d-none");
-                                                                            window.location.href = '<?= base_url('/login') ?>';
-                                                                        } else {
-                                                                            pesanText.classList.remove("d-none");
-                                                                            pesanLoading.classList.add("d-none");
-                                                                            Toastify({
-                                                                                text: response.status,
-                                                                                duration: 3000,
-                                                                                offset: {
-                                                                                    x: 50,
-                                                                                },
-                                                                            }).showToast();
-                                                                        }
-                                                                    },
-                                                                    error: function() {
-                                                                        pesanText.classList.remove("d-none");
-                                                                        pesanLoading.classList.add("d-none");
-                                                                        Toastify({
-                                                                            text: "Gagal!",
-                                                                            duration: 3000,
-                                                                            offset: {
-                                                                                x: 50,
-                                                                            },
-                                                                        }).showToast();
-                                                                    }
-                                                                });
-                                                            });
-                                                            $('#masukkanKeranjangGraduation<?= $key ?>').on('click', function(e) {
-                                                                e.preventDefault();
-
-                                                                var keranjangText = document.getElementById("keranjangTextGraduation<?= $key ?>");
-                                                                var keranjangLoading = document.getElementById("keranjangLoadingGraduation<?= $key ?>");
-
-                                                                keranjangText.classList.add("d-none");
-                                                                keranjangLoading.classList.remove("d-none");
-
-                                                                const anchorBtn = document.getElementById('masukkanKeranjangGraduation<?= $key ?>');
-                                                                anchorBtn.disabled = true;
-                                                                // perform AJAX request here
-                                                                $.ajax({
-                                                                    url: '<?= site_url('/check') ?>',
-                                                                    type: 'POST',
-                                                                    success: function(response) {
-                                                                        if (response.status == 'Belum ada pesanan!') {
-                                                                            $.ajax({
-                                                                                url: '<?= site_url('/paket/detail') ?>',
-                                                                                type: 'POST',
-                                                                                data: {
-                                                                                    id_paket: <?= $paketGraduation->id_paket ?>,
-                                                                                    type: 'keranjang',
-                                                                                },
-                                                                                success: function(response) {
-                                                                                    keranjangText.classList.remove("d-none");
-                                                                                    keranjangLoading.classList.add("d-none");
-                                                                                    Toastify({
-                                                                                        text: "Berhasil!",
-                                                                                        duration: 3000,
-                                                                                        offset: {
-                                                                                            x: 50,
-                                                                                        },
-                                                                                    }).showToast();
-                                                                                },
-                                                                                error: function() {
-                                                                                    keranjangText.classList.remove("d-none");
-                                                                                    keranjangLoading.classList.add("d-none");
-                                                                                    Toastify({
-                                                                                        text: "Gagal!",
-                                                                                        duration: 3000,
-                                                                                        offset: {
-                                                                                            x: 50,
-                                                                                        },
-                                                                                    }).showToast();
-                                                                                }
-                                                                            });
-                                                                        } else if (response.status == 'Belum login!') {
-                                                                            keranjangText.classList.remove("d-none");
-                                                                            keranjangLoading.classList.add("d-none");
-                                                                            window.location.href = '<?= base_url('/login') ?>';
-                                                                        } else {
-                                                                            keranjangText.classList.remove("d-none");
-                                                                            keranjangLoading.classList.add("d-none");
-                                                                            Toastify({
-                                                                                text: response.status,
-                                                                                duration: 3000,
-                                                                                offset: {
-                                                                                    x: 50,
-                                                                                },
-                                                                            }).showToast();
-                                                                        }
-                                                                    },
-                                                                    error: function() {
-                                                                        keranjangText.classList.remove("d-none");
-                                                                        keranjangLoading.classList.add("d-none");
-                                                                        Toastify({
-                                                                            text: "Gagal!",
-                                                                            duration: 3000,
-                                                                            offset: {
-                                                                                x: 50,
-                                                                            },
-                                                                        }).showToast();
-                                                                    }
-                                                                });
-                                                            });
-                                                        });
-                                                    </script>
-                                                <?php endforeach; ?>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-                    <!-- End Portfolio Details Section -->
-                </div>
-            </div>
-        </div>
-    </div>
     <!-- Modal Family -->
     <div class="modal fade" id="modalFamily" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-xl">
@@ -2769,10 +2450,12 @@ function shortNumber($num)
                                                                         <strong>Jumlah foto edit </strong>:
                                                                         <?= $paketFamily->jumlah_foto_edit; ?>
                                                                     </li>
-                                                                    <li>
-                                                                        <strong>Cetak </strong>:
-                                                                        <?= $paketFamily->cetak_foto; ?>
-                                                                    </li>
+                                                                    <?php if ($paketFamily->cetak_foto != '') { ?>
+                                                                        <li>
+                                                                            <strong>Cetak </strong>:
+                                                                            <?= $paketFamily->cetak_foto; ?>
+                                                                        </li>
+                                                                    <?php } ?>
                                                                     <?php if ($paketFamily->videografi != '') { ?>
                                                                         <li>
                                                                             <strong>Videografi </strong>:
@@ -3012,7 +2695,8 @@ function shortNumber($num)
                                             <h5 class="modal-title me-4" id="exampleModalLabel">Paket Group</h5>
                                             <input id="input-rating" value="4.5" type="text" class="rating" data-theme="krajee-fas" data-min=0 data-max=5 data-step=0.5 disabled>
                                             <div class="list-group flex-row mt-4" id="list-tab" role="tablist">
-                                                <a class="list-group-item list-group-item-action list-group-item-subpackage active" id="list-controller-group-0" data-bs-toggle="list" href="#list-group-0" role="tab" aria-controls="list-group-0">GROUP PACKAGE</a>
+                                                <a class="list-group-item list-group-item-action list-group-item-subpackage active" id="list-controller-group-0" data-bs-toggle="list" href="#list-group-0" role="tab" aria-controls="list-group-0">GROUP PACKAGE INDOOR</a>
+                                                <a class="list-group-item list-group-item-action list-group-item-subpackage" id="list-controller-group-1" data-bs-toggle="list" href="#list-group-1" role="tab" aria-controls="list-group-1">GROUP PACKAGE OUTDOOR</a>
                                             </div>
                                         </div>
                                         <div class="col-12">
@@ -3057,10 +2741,12 @@ function shortNumber($num)
                                                                         <strong>Jumlah foto edit </strong>:
                                                                         <?= $paketGroup->jumlah_foto_edit; ?>
                                                                     </li>
-                                                                    <li>
-                                                                        <strong>Cetak </strong>:
-                                                                        <?= $paketGroup->cetak_foto; ?>
-                                                                    </li>
+                                                                    <?php if ($paketGroup->cetak_foto != '') { ?>
+                                                                        <li>
+                                                                            <strong>Cetak </strong>:
+                                                                            <?= $paketGroup->cetak_foto; ?>
+                                                                        </li>
+                                                                    <?php } ?>
                                                                     <?php if ($paketGroup->videografi != '') { ?>
                                                                         <li>
                                                                             <strong>Videografi </strong>:
@@ -3071,6 +2757,12 @@ function shortNumber($num)
                                                                         <strong>Penyimpanan </strong>:
                                                                         <?= $paketGroup->penyimpanan; ?>
                                                                     </li>
+                                                                    <?php if ($paketGroup->id_paket == 17) { ?>
+                                                                        <li>
+                                                                            <strong>Catatan </strong>:
+                                                                            Minimal 4 orang
+                                                                        </li>
+                                                                    <?php } ?>
                                                                     <li>
                                                                         <strong>Deskripsi Paket </strong>:
                                                                         <?= $paketGroup->deskripsi_paket; ?>
@@ -3345,10 +3037,12 @@ function shortNumber($num)
                                                                         <strong>Jumlah foto edit </strong>:
                                                                         <?= $paketEvent->jumlah_foto_edit; ?>
                                                                     </li>
-                                                                    <li>
-                                                                        <strong>Cetak </strong>:
-                                                                        <?= $paketEvent->cetak_foto; ?>
-                                                                    </li>
+                                                                    <?php if ($paketEvent->cetak_foto != '') { ?>
+                                                                        <li>
+                                                                            <strong>Cetak </strong>:
+                                                                            <?= $paketEvent->cetak_foto; ?>
+                                                                        </li>
+                                                                    <?php } ?>
                                                                     <?php if ($paketEvent->videografi != '') { ?>
                                                                         <li>
                                                                             <strong>Videografi </strong>:
@@ -3633,10 +3327,12 @@ function shortNumber($num)
                                                                         <strong>Jumlah foto edit </strong>:
                                                                         <?= $paketCouple->jumlah_foto_edit; ?>
                                                                     </li>
-                                                                    <li>
-                                                                        <strong>Cetak </strong>:
-                                                                        <?= $paketCouple->cetak_foto; ?>
-                                                                    </li>
+                                                                    <?php if ($paketCouple->cetak_foto != '') { ?>
+                                                                        <li>
+                                                                            <strong>Cetak </strong>:
+                                                                            <?= $paketCouple->cetak_foto; ?>
+                                                                        </li>
+                                                                    <?php } ?>
                                                                     <?php if ($paketCouple->videografi != '') { ?>
                                                                         <li>
                                                                             <strong>Videografi </strong>:
@@ -3876,7 +3572,8 @@ function shortNumber($num)
                                             <h5 class="modal-title me-4" id="exampleModalLabel">Paket Personal</h5>
                                             <input id="input-rating" value="4.5" type="text" class="rating" data-theme="krajee-fas" data-min=0 data-max=5 data-step=0.5 disabled>
                                             <div class="list-group flex-row mt-4" id="list-tab" role="tablist">
-                                                <a class="list-group-item list-group-item-action list-group-item-subpackage active" id="list-controller-personal-0" data-bs-toggle="list" href="#list-personal-0" role="tab" aria-controls="list-personal-0">PERSONAL PACKAGE</a>
+                                                <a class="list-group-item list-group-item-action list-group-item-subpackage active" id="list-controller-personal-0" data-bs-toggle="list" href="#list-personal-0" role="tab" aria-controls="list-personal-0">PERSONAL PACKAGE INDOOR</a>
+                                                <a class="list-group-item list-group-item-action list-group-item-subpackage" id="list-controller-personal-1" data-bs-toggle="list" href="#list-personal-1" role="tab" aria-controls="list-personal-1">PERSONAL PACKAGE OUTDOOR</a>
                                             </div>
                                         </div>
                                         <div class="col-12">
@@ -3921,10 +3618,12 @@ function shortNumber($num)
                                                                         <strong>Jumlah foto edit </strong>:
                                                                         <?= $paketPersonal->jumlah_foto_edit; ?>
                                                                     </li>
-                                                                    <li>
-                                                                        <strong>Cetak </strong>:
-                                                                        <?= $paketPersonal->cetak_foto; ?>
-                                                                    </li>
+                                                                    <?php if ($paketPersonal->cetak_foto != '') { ?>
+                                                                        <li>
+                                                                            <strong>Cetak </strong>:
+                                                                            <?= $paketPersonal->cetak_foto; ?>
+                                                                        </li>
+                                                                    <?php } ?>
                                                                     <?php if ($paketPersonal->videografi != '') { ?>
                                                                         <li>
                                                                             <strong>Videografi </strong>:
@@ -4067,6 +3766,595 @@ function shortNumber($num)
                                                                                 type: 'POST',
                                                                                 data: {
                                                                                     id_paket: <?= $paketPersonal->id_paket ?>,
+                                                                                    type: 'keranjang',
+                                                                                },
+                                                                                success: function(response) {
+                                                                                    keranjangText.classList.remove("d-none");
+                                                                                    keranjangLoading.classList.add("d-none");
+                                                                                    Toastify({
+                                                                                        text: "Berhasil!",
+                                                                                        duration: 3000,
+                                                                                        offset: {
+                                                                                            x: 50,
+                                                                                        },
+                                                                                    }).showToast();
+                                                                                },
+                                                                                error: function() {
+                                                                                    keranjangText.classList.remove("d-none");
+                                                                                    keranjangLoading.classList.add("d-none");
+                                                                                    Toastify({
+                                                                                        text: "Gagal!",
+                                                                                        duration: 3000,
+                                                                                        offset: {
+                                                                                            x: 50,
+                                                                                        },
+                                                                                    }).showToast();
+                                                                                }
+                                                                            });
+                                                                        } else if (response.status == 'Belum login!') {
+                                                                            keranjangText.classList.remove("d-none");
+                                                                            keranjangLoading.classList.add("d-none");
+                                                                            window.location.href = '<?= base_url('/login') ?>';
+                                                                        } else {
+                                                                            keranjangText.classList.remove("d-none");
+                                                                            keranjangLoading.classList.add("d-none");
+                                                                            Toastify({
+                                                                                text: response.status,
+                                                                                duration: 3000,
+                                                                                offset: {
+                                                                                    x: 50,
+                                                                                },
+                                                                            }).showToast();
+                                                                        }
+                                                                    },
+                                                                    error: function() {
+                                                                        keranjangText.classList.remove("d-none");
+                                                                        keranjangLoading.classList.add("d-none");
+                                                                        Toastify({
+                                                                            text: "Gagal!",
+                                                                            duration: 3000,
+                                                                            offset: {
+                                                                                x: 50,
+                                                                            },
+                                                                        }).showToast();
+                                                                    }
+                                                                });
+                                                            });
+                                                        });
+                                                    </script>
+                                                <?php endforeach; ?>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <!-- End Portfolio Details Section -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal Graduation Indoor -->
+    <div class="modal fade" id="modalGraduationIndoor" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header" style="border:none;">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- ======= Portfolio Details Section ======= -->
+                    <section id="portfolio-details" class="portfolio-details" style="padding-top:0;">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <div class="portfolio-details-slider swiper">
+                                        <div class="swiper-wrapper align-items-center">
+                                            <div class="swiper-slide">
+                                                <img src="/assets/img/portfolio/10.png" alt="">
+                                            </div>
+                                            <div class="swiper-slide">
+                                                <img src="/assets/img/portfolio/14.png" alt="">
+                                            </div>
+                                        </div>
+                                        <div class="swiper-pagination"></div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-8">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <h5 class="modal-title me-4" id="exampleModalLabel">Paket Graduation Indoor</h5>
+                                            <input id="input-rating" value="4.5" type="text" class="rating" data-theme="krajee-fas" data-min=0 data-max=5 data-step=0.5 disabled>
+                                            <div class="list-group flex-row mt-4" id="list-tab" role="tablist">
+                                                <a class="list-group-item list-group-item-action list-group-item-subpackage active" id="list-controller-graduation-indoor-0" data-bs-toggle="list" href="#list-graduation-indoor-0" role="tab" aria-controls="list-graduation-indoor-0">GRADUATION PACKAGE INDOOR</a>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="tab-content" id="nav-tabContent">
+                                                <?php foreach ($paketsGraduationIndoor as $key => $paketGraduationIndoor) : ?>
+                                                    <div class="tab-pane fade show <?php if ($key == 0) {
+                                                                                        echo 'active';
+                                                                                    } ?>" id="list-graduation-indoor-<?= $key ?>" role="tabpanel" aria-labelledby="list-graduation-indoor-<?= $key ?>">
+                                                        <div class="portfolio-wrap">
+                                                            <div class="portfolio-info">
+                                                                <ul>
+                                                                    <li>
+                                                                        <strong>Harga </strong>:
+                                                                        <?=
+                                                                        helper('number');
+                                                                        echo number_to_currency($paketGraduationIndoor->harga_paket, 'IDR', 'id_ID');
+                                                                        ?>
+                                                                    </li>
+                                                                    <li><strong>Tenaga Kerja </strong>:
+
+                                                                        <?php if ($paketGraduationIndoor->fotografer != 0) {
+                                                                            echo $paketGraduationIndoor->fotografer ?>
+                                                                            Fotografer
+                                                                            <?php if ($paketGraduationIndoor->videografer != 0) { ?>
+                                                                                <?= $paketGraduationIndoor->videografer ?> Videografer
+                                                                            <?php } ?>
+                                                                        <?php } ?>
+                                                                        <?php if ($paketGraduationIndoor->asisten != 0) {
+                                                                            echo $paketGraduationIndoor->asisten ?>
+                                                                            Asisten
+                                                                        <?php } ?>
+                                                                    </li>
+                                                                    <li>
+                                                                        <strong>Waktu kerja </strong>:
+                                                                        <?= $paketGraduationIndoor->waktu_kerja; ?>
+                                                                    </li>
+                                                                    <li>
+                                                                        <strong>Jumlah foto </strong>:
+                                                                        <?= $paketGraduationIndoor->jumlah_foto; ?>
+                                                                    </li>
+                                                                    <li>
+                                                                        <strong>Jumlah foto edit </strong>:
+                                                                        <?= $paketGraduationIndoor->jumlah_foto_edit; ?>
+                                                                    </li>
+                                                                    <?php if ($paketGraduationIndoor->cetak_foto != '') { ?>
+                                                                        <li>
+                                                                            <strong>Cetak </strong>:
+                                                                            <?= $paketGraduationIndoor->cetak_foto; ?>
+                                                                        </li>
+                                                                    <?php } ?>
+                                                                    <?php if ($paketGraduationIndoor->videografi != '') { ?>
+                                                                        <li>
+                                                                            <strong>Videografi </strong>:
+                                                                            <?= $paketGraduationIndoor->videografi; ?>
+                                                                        </li>
+                                                                    <?php } ?>
+                                                                    <li>
+                                                                        <strong>Penyimpanan </strong>:
+                                                                        <?= $paketGraduationIndoor->penyimpanan; ?>
+                                                                    </li>
+                                                                    <li>
+                                                                        <strong>Deskripsi Paket </strong>:
+                                                                        <?= $paketGraduationIndoor->deskripsi_paket; ?>
+                                                                    </li>
+                                                                </ul>
+                                                                <div class="portfolio-description">
+                                                                    <div class="row">
+                                                                        <div class="col-4">
+                                                                            <a href="#" id="pesanSekarangGraduationIndoor<?= $key ?>" button class="btn btn-package btn-md w-100 mb-3 mr-2">
+                                                                                <span id="pesanTextGraduationIndoor<?= $key ?>">Pesan Sekarang</span>
+                                                                                <div id="pesanLoadingGraduationIndoor<?= $key ?>" class="spinner-border text-light d-none" role="status">
+                                                                                    <span class="sr-only"></span>
+                                                                                </div>
+                                                                            </a>
+                                                                        </div>
+                                                                        <div class="col-4">
+                                                                            <a href="#" id="masukkanKeranjangGraduationIndoor<?= $key ?>" button class="btn btn-package btn-md w-100 mb-3 mr-2">
+                                                                                <span id="keranjangTextGraduationIndoor<?= $key ?>">Masukkan Keranjang</span>
+                                                                                <div id="keranjangLoadingGraduationIndoor<?= $key ?>" class="spinner-border text-light d-none" role="status">
+                                                                                    <span class="sr-only"></span>
+                                                                                </div>
+                                                                            </a>
+                                                                        </div>
+                                                                        <div class="col-4">
+                                                                            <a href="https://wa.me/6285156443674" button class="btn btn-package btn-md w-100 mb-3 mr-2">
+                                                                                Konsultasi
+                                                                            </a>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!-- js untuk pesanan -->
+                                                    <script type="text/javascript">
+                                                        $(document).ready(function() {
+                                                            $('#pesanSekarangGraduationIndoor<?= $key ?>').on('click', function(e) {
+                                                                e.preventDefault();
+
+                                                                var pesanText = document.getElementById("pesanTextGraduationIndoor<?= $key ?>");
+                                                                var pesanLoading = document.getElementById("pesanLoadingGraduationIndoor<?= $key ?>");
+
+                                                                pesanText.classList.add("d-none");
+                                                                pesanLoading.classList.remove("d-none");
+
+                                                                $.ajax({
+                                                                    url: '<?= site_url('/check') ?>',
+                                                                    type: 'POST',
+                                                                    success: function(response) {
+                                                                        if (response.status == 'Belum ada pesanan!') {
+                                                                            $.ajax({
+                                                                                url: '<?= site_url('/paket/detail') ?>',
+                                                                                type: 'POST',
+                                                                                data: {
+                                                                                    id_paket: <?= $paketGraduationIndoor->id_paket ?>,
+                                                                                    type: 'pesan',
+                                                                                },
+                                                                                success: function(response) {
+                                                                                    pesanText.classList.remove("d-none");
+                                                                                    pesanLoading.classList.add("d-none");
+                                                                                    Toastify({
+                                                                                        text: "Berhasil!",
+                                                                                        duration: 3000,
+                                                                                        offset: {
+                                                                                            x: 50,
+                                                                                        },
+                                                                                    }).showToast();
+                                                                                    window.location.href = '<?= base_url('/checkout') ?>';
+                                                                                },
+                                                                                error: function() {
+                                                                                    pesanText.classList.remove("d-none");
+                                                                                    pesanLoading.classList.add("d-none");
+                                                                                    Toastify({
+                                                                                        text: "Gagal!",
+                                                                                        duration: 3000,
+                                                                                        offset: {
+                                                                                            x: 50,
+                                                                                        },
+                                                                                    }).showToast();
+                                                                                }
+                                                                            });
+                                                                        } else if (response.status == 'Belum login!') {
+                                                                            pesanText.classList.remove("d-none");
+                                                                            pesanLoading.classList.add("d-none");
+                                                                            window.location.href = '<?= base_url('/login') ?>';
+                                                                        } else {
+                                                                            pesanText.classList.remove("d-none");
+                                                                            pesanLoading.classList.add("d-none");
+                                                                            Toastify({
+                                                                                text: response.status,
+                                                                                duration: 3000,
+                                                                                offset: {
+                                                                                    x: 50,
+                                                                                },
+                                                                            }).showToast();
+                                                                        }
+                                                                    },
+                                                                    error: function() {
+                                                                        pesanText.classList.remove("d-none");
+                                                                        pesanLoading.classList.add("d-none");
+                                                                        Toastify({
+                                                                            text: "Gagal!",
+                                                                            duration: 3000,
+                                                                            offset: {
+                                                                                x: 50,
+                                                                            },
+                                                                        }).showToast();
+                                                                    }
+                                                                });
+                                                            });
+                                                            $('#masukkanKeranjangGraduationIndoor<?= $key ?>').on('click', function(e) {
+                                                                e.preventDefault();
+
+                                                                var keranjangText = document.getElementById("keranjangTextGraduationIndoor<?= $key ?>");
+                                                                var keranjangLoading = document.getElementById("keranjangLoadingGraduationIndoor<?= $key ?>");
+
+                                                                keranjangText.classList.add("d-none");
+                                                                keranjangLoading.classList.remove("d-none");
+
+                                                                const anchorBtn = document.getElementById('masukkanKeranjangGraduationIndoor<?= $key ?>');
+                                                                anchorBtn.disabled = true;
+                                                                // perform AJAX request here
+                                                                $.ajax({
+                                                                    url: '<?= site_url('/check') ?>',
+                                                                    type: 'POST',
+                                                                    success: function(response) {
+                                                                        if (response.status == 'Belum ada pesanan!') {
+                                                                            $.ajax({
+                                                                                url: '<?= site_url('/paket/detail') ?>',
+                                                                                type: 'POST',
+                                                                                data: {
+                                                                                    id_paket: <?= $paketGraduationIndoor->id_paket ?>,
+                                                                                    type: 'keranjang',
+                                                                                },
+                                                                                success: function(response) {
+                                                                                    keranjangText.classList.remove("d-none");
+                                                                                    keranjangLoading.classList.add("d-none");
+                                                                                    Toastify({
+                                                                                        text: "Berhasil!",
+                                                                                        duration: 3000,
+                                                                                        offset: {
+                                                                                            x: 50,
+                                                                                        },
+                                                                                    }).showToast();
+                                                                                },
+                                                                                error: function() {
+                                                                                    keranjangText.classList.remove("d-none");
+                                                                                    keranjangLoading.classList.add("d-none");
+                                                                                    Toastify({
+                                                                                        text: "Gagal!",
+                                                                                        duration: 3000,
+                                                                                        offset: {
+                                                                                            x: 50,
+                                                                                        },
+                                                                                    }).showToast();
+                                                                                }
+                                                                            });
+                                                                        } else if (response.status == 'Belum login!') {
+                                                                            keranjangText.classList.remove("d-none");
+                                                                            keranjangLoading.classList.add("d-none");
+                                                                            window.location.href = '<?= base_url('/login') ?>';
+                                                                        } else {
+                                                                            keranjangText.classList.remove("d-none");
+                                                                            keranjangLoading.classList.add("d-none");
+                                                                            Toastify({
+                                                                                text: response.status,
+                                                                                duration: 3000,
+                                                                                offset: {
+                                                                                    x: 50,
+                                                                                },
+                                                                            }).showToast();
+                                                                        }
+                                                                    },
+                                                                    error: function() {
+                                                                        keranjangText.classList.remove("d-none");
+                                                                        keranjangLoading.classList.add("d-none");
+                                                                        Toastify({
+                                                                            text: "Gagal!",
+                                                                            duration: 3000,
+                                                                            offset: {
+                                                                                x: 50,
+                                                                            },
+                                                                        }).showToast();
+                                                                    }
+                                                                });
+                                                            });
+                                                        });
+                                                    </script>
+                                                <?php endforeach; ?>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <!-- End Portfolio Details Section -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal Graduation Outdoor -->
+    <div class="modal fade" id="modalGraduationOutdoor" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header" style="border:none;">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- ======= Portfolio Details Section ======= -->
+                    <section id="portfolio-details" class="portfolio-details" style="padding-top:0;">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <div class="portfolio-details-slider swiper">
+                                        <div class="swiper-wrapper align-items-center">
+                                            <div class="swiper-slide">
+                                                <img src="/assets/img/portfolio/10.png" alt="">
+                                            </div>
+                                            <div class="swiper-slide">
+                                                <img src="/assets/img/portfolio/14.png" alt="">
+                                            </div>
+                                        </div>
+                                        <div class="swiper-pagination"></div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-8">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <h5 class="modal-title me-4" id="exampleModalLabel">Paket Graduation Outdoor</h5>
+                                            <input id="input-rating" value="4.5" type="text" class="rating" data-theme="krajee-fas" data-min=0 data-max=5 data-step=0.5 disabled>
+                                            <div class="list-group flex-row mt-4" id="list-tab" role="tablist">
+                                                <a class="list-group-item list-group-item-action list-group-item-subpackage active" id="list-controller-graduation-outdoor-0" data-bs-toggle="list" href="#list-graduation-outdoor-0" role="tab" aria-controls="list-graduation-outdoor-0">GRADUATION OUTDOOR BASIC</a>
+                                                <a class="list-group-item list-group-item-action list-group-item-subpackage" id="list-controller-graduation-outdoor-1" data-bs-toggle="list" href="#list-graduation-outdoor-1" role="tab" aria-controls="list-graduation-outdoor-1">GRADUATION OUTDOOR PREMIUM</a>
+                                                <a class="list-group-item list-group-item-action list-group-item-subpackage" id="list-controller-graduation-outdoor-2" data-bs-toggle="list" href="#list-graduation-outdoor-2" role="tab" aria-controls="list-graduation-outdoor-2">GRADUATION OUTDOOR EXCLUSIVE</a>
+                                                <a class="list-group-item list-group-item-action list-group-item-subpackage" id="list-controller-graduation-outdoor-3" data-bs-toggle="list" href="#list-graduation-outdoor-3" role="tab" aria-controls="list-graduation-outdoor-3">GRADUATION OUTDOOR EXCLUSIVE + VIDEO</a>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="tab-content" id="nav-tabContent">
+                                                <?php foreach ($paketsGraduationOutdoor as $key => $paketGraduationOutdoor) : ?>
+                                                    <div class="tab-pane fade show <?php if ($key == 0) {
+                                                                                        echo 'active';
+                                                                                    } ?>" id="list-graduation-outdoor-<?= $key ?>" role="tabpanel" aria-labelledby="list-graduation-outdoor-<?= $key ?>">
+                                                        <div class="portfolio-wrap">
+                                                            <div class="portfolio-info">
+                                                                <ul>
+                                                                    <li>
+                                                                        <strong>Harga </strong>:
+                                                                        <?=
+                                                                        helper('number');
+                                                                        echo number_to_currency($paketGraduationOutdoor->harga_paket, 'IDR', 'id_ID');
+                                                                        ?>
+                                                                    </li>
+                                                                    <li><strong>Tenaga Kerja </strong>:
+
+                                                                        <?php if ($paketGraduationOutdoor->fotografer != 0) {
+                                                                            echo $paketGraduationOutdoor->fotografer ?>
+                                                                            Fotografer
+                                                                            <?php if ($paketGraduationOutdoor->videografer != 0) { ?>
+                                                                                <?= $paketGraduationOutdoor->videografer ?> Videografer
+                                                                            <?php } ?>
+                                                                        <?php } ?>
+                                                                        <?php if ($paketGraduationOutdoor->asisten != 0) {
+                                                                            echo $paketGraduationOutdoor->asisten ?>
+                                                                            Asisten
+                                                                        <?php } ?>
+                                                                    </li>
+                                                                    <li>
+                                                                        <strong>Waktu kerja </strong>:
+                                                                        <?= $paketGraduationOutdoor->waktu_kerja; ?>
+                                                                    </li>
+                                                                    <li>
+                                                                        <strong>Jumlah foto </strong>:
+                                                                        <?= $paketGraduationOutdoor->jumlah_foto; ?>
+                                                                    </li>
+                                                                    <li>
+                                                                        <strong>Jumlah foto edit </strong>:
+                                                                        <?= $paketGraduationOutdoor->jumlah_foto_edit; ?>
+                                                                    </li>
+                                                                    <?php if ($paketGraduationOutdoor->cetak_foto != '') { ?>
+                                                                        <li>
+                                                                            <strong>Cetak </strong>:
+                                                                            <?= $paketGraduationOutdoor->cetak_foto; ?>
+                                                                        </li>
+                                                                    <?php } ?>
+                                                                    <?php if ($paketGraduationOutdoor->videografi != '') { ?>
+                                                                        <li>
+                                                                            <strong>Videografi </strong>:
+                                                                            <?= $paketGraduationOutdoor->videografi; ?>
+                                                                        </li>
+                                                                    <?php } ?>
+                                                                    <li>
+                                                                        <strong>Penyimpanan </strong>:
+                                                                        <?= $paketGraduationOutdoor->penyimpanan; ?>
+                                                                    </li>
+                                                                    <li>
+                                                                        <strong>Deskripsi Paket </strong>:
+                                                                        <?= $paketGraduationOutdoor->deskripsi_paket; ?>
+                                                                    </li>
+                                                                </ul>
+                                                                <div class="portfolio-description">
+                                                                    <div class="row">
+                                                                        <div class="col-4">
+                                                                            <a href="#" id="pesanSekarangGraduationOutdoor<?= $key ?>" button class="btn btn-package btn-md w-100 mb-3 mr-2">
+                                                                                <span id="pesanTextGraduationOutdoor<?= $key ?>">Pesan Sekarang</span>
+                                                                                <div id="pesanLoadingGraduationOutdoor<?= $key ?>" class="spinner-border text-light d-none" role="status">
+                                                                                    <span class="sr-only"></span>
+                                                                                </div>
+                                                                            </a>
+                                                                        </div>
+                                                                        <div class="col-4">
+                                                                            <a href="#" id="masukkanKeranjangGraduationOutdoor<?= $key ?>" button class="btn btn-package btn-md w-100 mb-3 mr-2">
+                                                                                <span id="keranjangTextGraduationOutdoor<?= $key ?>">Masukkan Keranjang</span>
+                                                                                <div id="keranjangLoadingGraduationOutdoor<?= $key ?>" class="spinner-border text-light d-none" role="status">
+                                                                                    <span class="sr-only"></span>
+                                                                                </div>
+                                                                            </a>
+                                                                        </div>
+                                                                        <div class="col-4">
+                                                                            <a href="https://wa.me/6285156443674" button class="btn btn-package btn-md w-100 mb-3 mr-2">
+                                                                                Konsultasi
+                                                                            </a>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!-- js untuk pesanan -->
+                                                    <script type="text/javascript">
+                                                        $(document).ready(function() {
+                                                            $('#pesanSekarangGraduationOutdoor<?= $key ?>').on('click', function(e) {
+                                                                e.preventDefault();
+
+                                                                var pesanText = document.getElementById("pesanTextGraduationOutdoor<?= $key ?>");
+                                                                var pesanLoading = document.getElementById("pesanLoadingGraduationOutdoor<?= $key ?>");
+
+                                                                pesanText.classList.add("d-none");
+                                                                pesanLoading.classList.remove("d-none");
+
+                                                                $.ajax({
+                                                                    url: '<?= site_url('/check') ?>',
+                                                                    type: 'POST',
+                                                                    success: function(response) {
+                                                                        if (response.status == 'Belum ada pesanan!') {
+                                                                            $.ajax({
+                                                                                url: '<?= site_url('/paket/detail') ?>',
+                                                                                type: 'POST',
+                                                                                data: {
+                                                                                    id_paket: <?= $paketGraduationOutdoor->id_paket ?>,
+                                                                                    type: 'pesan',
+                                                                                },
+                                                                                success: function(response) {
+                                                                                    pesanText.classList.remove("d-none");
+                                                                                    pesanLoading.classList.add("d-none");
+                                                                                    Toastify({
+                                                                                        text: "Berhasil!",
+                                                                                        duration: 3000,
+                                                                                        offset: {
+                                                                                            x: 50,
+                                                                                        },
+                                                                                    }).showToast();
+                                                                                    window.location.href = '<?= base_url('/checkout') ?>';
+                                                                                },
+                                                                                error: function() {
+                                                                                    pesanText.classList.remove("d-none");
+                                                                                    pesanLoading.classList.add("d-none");
+                                                                                    Toastify({
+                                                                                        text: "Gagal!",
+                                                                                        duration: 3000,
+                                                                                        offset: {
+                                                                                            x: 50,
+                                                                                        },
+                                                                                    }).showToast();
+                                                                                }
+                                                                            });
+                                                                        } else if (response.status == 'Belum login!') {
+                                                                            pesanText.classList.remove("d-none");
+                                                                            pesanLoading.classList.add("d-none");
+                                                                            window.location.href = '<?= base_url('/login') ?>';
+                                                                        } else {
+                                                                            pesanText.classList.remove("d-none");
+                                                                            pesanLoading.classList.add("d-none");
+                                                                            Toastify({
+                                                                                text: response.status,
+                                                                                duration: 3000,
+                                                                                offset: {
+                                                                                    x: 50,
+                                                                                },
+                                                                            }).showToast();
+                                                                        }
+                                                                    },
+                                                                    error: function() {
+                                                                        pesanText.classList.remove("d-none");
+                                                                        pesanLoading.classList.add("d-none");
+                                                                        Toastify({
+                                                                            text: "Gagal!",
+                                                                            duration: 3000,
+                                                                            offset: {
+                                                                                x: 50,
+                                                                            },
+                                                                        }).showToast();
+                                                                    }
+                                                                });
+                                                            });
+                                                            $('#masukkanKeranjangGraduationOutdoor<?= $key ?>').on('click', function(e) {
+                                                                e.preventDefault();
+
+                                                                var keranjangText = document.getElementById("keranjangTextGraduationOutdoor<?= $key ?>");
+                                                                var keranjangLoading = document.getElementById("keranjangLoadingGraduationOutdoor<?= $key ?>");
+
+                                                                keranjangText.classList.add("d-none");
+                                                                keranjangLoading.classList.remove("d-none");
+
+                                                                const anchorBtn = document.getElementById('masukkanKeranjangGraduationOutdoor<?= $key ?>');
+                                                                anchorBtn.disabled = true;
+                                                                // perform AJAX request here
+                                                                $.ajax({
+                                                                    url: '<?= site_url('/check') ?>',
+                                                                    type: 'POST',
+                                                                    success: function(response) {
+                                                                        if (response.status == 'Belum ada pesanan!') {
+                                                                            $.ajax({
+                                                                                url: '<?= site_url('/paket/detail') ?>',
+                                                                                type: 'POST',
+                                                                                data: {
+                                                                                    id_paket: <?= $paketGraduationOutdoor->id_paket ?>,
                                                                                     type: 'keranjang',
                                                                                 },
                                                                                 success: function(response) {

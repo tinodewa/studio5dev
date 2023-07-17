@@ -29,19 +29,27 @@
             <!-- <form action="/checkout" method="post"> -->
             <div class="row gy-4">
                 <div class="col-md-6">
-                    <label for="nama" class="form-label">Nama Lengkap</label>
+                    <label for="nama" class="form-label">Nama Lengkap*</label>
                     <input type="text" class="form-control" id="nama" name="nama" placeholder="Nama Lengkap" required>
                 </div>
                 <div class="col-md-6">
-                    <label for="alamat" class="form-label">Alamat</label>
+                    <label for="alamat" class="form-label">Alamat*</label>
                     <input type="text" class="form-control" id="alamat" name="alamat" placeholder="Alamat" required>
                 </div>
                 <div class="col-md-6">
-                    <label for="tanggal" class="form-label">Tanggal</label>
-                    <input type="datetime-local" class="form-control" id="tanggal" name="tanggal" required>
+                    <div class="row">
+                        <div class="col-8">
+                            <label for="tanggal" class="form-label">Tanggal*</label>
+                            <input type="datetime-local" class="form-control" id="tanggal" name="tanggal" required>
+                        </div>
+                        <div class="col-4">
+                            <label class="form-label">Cek Tanggal</label>
+                            <button type="button" class="form-control btn btn-info col-6" data-bs-toggle="modal" data-bs-target="#transaksiModal">Detail</button>
+                        </div>
+                    </div>
                 </div>
                 <div class="col-md-6">
-                    <label for="telp" class="form-label">Nomor Telpon</label>
+                    <label for="telp" class="form-label">Nomor Telpon*</label>
                     <input type="text" class="form-control" id="telp" name="telp" placeholder="nomor telpon" required>
                 </div>
                 <div class="col-md-12">
@@ -74,12 +82,12 @@
                 <?php } ?>
                 <?php if (str_contains($pesananUserPaket[0]->nama_paket, "Pre-Wedding Package Indoor") || str_contains($pesananUserPaket[0]->nama_paket, "Maternity") || str_contains($pesananUserPaket[0]->nama_paket, "Graduation") || str_contains($pesananUserPaket[0]->nama_paket, "Family") || str_contains($pesananUserPaket[0]->nama_paket, "Couple")) { ?>
                     <div class="col-md-6">
-                        <label for="extra_background" class="form-label">Penambahan Background & Outfit (Rp 50.000,00/tambahan)</label>
+                        <label for="extra_background_dan_outfit" class="form-label">Penambahan Background & Outfit (Rp 50.000,00/tambahan)</label>
                         <div class="input-group mb-3">
                             <div class="input-group-text">
                                 <input class="form-check-input" type="checkbox" id="backgroundBox" />
                             </div>
-                            <input type="number" class="form-control" id="extra_background" name="extra_background" placeholder="0" value="0" oninput="this.value = Math.abs(this.value)" disabled>
+                            <input type="number" class="form-control" id="extra_background_dan_outfit" name="extra_background_dan_outfit" placeholder="0" value="0" oninput="this.value = Math.abs(this.value)" disabled>
                         </div>
                     </div>
                 <?php } ?>
@@ -297,7 +305,7 @@
             document.getElementById('extra_premium_magazine').disabled = !this.checked;
         });
         $('#backgroundBox').click(function() {
-            document.getElementById('extra_background').disabled = !this.checked;
+            document.getElementById('extra_background_dan_outfit').disabled = !this.checked;
         });
         $('#btnCheckout').click(function() {
             var extra_harga = 0;
@@ -323,7 +331,7 @@
             //set harga extra background
             if (nama_paket.includes("Pre-Wedding Package Indoor") || nama_paket.includes("Maternity") || nama_paket.includes("Graduation") || nama_paket.includes("Family") || nama_paket.includes("Couple")) {
                 if (document.getElementById('backgroundBox').checked) {
-                    extra_background = document.getElementById('extra_background').value;
+                    extra_background = document.getElementById('extra_background_dan_outfit').value;
                     extra_harga = extra_harga + (50000 * extra_background);
                 }
             }
@@ -371,7 +379,7 @@
                 //set extra background
                 if (nama_paket.includes("Pre-Wedding Package Indoor") || nama_paket.includes("Maternity") || nama_paket.includes("Graduation") || nama_paket.includes("Family") || nama_paket.includes("Couple")) {
                     if (document.getElementById('backgroundBox').checked) {
-                        extra_background = document.getElementById('extra_background').value;
+                        extra_background = document.getElementById('extra_background_dan_outfit').value;
                     } else {
                         extra_background = 0;
                     }
