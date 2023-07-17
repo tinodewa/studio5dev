@@ -3,7 +3,7 @@
     <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
         <a href="/" class="logo d-flex align-items-center">
             <img src="/assets/img/newlogo2.png" alt="">
-            <!-- <span>STUDIO 5</span> -->
+            
         </a>
         <nav id="navbar" class="navbar">
             <ul>
