@@ -339,7 +339,7 @@ function shortNumber($num)
                             </h2>
                             <div id="faq-content-2" class="accordion-collapse collapse" data-bs-parent="#faqlist1">
                                 <div class="accordion-body">
-                                    Pelanggan hanya diberi satu kesempatan untuk mengubah detail pesanan. pesanan yang diubah harus lebih dari H - 3.
+                                    Hubungi admin kami pada halaman konsultasi untuk mengubah detail paket maksimal 3 jam sebelum jadwal semestinya.
                                 </div>
                             </div>
                         </div>
@@ -351,7 +351,7 @@ function shortNumber($num)
                             </h2>
                             <div id="faq-content-3" class="accordion-collapse collapse" data-bs-parent="#faqlist1">
                                 <div class="accordion-body">
-                                    Anda dapat mengunduh hasil foto yang akan kami upload dalam website setelah editing selesai dilakukan. hasil foto hanya akan terpampang dalam website selama 7 hari.
+                                    Anda dapat mengunduh hasil foto pada halaman detail pesanan yang akan kami unggah pada Google Drive setelah editing selesai dilakukan. hasil foto hanya bisa diakses selama 7 hari.
                                 </div>
                             </div>
                         </div>
@@ -368,31 +368,31 @@ function shortNumber($num)
                             </h2>
                             <div id="faq2-content-1" class="accordion-collapse collapse" data-bs-parent="#faqlist2">
                                 <div class="accordion-body">
-                                    Anda dapat menggunakan berbagai metode pembayaran. Cek link ini untuk info lebih lanjut.
+                                    Anda dapat menggunakan berbagai metode pembayaran seperti, Qr Code Gopay, Bank Mandiri, Bank BNI, Bank BRI, Bank Permata.
                                 </div>
                             </div>
                         </div>
                         <div class="accordion-item">
                             <h2 class="accordion-header">
                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2-content-2">
-                                    Apakah saya dapat menukar paket jasa fotografer?
+                                    Apakah saya dapat menambah jam liputan pada paket yang sama pesan?
                                 </button>
                             </h2>
                             <div id="faq2-content-2" class="accordion-collapse collapse" data-bs-parent="#faqlist2">
                                 <div class="accordion-body">
-                                    Semua paket yang telah dipesan tidak bisa ditukar. Oleh karena itu, kami ingin mengingatkan kepada Pelanggan untuk memilih paket yang tepat dengan detail yang benar.
+                                    tentu bisa. pada website ini tertera untuk penambahan topping seperti penambahan jam dan penambahan background
                                 </div>
                             </div>
                         </div>
                         <div class="accordion-item">
                             <h2 class="accordion-header">
                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2-content-3">
-                                    Mengapa pembayaran saya belum terverifikasi meskipun telah melakukan pembayaran?
+                                    Boleh tidak saya bawa sampel dari studio lain?
                                 </button>
                             </h2>
                             <div id="faq2-content-3" class="accordion-collapse collapse" data-bs-parent="#faqlist2">
                                 <div class="accordion-body">
-                                    Ada beberapa faktor yang dapat menyebabkan pembayaran kamu belum terverifikasi. contohnya Belum upload bukti transfer atau Pembayaran tidak sesuai dengan jumlah yang tertera pada halaman Info Pembayaran, yaitu harga pesanan ditambah kode unik.
+                                    tentu boleh. ini adalah bagian dari ide dan penambahan bagi kami serta kami akan bantu wujudkan impian pemotretan yang anda harapkan.
                                 </div>
                             </div>
                         </div>
@@ -408,7 +408,7 @@ function shortNumber($num)
         <div class="container" data-aos="fade-up">
             <header class="section-header">
                 <h2>Apa Kata Mereka</h2>
-                <p>TESTIMONI</p>
+                <p>ULASAN</p>
             </header>
             <div class="testimonials-slider swiper" data-aos="fade-up" data-aos-delay="200">
                 <div class="swiper-wrapper">
@@ -457,28 +457,30 @@ function shortNumber($num)
                             <div class="info-box">
                                 <i class="bi bi-geo-alt"></i>
                                 <h3>Alamat</h3>
-                                <p>Jl. Arjowinangun no 17<br>Kedungkandang, Malang</p>
+                                <p> Jl. Bantaran II No.1, Tulusrejo<br>Kec. Lowokwaru, Kota Malang, Jawa Timur 65141</p>
+                                <a href="https://www.google.com/maps/place/Studio+Jingga+-+Studio+Foto/@-7.9496788,112.6353492,17z/data=!3m1!4b1!4m6!3m5!1s0x2dd629e940e965a3:0x2634853b5238423d!8m2!3d-7.9496841!4d112.6379241!16s%2Fg%2F11c5s56bfz?entry=ttu"><u>klik disini</u></a>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="info-box">
                                 <i class="bi bi-telephone"></i>
                                 <h3>No Telp</h3>
-                                <p>+62 812 3350 225<br>+62 858 5524 8586</p>
+                                <p> +62 895-1229-7569</p>
+                                <a href="https://wa.me/6289512297569"><u>klik disini</u></a>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="info-box">
                                 <i class="bi bi-envelope"></i>
                                 <h3>Email</h3>
-                                <p>abdullahstudio5@gmail.com</p>
+                                <p>studiojinga.malang@gmail.com</p>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="info-box">
                                 <i class="bi bi-clock"></i>
                                 <h3>Jam Operasi</h3>
-                                <p>Setiap Hari Selain Jumat<br>8:00AM - 19:00PM</p>
+                                <p>Setiap Hari<br>09.00 - 20.00</p>
                             </div>
                         </div>
                     </div>
