@@ -7,13 +7,13 @@ use CodeIgniter\Model;
 class PesananWithUserPaketAndPembayaran extends Model
 {
     protected $table            = 'pesanan';
-    protected $allowedFields    = ['id_pesanan, id_user, id_paket, id_pembayaran, nama_lengkap, tanggal, telp, alamat, catatan, extra_waktu_kerja, extra_premium_magazine, extra_background_dan_outfit, email, nama_lengkap, no_telp, nama_paket, harga_paket, fotografer, videografer, asisten, waktu_kerja, jumlah_foto, jumlah_foto_edit, cetak_foto, videografi, penyimpanan, note, deskripsi_paket, order_id, jumlah_bayar, status, created_at, updated_at'];
+    protected $allowedFields    = ['id_pesanan, id_user, id_paket, id_pembayaran, nama_lengkap, tanggal, telp, alamat, catatan, extra_waktu_kerja, extra_premium_magazine, extra_background_dan_outfit, extra_orang, email, nama_lengkap, no_telp, nama_paket, harga_paket, fotografer, videografer, asisten, waktu_kerja, jumlah_foto, jumlah_foto_edit, cetak_foto, videografi, penyimpanan, note, deskripsi_paket, order_id, jumlah_bayar, status, created_at, updated_at'];
 
     public function getPesananWithUserPaketAndPembayaran()
     {
         $db = db_connect();
         $builder = $db->table('pesanan');
-        $builder->select('pesanan.id_pesanan, user.id_user, paket.id_paket, pembayaran.id_pembayaran, pesanan.nama_lengkap, pesanan.tanggal, pesanan.telp, pesanan.alamat, pesanan.catatan, pesanan.extra_waktu_kerja, pesanan.extra_premium_magazine, pesanan.extra_background_dan_outfit, user.email, user.nama_lengkap, user.no_telp, paket.nama_paket, paket.harga_paket, paket.fotografer, paket.videografer, paket.asisten, paket.waktu_kerja, paket.jumlah_foto, paket.jumlah_foto_edit, paket.cetak_foto, paket.videografi, paket.penyimpanan, paket.note, paket.deskripsi_paket, pembayaran.order_id, pembayaran.jumlah_bayar, pembayaran.status, pesanan.created_at, pesanan.updated_at');
+        $builder->select('pesanan.id_pesanan, user.id_user, paket.id_paket, pembayaran.id_pembayaran, pesanan.nama_lengkap, pesanan.tanggal, pesanan.telp, pesanan.alamat, pesanan.catatan, pesanan.extra_waktu_kerja, pesanan.extra_premium_magazine, pesanan.extra_background_dan_outfit, pesanan.extra_orang, user.email, user.nama_lengkap, user.no_telp, paket.nama_paket, paket.harga_paket, paket.fotografer, paket.videografer, paket.asisten, paket.waktu_kerja, paket.jumlah_foto, paket.jumlah_foto_edit, paket.cetak_foto, paket.videografi, paket.penyimpanan, paket.note, paket.deskripsi_paket, pembayaran.order_id, pembayaran.jumlah_bayar, pembayaran.status, pesanan.created_at, pesanan.updated_at');
         $builder->join('user', 'user.id_user = pesanan.id_user');
         $builder->join('paket', 'paket.id_paket = pesanan.id_paket');
         $builder->join('pembayaran', 'pembayaran.id_pesanan = pesanan.id_pesanan');
@@ -25,7 +25,7 @@ class PesananWithUserPaketAndPembayaran extends Model
     {
         $db = db_connect();
         $builder = $db->table('pesanan');
-        $builder->select('pesanan.id_pesanan, user.id_user, paket.id_paket, pembayaran.id_pembayaran, pesanan.nama_lengkap, pesanan.tanggal, pesanan.telp, pesanan.alamat, pesanan.catatan, pesanan.extra_waktu_kerja, pesanan.extra_premium_magazine, pesanan.extra_background_dan_outfit, user.email, user.nama_lengkap, user.no_telp, paket.nama_paket, paket.harga_paket, paket.fotografer, paket.videografer, paket.asisten, paket.waktu_kerja, paket.jumlah_foto, paket.jumlah_foto_edit, paket.cetak_foto, paket.videografi, paket.penyimpanan, paket.note, paket.deskripsi_paket, pembayaran.order_id, pembayaran.jumlah_bayar, pembayaran.status, pesanan.created_at, pesanan.updated_at');
+        $builder->select('pesanan.id_pesanan, user.id_user, paket.id_paket, pembayaran.id_pembayaran, pesanan.nama_lengkap, pesanan.tanggal, pesanan.telp, pesanan.alamat, pesanan.catatan, pesanan.extra_waktu_kerja, pesanan.extra_premium_magazine, pesanan.extra_background_dan_outfit, pesanan.extra_orang, user.email, user.nama_lengkap, user.no_telp, paket.nama_paket, paket.harga_paket, paket.fotografer, paket.videografer, paket.asisten, paket.waktu_kerja, paket.jumlah_foto, paket.jumlah_foto_edit, paket.cetak_foto, paket.videografi, paket.penyimpanan, paket.note, paket.deskripsi_paket, pembayaran.order_id, pembayaran.jumlah_bayar, pembayaran.status, pesanan.created_at, pesanan.updated_at');
         $builder->join('user', 'user.id_user = pesanan.id_user');
         $builder->join('paket', 'paket.id_paket = pesanan.id_paket');
         $builder->join('pembayaran', 'pembayaran.id_pesanan = pesanan.id_pesanan');
@@ -38,7 +38,7 @@ class PesananWithUserPaketAndPembayaran extends Model
     {
         $db = db_connect();
         $builder = $db->table('pesanan');
-        $builder->select('pesanan.id_pesanan, user.id_user, paket.id_paket, pembayaran.id_pembayaran, pesanan.nama_lengkap, pesanan.tanggal, pesanan.telp, pesanan.alamat, pesanan.catatan, pesanan.extra_waktu_kerja, pesanan.extra_premium_magazine, pesanan.extra_background_dan_outfit, user.email, user.nama_lengkap, user.no_telp, paket.nama_paket, paket.harga_paket, paket.fotografer, paket.videografer, paket.asisten, paket.waktu_kerja, paket.jumlah_foto, paket.jumlah_foto_edit, paket.cetak_foto, paket.videografi, paket.penyimpanan, paket.note, paket.deskripsi_paket, pembayaran.order_id, pembayaran.jumlah_bayar, pembayaran.status, pesanan.created_at, pesanan.updated_at');
+        $builder->select('pesanan.id_pesanan, user.id_user, paket.id_paket, pembayaran.id_pembayaran, pesanan.nama_lengkap, pesanan.tanggal, pesanan.telp, pesanan.alamat, pesanan.catatan, pesanan.extra_waktu_kerja, pesanan.extra_premium_magazine, pesanan.extra_background_dan_outfit, pesanan.extra_orang, user.email, user.nama_lengkap, user.no_telp, paket.nama_paket, paket.harga_paket, paket.fotografer, paket.videografer, paket.asisten, paket.waktu_kerja, paket.jumlah_foto, paket.jumlah_foto_edit, paket.cetak_foto, paket.videografi, paket.penyimpanan, paket.note, paket.deskripsi_paket, pembayaran.order_id, pembayaran.jumlah_bayar, pembayaran.status, pesanan.created_at, pesanan.updated_at');
         $builder->join('user', 'user.id_user = pesanan.id_user');
         $builder->join('paket', 'paket.id_paket = pesanan.id_paket');
         $builder->join('pembayaran', 'pembayaran.id_pesanan = pesanan.id_pesanan');
