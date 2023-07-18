@@ -17,7 +17,7 @@
                     <li><a class="nav-link scrollto" href="#contact">Kontak</a></li>
                     <li><a class="nav-link scrollto" href="https://wa.me/6289512297569">Konsultasi</a></li>
                 <?php } else { ?>
-                    <li><a class="nav-link scrollto" href="/">Home</a></li>
+                    <li><a class="nav-link scrollto" href="/">Beranda</a></li>
                     <li><a class="nav-link scrollto" href="/">Tentang</a></li>
                     <li><a class="nav-link scrollto" href="/">Paket</a></li>
                     <li><a class="nav-link scrollto" href="/">Portfolio</a></li>

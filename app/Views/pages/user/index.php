@@ -322,7 +322,7 @@ function shortNumber($num)
                         <div class="accordion-item">
                             <h2 class="accordion-header">
                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-content-1">
-                                    Bagaimana cara memesan di website STUDIO 5 ?
+                                    Bagaimana cara memesan di website STUDIO JINGGA ?
                                 </button>
                             </h2>
                             <div id="faq-content-1" class="accordion-collapse collapse" data-bs-parent="#faqlist1">
@@ -428,7 +428,7 @@ function shortNumber($num)
                                     <?php if ($ulasanUserPaket->foto_profil != "") { ?>
                                         <img src="assets/img/userprofile/<?= $ulasanUserPaket->foto_profil ?>" class="testimonial-img" alt="">
                                     <?php } else { ?>
-                                        <img src="assets/img/testimonials/testimonials-1.jpg" class="testimonial-img" alt="">
+                                        <img src="assets/img/testimonials/photoprofile.jpg" class="testimonial-img" alt="">
                                     <?php } ?>
                                     <h3><?= $ulasanUserPaket->nama_lengkap ?></h3>
                                 </div>

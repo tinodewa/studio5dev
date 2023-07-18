@@ -90,7 +90,7 @@ function shortNumber($num)
                                                         </td>
                                                         <td class="align-middle text-center">
                                                             <a class="btn btn-sm btn-grey" href="/list-pesanan/<?= $listPesanan->id_pesanan; ?>/detail">
-                                                                Detail
+                                                                Cek
                                                             </a>
                                                             <?php if (str_contains($listPesanan->status, "belum")) { ?>
                                                                 <button id="buttonReview<?= $key ?>" type="button" class="btn btn-sm btn-grey" data-bs-toggle="modal" data-bs-target="#exampleModal<?= $key ?>">
