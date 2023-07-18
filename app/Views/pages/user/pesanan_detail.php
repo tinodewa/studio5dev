@@ -111,10 +111,10 @@ function shortNumber($num)
                         <input type="text" class="form-control" name="extra_premium_magazine" placeholder="Extra Premium Magazine" value="<?= $detailPesanan[0]->extra_premium_magazine ?>" disabled>
                     </div>
                 <?php } ?>
-                <?php if ($detailPesanan[0]->extra_background_dan_outfit > 0) { ?>
+                <?php if ($detailPesanan[0]->extra_background > 0) { ?>
                     <div class="col-md-12">
-                        <label class="form-label">Extra Background Dan Outfit</label>
-                        <input type="text" class="form-control" name="extra_background_dan_outfit" placeholder="Extra Background Dan Outfit" value="<?= $detailPesanan[0]->extra_background_dan_outfit ?> set" disabled>
+                        <label class="form-label">Extra Background</label>
+                        <input type="text" class="form-control" name="extra_background" placeholder="Extra Background" value="<?= $detailPesanan[0]->extra_background ?> set" disabled>
                     </div>
                 <?php } ?>
                 <div class="col-md-12">

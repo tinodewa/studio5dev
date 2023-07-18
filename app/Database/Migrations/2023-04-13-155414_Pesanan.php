@@ -49,7 +49,7 @@ class Pesanan extends Migration
                 'constraint'     => 9,
             ],
             // prewedding indoor-maternity-wisuda-family-couple 50, personal 25
-            'extra_background_dan_outfit' => [
+            'extra_background' => [
                 'type'           => 'INT',
                 'constraint'     => 9,
             ],
