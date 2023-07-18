@@ -74,100 +74,330 @@ function shortNumber($num)
                         <h3 style="color: #9F8B56;">Engagement</h3>
                         <img src="/assets/img/package/engagement 1.png" class="img-fluid" alt="">
                         <!-- Button trigger modal -->
-                        <button type="button" class="btn btn-buy" data-bs-toggle="modal" data-bs-target="#modalEngagement">
+                        <button type="button" id="engagementButton" class="btn btn-buy">
                             Detail paket
                         </button>
                     </div>
+                    <script>
+                        // Check if the user is already logged in
+                        var isLoggedIn = false;
+
+                        <?php if (isset($_SESSION['logged_in'])) { ?>
+                            isLoggedIn = true;
+                        <?php } ?>
+
+                        // Update button behavior based on login status
+                        var modalButton = document.getElementById('engagementButton');
+                        if (isLoggedIn) {
+                            modalButton.addEventListener('click', function() {
+                                // Show the modal if the user is already logged in
+                                var loginModal = new bootstrap.Modal(document.getElementById('modalEngagement'));
+                                loginModal.show();
+                            });
+                        } else {
+                            modalButton.addEventListener('click', function() {
+                                // Redirect to the login page if the user is not logged in
+                                window.location.href = '/login';
+                            });
+                        }
+                    </script>
                 </div>
                 <div class="col-lg-3 col-md-6" data-aos="zoom-in" data-aos-delay="100">
                     <div class="box">
                         <h3 style="color: #D76B6E;">Prewedding</h3>
                         <img src="/assets/img/package/prewedding-2.png" class="img-fluid" alt="">
                         <!-- Button trigger modal -->
-                        <button type="button" class="btn btn-buy" data-bs-toggle="modal" data-bs-target="#modalPrewedding">
+                        <button type="button" id="preweddingButton" class="btn btn-buy">
                             Detail paket
                         </button>
                     </div>
+                    <script>
+                        // Check if the user is already logged in
+                        var isLoggedIn = false;
+
+                        <?php if (isset($_SESSION['logged_in'])) { ?>
+                            isLoggedIn = true;
+                        <?php } ?>
+
+                        // Update button behavior based on login status
+                        var modalButton = document.getElementById('preweddingButton');
+                        if (isLoggedIn) {
+                            modalButton.addEventListener('click', function() {
+                                // Show the modal if the user is already logged in
+                                var loginModal = new bootstrap.Modal(document.getElementById('modalPrewedding'));
+                                loginModal.show();
+                            });
+                        } else {
+                            modalButton.addEventListener('click', function() {
+                                // Redirect to the login page if the user is not logged in
+                                window.location.href = '/login';
+                            });
+                        }
+                    </script>
                 </div>
                 <div class="col-lg-3 col-md-6" data-aos="zoom-in" data-aos-delay="100">
                     <div class="box">
                         <h3 style="color: #B67909;">Wedding</h3>
                         <img src="/assets/img/package/wedding-2.png" class="img-fluid" alt="">
                         <!-- Button trigger modal -->
-                        <button type="button" class="btn btn-buy" data-bs-toggle="modal" data-bs-target="#modalWedding">
+                        <button type="button" id="weddingButton" class="btn btn-buy">
                             Detail paket
                         </button>
                     </div>
+                    <script>
+                        // Check if the user is already logged in
+                        var isLoggedIn = false;
+
+                        <?php if (isset($_SESSION['logged_in'])) { ?>
+                            isLoggedIn = true;
+                        <?php } ?>
+
+                        // Update button behavior based on login status
+                        var modalButton = document.getElementById('weddingButton');
+                        if (isLoggedIn) {
+                            modalButton.addEventListener('click', function() {
+                                // Show the modal if the user is already logged in
+                                var loginModal = new bootstrap.Modal(document.getElementById('modalWedding'));
+                                loginModal.show();
+                            });
+                        } else {
+                            modalButton.addEventListener('click', function() {
+                                // Redirect to the login page if the user is not logged in
+                                window.location.href = '/login';
+                            });
+                        }
+                    </script>
                 </div>
                 <div class="col-lg-3 col-md-6" data-aos="zoom-in" data-aos-delay="100">
                     <div class="box">
                         <h3 style="color: #D4805E;">Maternity</h3>
                         <img src="/assets/img/package/prewedding-3.png" class="img-fluid" alt="">
                         <!-- Button trigger modal -->
-                        <button type="button" class="btn btn-buy" data-bs-toggle="modal" data-bs-target="#modalMaternity">
+                        <button type="button" id="maternityButton" class="btn btn-buy">
                             Detail paket
                         </button>
                     </div>
+                    <script>
+                        // Check if the user is already logged in
+                        var isLoggedIn = false;
+
+                        <?php if (isset($_SESSION['logged_in'])) { ?>
+                            isLoggedIn = true;
+                        <?php } ?>
+
+                        // Update button behavior based on login status
+                        var modalButton = document.getElementById('maternityButton');
+                        if (isLoggedIn) {
+                            modalButton.addEventListener('click', function() {
+                                // Show the modal if the user is already logged in
+                                var loginModal = new bootstrap.Modal(document.getElementById('modalMaternity'));
+                                loginModal.show();
+                            });
+                        } else {
+                            modalButton.addEventListener('click', function() {
+                                // Redirect to the login page if the user is not logged in
+                                window.location.href = '/login';
+                            });
+                        }
+                    </script>
                 </div>
                 <div class="col-lg-3 col-md-6" data-aos="zoom-in" data-aos-delay="100">
                     <div class="box">
                         <h3 style="color: #8F8827;">Graduation</h3>
                         <img src="/assets/img/package/graduation.png" class="img-fluid" alt="">
                         <!-- Button trigger modal -->
-                        <button type="button" class="btn btn-buy" data-bs-toggle="modal" data-bs-target="#modalGraduation">
+                        <button type="button" id="graduationButton" class="btn btn-buy">
                             Detail paket
                         </button>
                     </div>
+                    <script>
+                        // Check if the user is already logged in
+                        var isLoggedIn = false;
+
+                        <?php if (isset($_SESSION['logged_in'])) { ?>
+                            isLoggedIn = true;
+                        <?php } ?>
+
+                        // Update button behavior based on login status
+                        var modalButton = document.getElementById('graduationButton');
+                        if (isLoggedIn) {
+                            modalButton.addEventListener('click', function() {
+                                // Show the modal if the user is already logged in
+                                var loginModal = new bootstrap.Modal(document.getElementById('modalGraduation'));
+                                loginModal.show();
+                            });
+                        } else {
+                            modalButton.addEventListener('click', function() {
+                                // Redirect to the login page if the user is not logged in
+                                window.location.href = '/login';
+                            });
+                        }
+                    </script>
                 </div>
                 <div class="col-lg-3 col-md-6" data-aos="zoom-in" data-aos-delay="100">
                     <div class="box">
                         <h3 style="color: #B5872C;">Family</h3>
                         <img src="/assets/img/package/family-3.png" class="img-fluid" alt="">
                         <!-- Button trigger modal -->
-                        <button type="button" class="btn btn-buy" data-bs-toggle="modal" data-bs-target="#modalFamily">
+                        <button type="button" id="familyButton" class="btn btn-buy">
                             Detail paket
                         </button>
                     </div>
+                    <script>
+                        // Check if the user is already logged in
+                        var isLoggedIn = false;
+
+                        <?php if (isset($_SESSION['logged_in'])) { ?>
+                            isLoggedIn = true;
+                        <?php } ?>
+
+                        // Update button behavior based on login status
+                        var modalButton = document.getElementById('familyButton');
+                        if (isLoggedIn) {
+                            modalButton.addEventListener('click', function() {
+                                // Show the modal if the user is already logged in
+                                var loginModal = new bootstrap.Modal(document.getElementById('modalFamily'));
+                                loginModal.show();
+                            });
+                        } else {
+                            modalButton.addEventListener('click', function() {
+                                // Redirect to the login page if the user is not logged in
+                                window.location.href = '/login';
+                            });
+                        }
+                    </script>
                 </div>
                 <div class="col-lg-3 col-md-6" data-aos="zoom-in" data-aos-delay="100">
                     <div class="box">
                         <h3 style="color: #AC6C85;">Group</h3>
                         <img src="/assets/img/package/group-2.png" class="img-fluid" alt="">
                         <!-- Button trigger modal -->
-                        <button type="button" class="btn btn-buy" data-bs-toggle="modal" data-bs-target="#modalGroup">
+                        <button type="button" id="groupButton" class="btn btn-buy">
                             Detail paket
                         </button>
                     </div>
+                    <script>
+                        // Check if the user is already logged in
+                        var isLoggedIn = false;
+
+                        <?php if (isset($_SESSION['logged_in'])) { ?>
+                            isLoggedIn = true;
+                        <?php } ?>
+
+                        // Update button behavior based on login status
+                        var modalButton = document.getElementById('groupButton');
+                        if (isLoggedIn) {
+                            modalButton.addEventListener('click', function() {
+                                // Show the modal if the user is already logged in
+                                var loginModal = new bootstrap.Modal(document.getElementById('modalGroup'));
+                                loginModal.show();
+                            });
+                        } else {
+                            modalButton.addEventListener('click', function() {
+                                // Redirect to the login page if the user is not logged in
+                                window.location.href = '/login';
+                            });
+                        }
+                    </script>
                 </div>
                 <div class="col-lg-3 col-md-6" data-aos="zoom-in" data-aos-delay="100">
                     <div class="box">
                         <h3 style="color: #898FEA;">Event</h3>
                         <img src="/assets/img/package/event-1.png" class="img-fluid" alt="">
                         <!-- Button trigger modal -->
-                        <button type="button" class="btn btn-buy" data-bs-toggle="modal" data-bs-target="#modalEvent">
+                        <button type="button" id="eventButton" class="btn btn-buy">
                             Detail paket
                         </button>
                     </div>
+                    <script>
+                        // Check if the user is already logged in
+                        var isLoggedIn = false;
+
+                        <?php if (isset($_SESSION['logged_in'])) { ?>
+                            isLoggedIn = true;
+                        <?php } ?>
+
+                        // Update button behavior based on login status
+                        var modalButton = document.getElementById('eventButton');
+                        if (isLoggedIn) {
+                            modalButton.addEventListener('click', function() {
+                                // Show the modal if the user is already logged in
+                                var loginModal = new bootstrap.Modal(document.getElementById('modalEvent'));
+                                loginModal.show();
+                            });
+                        } else {
+                            modalButton.addEventListener('click', function() {
+                                // Redirect to the login page if the user is not logged in
+                                window.location.href = '/login';
+                            });
+                        }
+                    </script>
                 </div>
                 <div class="col-lg-3 col-md-6" data-aos="zoom-in" data-aos-delay="100">
                     <div class="box">
                         <h3 style="color: #7B6556;">Couple</h3>
                         <img src="/assets/img/package/couple.png" class="img-fluid" alt="">
                         <!-- Button trigger modal -->
-                        <button type="button" class="btn btn-buy" data-bs-toggle="modal" data-bs-target="#modalCouple">
+                        <button type="button" id="coupleButton" class="btn btn-buy">
                             Detail paket
                         </button>
                     </div>
+                    <script>
+                        // Check if the user is already logged in
+                        var isLoggedIn = false;
+
+                        <?php if (isset($_SESSION['logged_in'])) { ?>
+                            isLoggedIn = true;
+                        <?php } ?>
+
+                        // Update button behavior based on login status
+                        var modalButton = document.getElementById('coupleButton');
+                        if (isLoggedIn) {
+                            modalButton.addEventListener('click', function() {
+                                // Show the modal if the user is already logged in
+                                var loginModal = new bootstrap.Modal(document.getElementById('modalCouple'));
+                                loginModal.show();
+                            });
+                        } else {
+                            modalButton.addEventListener('click', function() {
+                                // Redirect to the login page if the user is not logged in
+                                window.location.href = '/login';
+                            });
+                        }
+                    </script>
                 </div>
                 <div class="col-lg-3 col-md-6" data-aos="zoom-in" data-aos-delay="100">
                     <div class="box">
                         <h3 style="color: #A55474;">Personal</h3>
                         <img src="/assets/img/package/personal.png" class="img-fluid" alt="">
                         <!-- Button trigger modal -->
-                        <button type="button" class="btn btn-buy" data-bs-toggle="modal" data-bs-target="#modalPersonal">
+                        <button type="button" id="personalButton" class="btn btn-buy">
                             Detail paket
                         </button>
                     </div>
+                    <script>
+                        // Check if the user is already logged in
+                        var isLoggedIn = false;
+
+                        <?php if (isset($_SESSION['logged_in'])) { ?>
+                            isLoggedIn = true;
+                        <?php } ?>
+
+                        // Update button behavior based on login status
+                        var modalButton = document.getElementById('personalButton');
+                        if (isLoggedIn) {
+                            modalButton.addEventListener('click', function() {
+                                // Show the modal if the user is already logged in
+                                var loginModal = new bootstrap.Modal(document.getElementById('modalPersonal'));
+                                loginModal.show();
+                            });
+                        } else {
+                            modalButton.addEventListener('click', function() {
+                                // Redirect to the login page if the user is not logged in
+                                window.location.href = '/login';
+                            });
+                        }
+                    </script>
                 </div>
             </div>
         </div>
