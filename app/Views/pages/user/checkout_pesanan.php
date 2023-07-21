@@ -82,12 +82,23 @@
                 <?php } ?>
                 <?php if (str_contains($pesananUserPaket[0]->nama_paket, "Pre-Wedding Package Indoor") || str_contains($pesananUserPaket[0]->nama_paket, "Maternity") || str_contains($pesananUserPaket[0]->nama_paket, "Graduation") || str_contains($pesananUserPaket[0]->nama_paket, "Family") || str_contains($pesananUserPaket[0]->nama_paket, "Couple")) { ?>
                     <div class="col-md-6">
-                        <label for="extra_background_dan_outfit" class="form-label">Penambahan Background Maks. 2 (Rp 50.000,00/tambahan)</label>
+                        <label for="extra_background" class="form-label">Penambahan Background Maks. 2 (Rp 50.000,00/tambahan)</label>
                         <div class="input-group mb-3">
                             <div class="input-group-text">
                                 <input class="form-check-input" type="checkbox" id="backgroundBox" />
                             </div>
-                            <input type="number" class="form-control" id="extra_background_dan_outfit" name="extra_background_dan_outfit" placeholder="0" value="0" oninput="this.value = Math.abs(this.value)" max="2" disabled>
+                            <input type="number" class="form-control" id="extra_background" name="extra_background" placeholder="0" value="0" oninput="this.value = Math.abs(this.value)" max="2" disabled>
+                        </div>
+                    </div>
+                <?php } ?>
+                <?php if (str_contains($pesananUserPaket[0]->nama_paket, "Group Package Indoor")) { ?>
+                    <div class="col-md-6">
+                        <label for="extra_orang" class="form-label">Penambahan orang (Rp 40.000,00/jam)</label>
+                        <div class="input-group mb-3 col-6">
+                            <div class="input-group-text">
+                                <input class="form-check-input" id="orangBox" type="checkbox">
+                            </div>
+                            <input type="number" class="form-control" id="extra_orang" name="extra_orang" placeholder="0" value="0" oninput="this.value = Math.abs(this.value)" max="36" disabled>
                         </div>
                     </div>
                 <?php } ?>
@@ -290,6 +301,7 @@
         var extra_waktu = 0;
         var extra_magazine = 0;
         var extra_background = 0;
+        var extra_orang = 0;
         var nama_paket = '<?= $pesananUserPaket[0]->nama_paket ?>';
         const myModal = new bootstrap.Modal(document.getElementById('modalKonfirmasi'));
 
@@ -305,10 +317,16 @@
             document.getElementById('extra_premium_magazine').disabled = !this.checked;
         });
         $('#backgroundBox').click(function() {
-            document.getElementById('extra_background_dan_outfit').disabled = !this.checked;
+            document.getElementById('extra_background').disabled = !this.checked;
         });
+        $('#orangBox').click(function() {
+            document.getElementById('extra_orang').disabled = !this.checked;
+        });
+
         $('#btnCheckout').click(function() {
             var extra_harga = 0;
+
+            //set harga extra waktu
             if (document.getElementById('waktuBox').checked) {
                 extra_waktu = document.getElementById('extra_waktu_kerja').value;
                 extra_harga = extra_harga + (250000 * extra_waktu);
@@ -331,9 +349,15 @@
             //set harga extra background
             if (nama_paket.includes("Pre-Wedding Package Indoor") || nama_paket.includes("Maternity") || nama_paket.includes("Graduation") || nama_paket.includes("Family") || nama_paket.includes("Couple")) {
                 if (document.getElementById('backgroundBox').checked) {
-                    extra_background = document.getElementById('extra_background_dan_outfit').value;
+                    extra_background = document.getElementById('extra_background').value;
                     extra_harga = extra_harga + (50000 * extra_background);
                 }
+            }
+
+            //set extra orang
+            if (document.getElementById('orangBox').checked) {
+                extra_orang = document.getElementById('extra_orang').value;
+                extra_harga = extra_harga + (40000 * extra_orang);
             }
 
             var total_harga = <?= $pesananUserPaket[0]->harga_paket ?> + extra_harga;
@@ -379,10 +403,17 @@
                 //set extra background
                 if (nama_paket.includes("Pre-Wedding Package Indoor") || nama_paket.includes("Maternity") || nama_paket.includes("Graduation") || nama_paket.includes("Family") || nama_paket.includes("Couple")) {
                     if (document.getElementById('backgroundBox').checked) {
-                        extra_background = document.getElementById('extra_background_dan_outfit').value;
+                        extra_background = document.getElementById('extra_background').value;
                     } else {
                         extra_background = 0;
                     }
+                }
+
+                //set extra orang
+                if (document.getElementById('orangBox').checked) {
+                    extra_orang = document.getElementById('extra_orang').value;
+                } else {
+                    extra_orang = 0;
                 }
 
                 $.ajax({
@@ -398,7 +429,8 @@
                         total_price: <?= $pesananUserPaket[0]->harga_paket ?>,
                         extra_waktu_kerja: extra_waktu,
                         extra_premium_magazine: extra_magazine,
-                        extra_background_dan_outfit: extra_background,
+                        extra_background: extra_background,
+                        extra_orang: extra_orang,
                     },
                     dataType: 'json',
                     success: function(response) {

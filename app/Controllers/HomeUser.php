@@ -233,6 +233,7 @@ class HomeUser extends BaseController
                     $extra_waktu_kerja = $this->request->getVar('extra_waktu_kerja');
                     $extra_premium_magazine = $this->request->getVar('extra_premium_magazine');
                     $extra_background = $this->request->getVar('extra_background');
+                    $extra_orang = $this->request->getVar('extra_orang');
 
                     $pesanans = $pesanan->getCheckoutPesananByIduser($session->get('id_user'));
 
@@ -250,6 +251,7 @@ class HomeUser extends BaseController
                                 'extra_waktu_kerja' => $extra_waktu_kerja,
                                 'extra_premium_magazine' => $extra_premium_magazine,
                                 'extra_background' => $extra_background,
+                                'extra_orang' => $extra_orang,
                             ];
 
                             $pesanan->update($row->id_pesanan, $dataPesanan);
@@ -285,7 +287,7 @@ class HomeUser extends BaseController
                             $harga_magazine = 0;
                         }
 
-                        $harga_pesanan = $pakets->harga_paket + (250000 * $extra_waktu_kerja) + $harga_magazine + (50000 * $extra_background);
+                        $harga_pesanan = $pakets->harga_paket + (250000 * $extra_waktu_kerja) + $harga_magazine + (50000 * $extra_background) + (40000 * $extra_orang);
 
                         $dataPembayaran = [
                             'id_pesanan' => $row->id_pesanan,

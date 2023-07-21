@@ -65,84 +65,90 @@ function shortNumber($num)
                     <label class="form-label">Transaksi</label>
                     <button type="button" class="form-control btn btn-info col-6" data-bs-toggle="modal" data-bs-target="#transaksiModal">Detail</button>
                 </div>
-                <div class="col-md-12">
+                <div class="col-md-6">
                     <label class="form-label">Harga Paket</label>
                     <input type="number" class="form-control" name="harga" placeholder="Harga" value="<?= $detailPesanan[0]->harga_paket ?>" disabled>
                 </div>
-                <div class="col-md-12">
+                <div class="col-md-6">
                     <label class="form-label">Harga Total</label>
                     <input type="number" class="form-control" name="harga" placeholder="Harga" value="<?= $detailPesanan[0]->jumlah_bayar ?>" disabled>
                 </div>
                 <?php if ($detailPesanan[0]->fotografer > 0) { ?>
-                    <div class="col-md-12">
+                    <div class="col-md-6">
                         <label class="form-label">Jumlah Fotografer</label>
-                        <input type="number" class="form-control" name="jumlah_fotografer" placeholder="Jumlah Fotografer" value="<?= $detailPesanan[0]->fotografer ?>" disabled>
+                        <input type="number" class="form-control" name="jumlah_fotografer" placeholder="Jumlah Fotografer" value="<?= $detailPesanan[0]->fotografer ?> orang" disabled>
                     </div>
                 <?php } ?>
                 <?php if ($detailPesanan[0]->videografer > 0) { ?>
-                    <div class="col-md-12">
+                    <div class="col-md-6">
                         <label class="form-label">Jumlah Videografer</label>
-                        <input type="number" class="form-control" name="jumlah_videografer" placeholder="Jumlah Videografer" value="<?= $detailPesanan[0]->videografer ?>" disabled>
+                        <input type="number" class="form-control" name="jumlah_videografer" placeholder="Jumlah Videografer" value="<?= $detailPesanan[0]->videografer ?> orang" disabled>
                     </div>
                 <?php } ?>
                 <?php if ($detailPesanan[0]->asisten > 0) { ?>
-                    <div class="col-md-12">
+                    <div class="col-md-6">
                         <label class="form-label">Jumlah Asisten</label>
-                        <input type="number" class="form-control" name="jumlah_asisten" placeholder="Jumlah asisten" value="<?= $detailPesanan[0]->asisten ?>" disabled>
+                        <input type="number" class="form-control" name="jumlah_asisten" placeholder="Jumlah asisten" value="<?= $detailPesanan[0]->asisten ?> orang" disabled>
                     </div>
                 <?php } ?>
-                <div class="col-md-12">
+                <div class="col-md-6">
                     <label class="form-label">Tanggal</label>
                     <input type="text" class="form-control" name="tanggal" placeholder="Tanggal" value="<?= $detailPesanan[0]->tanggal ?>" disabled>
                 </div>
-                <div class="col-md-12">
+                <div class="col-md-6">
                     <label class="form-label">Waktu Kerja</label>
                     <input type="text" class="form-control" name="waktu_liputan" placeholder="Waktu Liputan" value="<?= $detailPesanan[0]->waktu_kerja ?>" disabled>
                 </div>
                 <?php if ($detailPesanan[0]->extra_waktu_kerja > 0) { ?>
-                    <div class="col-md-12">
+                    <div class="col-md-6">
                         <label class="form-label">Extra Waktu Kerja</label>
                         <input type="text" class="form-control" name="extra_waktu_kerja" placeholder="Extra waktu Kerja" value="<?= $detailPesanan[0]->extra_waktu_kerja ?> jam" disabled>
                     </div>
                 <?php } ?>
                 <?php if ($detailPesanan[0]->extra_premium_magazine > 0) { ?>
-                    <div class="col-md-12">
+                    <div class="col-md-6">
                         <label class="form-label">Extra Premium Magazine</label>
                         <input type="text" class="form-control" name="extra_premium_magazine" placeholder="Extra Premium Magazine" value="<?= $detailPesanan[0]->extra_premium_magazine ?>" disabled>
                     </div>
                 <?php } ?>
                 <?php if ($detailPesanan[0]->extra_background > 0) { ?>
-                    <div class="col-md-12">
+                    <div class="col-md-6">
                         <label class="form-label">Extra Background</label>
                         <input type="text" class="form-control" name="extra_background" placeholder="Extra Background" value="<?= $detailPesanan[0]->extra_background ?> set" disabled>
                     </div>
                 <?php } ?>
-                <div class="col-md-12">
+                <?php if ($detailPesanan[0]->extra_orang > 0) { ?>
+                    <div class="col-md-6">
+                        <label class="form-label">Extra Orang</label>
+                        <input type="text" class="form-control" name="extra_orang" placeholder="Extra waktu Kerja" value="<?= $detailPesanan[0]->extra_orang ?> orang" disabled>
+                    </div>
+                <?php } ?>
+                <div class="col-md-6">
                     <label class="form-label">Jumlah Foto</label>
                     <input type="text" class="form-control" name="jumlah_foto" placeholder="Jumlah Hasil Foto" value="<?= $detailPesanan[0]->jumlah_foto ?>" disabled>
                 </div>
-                <div class="col-md-12">
+                <div class="col-md-6">
                     <label class="form-label">Jumlah Foto Yang Diedit</label>
                     <input type="text" class="form-control" name="jumlah_foto_edit" placeholder="Jumlah Hasil Foto Edit" value="<?= $detailPesanan[0]->jumlah_foto_edit ?>" disabled>
                 </div>
                 <?php if ($detailPesanan[0]->cetak_foto != '') { ?>
-                    <div class="col-md-12">
+                    <div class="col-md-6">
                         <label class="form-label">Foto Yang Dicetak</label>
                         <input type="text" class="form-control" name="cetak_foto" placeholder="Foto Yang Dicetak" value="<?= $detailPesanan[0]->cetak_foto ?>" disabled>
                     </div>
                 <?php } ?>
                 <?php if ($detailPesanan[0]->videografi != '') { ?>
-                    <div class="col-md-12">
+                    <div class="col-md-6">
                         <label class="form-label">Videografi</label>
                         <input type="text" class="form-control" name="videografi" placeholder="Videografi" value="<?= $detailPesanan[0]->videografi ?>" disabled>
                     </div>
                 <?php } ?>
-                <div class="col-md-12">
+                <div class="col-md-6">
                     <label class="form-label">Penyimpanan</label>
                     <input type="text" class="form-control" name="penyimpanan" placeholder="Penyimpanan" value="<?= $detailPesanan[0]->penyimpanan ?>" disabled>
                 </div>
                 <?php if ($detailPesanan[0]->catatan != '') { ?>
-                    <div class="col-md-12">
+                    <div class="col-md-6">
                         <label class="form-label">Catatan</label>
                         <input type="text" class="form-control" name="catatan" placeholder="Catatan" value="<?= $detailPesanan[0]->catatan ?>" disabled>
                     </div>
