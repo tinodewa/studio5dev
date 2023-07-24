@@ -44,7 +44,12 @@
                         </div>
                         <div class="col-4">
                             <label class="form-label">Cek Tanggal</label>
-                            <button type="button" class="form-control btn btn-info col-6" data-bs-toggle="modal" data-bs-target="#transaksiModal">Detail</button>
+                            <a href="#" id="cekTanggal" button class="btn btn-package btn-md w-100 mb-3 mr-2">
+                                <span id="cekTanggalText">Cek</span>
+                                <div id="cekTanggalLoading" class="spinner-border text-light d-none" role="status">
+                                    <span class="sr-only"></span>
+                                </div>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -82,12 +87,23 @@
                 <?php } ?>
                 <?php if (str_contains($pesananUserPaket[0]->nama_paket, "Pre-Wedding Package Indoor") || str_contains($pesananUserPaket[0]->nama_paket, "Maternity") || str_contains($pesananUserPaket[0]->nama_paket, "Graduation") || str_contains($pesananUserPaket[0]->nama_paket, "Family") || str_contains($pesananUserPaket[0]->nama_paket, "Couple")) { ?>
                     <div class="col-md-6">
-                        <label for="extra_background_dan_outfit" class="form-label">Penambahan Background Maks. 2 (Rp 50.000,00/tambahan)</label>
+                        <label for="extra_background" class="form-label">Penambahan Background Maks. 2 (Rp 50.000,00/tambahan)</label>
                         <div class="input-group mb-3">
                             <div class="input-group-text">
                                 <input class="form-check-input" type="checkbox" id="backgroundBox" />
                             </div>
-                            <input type="number" class="form-control" id="extra_background_dan_outfit" name="extra_background_dan_outfit" placeholder="0" value="0" oninput="this.value = Math.abs(this.value)" max="2" disabled>
+                            <input type="number" class="form-control" id="extra_background" name="extra_background" placeholder="0" value="0" oninput="this.value = Math.abs(this.value)" max="2" disabled>
+                        </div>
+                    </div>
+                <?php } ?>
+                <?php if (str_contains($pesananUserPaket[0]->nama_paket, "Group Package Indoor")) { ?>
+                    <div class="col-md-6">
+                        <label for="extra_orang" class="form-label">Penambahan orang (Rp 40.000,00/jam)</label>
+                        <div class="input-group mb-3 col-6">
+                            <div class="input-group-text">
+                                <input class="form-check-input" id="orangBox" type="checkbox">
+                            </div>
+                            <input type="number" class="form-control" id="extra_orang" name="extra_orang" placeholder="0" value="0" oninput="this.value = Math.abs(this.value)" max="36" disabled>
                         </div>
                     </div>
                 <?php } ?>
@@ -290,7 +306,9 @@
         var extra_waktu = 0;
         var extra_magazine = 0;
         var extra_background = 0;
+        var extra_orang = 0;
         var nama_paket = '<?= $pesananUserPaket[0]->nama_paket ?>';
+        var status_tanggal = false;
         const myModal = new bootstrap.Modal(document.getElementById('modalKonfirmasi'));
 
         // Dismiss the modal programmatically
@@ -305,10 +323,145 @@
             document.getElementById('extra_premium_magazine').disabled = !this.checked;
         });
         $('#backgroundBox').click(function() {
-            document.getElementById('extra_background_dan_outfit').disabled = !this.checked;
+            document.getElementById('extra_background').disabled = !this.checked;
         });
+        $('#orangBox').click(function() {
+            document.getElementById('extra_orang').disabled = !this.checked;
+        });
+
+
+        $('#cekTanggal').click(function() {
+            var tanggal_mulai = '';
+            var tanggal_selesai = '';
+            status_tanggal = false;
+            tanggal_mulai = new Date(document.getElementById('tanggal').value);
+            tanggal_selesai = new Date(document.getElementById('tanggal').value);
+
+            if (tanggal_mulai.toString != "Invalid Date" && !isNaN(tanggal_mulai)) {
+                var extra_waktu = 0;
+                var durasi = 0;
+                var cekText = document.getElementById("cekTanggalText");
+                var cekLoading = document.getElementById("cekTanggalLoading");
+
+                cekText.classList.add("d-none");
+                cekLoading.classList.remove("d-none");
+
+                //set durasi paket
+                if ('<?= $pesananUserPaket[0]->waktu_kerja; ?>' == '8 working hours') {
+                    durasi = 8;
+                } else if ('<?= $pesananUserPaket[0]->waktu_kerja; ?>' == '7 working hours') {
+                    durasi = 7;
+                } else if ('<?= $pesananUserPaket[0]->waktu_kerja; ?>' == '6 working hours') {
+                    durasi = 6;
+                } else if ('<?= $pesananUserPaket[0]->waktu_kerja; ?>' == '5 working hours') {
+                    durasi = 5;
+                } else if ('<?= $pesananUserPaket[0]->waktu_kerja; ?>' == '4 working hours') {
+                    durasi = 4;
+                } else if ('<?= $pesananUserPaket[0]->waktu_kerja; ?>' == '3 working hours') {
+                    durasi = 3;
+                } else {
+                    durasi = 2;
+                }
+
+                //set extra waktu
+                if (document.getElementById('waktuBox').checked) {
+                    extra_waktu = document.getElementById('extra_waktu_kerja').value;
+                }
+
+                //set total durasi
+                durasi = durasi + extra_waktu;
+
+                //kalkulasi tanggal dan jam mulai dari pesanan ini
+                tanggal_mulai.setHours(tanggal_mulai.getHours() - durasi);
+
+                //kalkulasi tanggal dan jam selesai dari pesanan ini
+                tanggal_selesai.setHours(tanggal_selesai.getHours() + durasi);
+
+                //convert local datetime ke format sql
+                tanggal_mulai = convertToSQLDatetime(tanggal_mulai);
+                tanggal_selesai = convertToSQLDatetime(tanggal_selesai);
+
+                $.ajax({
+                    url: '<?= site_url('/check-datetime') ?>',
+                    type: 'POST',
+                    data: {
+                        tanggalMulai: tanggal_mulai,
+                        tanggalSelesai: tanggal_selesai,
+                    },
+                    dataType: 'json',
+                    success: function(response) {
+                        if (response.status == 'Penuh!') {
+                            console.log(tanggal_mulai);
+                            console.log(tanggal_selesai);
+                            console.log(response.data);
+                            cekText.classList.remove("d-none");
+                            cekLoading.classList.add("d-none");
+                            Toastify({
+                                text: response.status,
+                                duration: 3000,
+                                offset: {
+                                    x: 50,
+                                },
+                            }).showToast();
+                        } else if (response.status == 'Belum penuh!') {
+                            console.log(tanggal_mulai);
+                            console.log(tanggal_selesai);
+                            console.log(response.data);
+                            status_tanggal = true;
+                            cekText.classList.remove("d-none");
+                            cekLoading.classList.add("d-none");
+                            Toastify({
+                                text: 'Tanggal bisa diambil!',
+                                duration: 3000,
+                                offset: {
+                                    x: 50,
+                                },
+                            }).showToast();
+                        } else {
+                            console.log(tanggal_mulai);
+                            console.log(tanggal_selesai);
+                            console.log(response.data);
+                            cekText.classList.remove("d-none");
+                            cekLoading.classList.add("d-none");
+                            Toastify({
+                                text: 'Coba lagi nanti!',
+                                duration: 3000,
+                                offset: {
+                                    x: 50,
+                                },
+                            }).showToast();
+                        }
+                    },
+                    error: function(e) {
+                        console.log(tanggal_mulai);
+                        console.log(tanggal_selesai);
+                        console.log(e);
+                        cekText.classList.remove("d-none");
+                        cekLoading.classList.add("d-none");
+                        Toastify({
+                            text: "Gagal!",
+                            duration: 3000,
+                            offset: {
+                                x: 50,
+                            },
+                        }).showToast();
+                    }
+                });
+            } else {
+                Toastify({
+                    text: "Pilih tanggal dahulu!",
+                    duration: 3000,
+                    offset: {
+                        x: 50,
+                    },
+                }).showToast();
+            }
+        })
+
         $('#btnCheckout').click(function() {
             var extra_harga = 0;
+
+            //set harga extra waktu
             if (document.getElementById('waktuBox').checked) {
                 extra_waktu = document.getElementById('extra_waktu_kerja').value;
                 extra_harga = extra_harga + (250000 * extra_waktu);
@@ -331,9 +484,15 @@
             //set harga extra background
             if (nama_paket.includes("Pre-Wedding Package Indoor") || nama_paket.includes("Maternity") || nama_paket.includes("Graduation") || nama_paket.includes("Family") || nama_paket.includes("Couple")) {
                 if (document.getElementById('backgroundBox').checked) {
-                    extra_background = document.getElementById('extra_background_dan_outfit').value;
+                    extra_background = document.getElementById('extra_background').value;
                     extra_harga = extra_harga + (50000 * extra_background);
                 }
+            }
+
+            //set extra orang
+            if (document.getElementById('orangBox').checked) {
+                extra_orang = document.getElementById('extra_orang').value;
+                extra_harga = extra_harga + (40000 * extra_orang);
             }
 
             var total_harga = <?= $pesananUserPaket[0]->harga_paket ?> + extra_harga;
@@ -350,10 +509,10 @@
             });
         });
         $('#btnSubmit').click(function() {
-            if (document.getElementById('nama').value == '' || document.getElementById('alamat').value == '' || document.getElementById('tanggal').value == '' || document.getElementById('telp').value == '') {
+            if (document.getElementById('nama').value == '' || document.getElementById('alamat').value == '' || document.getElementById('tanggal').value == '' || document.getElementById('telp').value == '' || status_tanggal == false) {
                 dismissModalKonfirmasi();
                 Toastify({
-                    text: "Mohon lengkapi data!",
+                    text: "Mohon lengkapi data dan cek tanggal!",
                     duration: 2000,
                     offset: {
                         x: 50,
@@ -379,10 +538,17 @@
                 //set extra background
                 if (nama_paket.includes("Pre-Wedding Package Indoor") || nama_paket.includes("Maternity") || nama_paket.includes("Graduation") || nama_paket.includes("Family") || nama_paket.includes("Couple")) {
                     if (document.getElementById('backgroundBox').checked) {
-                        extra_background = document.getElementById('extra_background_dan_outfit').value;
+                        extra_background = document.getElementById('extra_background').value;
                     } else {
                         extra_background = 0;
                     }
+                }
+
+                //set extra orang
+                if (document.getElementById('orangBox').checked) {
+                    extra_orang = document.getElementById('extra_orang').value;
+                } else {
+                    extra_orang = 0;
                 }
 
                 $.ajax({
@@ -398,7 +564,8 @@
                         total_price: <?= $pesananUserPaket[0]->harga_paket ?>,
                         extra_waktu_kerja: extra_waktu,
                         extra_premium_magazine: extra_magazine,
-                        extra_background_dan_outfit: extra_background,
+                        extra_background: extra_background,
+                        extra_orang: extra_orang,
                     },
                     dataType: 'json',
                     success: function(response) {
@@ -437,6 +604,22 @@
                 }
             });
         });
+
+        function convertToSQLDatetime(inputDatetime) {
+            const datetime = new Date(inputDatetime);
+            if (isNaN(datetime)) {
+                return "Invalid Date";
+            }
+
+            const year = datetime.getFullYear();
+            const month = String(datetime.getMonth() + 1).padStart(2, "0");
+            const day = String(datetime.getDate()).padStart(2, "0");
+            const hours = String(datetime.getHours()).padStart(2, "0");
+            const minutes = String(datetime.getMinutes()).padStart(2, "0");
+            const seconds = String(datetime.getSeconds()).padStart(2, "0");
+
+            return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+        }
     });
 </script>
 
