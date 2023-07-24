@@ -1225,7 +1225,6 @@ display: inline-block; */
   margin: 40px 30px;
   box-shadow: 0px 0 20px rgba(1, 41, 112, 0.1);
   background: #fff;
-  min-height: 320px;
   display: flex;
   flex-direction: column;
   text-align: center;

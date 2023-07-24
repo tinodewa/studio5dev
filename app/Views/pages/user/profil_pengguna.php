@@ -17,7 +17,11 @@
                     <!-- Avatar -->
                     <div class="mb-15">
                         <div class="img-link">
-                            <img class="img-avatar img-avatar96 img-avatar-thumb" src="/assets/admin/media/avatars/avatar15.jpg" alt="gambar user">
+                            <?php if ($user->foto_profil != '') { ?>
+                                <img class="img-avatar img-avatar96 img-avatar-thumb" src="uploads/<?= $user->foto_profil ?>" alt="gambar user">
+                            <?php } else { ?>
+                                <img class="img-avatar img-avatar96 img-avatar-thumb" src="/assets/admin/media/avatars/avatar15.jpg" alt="gambar user">
+                            <?php } ?>
                         </div>
                     </div>
                     <!-- END Avatar -->
@@ -48,7 +52,7 @@
                     <!-- END Personal -->
 
                     <!-- Actions -->
-                    <a class="btn btn-rounded btn-hero btn-sm btn-alt-secondary mb-5 px-20" href="#">
+                    <a class="btn btn-rounded btn-hero btn-sm btn-alt-secondary mb-5 px-20" href="profil/edit">
                         <i class="fa fa-pencil"></i> Edit
                     </a>
                     <!-- END Actions -->

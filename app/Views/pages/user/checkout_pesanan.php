@@ -44,7 +44,12 @@
                         </div>
                         <div class="col-4">
                             <label class="form-label">Cek Tanggal</label>
-                            <button type="button" class="form-control btn btn-info col-6" data-bs-toggle="modal" data-bs-target="#transaksiModal">Detail</button>
+                            <a href="#" id="cekTanggal" button class="btn btn-package btn-md w-100 mb-3 mr-2">
+                                <span id="cekTanggalText">Cek</span>
+                                <div id="cekTanggalLoading" class="spinner-border text-light d-none" role="status">
+                                    <span class="sr-only"></span>
+                                </div>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -303,6 +308,7 @@
         var extra_background = 0;
         var extra_orang = 0;
         var nama_paket = '<?= $pesananUserPaket[0]->nama_paket ?>';
+        var status_tanggal = false;
         const myModal = new bootstrap.Modal(document.getElementById('modalKonfirmasi'));
 
         // Dismiss the modal programmatically
@@ -322,6 +328,135 @@
         $('#orangBox').click(function() {
             document.getElementById('extra_orang').disabled = !this.checked;
         });
+
+
+        $('#cekTanggal').click(function() {
+            var tanggal_mulai = '';
+            var tanggal_selesai = '';
+            status_tanggal = false;
+            tanggal_mulai = new Date(document.getElementById('tanggal').value);
+            tanggal_selesai = new Date(document.getElementById('tanggal').value);
+
+            if (tanggal_mulai.toString != "Invalid Date" && !isNaN(tanggal_mulai)) {
+                var extra_waktu = 0;
+                var durasi = 0;
+                var cekText = document.getElementById("cekTanggalText");
+                var cekLoading = document.getElementById("cekTanggalLoading");
+
+                cekText.classList.add("d-none");
+                cekLoading.classList.remove("d-none");
+
+                //set durasi paket
+                if ('<?= $pesananUserPaket[0]->waktu_kerja; ?>' == '8 working hours') {
+                    durasi = 8;
+                } else if ('<?= $pesananUserPaket[0]->waktu_kerja; ?>' == '7 working hours') {
+                    durasi = 7;
+                } else if ('<?= $pesananUserPaket[0]->waktu_kerja; ?>' == '6 working hours') {
+                    durasi = 6;
+                } else if ('<?= $pesananUserPaket[0]->waktu_kerja; ?>' == '5 working hours') {
+                    durasi = 5;
+                } else if ('<?= $pesananUserPaket[0]->waktu_kerja; ?>' == '4 working hours') {
+                    durasi = 4;
+                } else if ('<?= $pesananUserPaket[0]->waktu_kerja; ?>' == '3 working hours') {
+                    durasi = 3;
+                } else {
+                    durasi = 2;
+                }
+
+                //set extra waktu
+                if (document.getElementById('waktuBox').checked) {
+                    extra_waktu = document.getElementById('extra_waktu_kerja').value;
+                }
+
+                //set total durasi
+                durasi = durasi + extra_waktu;
+
+                //kalkulasi tanggal dan jam mulai dari pesanan ini
+                tanggal_mulai.setHours(tanggal_mulai.getHours() - durasi);
+
+                //kalkulasi tanggal dan jam selesai dari pesanan ini
+                tanggal_selesai.setHours(tanggal_selesai.getHours() + durasi);
+
+                //convert local datetime ke format sql
+                tanggal_mulai = convertToSQLDatetime(tanggal_mulai);
+                tanggal_selesai = convertToSQLDatetime(tanggal_selesai);
+
+                $.ajax({
+                    url: '<?= site_url('/check-datetime') ?>',
+                    type: 'POST',
+                    data: {
+                        tanggalMulai: tanggal_mulai,
+                        tanggalSelesai: tanggal_selesai,
+                    },
+                    dataType: 'json',
+                    success: function(response) {
+                        if (response.status == 'Penuh!') {
+                            console.log(tanggal_mulai);
+                            console.log(tanggal_selesai);
+                            console.log(response.data);
+                            cekText.classList.remove("d-none");
+                            cekLoading.classList.add("d-none");
+                            Toastify({
+                                text: response.status,
+                                duration: 3000,
+                                offset: {
+                                    x: 50,
+                                },
+                            }).showToast();
+                        } else if (response.status == 'Belum penuh!') {
+                            console.log(tanggal_mulai);
+                            console.log(tanggal_selesai);
+                            console.log(response.data);
+                            status_tanggal = true;
+                            cekText.classList.remove("d-none");
+                            cekLoading.classList.add("d-none");
+                            Toastify({
+                                text: 'Tanggal bisa diambil!',
+                                duration: 3000,
+                                offset: {
+                                    x: 50,
+                                },
+                            }).showToast();
+                        } else {
+                            console.log(tanggal_mulai);
+                            console.log(tanggal_selesai);
+                            console.log(response.data);
+                            cekText.classList.remove("d-none");
+                            cekLoading.classList.add("d-none");
+                            Toastify({
+                                text: 'Coba lagi nanti!',
+                                duration: 3000,
+                                offset: {
+                                    x: 50,
+                                },
+                            }).showToast();
+                        }
+                    },
+                    error: function(e) {
+                        console.log(tanggal_mulai);
+                        console.log(tanggal_selesai);
+                        console.log(e);
+                        cekText.classList.remove("d-none");
+                        cekLoading.classList.add("d-none");
+                        Toastify({
+                            text: "Gagal!",
+                            duration: 3000,
+                            offset: {
+                                x: 50,
+                            },
+                        }).showToast();
+                    }
+                });
+            } else {
+                Toastify({
+                    text: "Pilih tanggal dahulu!",
+                    duration: 3000,
+                    offset: {
+                        x: 50,
+                    },
+                }).showToast();
+            }
+        })
 
         $('#btnCheckout').click(function() {
             var extra_harga = 0;
@@ -374,10 +509,10 @@
             });
         });
         $('#btnSubmit').click(function() {
-            if (document.getElementById('nama').value == '' || document.getElementById('alamat').value == '' || document.getElementById('tanggal').value == '' || document.getElementById('telp').value == '') {
+            if (document.getElementById('nama').value == '' || document.getElementById('alamat').value == '' || document.getElementById('tanggal').value == '' || document.getElementById('telp').value == '' || status_tanggal == false) {
                 dismissModalKonfirmasi();
                 Toastify({
-                    text: "Mohon lengkapi data!",
+                    text: "Mohon lengkapi data dan cek tanggal!",
                     duration: 2000,
                     offset: {
                         x: 50,
@@ -469,6 +604,22 @@
                 }
             });
         });
+
+        function convertToSQLDatetime(inputDatetime) {
+            const datetime = new Date(inputDatetime);
+            if (isNaN(datetime)) {
+                return "Invalid Date";
+            }
+
+            const year = datetime.getFullYear();
+            const month = String(datetime.getMonth() + 1).padStart(2, "0");
+            const day = String(datetime.getDate()).padStart(2, "0");
+            const hours = String(datetime.getHours()).padStart(2, "0");
+            const minutes = String(datetime.getMinutes()).padStart(2, "0");
+            const seconds = String(datetime.getSeconds()).padStart(2, "0");
+
+            return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+        }
     });
 </script>
 

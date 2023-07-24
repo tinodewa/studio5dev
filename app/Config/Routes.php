@@ -102,6 +102,7 @@ $routes->get('/paket/custom/(:num)', 'HomeUser::paketCustom/$1', ['filter' => 'm
 $routes->post('/paket/custom', 'HomeUser::paketSimpanCustom', ['filter' => 'myfilter']);
 $routes->post('/paket/detail', 'HomeUser::paketMasukKeranjang', ['filter' => 'myfilter']);
 $routes->post('/check', 'HomeUser::checkPesananIfExist');
+$routes->post('/check-datetime', 'HomeUser::checkPesananDatetimeIfExist');
 $routes->get('/checkout', 'HomeUser::checkoutPesanan');
 $routes->post('/checkout', 'HomeUser::checkoutSimpanPesanan');
 $routes->post('/checkout/remove', 'HomeUser::checkoutHapusKeranjang');
@@ -110,6 +111,8 @@ $routes->get('/list-pesanan/(:num)/detail', 'HomeUser::listPesananDetail/$1', ['
 // $routes->post('/list-pesanan/(:num)/detail/simpan-bukti', 'HomeUser::simpanBukti/$1', ['filter' => 'myfilter']);
 $routes->post('/list-pesanan/simpan-ulasan', 'HomeUser::simpanUlasan');
 $routes->get('/profil', 'HomeUser::profil');
+$routes->get('/profil/edit', 'HomeUser::profilEdit');
+$routes->post('/profil/edit', 'HomeUser::profilEditSimpan');
 
 //payment
 // $routes->get('payment', 'PaymentController::index');

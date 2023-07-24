@@ -76,19 +76,19 @@ function shortNumber($num)
                 <?php if ($detailPesanan[0]->fotografer > 0) { ?>
                     <div class="col-md-6">
                         <label class="form-label">Jumlah Fotografer</label>
-                        <input type="number" class="form-control" name="jumlah_fotografer" placeholder="Jumlah Fotografer" value="<?= $detailPesanan[0]->fotografer ?> orang" disabled>
+                        <input type="text" class="form-control" name="jumlah_fotografer" placeholder="Jumlah Fotografer" value="<?= $detailPesanan[0]->fotografer ?> orang" disabled>
                     </div>
                 <?php } ?>
                 <?php if ($detailPesanan[0]->videografer > 0) { ?>
                     <div class="col-md-6">
                         <label class="form-label">Jumlah Videografer</label>
-                        <input type="number" class="form-control" name="jumlah_videografer" placeholder="Jumlah Videografer" value="<?= $detailPesanan[0]->videografer ?> orang" disabled>
+                        <input type="text" class="form-control" name="jumlah_videografer" placeholder="Jumlah Videografer" value="<?= $detailPesanan[0]->videografer ?> orang" disabled>
                     </div>
                 <?php } ?>
                 <?php if ($detailPesanan[0]->asisten > 0) { ?>
                     <div class="col-md-6">
                         <label class="form-label">Jumlah Asisten</label>
-                        <input type="number" class="form-control" name="jumlah_asisten" placeholder="Jumlah asisten" value="<?= $detailPesanan[0]->asisten ?> orang" disabled>
+                        <input type="text" class="form-control" name="jumlah_asisten" placeholder="Jumlah asisten" value="<?= $detailPesanan[0]->asisten ?> orang" disabled>
                     </div>
                 <?php } ?>
                 <div class="col-md-6">

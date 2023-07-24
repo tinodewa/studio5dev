@@ -182,6 +182,37 @@ class HomeUser extends BaseController
         return $this->response->setJSON(['status' => 'Belum login!']);
     }
 
+    public function checkPesananDatetimeIfExist()
+    {
+        $session = session();
+
+        if ($session->has('logged_in')) {
+            //cek position dari session
+            if ($session->get('role') == 'admin') {
+                return redirect()->to('/admin');
+            } else if ($session->get('role') == 'user') {
+                try {
+                    $tanggalMulai = $this->request->getVar('tanggalMulai');
+                    $tanggalSelesai = $this->request->getVar('tanggalSelesai');
+
+                    $pesanan = new Pesanan();
+                    $data['totalPesanan'] = $pesanan->getCountPesananByDateStartAndEnd($tanggalMulai, $tanggalSelesai);
+
+                    if (sizeof($data['totalPesanan']) >= 4) {
+                        return $this->response->setJSON(['status' => 'Penuh!', 'data' => $data['totalPesanan']]);
+                    } else {
+                        return $this->response->setJSON(['status' => 'Belum penuh!', 'data' => $data['totalPesanan']]);
+                    }
+                } catch (\Exception $e) {
+                    return $this->response->setJSON(['error' => $e]);
+                }
+            } else if ($session->get('role') == 'fotografer') {
+                return redirect()->to('/fotografer');
+            }
+        }
+        return $this->response->setJSON(['status' => 'Belum login!']);
+    }
+
     public function checkoutPesanan()
     {
         $session = session();
@@ -664,6 +695,74 @@ class HomeUser extends BaseController
                 $data['user'] = $user->find($session->get('id_user'));
 
                 return view('pages/user/profil_pengguna', $data);
+            } else if ($session->get('role') == 'fotografer') {
+                return redirect()->to('/fotografer');
+            }
+        }
+        $data['title'] = 'Beranda';
+        return view('pages/user/index', $data);
+    }
+
+    public function profilEdit()
+    {
+        $session = session();
+
+        if ($session->has('logged_in')) {
+            //cek position dari session
+            if ($session->get('role') == 'admin') {
+                return redirect()->to('/admin');
+            } else if ($session->get('role') == 'user') {
+                $data['title'] = 'Profil';
+
+                $user = new User();
+                $data['user'] = $user->find($session->get('id_user'));
+
+                return view('pages/user/profil_edit', $data);
+            } else if ($session->get('role') == 'fotografer') {
+                return redirect()->to('/fotografer');
+            }
+        }
+        $data['title'] = 'Beranda';
+        return view('pages/user/index', $data);
+    }
+
+    public function profilEditSimpan()
+    {
+        $session = session();
+
+        if ($session->has('logged_in')) {
+            //cek position dari session
+            if ($session->get('role') == 'admin') {
+                return redirect()->to('/admin');
+            } else if ($session->get('role') == 'user') {
+                if ($this->request->getFile('foto')->isValid()) {
+                    $user = new User();
+
+                    $iduser = $session->get('id_user');
+                    $nama = $this->request->getVar('nama');
+                    $telp = $this->request->getVar('telp');
+                    $fileFoto = $this->request->getFile('foto');
+
+                    // Generate a new file name to avoid potential conflicts
+                    $newName = $fileFoto->getRandomName();
+
+                    // Move the uploaded file to the public/uploads directory
+                    $fileFoto->move(ROOTPATH . 'public/uploads', $newName);
+
+                    // Optionally, you can store the file details in a database or do other processing here
+                    $dataUser = [
+                        'nama_lengkap' => $nama,
+                        'no_telp' => $telp,
+                        'foto_profil' => $newName,
+                    ];
+
+                    $user->update($iduser, $dataUser);
+                    return redirect()->to('/profil');
+                } else {
+                    // Handle the file upload error
+                    $error = $this->request->getFile('userfile')->getError();
+                    return redirect()->back()->with('error', $error);
+                }
             } else if ($session->get('role') == 'fotografer') {
                 return redirect()->to('/fotografer');
             }
