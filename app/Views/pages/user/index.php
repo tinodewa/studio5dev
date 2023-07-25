@@ -658,7 +658,7 @@ function shortNumber($num)
                                     <?php if ($ulasanUserPaket->foto_profil != "") { ?>
                                         <img src="assets/img/userprofile/<?= $ulasanUserPaket->foto_profil ?>" class="testimonial-img" alt="">
                                     <?php } else { ?>
-                                        <img src="assets/img/testimonials/photoprofile.jpg" class="testimonial-img" alt="">
+                                        <img src="assets/img/testimonials/profil.jpeg" class="testimonial-img" alt="">
                                     <?php } ?>
                                     <h3><?= $ulasanUserPaket->nama_lengkap ?></h3>
                                 </div>
@@ -759,7 +759,7 @@ function shortNumber($num)
                             <div class="box text-center">
                                 <!-- Button trigger modal -->
                                 <button type="button" class="btn btn-buy" data-bs-toggle="modal" data-bs-target="#modalPreweddingIndoor">
-                                    <img src="/assets/img/Prewedding/pw-3.jpg" class="img-fluid" width="135" alt="">
+                                    <img src="/assets/img/package/1.png" class="img-fluid" width="135" alt="">
                                     <h4 style="color: #141414;" class="mt-1">Indoor</h4>
                                 </button>
                                 <!-- Modal -->
@@ -769,7 +769,7 @@ function shortNumber($num)
                             <div class="box text-center">
                                 <!-- Button trigger modal -->
                                 <button type="button" class="btn btn-buy" data-bs-toggle="modal" data-bs-target="#modalPreweddingOutdoor">
-                                    <img src="/assets/img/Prewedding/w-2.jpg" class="img-fluid" width="135" alt="">
+                                    <img src="/assets/img/package/2.png" class="img-fluid" width="135" alt="">
                                     <h4 style="color: #141414;" class="mt-1">Outdoor</h4>
                                 </button>
                             </div>
@@ -827,7 +827,7 @@ function shortNumber($num)
                             <div class="box text-center">
                                 <!-- Button trigger modal -->
                                 <button type="button" class="btn btn-buy" data-bs-toggle="modal" data-bs-target="#modalGraduationIndoor">
-                                    <img src="/assets/img/Graduation/g-1.jpg" class="img-fluid" width="135" alt="">
+                                    <img src="/assets/img/package/3.png" class="img-fluid" width="135" alt="">
                                     <h4 style="color: #141414;" class="mt-1">Graduation Indoor</h4>
                                 </button>
                                 <!-- Modal -->
@@ -837,7 +837,7 @@ function shortNumber($num)
                             <div class="box text-center">
                                 <!-- Button trigger modal -->
                                 <button type="button" class="btn btn-buy" data-bs-toggle="modal" data-bs-target="#modalGraduationOutdoor">
-                                    <img src="/assets/img/portfolio/10.png" class="img-fluid" width="135" alt="">
+                                    <img src="/assets/img/package/4.png" class="img-fluid" width="135" alt="">
                                     <h4 style="color: #141414;" class="mt-1">Graduation Outdoor</h4>
                                 </button>
                             </div>
@@ -866,13 +866,28 @@ function shortNumber($num)
                                     <div class="portfolio-details-slider swiper">
                                         <div class="swiper-wrapper align-items-center">
                                             <div class="swiper-slide">
-                                                <img src="/assets/img/portfolio/4.png" alt="">
+                                                <img src="/assets/img/detailpaket/akad-1.jpg" alt="">
                                             </div>
                                             <div class="swiper-slide">
-                                                <img src="/assets/img/portfolio/5.png" alt="">
+                                                <img src="/assets/img/detailpaket/akad-2.jpg" alt="">
                                             </div>
                                             <div class="swiper-slide">
-                                                <img src="/assets/img/portfolio/13.png" alt="">
+                                                <img src="/assets/img/detailpaket/akad-3.jpg" alt="">
+                                            </div>
+                                            <div class="swiper-slide">
+                                                <img src="/assets/img/detailpaket/akad-4.jpg" alt="">
+                                            </div>
+                                            <div class="swiper-slide">
+                                                <img src="/assets/img/detailpaket/akad-5.jpg" alt="">
+                                            </div>
+                                            <div class="swiper-slide">
+                                                <img src="/assets/img/detailpaket/akad-6.jpg" alt="">
+                                            </div>
+                                            <div class="swiper-slide">
+                                                <img src="/assets/img/detailpaket/akad-7.jpg" alt="">
+                                            </div>
+                                            <div class="swiper-slide">
+                                                <img src="/assets/img/detailpaket/akad-8.jpg" alt="">
                                             </div>
                                         </div>
                                         <div class="swiper-pagination"></div>
@@ -1160,13 +1175,28 @@ function shortNumber($num)
                                     <div class="portfolio-details-slider swiper">
                                         <div class="swiper-wrapper align-items-center">
                                             <div class="swiper-slide">
-                                                <img src="/assets/img/portfolio/4.png" alt="">
+                                                <img src="/assets/img/detailpaket/resep-1.jpg" alt="">
                                             </div>
                                             <div class="swiper-slide">
-                                                <img src="/assets/img/portfolio/5.png" alt="">
+                                                <img src="/assets/img/detailpaket/resep-2.jpg" alt="">
                                             </div>
                                             <div class="swiper-slide">
-                                                <img src="/assets/img/portfolio/13.png" alt="">
+                                                <img src="/assets/img/detailpaket/resep-3.jpg" alt="">
+                                            </div>
+                                            <div class="swiper-slide">
+                                                <img src="/assets/img/detailpaket/resep-4.jpg" alt="">
+                                            </div>
+                                            <div class="swiper-slide">
+                                                <img src="/assets/img/detailpaket/resep-5.jpg" alt="">
+                                            </div>
+                                            <div class="swiper-slide">
+                                                <img src="/assets/img/detailpaket/resep-6.jpg" alt="">
+                                            </div>
+                                            <div class="swiper-slide">
+                                                <img src="/assets/img/detailpaket/resep-7.jpg" alt="">
+                                            </div>
+                                            <div class="swiper-slide">
+                                                <img src="/assets/img/detailpaket/resep-8.jpg" alt="">
                                             </div>
                                         </div>
                                         <div class="swiper-pagination"></div>
@@ -1458,10 +1488,25 @@ function shortNumber($num)
                                     <div class="portfolio-details-slider swiper">
                                         <div class="swiper-wrapper align-items-center">
                                             <div class="swiper-slide">
-                                                <img src="/assets/img/portfolio/1.png" alt="">
+                                                <img src="/assets/img/detailpaket/Engagement-1.jpg" alt="">
                                             </div>
                                             <div class="swiper-slide">
-                                                <img src="/assets/img/portfolio/2.png" alt="">
+                                                <img src="/assets/img/detailpaket/Engagement-2.jpg" alt="">
+                                            </div>
+                                            <div class="swiper-slide">
+                                                <img src="/assets/img/detailpaket/Engagement-3.jpg" alt="">
+                                            </div>
+                                            <div class="swiper-slide">
+                                                <img src="/assets/img/detailpaket/Engagement-4.jpg" alt="">
+                                            </div>
+                                            <div class="swiper-slide">
+                                                <img src="/assets/img/detailpaket/Engagement-5.jpg" alt="">
+                                            </div>
+                                            <div class="swiper-slide">
+                                                <img src="/assets/img/detailpaket/Engagement-6.jpg" alt="">
+                                            </div>
+                                            <div class="swiper-slide">
+                                                <img src="/assets/img/detailpaket/Engagement-7.jpg" alt="">
                                             </div>
                                         </div>
                                         <div class="swiper-pagination"></div>
@@ -1750,10 +1795,19 @@ function shortNumber($num)
                                     <div class="portfolio-details-slider swiper">
                                         <div class="swiper-wrapper align-items-center">
                                             <div class="swiper-slide">
-                                                <img src="/assets/img/portfolio/1.png" alt="">
+                                                <img src="/assets/img/detailpaket/prewed-ind-1.jpg" alt="">
                                             </div>
                                             <div class="swiper-slide">
-                                                <img src="/assets/img/portfolio/2.png" alt="">
+                                                <img src="/assets/img/detailpaket/prewed-ind-2.jpg" alt="">
+                                            </div>
+                                            <div class="swiper-slide">
+                                                <img src="/assets/img/detailpaket/prewed-ind-3.jpg" alt="">
+                                            </div>
+                                            <div class="swiper-slide">
+                                                <img src="/assets/img/detailpaket/prewed-ind-4.jpg" alt="">
+                                            </div>
+                                            <div class="swiper-slide">
+                                                <img src="/assets/img/detailpaket/prewed-ind-5.jpg" alt="">
                                             </div>
                                         </div>
                                         <div class="swiper-pagination"></div>
@@ -2041,10 +2095,28 @@ function shortNumber($num)
                                     <div class="portfolio-details-slider swiper">
                                         <div class="swiper-wrapper align-items-center">
                                             <div class="swiper-slide">
-                                                <img src="/assets/img/portfolio/1.png" alt="">
+                                                <img src="/assets/img/detailpaket/prewed-out-1.jpg" alt="">
                                             </div>
                                             <div class="swiper-slide">
-                                                <img src="/assets/img/portfolio/2.png" alt="">
+                                                <img src="/assets/img/detailpaket/prewed-out-2.jpg" alt="">
+                                            </div>
+                                            <div class="swiper-slide">
+                                                <img src="/assets/img/detailpaket/prewed-out-3.jpg" alt="">
+                                            </div>
+                                            <div class="swiper-slide">
+                                                <img src="/assets/img/detailpaket/prewed-out-4.jpg" alt="">
+                                            </div>
+                                            <div class="swiper-slide">
+                                                <img src="/assets/img/detailpaket/prewed-out-5.jpg" alt="">
+                                            </div>
+                                            <div class="swiper-slide">
+                                                <img src="/assets/img/detailpaket/prewed-out-6.jpg" alt="">
+                                            </div>
+                                            <div class="swiper-slide">
+                                                <img src="/assets/img/detailpaket/prewed-out-7.jpg" alt="">
+                                            </div>
+                                            <div class="swiper-slide">
+                                                <img src="/assets/img/detailpaket/prewed-out-8.jpg" alt="">
                                             </div>
                                         </div>
                                         <div class="swiper-pagination"></div>
@@ -2335,7 +2407,28 @@ function shortNumber($num)
                                     <div class="portfolio-details-slider swiper">
                                         <div class="swiper-wrapper align-items-center">
                                             <div class="swiper-slide">
-                                                <img src="/assets/img/portfolio/9.png" alt="">
+                                                <img src="/assets/img/detailpaket/mat-1.jpg" alt="">
+                                            </div>
+                                            <div class="swiper-slide">
+                                                <img src="/assets/img/detailpaket/mat-2.jpg" alt="">
+                                            </div>
+                                            <div class="swiper-slide">
+                                                <img src="/assets/img/detailpaket/mat-3.jpg" alt="">
+                                            </div>
+                                            <div class="swiper-slide">
+                                                <img src="/assets/img/detailpaket/mat-4.jpg" alt="">
+                                            </div>
+                                            <div class="swiper-slide">
+                                                <img src="/assets/img/detailpaket/mat-5.jpg" alt="">
+                                            </div>
+                                            <div class="swiper-slide">
+                                                <img src="/assets/img/detailpaket/mat-6.jpg" alt="">
+                                            </div>
+                                            <div class="swiper-slide">
+                                                <img src="/assets/img/detailpaket/mat-7.jpg" alt="">
+                                            </div>
+                                            <div class="swiper-slide">
+                                                <img src="/assets/img/detailpaket/mat-8.jpg" alt="">
                                             </div>
                                         </div>
                                         <div class="swiper-pagination"></div>
@@ -2625,7 +2718,19 @@ function shortNumber($num)
                                     <div class="portfolio-details-slider swiper">
                                         <div class="swiper-wrapper align-items-center">
                                             <div class="swiper-slide">
-                                                <img src="/assets/img/portfolio/7.png" alt="">
+                                                <img src="/assets/img/detailpaket/fam-2.jpg" alt="">
+                                            </div>
+                                            <div class="swiper-slide">
+                                                <img src="/assets/img/detailpaket/fam-3.jpg" alt="">
+                                            </div>
+                                            <div class="swiper-slide">
+                                                <img src="/assets/img/detailpaket/fam-4.jpg" alt="">
+                                            </div>
+                                            <div class="swiper-slide">
+                                                <img src="/assets/img/detailpaket/fam-5.jpg" alt="">
+                                            </div>
+                                            <div class="swiper-slide">
+                                                <img src="/assets/img/detailpaket/fam-6.jpg" alt="">
                                             </div>
                                         </div>
                                         <div class="swiper-pagination"></div>
@@ -2917,6 +3022,21 @@ function shortNumber($num)
                                             <div class="swiper-slide">
                                                 <img src="/assets/img/portfolio/8.png" alt="">
                                             </div>
+                                            <div class="swiper-slide">
+                                                <img src="/assets/img/detailpaket/group-2.jpg" alt="">
+                                            </div>
+                                            <div class="swiper-slide">
+                                                <img src="/assets/img/detailpaket/group-3.jpg" alt="">
+                                            </div>
+                                            <div class="swiper-slide">
+                                                <img src="/assets/img/detailpaket/group-4.jpg" alt="">
+                                            </div>
+                                            <div class="swiper-slide">
+                                                <img src="/assets/img/detailpaket/group-5.jpg" alt="">
+                                            </div>
+                                            <div class="swiper-slide">
+                                                <img src="/assets/img/detailpaket/group-6.jpg" alt="">
+                                            </div>
                                         </div>
                                         <div class="swiper-pagination"></div>
                                     </div>
@@ -2992,7 +3112,7 @@ function shortNumber($num)
                                                                     <?php if ($paketGroup->id_paket == 17) { ?>
                                                                         <li>
                                                                             <strong>Catatan </strong>:
-                                                                            Minimal 4 orang
+                                                                            Paket group minimal 4 Orang. extra orang + 40k/orang
                                                                         </li>
                                                                     <?php } ?>
                                                                     <li>
@@ -3212,7 +3332,22 @@ function shortNumber($num)
                                     <div class="portfolio-details-slider swiper">
                                         <div class="swiper-wrapper align-items-center">
                                             <div class="swiper-slide">
-                                                <img src="/assets/img/portfolio/12.png" alt="">
+                                                <img src="/assets/img/detailpaket/hbd-1.jpg" alt="">
+                                            </div>
+                                            <div class="swiper-slide">
+                                                <img src="/assets/img/detailpaket/hbd-2.jpg" alt="">
+                                            </div>
+                                            <div class="swiper-slide">
+                                                <img src="/assets/img/detailpaket/hbd-3.jpg" alt="">
+                                            </div>
+                                            <div class="swiper-slide">
+                                                <img src="/assets/img/detailpaket/hbd-4.jpg" alt="">
+                                            </div>
+                                            <div class="swiper-slide">
+                                                <img src="/assets/img/detailpaket/hbd-5.jpg" alt="">
+                                            </div>
+                                            <div class="swiper-slide">
+                                                <img src="/assets/img/detailpaket/hbd-6.jpg" alt="">
                                             </div>
                                         </div>
                                         <div class="swiper-pagination"></div>
@@ -3792,7 +3927,22 @@ function shortNumber($num)
                                     <div class="portfolio-details-slider swiper">
                                         <div class="swiper-wrapper align-items-center">
                                             <div class="swiper-slide">
-                                                <img src="/assets/img/81403446_2894840617213830_4781872265253812536_n.jpg" alt="">
+                                                <img src="/assets/img/detailpaket/per-1.jpg" alt="">
+                                            </div>
+                                            <div class="swiper-slide">
+                                                <img src="/assets/img/detailpaket/per-2.jpg" alt="">
+                                            </div>
+                                            <div class="swiper-slide">
+                                                <img src="/assets/img/detailpaket/per-3.jpg" alt="">
+                                            </div>
+                                            <div class="swiper-slide">
+                                                <img src="/assets/img/detailpaket/per-4.jpg" alt="">
+                                            </div>
+                                            <div class="swiper-slide">
+                                                <img src="/assets/img/detailpaket/per-5.jpg" alt="">
+                                            </div>
+                                            <div class="swiper-slide">
+                                                <img src="/assets/img/detailpaket/per-6.jpg" alt="">
                                             </div>
                                         </div>
                                         <div class="swiper-pagination"></div>
@@ -4083,10 +4233,28 @@ function shortNumber($num)
                                     <div class="portfolio-details-slider swiper">
                                         <div class="swiper-wrapper align-items-center">
                                             <div class="swiper-slide">
-                                                <img src="/assets/img/portfolio/10.png" alt="">
+                                                <img src="/assets/img/detailpaket/gra-1.jpg" alt="">
                                             </div>
                                             <div class="swiper-slide">
-                                                <img src="/assets/img/portfolio/14.png" alt="">
+                                                <img src="/assets/img/detailpaket/gra-2.jpg" alt="">
+                                            </div>
+                                            <div class="swiper-slide">
+                                                <img src="/assets/img/detailpaket/gra-3.jpg" alt="">
+                                            </div>
+                                            <div class="swiper-slide">
+                                                <img src="/assets/img/detailpaket/gra-4.jpg" alt="">
+                                            </div>
+                                            <div class="swiper-slide">
+                                                <img src="/assets/img/detailpaket/gra-5.jpg" alt="">
+                                            </div>
+                                            <div class="swiper-slide">
+                                                <img src="/assets/img/detailpaket/gra-6.jpg" alt="">
+                                            </div>
+                                            <div class="swiper-slide">
+                                                <img src="/assets/img/detailpaket/gra-7.jpg" alt="">
+                                            </div>
+                                            <div class="swiper-slide">
+                                                <img src="/assets/img/detailpaket/gra-8.jpg" alt="">
                                             </div>
                                         </div>
                                         <div class="swiper-pagination"></div>
@@ -4376,10 +4544,28 @@ function shortNumber($num)
                                     <div class="portfolio-details-slider swiper">
                                         <div class="swiper-wrapper align-items-center">
                                             <div class="swiper-slide">
-                                                <img src="/assets/img/portfolio/10.png" alt="">
+                                                <img src="/assets/img/detailpaket/gra-out-1.jpg" alt="">
                                             </div>
                                             <div class="swiper-slide">
-                                                <img src="/assets/img/portfolio/14.png" alt="">
+                                                <img src="/assets/img/detailpaket/gra-out-2.jpg" alt="">
+                                            </div>
+                                            <div class="swiper-slide">
+                                                <img src="/assets/img/detailpaket/gra-out-3.jpg" alt="">
+                                            </div>
+                                            <div class="swiper-slide">
+                                                <img src="/assets/img/detailpaket/gra-out-4.jpg" alt="">
+                                            </div>
+                                            <div class="swiper-slide">
+                                                <img src="/assets/img/detailpaket/gra-out-5.jpg" alt="">
+                                            </div>
+                                            <div class="swiper-slide">
+                                                <img src="/assets/img/detailpaket/gra-out-6.jpg" alt="">
+                                            </div>
+                                            <div class="swiper-slide">
+                                                <img src="/assets/img/detailpaket/gra-out-7.jpg" alt="">
+                                            </div>
+                                            <div class="swiper-slide">
+                                                <img src="/assets/img/detailpaket/gra-out-8.jpg" alt="">
                                             </div>
                                         </div>
                                         <div class="swiper-pagination"></div>
