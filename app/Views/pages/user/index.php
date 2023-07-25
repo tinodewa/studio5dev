@@ -654,11 +654,15 @@ function shortNumber($num)
                                 <p>
                                     <?= $ulasanUserPaket->deskripsi ?>
                                 </p>
-                                <div class="profile mt-auto">
+                                <div class="profile">
                                     <?php if ($ulasanUserPaket->foto_profil != "") { ?>
-                                        <img src="assets/img/userprofile/<?= $ulasanUserPaket->foto_profil ?>" class="testimonial-img" alt="">
+                                        <img src=" uploads/<?= $ulasanUserPaket->foto_profil ?>" class="testimonial-img" alt="">
                                     <?php } else { ?>
+<<<<<<< HEAD
                                         <img src="assets/img/testimonials/profil.jpeg" class="testimonial-img" alt="">
+=======
+                                        <img src="/assets/admin/media/avatars/avatar15.jpg" class="testimonial-img" alt="">
+>>>>>>> 58a2351cbe5ae5a28ec84849388835a5e9425ccb
                                     <?php } ?>
                                     <h3><?= $ulasanUserPaket->nama_lengkap ?></h3>
                                 </div>

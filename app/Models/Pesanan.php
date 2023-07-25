@@ -36,13 +36,16 @@ class Pesanan extends Model
         return $query->getResult();
     }
 
-    // public function getCheckoutPesananByIduser(string $id_user)
-    // {
-    //     $db = db_connect();
-    //     $builder = $db->table('pesanan');
-    //     $builder->where('pesanan.nama_lengkap', '');
-    //     $builder->where('pesanan.id_user', $id_user);
-    //     $query = $builder->get();
-    //     return $query->getResult();
-    // }
+
+    public function getCountPesananByDateStartAndEnd(string $dateStart, string $dateEnd)
+    {
+        $db = db_connect();
+        $builder = $db->table('pesanan');
+        // $builder->selectCount('id_pesanan');
+        $builder->where('tanggal >= ', $dateStart);
+        $builder->where('tanggal <= ', $dateEnd);
+        $builder->where('nama_lengkap != ', '');
+        $query = $builder->get();
+        return $query->getResult();
+    }
 }
