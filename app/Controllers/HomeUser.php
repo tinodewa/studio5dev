@@ -457,33 +457,25 @@ class HomeUser extends BaseController
                     $data['paketDasar'] = $paket->find($id_paket);
 
                     $nama_paket = $this->request->getVar('nama_paket');
-                    $jumlah_fotografer = $this->request->getVar('jumlah_fotografer');
-                    $jumlah_videografer = $this->request->getVar('jumlah_videografer');
-                    $jumlah_asisten = $this->request->getVar('jumlah_asisten');
-                    $waktu_liputan = $this->request->getVar('waktu_liputan');
+                    $edit_foto = $this->request->getVar('edit_foto');
+                    $videografi = $this->request->getVar('videografi');
+                    $harga_paket_baru = $this->request->getVar('harga_paket_baru');
 
-                    $jumlah_fotografer_baru = $jumlah_fotografer - $data['paketDasar']->fotografer;
-                    $jumlah_videografer_baru = $jumlah_videografer - $data['paketDasar']->videografer;
-                    $jumlah_asisten_baru = $jumlah_asisten - $data['paketDasar']->asisten;
-
-                    $harga_fotografer = 200000 * $jumlah_fotografer_baru;
-                    $harga_videografer = 300000 * $jumlah_videografer_baru;
-                    $harga_asisten = 150000 * $jumlah_asisten_baru;
-                    // $harga_liputan_perjam = 250000 * $waktu_liputan;
-
-                    $harga_paket_custom = $data['paketDasar']->harga_paket + $harga_fotografer + $harga_videografer + $harga_asisten;
-
+                    $jumlah_videografer = 0;
+                    if ($videografi != 'Tidak ada') {
+                        $jumlah_videografer = 1;
+                    }
                     $dataPaketCustom = [
                         'nama_paket' => $nama_paket,
-                        'harga_paket' => $harga_paket_custom,
-                        'fotografer' => $jumlah_fotografer,
+                        'harga_paket' => $harga_paket_baru,
+                        'fotografer' => $data['paketDasar']->fotografer,
                         'videografer' => $jumlah_videografer,
-                        'asisten' => $jumlah_asisten,
+                        'asisten' => $data['paketDasar']->asisten,
                         'waktu_kerja' => $data['paketDasar']->waktu_kerja,
                         'jumlah_foto' => $data['paketDasar']->jumlah_foto,
-                        'jumlah_foto_edit' => $data['paketDasar']->jumlah_foto_edit,
+                        'jumlah_foto_edit' => $edit_foto,
                         'cetak_foto' => $data['paketDasar']->cetak_foto,
-                        'videografi' => $data['paketDasar']->videografi,
+                        'videografi' => $videografi,
                         'penyimpanan' => $data['paketDasar']->penyimpanan,
                         'note' => $data['paketDasar']->note,
                         'deskripsi_paket' => 'Paket custom sesuai dengan kebutuhan kamu dari paket ' . $data['paketDasar']->deskripsi_paket,
@@ -502,19 +494,16 @@ class HomeUser extends BaseController
 
                     $pesanan->insert($dataPesananCustom);
 
-                    return redirect()->to('/checkout');
+                    return $this->response->setJSON(['status' => 'Berhasil!']);
                 } catch (DataException $e) {
-                    return 'Error: ' . $e->getMessage();
+                    return $this->response->setJSON(['error' => $e]);
                 }
-
-
-
                 // return redirect()->to('/checkout');
             } else if ($session->get('role') == 'fotografer') {
                 return redirect()->to('/fotografer');
             }
         }
-        return redirect()->to('/login');
+        return $this->response->setJSON(['status' => 'Belum login!']);
     }
 
     public function listPesanan()

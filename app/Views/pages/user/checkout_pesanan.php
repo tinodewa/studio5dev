@@ -87,31 +87,12 @@
                 <?php } ?>
                 <?php if (str_contains($pesananUserPaket[0]->nama_paket, "Pre-Wedding Package Indoor") || str_contains($pesananUserPaket[0]->nama_paket, "Maternity") || str_contains($pesananUserPaket[0]->nama_paket, "Graduation") || str_contains($pesananUserPaket[0]->nama_paket, "Family") || str_contains($pesananUserPaket[0]->nama_paket, "Couple")) { ?>
                     <div class="col-md-6">
-<<<<<<< HEAD
-                        <label for="extra_background_dan_outfit" class="form-label">Penambahan Background Maks. 4  (Rp 50.000,00/tambahan)</label>
-=======
-                        <label for="extra_background" class="form-label">Penambahan Background Maks. 2 (Rp 50.000,00/tambahan)</label>
->>>>>>> 58a2351cbe5ae5a28ec84849388835a5e9425ccb
+                        <label for="extra_background" class="form-label">Penambahan Background Maks. 4 (Rp 50.000,00/tambahan)</label>
                         <div class="input-group mb-3">
                             <div class="input-group-text">
                                 <input class="form-check-input" type="checkbox" id="backgroundBox" />
                             </div>
-<<<<<<< HEAD
-                            <input type="number" class="form-control" id="extra_background_dan_outfit" name="extra_background_dan_outfit" placeholder="0" value="0" oninput="this.value = Math.abs(this.value)" max="4" disabled>
-=======
-                            <input type="number" class="form-control" id="extra_background" name="extra_background" placeholder="0" value="0" oninput="this.value = Math.abs(this.value)" max="2" disabled>
-                        </div>
-                    </div>
-                <?php } ?>
-                <?php if (str_contains($pesananUserPaket[0]->nama_paket, "Group Package Indoor")) { ?>
-                    <div class="col-md-6">
-                        <label for="extra_orang" class="form-label">Penambahan orang (Rp 40.000,00/jam)</label>
-                        <div class="input-group mb-3 col-6">
-                            <div class="input-group-text">
-                                <input class="form-check-input" id="orangBox" type="checkbox">
-                            </div>
-                            <input type="number" class="form-control" id="extra_orang" name="extra_orang" placeholder="0" value="0" oninput="this.value = Math.abs(this.value)" max="36" disabled>
->>>>>>> 58a2351cbe5ae5a28ec84849388835a5e9425ccb
+                            <input type="number" class="form-control" id="extra_background" name="extra_background" placeholder="0" value="0" oninput="this.value = Math.abs(this.value)" max="4" disabled>
                         </div>
                     </div>
                 <?php } ?>
