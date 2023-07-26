@@ -441,7 +441,7 @@ class HomeUser extends BaseController
         return redirect()->to('/login');
     }
 
-    public function paketSimpanCustom()
+    public function paketSimpanCustom($id_paket)
     {
         $session = session();
 
@@ -454,45 +454,39 @@ class HomeUser extends BaseController
                 try {
                     //menyimpan data paket custom
                     $paket = new Paket();
+                    $data['paketDasar'] = $paket->find($id_paket);
 
                     $nama_paket = $this->request->getVar('nama_paket');
                     $jumlah_fotografer = $this->request->getVar('jumlah_fotografer');
                     $jumlah_videografer = $this->request->getVar('jumlah_videografer');
+                    $jumlah_asisten = $this->request->getVar('jumlah_asisten');
                     $waktu_liputan = $this->request->getVar('waktu_liputan');
-                    $jumlah_indoor = $this->request->getVar('jumlah_indoor');
-                    $jumlah_outdoor = $this->request->getVar('jumlah_outdoor');
-                    $hasil_jumlah = $this->request->getVar('hasil_jumlah');
-                    $hasil_editing = $this->request->getVar('hasil_editing');
 
-                    $harga_fotografer = 400000 * $jumlah_fotografer;
-                    $harga_videografer = 500000 * $jumlah_videografer;
-                    $harga_liputan_perjam = 100000 * $waktu_liputan;
-                    $harga_indoor = 50000 * $jumlah_indoor;
-                    $harga_outdoor = 100000 * $jumlah_outdoor;
-                    $harga_jumlah_cetak = 50000 * $hasil_jumlah;
-                    $harga_jumlah_editing = 20000 * $hasil_editing;
+                    $jumlah_fotografer_baru = $jumlah_fotografer - $data['paketDasar']->fotografer;
+                    $jumlah_videografer_baru = $jumlah_videografer - $data['paketDasar']->videografer;
+                    $jumlah_asisten_baru = $jumlah_asisten - $data['paketDasar']->asisten;
 
-                    $harga_paket_custom = $harga_fotografer + $harga_videografer + $harga_liputan_perjam + $harga_indoor + $harga_outdoor + $harga_jumlah_cetak + $harga_jumlah_editing;
+                    $harga_fotografer = 200000 * $jumlah_fotografer_baru;
+                    $harga_videografer = 300000 * $jumlah_videografer_baru;
+                    $harga_asisten = 150000 * $jumlah_asisten_baru;
+                    // $harga_liputan_perjam = 250000 * $waktu_liputan;
+
+                    $harga_paket_custom = $data['paketDasar']->harga_paket + $harga_fotografer + $harga_videografer + $harga_asisten;
 
                     $dataPaketCustom = [
                         'nama_paket' => $nama_paket,
-                        'warna_nama_paket' => '#0abde3',
-                        'gambar_paket' => 'pexels-camera.jpg',
                         'harga_paket' => $harga_paket_custom,
-                        'keterangan_harga_paket' => 1,
-                        'status_paket' => 0,
                         'fotografer' => $jumlah_fotografer,
                         'videografer' => $jumlah_videografer,
-                        'waktu' => $waktu_liputan,
-                        'dua_tempat' => false,
-                        'tempat_indoor' => $jumlah_indoor,
-                        'tempat_outdoor' => $jumlah_outdoor,
-                        'hasil_jumlah' => $hasil_jumlah,
-                        'hasil_ukuran_cetak' => '30 x 40',
-                        'hasil_editing' => $hasil_editing,
-                        'hasil_cinematic' => false,
-                        'kapasitas' => 'Unlimited soft file mentah dikirim Gdrive.',
-                        'deskripsi_paket' => 'Paket Custom Sesuai Dengan Kebutuhan Kamu',
+                        'asisten' => $jumlah_asisten,
+                        'waktu_kerja' => $data['paketDasar']->waktu_kerja,
+                        'jumlah_foto' => $data['paketDasar']->jumlah_foto,
+                        'jumlah_foto_edit' => $data['paketDasar']->jumlah_foto_edit,
+                        'cetak_foto' => $data['paketDasar']->cetak_foto,
+                        'videografi' => $data['paketDasar']->videografi,
+                        'penyimpanan' => $data['paketDasar']->penyimpanan,
+                        'note' => $data['paketDasar']->note,
+                        'deskripsi_paket' => 'Paket custom sesuai dengan kebutuhan kamu dari paket ' . $data['paketDasar']->deskripsi_paket,
                     ];
 
                     $paket->insert($dataPaketCustom);

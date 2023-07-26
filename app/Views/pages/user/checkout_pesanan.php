@@ -30,11 +30,11 @@
             <div class="row gy-4">
                 <div class="col-md-6">
                     <label for="nama" class="form-label">Nama Lengkap*</label>
-                    <input type="text" class="form-control" id="nama" name="nama" placeholder="Nama Lengkap" required>
+                    <input type="text" class="form-control" id="nama" name="nama" placeholder="Nama Lengkap" value="<?= $session->get('nama_lengkap') ?>" required>
                 </div>
                 <div class="col-md-6">
                     <label for="alamat" class="form-label">Alamat*</label>
-                    <input type="text" class="form-control" id="alamat" name="alamat" placeholder="Alamat" required>
+                    <input type="text" class="form-control" id="alamat" name="alamat" placeholder="Alamat" value="<?= $session->get('no_telp') ?>" required>
                 </div>
                 <div class="col-md-6">
                     <div class="row">
@@ -344,117 +344,128 @@
             status_tanggal = false;
             tanggal_mulai = new Date(document.getElementById('tanggal').value);
             tanggal_selesai = new Date(document.getElementById('tanggal').value);
+            tanggal_sekarang = new Date();
 
             if (tanggal_mulai.toString != "Invalid Date" && !isNaN(tanggal_mulai)) {
-                var extra_waktu = 0;
-                var durasi = 0;
-                var cekText = document.getElementById("cekTanggalText");
-                var cekLoading = document.getElementById("cekTanggalLoading");
+                if (tanggal_mulai > tanggal_sekarang) {
+                    var extra_waktu = 0;
+                    var durasi = 0;
+                    var cekText = document.getElementById("cekTanggalText");
+                    var cekLoading = document.getElementById("cekTanggalLoading");
 
-                cekText.classList.add("d-none");
-                cekLoading.classList.remove("d-none");
+                    cekText.classList.add("d-none");
+                    cekLoading.classList.remove("d-none");
+                    var waktuKerja = '<?= $pesananUserPaket[0]->waktu_kerja; ?>';
+                    //set durasi paket
+                    if (waktuKerja == '8 working hours') {
+                        durasi = 8;
+                    } else if (waktuKerja == '7 working hours') {
+                        durasi = 7;
+                    } else if (waktuKerja == '6 working hours') {
+                        durasi = 6;
+                    } else if (waktuKerja == '5 working hours') {
+                        durasi = 5;
+                    } else if (waktuKerja == '4 working hours') {
+                        durasi = 4;
+                    } else if (waktuKerja == '3 working hours') {
+                        durasi = 3;
+                    } else {
+                        durasi = 2;
+                    }
 
-                //set durasi paket
-                if ('<?= $pesananUserPaket[0]->waktu_kerja; ?>' == '8 working hours') {
-                    durasi = 8;
-                } else if ('<?= $pesananUserPaket[0]->waktu_kerja; ?>' == '7 working hours') {
-                    durasi = 7;
-                } else if ('<?= $pesananUserPaket[0]->waktu_kerja; ?>' == '6 working hours') {
-                    durasi = 6;
-                } else if ('<?= $pesananUserPaket[0]->waktu_kerja; ?>' == '5 working hours') {
-                    durasi = 5;
-                } else if ('<?= $pesananUserPaket[0]->waktu_kerja; ?>' == '4 working hours') {
-                    durasi = 4;
-                } else if ('<?= $pesananUserPaket[0]->waktu_kerja; ?>' == '3 working hours') {
-                    durasi = 3;
-                } else {
-                    durasi = 2;
-                }
+                    //set extra waktu
+                    if (document.getElementById('waktuBox').checked) {
+                        extra_waktu = document.getElementById('extra_waktu_kerja').value;
+                    }
 
-                //set extra waktu
-                if (document.getElementById('waktuBox').checked) {
-                    extra_waktu = document.getElementById('extra_waktu_kerja').value;
-                }
+                    //set total durasi
+                    durasi = durasi + extra_waktu;
 
-                //set total durasi
-                durasi = durasi + extra_waktu;
+                    //kalkulasi tanggal dan jam mulai dari pesanan ini
+                    tanggal_mulai.setHours(tanggal_mulai.getHours() - durasi);
 
-                //kalkulasi tanggal dan jam mulai dari pesanan ini
-                tanggal_mulai.setHours(tanggal_mulai.getHours() - durasi);
+                    //kalkulasi tanggal dan jam selesai dari pesanan ini
+                    tanggal_selesai.setHours(tanggal_selesai.getHours() + durasi);
 
-                //kalkulasi tanggal dan jam selesai dari pesanan ini
-                tanggal_selesai.setHours(tanggal_selesai.getHours() + durasi);
+                    //convert local datetime ke format sql
+                    tanggal_mulai = convertToSQLDatetime(tanggal_mulai);
+                    tanggal_selesai = convertToSQLDatetime(tanggal_selesai);
 
-                //convert local datetime ke format sql
-                tanggal_mulai = convertToSQLDatetime(tanggal_mulai);
-                tanggal_selesai = convertToSQLDatetime(tanggal_selesai);
-
-                $.ajax({
-                    url: '<?= site_url('/check-datetime') ?>',
-                    type: 'POST',
-                    data: {
-                        tanggalMulai: tanggal_mulai,
-                        tanggalSelesai: tanggal_selesai,
-                    },
-                    dataType: 'json',
-                    success: function(response) {
-                        if (response.status == 'Penuh!') {
+                    $.ajax({
+                        url: '<?= site_url('/check-datetime') ?>',
+                        type: 'POST',
+                        data: {
+                            tanggalMulai: tanggal_mulai,
+                            tanggalSelesai: tanggal_selesai,
+                        },
+                        dataType: 'json',
+                        success: function(response) {
+                            if (response.status == 'Penuh!') {
+                                console.log(tanggal_mulai);
+                                console.log(tanggal_selesai);
+                                console.log(response.data);
+                                cekText.classList.remove("d-none");
+                                cekLoading.classList.add("d-none");
+                                Toastify({
+                                    text: response.status,
+                                    duration: 3000,
+                                    offset: {
+                                        x: 50,
+                                    },
+                                }).showToast();
+                            } else if (response.status == 'Belum penuh!') {
+                                console.log(tanggal_mulai);
+                                console.log(tanggal_selesai);
+                                console.log(response.data);
+                                status_tanggal = true;
+                                cekText.classList.remove("d-none");
+                                cekLoading.classList.add("d-none");
+                                Toastify({
+                                    text: 'Tanggal bisa diambil!',
+                                    duration: 3000,
+                                    offset: {
+                                        x: 50,
+                                    },
+                                }).showToast();
+                            } else {
+                                console.log(tanggal_mulai);
+                                console.log(tanggal_selesai);
+                                console.log(response.data);
+                                cekText.classList.remove("d-none");
+                                cekLoading.classList.add("d-none");
+                                Toastify({
+                                    text: 'Coba lagi nanti!',
+                                    duration: 3000,
+                                    offset: {
+                                        x: 50,
+                                    },
+                                }).showToast();
+                            }
+                        },
+                        error: function(e) {
                             console.log(tanggal_mulai);
                             console.log(tanggal_selesai);
-                            console.log(response.data);
+                            console.log(e);
                             cekText.classList.remove("d-none");
                             cekLoading.classList.add("d-none");
                             Toastify({
-                                text: response.status,
-                                duration: 3000,
-                                offset: {
-                                    x: 50,
-                                },
-                            }).showToast();
-                        } else if (response.status == 'Belum penuh!') {
-                            console.log(tanggal_mulai);
-                            console.log(tanggal_selesai);
-                            console.log(response.data);
-                            status_tanggal = true;
-                            cekText.classList.remove("d-none");
-                            cekLoading.classList.add("d-none");
-                            Toastify({
-                                text: 'Tanggal bisa diambil!',
-                                duration: 3000,
-                                offset: {
-                                    x: 50,
-                                },
-                            }).showToast();
-                        } else {
-                            console.log(tanggal_mulai);
-                            console.log(tanggal_selesai);
-                            console.log(response.data);
-                            cekText.classList.remove("d-none");
-                            cekLoading.classList.add("d-none");
-                            Toastify({
-                                text: 'Coba lagi nanti!',
+                                text: "Gagal!",
                                 duration: 3000,
                                 offset: {
                                     x: 50,
                                 },
                             }).showToast();
                         }
-                    },
-                    error: function(e) {
-                        console.log(tanggal_mulai);
-                        console.log(tanggal_selesai);
-                        console.log(e);
-                        cekText.classList.remove("d-none");
-                        cekLoading.classList.add("d-none");
-                        Toastify({
-                            text: "Gagal!",
-                            duration: 3000,
-                            offset: {
-                                x: 50,
-                            },
-                        }).showToast();
-                    }
-                });
+                    });
+                } else {
+                    Toastify({
+                        text: "Tanggal telah terlewati!",
+                        duration: 3000,
+                        offset: {
+                            x: 50,
+                        },
+                    }).showToast();
+                }
             } else {
                 Toastify({
                     text: "Pilih tanggal dahulu!",

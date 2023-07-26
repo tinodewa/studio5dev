@@ -971,7 +971,7 @@ function shortNumber($num)
                                                                 </ul>
                                                                 <div class="portfolio-description">
                                                                     <div class="row">
-                                                                        <div class="col-4">
+                                                                        <div class="col-6">
                                                                             <a href="#" id="pesanSekarangAkad<?= $key ?>" button class="btn btn-package btn-md w-100 mb-3 mr-2">
                                                                                 <span id="pesanTextAkad<?= $key ?>">Pesan Sekarang</span>
                                                                                 <div id="pesanLoadingAkad<?= $key ?>" class="spinner-border text-light d-none" role="status">
@@ -979,7 +979,7 @@ function shortNumber($num)
                                                                                 </div>
                                                                             </a>
                                                                         </div>
-                                                                        <div class="col-4">
+                                                                        <div class="col-6">
                                                                             <a href="#" id="masukkanKeranjangAkad<?= $key ?>" button class="btn btn-package btn-md w-100 mb-3 mr-2">
                                                                                 <span id="keranjangTextAkad<?= $key ?>">Masukkan Keranjang</span>
                                                                                 <div id="keranjangLoadingAkad<?= $key ?>" class="spinner-border text-light d-none" role="status">
@@ -987,8 +987,16 @@ function shortNumber($num)
                                                                                 </div>
                                                                             </a>
                                                                         </div>
-                                                                        <div class="col-4">
-                                                                            <a href="https://wa.me/6285156443674" button class="btn btn-package btn-md w-100 mb-3 mr-2">
+                                                                        <div class="col-6">
+                                                                            <a href="#" id="customAkad<?= $key ?>" button class="btn btn-package btn-md w-100 mb-3 mr-2">
+                                                                                <span id="customTextAkad<?= $key ?>">Custom Paket Ini</span>
+                                                                                <div id="customLoadingAkad<?= $key ?>" class="spinner-border text-light d-none" role="status">
+                                                                                    <span class="sr-only"></span>
+                                                                                </div>
+                                                                            </a>
+                                                                        </div>
+                                                                        <div class="col-6">
+                                                                            <a href="https://wa.me/6285156443674" button class="btn btn-success btn-md w-100 mb-3 mr-2">
                                                                                 Konsultasi
                                                                             </a>
                                                                         </div>
@@ -1000,6 +1008,52 @@ function shortNumber($num)
                                                     <!-- js untuk pesanan -->
                                                     <script type="text/javascript">
                                                         $(document).ready(function() {
+                                                            $('#customAkad<?= $key ?>').on('click', function(e) {
+                                                                e.preventDefault();
+                                                                // 
+                                                                var customText = document.getElementById("customTextAkad<?= $key ?>");
+                                                                var customLoading = document.getElementById("customLoadingAkad<?= $key ?>");
+
+                                                                customText.classList.add("d-none");
+                                                                customLoading.classList.remove("d-none");
+
+                                                                $.ajax({
+                                                                    url: '<?= site_url('/check') ?>',
+                                                                    type: 'POST',
+                                                                    success: function(response) {
+                                                                        if (response.status == 'Belum ada pesanan!') {
+                                                                            customText.classList.remove("d-none");
+                                                                            customLoading.classList.add("d-none");
+                                                                            window.location.href = '<?= base_url('/paket/custom/' . $paketAkad->id_paket) ?>';
+                                                                        } else if (response.status == 'Belum login!') {
+                                                                            customText.classList.remove("d-none");
+                                                                            customLoading.classList.add("d-none");
+                                                                            window.location.href = '<?= base_url('/login') ?>';
+                                                                        } else {
+                                                                            customText.classList.remove("d-none");
+                                                                            customLoading.classList.add("d-none");
+                                                                            Toastify({
+                                                                                text: response.status,
+                                                                                duration: 3000,
+                                                                                offset: {
+                                                                                    x: 50,
+                                                                                },
+                                                                            }).showToast();
+                                                                        }
+                                                                    },
+                                                                    error: function() {
+                                                                        customText.classList.remove("d-none");
+                                                                        customLoading.classList.add("d-none");
+                                                                        Toastify({
+                                                                            text: "Gagal!",
+                                                                            duration: 3000,
+                                                                            offset: {
+                                                                                x: 50,
+                                                                            },
+                                                                        }).showToast();
+                                                                    }
+                                                                });
+                                                            });
                                                             $('#pesanSekarangAkad<?= $key ?>').on('click', function(e) {
                                                                 e.preventDefault();
 
@@ -1282,7 +1336,7 @@ function shortNumber($num)
                                                                 </ul>
                                                                 <div class="portfolio-description">
                                                                     <div class="row">
-                                                                        <div class="col-4">
+                                                                        <div class="col-6">
                                                                             <a href="#" id="pesanSekarangResepsi<?= $key ?>" button class="btn btn-package btn-md w-100 mb-3 mr-2">
                                                                                 <span id="pesanTextResepsi<?= $key ?>">Pesan Sekarang</span>
                                                                                 <div id="pesanLoadingResepsi<?= $key ?>" class="spinner-border text-light d-none" role="status">
@@ -1290,7 +1344,7 @@ function shortNumber($num)
                                                                                 </div>
                                                                             </a>
                                                                         </div>
-                                                                        <div class="col-4">
+                                                                        <div class="col-6">
                                                                             <a href="#" id="masukkanKeranjangResepsi<?= $key ?>" button class="btn btn-package btn-md w-100 mb-3 mr-2">
                                                                                 <span id="keranjangTextResepsi<?= $key ?>">Masukkan Keranjang</span>
                                                                                 <div id="keranjangLoadingResepsi<?= $key ?>" class="spinner-border text-light d-none" role="status">
@@ -1298,8 +1352,16 @@ function shortNumber($num)
                                                                                 </div>
                                                                             </a>
                                                                         </div>
-                                                                        <div class="col-4">
-                                                                            <a href="https://wa.me/6285156443674" button class="btn btn-package btn-md w-100 mb-3 mr-2">
+                                                                        <div class="col-6">
+                                                                            <a href="#" id="customResepsi<?= $key ?>" button class="btn btn-package btn-md w-100 mb-3 mr-2">
+                                                                                <span id="customTextResepsi<?= $key ?>">Custom Paket Ini</span>
+                                                                                <div id="customLoadingResepsi<?= $key ?>" class="spinner-border text-light d-none" role="status">
+                                                                                    <span class="sr-only"></span>
+                                                                                </div>
+                                                                            </a>
+                                                                        </div>
+                                                                        <div class="col-6">
+                                                                            <a href="https://wa.me/6285156443674" button class="btn btn-success btn-md w-100 mb-3 mr-2">
                                                                                 Konsultasi
                                                                             </a>
                                                                         </div>
@@ -1311,6 +1373,52 @@ function shortNumber($num)
                                                     <!-- js untuk pesanan -->
                                                     <script type="text/javascript">
                                                         $(document).ready(function() {
+                                                            $('#customResepsi<?= $key ?>').on('click', function(e) {
+                                                                e.preventDefault();
+                                                                // 
+                                                                var customText = document.getElementById("customTextResepsi<?= $key ?>");
+                                                                var customLoading = document.getElementById("customLoadingResepsi<?= $key ?>");
+
+                                                                customText.classList.add("d-none");
+                                                                customLoading.classList.remove("d-none");
+
+                                                                $.ajax({
+                                                                    url: '<?= site_url('/check') ?>',
+                                                                    type: 'POST',
+                                                                    success: function(response) {
+                                                                        if (response.status == 'Belum ada pesanan!') {
+                                                                            customText.classList.remove("d-none");
+                                                                            customLoading.classList.add("d-none");
+                                                                            window.location.href = '<?= base_url('/paket/custom/' . $paketResepsi->id_paket) ?>';
+                                                                        } else if (response.status == 'Belum login!') {
+                                                                            customText.classList.remove("d-none");
+                                                                            customLoading.classList.add("d-none");
+                                                                            window.location.href = '<?= base_url('/login') ?>';
+                                                                        } else {
+                                                                            customText.classList.remove("d-none");
+                                                                            customLoading.classList.add("d-none");
+                                                                            Toastify({
+                                                                                text: response.status,
+                                                                                duration: 3000,
+                                                                                offset: {
+                                                                                    x: 50,
+                                                                                },
+                                                                            }).showToast();
+                                                                        }
+                                                                    },
+                                                                    error: function() {
+                                                                        customText.classList.remove("d-none");
+                                                                        customLoading.classList.add("d-none");
+                                                                        Toastify({
+                                                                            text: "Gagal!",
+                                                                            duration: 3000,
+                                                                            offset: {
+                                                                                x: 50,
+                                                                            },
+                                                                        }).showToast();
+                                                                    }
+                                                                });
+                                                            });
                                                             $('#pesanSekarangResepsi<?= $key ?>').on('click', function(e) {
                                                                 e.preventDefault();
 
@@ -1589,7 +1697,7 @@ function shortNumber($num)
                                                                 </ul>
                                                                 <div class="portfolio-description">
                                                                     <div class="row">
-                                                                        <div class="col-4">
+                                                                        <div class="col-6">
                                                                             <a href="#" id="pesanSekarangEngagement<?= $key ?>" button class="btn btn-package btn-md w-100 mb-3 mr-2">
                                                                                 <span id="pesanTextEngagement<?= $key ?>">Pesan Sekarang</span>
                                                                                 <div id="pesanLoadingEngagement<?= $key ?>" class="spinner-border text-light d-none" role="status">
@@ -1597,7 +1705,7 @@ function shortNumber($num)
                                                                                 </div>
                                                                             </a>
                                                                         </div>
-                                                                        <div class="col-4">
+                                                                        <div class="col-6">
                                                                             <a href="#" id="masukkanKeranjangEngagement<?= $key ?>" button class="btn btn-package btn-md w-100 mb-3 mr-2">
                                                                                 <span id="keranjangTextEngagement<?= $key ?>">Masukkan Keranjang</span>
                                                                                 <div id="keranjangLoadingEngagement<?= $key ?>" class="spinner-border text-light d-none" role="status">
@@ -1605,8 +1713,16 @@ function shortNumber($num)
                                                                                 </div>
                                                                             </a>
                                                                         </div>
-                                                                        <div class="col-4">
-                                                                            <a href="https://wa.me/6285156443674" button class="btn btn-package btn-md w-100 mb-3 mr-2">
+                                                                        <div class="col-6">
+                                                                            <a href="#" id="customEngagement<?= $key ?>" button class="btn btn-package btn-md w-100 mb-3 mr-2">
+                                                                                <span id="customTextEngagement<?= $key ?>">Custom Paket Ini</span>
+                                                                                <div id="customLoadingEngagement<?= $key ?>" class="spinner-border text-light d-none" role="status">
+                                                                                    <span class="sr-only"></span>
+                                                                                </div>
+                                                                            </a>
+                                                                        </div>
+                                                                        <div class="col-6">
+                                                                            <a href="https://wa.me/6285156443674" button class="btn btn-success btn-md w-100 mb-3 mr-2">
                                                                                 Konsultasi
                                                                             </a>
                                                                         </div>
@@ -1618,6 +1734,52 @@ function shortNumber($num)
                                                     <!-- js untuk pesanan -->
                                                     <script type="text/javascript">
                                                         $(document).ready(function() {
+                                                            $('#customEngagement<?= $key ?>').on('click', function(e) {
+                                                                e.preventDefault();
+                                                                // 
+                                                                var customText = document.getElementById("customTextEngagement<?= $key ?>");
+                                                                var customLoading = document.getElementById("customLoadingEngagement<?= $key ?>");
+
+                                                                customText.classList.add("d-none");
+                                                                customLoading.classList.remove("d-none");
+
+                                                                $.ajax({
+                                                                    url: '<?= site_url('/check') ?>',
+                                                                    type: 'POST',
+                                                                    success: function(response) {
+                                                                        if (response.status == 'Belum ada pesanan!') {
+                                                                            customText.classList.remove("d-none");
+                                                                            customLoading.classList.add("d-none");
+                                                                            window.location.href = '<?= base_url('/paket/custom/' . $paketEngagement->id_paket) ?>';
+                                                                        } else if (response.status == 'Belum login!') {
+                                                                            customText.classList.remove("d-none");
+                                                                            customLoading.classList.add("d-none");
+                                                                            window.location.href = '<?= base_url('/login') ?>';
+                                                                        } else {
+                                                                            customText.classList.remove("d-none");
+                                                                            customLoading.classList.add("d-none");
+                                                                            Toastify({
+                                                                                text: response.status,
+                                                                                duration: 3000,
+                                                                                offset: {
+                                                                                    x: 50,
+                                                                                },
+                                                                            }).showToast();
+                                                                        }
+                                                                    },
+                                                                    error: function() {
+                                                                        customText.classList.remove("d-none");
+                                                                        customLoading.classList.add("d-none");
+                                                                        Toastify({
+                                                                            text: "Gagal!",
+                                                                            duration: 3000,
+                                                                            offset: {
+                                                                                x: 50,
+                                                                            },
+                                                                        }).showToast();
+                                                                    }
+                                                                });
+                                                            });
                                                             $('#pesanSekarangEngagement<?= $key ?>').on('click', function(e) {
                                                                 e.preventDefault();
 
@@ -1889,7 +2051,7 @@ function shortNumber($num)
                                                                 </ul>
                                                                 <div class="portfolio-description">
                                                                     <div class="row">
-                                                                        <div class="col-4">
+                                                                        <div class="col-6">
                                                                             <a href="#" id="pesanSekarangPreweddingIndoor<?= $key ?>" button class="btn btn-package btn-md w-100 mb-3 mr-2">
                                                                                 <span id="pesanTextPreweddingIndoor<?= $key ?>">Pesan Sekarang</span>
                                                                                 <div id="pesanLoadingPreweddingIndoor<?= $key ?>" class="spinner-border text-light d-none" role="status">
@@ -1897,7 +2059,7 @@ function shortNumber($num)
                                                                                 </div>
                                                                             </a>
                                                                         </div>
-                                                                        <div class="col-4">
+                                                                        <div class="col-6">
                                                                             <a href="#" id="masukkanKeranjangPreweddingIndoor<?= $key ?>" button class="btn btn-package btn-md w-100 mb-3 mr-2">
                                                                                 <span id="keranjangTextPreweddingIndoor<?= $key ?>">Masukkan Keranjang</span>
                                                                                 <div id="keranjangLoadingPreweddingIndoor<?= $key ?>" class="spinner-border text-light d-none" role="status">
@@ -1905,8 +2067,16 @@ function shortNumber($num)
                                                                                 </div>
                                                                             </a>
                                                                         </div>
-                                                                        <div class="col-4">
-                                                                            <a href="https://wa.me/6285156443674" button class="btn btn-package btn-md w-100 mb-3 mr-2">
+                                                                        <div class="col-6">
+                                                                            <a href="#" id="customPreweddingIndoor<?= $key ?>" button class="btn btn-package btn-md w-100 mb-3 mr-2">
+                                                                                <span id="customTextPreweddingIndoor<?= $key ?>">Custom Paket Ini</span>
+                                                                                <div id="customLoadingPreweddingIndoor<?= $key ?>" class="spinner-border text-light d-none" role="status">
+                                                                                    <span class="sr-only"></span>
+                                                                                </div>
+                                                                            </a>
+                                                                        </div>
+                                                                        <div class="col-6">
+                                                                            <a href="https://wa.me/6285156443674" button class="btn btn-success btn-md w-100 mb-3 mr-2">
                                                                                 Konsultasi
                                                                             </a>
                                                                         </div>
@@ -1918,6 +2088,52 @@ function shortNumber($num)
                                                     <!-- js untuk pesanan -->
                                                     <script type="text/javascript">
                                                         $(document).ready(function() {
+                                                            $('#customPreweddingIndoor<?= $key ?>').on('click', function(e) {
+                                                                e.preventDefault();
+                                                                // 
+                                                                var customText = document.getElementById("customTextPreweddingIndoor<?= $key ?>");
+                                                                var customLoading = document.getElementById("customLoadingPreweddingIndoor<?= $key ?>");
+
+                                                                customText.classList.add("d-none");
+                                                                customLoading.classList.remove("d-none");
+
+                                                                $.ajax({
+                                                                    url: '<?= site_url('/check') ?>',
+                                                                    type: 'POST',
+                                                                    success: function(response) {
+                                                                        if (response.status == 'Belum ada pesanan!') {
+                                                                            customText.classList.remove("d-none");
+                                                                            customLoading.classList.add("d-none");
+                                                                            window.location.href = '<?= base_url('/paket/custom/' . $paketPreweddingIndoor->id_paket) ?>';
+                                                                        } else if (response.status == 'Belum login!') {
+                                                                            customText.classList.remove("d-none");
+                                                                            customLoading.classList.add("d-none");
+                                                                            window.location.href = '<?= base_url('/login') ?>';
+                                                                        } else {
+                                                                            customText.classList.remove("d-none");
+                                                                            customLoading.classList.add("d-none");
+                                                                            Toastify({
+                                                                                text: response.status,
+                                                                                duration: 3000,
+                                                                                offset: {
+                                                                                    x: 50,
+                                                                                },
+                                                                            }).showToast();
+                                                                        }
+                                                                    },
+                                                                    error: function() {
+                                                                        customText.classList.remove("d-none");
+                                                                        customLoading.classList.add("d-none");
+                                                                        Toastify({
+                                                                            text: "Gagal!",
+                                                                            duration: 3000,
+                                                                            offset: {
+                                                                                x: 50,
+                                                                            },
+                                                                        }).showToast();
+                                                                    }
+                                                                });
+                                                            });
                                                             $('#pesanSekarangPreweddingIndoor<?= $key ?>').on('click', function(e) {
                                                                 e.preventDefault();
 
@@ -2201,7 +2417,7 @@ function shortNumber($num)
                                                                 </ul>
                                                                 <div class="portfolio-description">
                                                                     <div class="row">
-                                                                        <div class="col-4">
+                                                                        <div class="col-6">
                                                                             <a href="#" id="pesanSekarangPreweddingOutdoor<?= $key ?>" button class="btn btn-package btn-md w-100 mb-3 mr-2">
                                                                                 <span id="pesanTextPreweddingOutdoor<?= $key ?>">Pesan Sekarang</span>
                                                                                 <div id="pesanLoadingPreweddingOutdoor<?= $key ?>" class="spinner-border text-light d-none" role="status">
@@ -2209,7 +2425,7 @@ function shortNumber($num)
                                                                                 </div>
                                                                             </a>
                                                                         </div>
-                                                                        <div class="col-4">
+                                                                        <div class="col-6">
                                                                             <a href="#" id="masukkanKeranjangPreweddingOutdoor<?= $key ?>" button class="btn btn-package btn-md w-100 mb-3 mr-2">
                                                                                 <span id="keranjangTextPreweddingOutdoor<?= $key ?>">Masukkan Keranjang</span>
                                                                                 <div id="keranjangLoadingPreweddingOutdoor<?= $key ?>" class="spinner-border text-light d-none" role="status">
@@ -2217,8 +2433,16 @@ function shortNumber($num)
                                                                                 </div>
                                                                             </a>
                                                                         </div>
-                                                                        <div class="col-4">
-                                                                            <a href="https://wa.me/6285156443674" button class="btn btn-package btn-md w-100 mb-3 mr-2">
+                                                                        <div class="col-6">
+                                                                            <a href="#" id="customPreweddingOutdoor<?= $key ?>" button class="btn btn-package btn-md w-100 mb-3 mr-2">
+                                                                                <span id="customTextPreweddingOutdoor<?= $key ?>">Custom Paket Ini</span>
+                                                                                <div id="customLoadingPreweddingOutdoor<?= $key ?>" class="spinner-border text-light d-none" role="status">
+                                                                                    <span class="sr-only"></span>
+                                                                                </div>
+                                                                            </a>
+                                                                        </div>
+                                                                        <div class="col-6">
+                                                                            <a href="https://wa.me/6285156443674" button class="btn btn-success btn-md w-100 mb-3 mr-2">
                                                                                 Konsultasi
                                                                             </a>
                                                                         </div>
@@ -2230,6 +2454,52 @@ function shortNumber($num)
                                                     <!-- js untuk pesanan -->
                                                     <script type="text/javascript">
                                                         $(document).ready(function() {
+                                                            $('#customPreweddingOutdoor<?= $key ?>').on('click', function(e) {
+                                                                e.preventDefault();
+                                                                // 
+                                                                var customText = document.getElementById("customTextPreweddingOutdoor<?= $key ?>");
+                                                                var customLoading = document.getElementById("customLoadingPreweddingOutdoor<?= $key ?>");
+
+                                                                customText.classList.add("d-none");
+                                                                customLoading.classList.remove("d-none");
+
+                                                                $.ajax({
+                                                                    url: '<?= site_url('/check') ?>',
+                                                                    type: 'POST',
+                                                                    success: function(response) {
+                                                                        if (response.status == 'Belum ada pesanan!') {
+                                                                            customText.classList.remove("d-none");
+                                                                            customLoading.classList.add("d-none");
+                                                                            window.location.href = '<?= base_url('/paket/custom/' . $paketPreweddingOutdoor->id_paket) ?>';
+                                                                        } else if (response.status == 'Belum login!') {
+                                                                            customText.classList.remove("d-none");
+                                                                            customLoading.classList.add("d-none");
+                                                                            window.location.href = '<?= base_url('/login') ?>';
+                                                                        } else {
+                                                                            customText.classList.remove("d-none");
+                                                                            customLoading.classList.add("d-none");
+                                                                            Toastify({
+                                                                                text: response.status,
+                                                                                duration: 3000,
+                                                                                offset: {
+                                                                                    x: 50,
+                                                                                },
+                                                                            }).showToast();
+                                                                        }
+                                                                    },
+                                                                    error: function() {
+                                                                        customText.classList.remove("d-none");
+                                                                        customLoading.classList.add("d-none");
+                                                                        Toastify({
+                                                                            text: "Gagal!",
+                                                                            duration: 3000,
+                                                                            offset: {
+                                                                                x: 50,
+                                                                            },
+                                                                        }).showToast();
+                                                                    }
+                                                                });
+                                                            });
                                                             $('#pesanSekarangPreweddingOutdoor<?= $key ?>').on('click', function(e) {
                                                                 e.preventDefault();
 
@@ -2512,7 +2782,7 @@ function shortNumber($num)
                                                                 </ul>
                                                                 <div class="portfolio-description">
                                                                     <div class="row">
-                                                                        <div class="col-4">
+                                                                        <div class="col-6">
                                                                             <a href="#" id="pesanSekarangMaternity<?= $key ?>" button class="btn btn-package btn-md w-100 mb-3 mr-2">
                                                                                 <span id="pesanTextMaternity<?= $key ?>">Pesan Sekarang</span>
                                                                                 <div id="pesanLoadingMaternity<?= $key ?>" class="spinner-border text-light d-none" role="status">
@@ -2520,7 +2790,7 @@ function shortNumber($num)
                                                                                 </div>
                                                                             </a>
                                                                         </div>
-                                                                        <div class="col-4">
+                                                                        <div class="col-6">
                                                                             <a href="#" id="masukkanKeranjangMaternity<?= $key ?>" button class="btn btn-package btn-md w-100 mb-3 mr-2">
                                                                                 <span id="keranjangTextMaternity<?= $key ?>">Masukkan Keranjang</span>
                                                                                 <div id="keranjangLoadingMaternity<?= $key ?>" class="spinner-border text-light d-none" role="status">
@@ -2528,8 +2798,16 @@ function shortNumber($num)
                                                                                 </div>
                                                                             </a>
                                                                         </div>
-                                                                        <div class="col-4">
-                                                                            <a href="https://wa.me/6285156443674" button class="btn btn-package btn-md w-100 mb-3 mr-2">
+                                                                        <div class="col-6">
+                                                                            <a href="#" id="customMaternity<?= $key ?>" button class="btn btn-package btn-md w-100 mb-3 mr-2">
+                                                                                <span id="customTextMaternity<?= $key ?>">Custom Paket Ini</span>
+                                                                                <div id="customLoadingMaternity<?= $key ?>" class="spinner-border text-light d-none" role="status">
+                                                                                    <span class="sr-only"></span>
+                                                                                </div>
+                                                                            </a>
+                                                                        </div>
+                                                                        <div class="col-6">
+                                                                            <a href="https://wa.me/6285156443674" button class="btn btn-success btn-md w-100 mb-3 mr-2">
                                                                                 Konsultasi
                                                                             </a>
                                                                         </div>
@@ -2541,6 +2819,52 @@ function shortNumber($num)
                                                     <!-- js untuk pesanan -->
                                                     <script type="text/javascript">
                                                         $(document).ready(function() {
+                                                            $('#customMaternity<?= $key ?>').on('click', function(e) {
+                                                                e.preventDefault();
+                                                                // 
+                                                                var customText = document.getElementById("customTextMaternity<?= $key ?>");
+                                                                var customLoading = document.getElementById("customLoadingMaternity<?= $key ?>");
+
+                                                                customText.classList.add("d-none");
+                                                                customLoading.classList.remove("d-none");
+
+                                                                $.ajax({
+                                                                    url: '<?= site_url('/check') ?>',
+                                                                    type: 'POST',
+                                                                    success: function(response) {
+                                                                        if (response.status == 'Belum ada pesanan!') {
+                                                                            customText.classList.remove("d-none");
+                                                                            customLoading.classList.add("d-none");
+                                                                            window.location.href = '<?= base_url('/paket/custom/' . $paketMaternity->id_paket) ?>';
+                                                                        } else if (response.status == 'Belum login!') {
+                                                                            customText.classList.remove("d-none");
+                                                                            customLoading.classList.add("d-none");
+                                                                            window.location.href = '<?= base_url('/login') ?>';
+                                                                        } else {
+                                                                            customText.classList.remove("d-none");
+                                                                            customLoading.classList.add("d-none");
+                                                                            Toastify({
+                                                                                text: response.status,
+                                                                                duration: 3000,
+                                                                                offset: {
+                                                                                    x: 50,
+                                                                                },
+                                                                            }).showToast();
+                                                                        }
+                                                                    },
+                                                                    error: function() {
+                                                                        customText.classList.remove("d-none");
+                                                                        customLoading.classList.add("d-none");
+                                                                        Toastify({
+                                                                            text: "Gagal!",
+                                                                            duration: 3000,
+                                                                            offset: {
+                                                                                x: 50,
+                                                                            },
+                                                                        }).showToast();
+                                                                    }
+                                                                });
+                                                            });
                                                             $('#pesanSekarangMaternity<?= $key ?>').on('click', function(e) {
                                                                 e.preventDefault();
 
@@ -2814,7 +3138,7 @@ function shortNumber($num)
                                                                 </ul>
                                                                 <div class="portfolio-description">
                                                                     <div class="row">
-                                                                        <div class="col-4">
+                                                                        <div class="col-6">
                                                                             <a href="#" id="pesanSekarangFamily<?= $key ?>" button class="btn btn-package btn-md w-100 mb-3 mr-2">
                                                                                 <span id="pesanTextFamily<?= $key ?>">Pesan Sekarang</span>
                                                                                 <div id="pesanLoadingFamily<?= $key ?>" class="spinner-border text-light d-none" role="status">
@@ -2822,7 +3146,7 @@ function shortNumber($num)
                                                                                 </div>
                                                                             </a>
                                                                         </div>
-                                                                        <div class="col-4">
+                                                                        <div class="col-6">
                                                                             <a href="#" id="masukkanKeranjangFamily<?= $key ?>" button class="btn btn-package btn-md w-100 mb-3 mr-2">
                                                                                 <span id="keranjangTextFamily<?= $key ?>">Masukkan Keranjang</span>
                                                                                 <div id="keranjangLoadingFamily<?= $key ?>" class="spinner-border text-light d-none" role="status">
@@ -2830,8 +3154,16 @@ function shortNumber($num)
                                                                                 </div>
                                                                             </a>
                                                                         </div>
-                                                                        <div class="col-4">
-                                                                            <a href="https://wa.me/6285156443674" button class="btn btn-package btn-md w-100 mb-3 mr-2">
+                                                                        <div class="col-6">
+                                                                            <a href="#" id="customFamily<?= $key ?>" button class="btn btn-package btn-md w-100 mb-3 mr-2">
+                                                                                <span id="customTextFamily<?= $key ?>">Custom Paket Ini</span>
+                                                                                <div id="customLoadingFamily<?= $key ?>" class="spinner-border text-light d-none" role="status">
+                                                                                    <span class="sr-only"></span>
+                                                                                </div>
+                                                                            </a>
+                                                                        </div>
+                                                                        <div class="col-6">
+                                                                            <a href="https://wa.me/6285156443674" button class="btn btn-success btn-md w-100 mb-3 mr-2">
                                                                                 Konsultasi
                                                                             </a>
                                                                         </div>
@@ -2843,6 +3175,52 @@ function shortNumber($num)
                                                     <!-- js untuk pesanan -->
                                                     <script type="text/javascript">
                                                         $(document).ready(function() {
+                                                            $('#customFamily<?= $key ?>').on('click', function(e) {
+                                                                e.preventDefault();
+                                                                // 
+                                                                var customText = document.getElementById("customTextFamily<?= $key ?>");
+                                                                var customLoading = document.getElementById("customLoadingFamily<?= $key ?>");
+
+                                                                customText.classList.add("d-none");
+                                                                customLoading.classList.remove("d-none");
+
+                                                                $.ajax({
+                                                                    url: '<?= site_url('/check') ?>',
+                                                                    type: 'POST',
+                                                                    success: function(response) {
+                                                                        if (response.status == 'Belum ada pesanan!') {
+                                                                            customText.classList.remove("d-none");
+                                                                            customLoading.classList.add("d-none");
+                                                                            window.location.href = '<?= base_url('/paket/custom/' . $paketFamily->id_paket) ?>';
+                                                                        } else if (response.status == 'Belum login!') {
+                                                                            customText.classList.remove("d-none");
+                                                                            customLoading.classList.add("d-none");
+                                                                            window.location.href = '<?= base_url('/login') ?>';
+                                                                        } else {
+                                                                            customText.classList.remove("d-none");
+                                                                            customLoading.classList.add("d-none");
+                                                                            Toastify({
+                                                                                text: response.status,
+                                                                                duration: 3000,
+                                                                                offset: {
+                                                                                    x: 50,
+                                                                                },
+                                                                            }).showToast();
+                                                                        }
+                                                                    },
+                                                                    error: function() {
+                                                                        customText.classList.remove("d-none");
+                                                                        customLoading.classList.add("d-none");
+                                                                        Toastify({
+                                                                            text: "Gagal!",
+                                                                            duration: 3000,
+                                                                            offset: {
+                                                                                x: 50,
+                                                                            },
+                                                                        }).showToast();
+                                                                    }
+                                                                });
+                                                            });
                                                             $('#pesanSekarangFamily<?= $key ?>').on('click', function(e) {
                                                                 e.preventDefault();
 
@@ -3126,7 +3504,7 @@ function shortNumber($num)
                                                                 </ul>
                                                                 <div class="portfolio-description">
                                                                     <div class="row">
-                                                                        <div class="col-4">
+                                                                        <div class="col-6">
                                                                             <a href="#" id="pesanSekarangGroup<?= $key ?>" button class="btn btn-package btn-md w-100 mb-3 mr-2">
                                                                                 <span id="pesanTextGroup<?= $key ?>">Pesan Sekarang</span>
                                                                                 <div id="pesanLoadingGroup<?= $key ?>" class="spinner-border text-light d-none" role="status">
@@ -3134,7 +3512,7 @@ function shortNumber($num)
                                                                                 </div>
                                                                             </a>
                                                                         </div>
-                                                                        <div class="col-4">
+                                                                        <div class="col-6">
                                                                             <a href="#" id="masukkanKeranjangGroup<?= $key ?>" button class="btn btn-package btn-md w-100 mb-3 mr-2">
                                                                                 <span id="keranjangTextGroup<?= $key ?>">Masukkan Keranjang</span>
                                                                                 <div id="keranjangLoadingGroup<?= $key ?>" class="spinner-border text-light d-none" role="status">
@@ -3142,8 +3520,16 @@ function shortNumber($num)
                                                                                 </div>
                                                                             </a>
                                                                         </div>
-                                                                        <div class="col-4">
-                                                                            <a href="https://wa.me/6285156443674" button class="btn btn-package btn-md w-100 mb-3 mr-2">
+                                                                        <div class="col-6">
+                                                                            <a href="#" id="customGroup<?= $key ?>" button class="btn btn-package btn-md w-100 mb-3 mr-2">
+                                                                                <span id="customTextGroup<?= $key ?>">Custom Paket Ini</span>
+                                                                                <div id="customLoadingGroup<?= $key ?>" class="spinner-border text-light d-none" role="status">
+                                                                                    <span class="sr-only"></span>
+                                                                                </div>
+                                                                            </a>
+                                                                        </div>
+                                                                        <div class="col-6">
+                                                                            <a href="https://wa.me/6285156443674" button class="btn btn-success btn-md w-100 mb-3 mr-2">
                                                                                 Konsultasi
                                                                             </a>
                                                                         </div>
@@ -3155,6 +3541,52 @@ function shortNumber($num)
                                                     <!-- js untuk pesanan -->
                                                     <script type="text/javascript">
                                                         $(document).ready(function() {
+                                                            $('#customGroup<?= $key ?>').on('click', function(e) {
+                                                                e.preventDefault();
+                                                                // 
+                                                                var customText = document.getElementById("customTextGroup<?= $key ?>");
+                                                                var customLoading = document.getElementById("customLoadingGroup<?= $key ?>");
+
+                                                                customText.classList.add("d-none");
+                                                                customLoading.classList.remove("d-none");
+
+                                                                $.ajax({
+                                                                    url: '<?= site_url('/check') ?>',
+                                                                    type: 'POST',
+                                                                    success: function(response) {
+                                                                        if (response.status == 'Belum ada pesanan!') {
+                                                                            customText.classList.remove("d-none");
+                                                                            customLoading.classList.add("d-none");
+                                                                            window.location.href = '<?= base_url('/paket/custom/' . $paketGroup->id_paket) ?>';
+                                                                        } else if (response.status == 'Belum login!') {
+                                                                            customText.classList.remove("d-none");
+                                                                            customLoading.classList.add("d-none");
+                                                                            window.location.href = '<?= base_url('/login') ?>';
+                                                                        } else {
+                                                                            customText.classList.remove("d-none");
+                                                                            customLoading.classList.add("d-none");
+                                                                            Toastify({
+                                                                                text: response.status,
+                                                                                duration: 3000,
+                                                                                offset: {
+                                                                                    x: 50,
+                                                                                },
+                                                                            }).showToast();
+                                                                        }
+                                                                    },
+                                                                    error: function() {
+                                                                        customText.classList.remove("d-none");
+                                                                        customLoading.classList.add("d-none");
+                                                                        Toastify({
+                                                                            text: "Gagal!",
+                                                                            duration: 3000,
+                                                                            offset: {
+                                                                                x: 50,
+                                                                            },
+                                                                        }).showToast();
+                                                                    }
+                                                                });
+                                                            });
                                                             $('#pesanSekarangGroup<?= $key ?>').on('click', function(e) {
                                                                 e.preventDefault();
 
@@ -3431,7 +3863,7 @@ function shortNumber($num)
                                                                 </ul>
                                                                 <div class="portfolio-description">
                                                                     <div class="row">
-                                                                        <div class="col-4">
+                                                                        <div class="col-6">
                                                                             <a href="#" id="pesanSekarangEvent<?= $key ?>" button class="btn btn-package btn-md w-100 mb-3 mr-2">
                                                                                 <span id="pesanTextEvent<?= $key ?>">Pesan Sekarang</span>
                                                                                 <div id="pesanLoadingEvent<?= $key ?>" class="spinner-border text-light d-none" role="status">
@@ -3439,7 +3871,7 @@ function shortNumber($num)
                                                                                 </div>
                                                                             </a>
                                                                         </div>
-                                                                        <div class="col-4">
+                                                                        <div class="col-6">
                                                                             <a href="#" id="masukkanKeranjangEvent<?= $key ?>" button class="btn btn-package btn-md w-100 mb-3 mr-2">
                                                                                 <span id="keranjangTextEvent<?= $key ?>">Masukkan Keranjang</span>
                                                                                 <div id="keranjangLoadingEvent<?= $key ?>" class="spinner-border text-light d-none" role="status">
@@ -3447,8 +3879,16 @@ function shortNumber($num)
                                                                                 </div>
                                                                             </a>
                                                                         </div>
-                                                                        <div class="col-4">
-                                                                            <a href="https://wa.me/6285156443674" button class="btn btn-package btn-md w-100 mb-3 mr-2">
+                                                                        <div class="col-6">
+                                                                            <a href="#" id="customEvent<?= $key ?>" button class="btn btn-package btn-md w-100 mb-3 mr-2">
+                                                                                <span id="customTextEvent<?= $key ?>">Custom Paket Ini</span>
+                                                                                <div id="customLoadingEvent<?= $key ?>" class="spinner-border text-light d-none" role="status">
+                                                                                    <span class="sr-only"></span>
+                                                                                </div>
+                                                                            </a>
+                                                                        </div>
+                                                                        <div class="col-6">
+                                                                            <a href="https://wa.me/6285156443674" button class="btn btn-success btn-md w-100 mb-3 mr-2">
                                                                                 Konsultasi
                                                                             </a>
                                                                         </div>
@@ -3460,6 +3900,52 @@ function shortNumber($num)
                                                     <!-- js untuk pesanan -->
                                                     <script type="text/javascript">
                                                         $(document).ready(function() {
+                                                            $('#customEvent<?= $key ?>').on('click', function(e) {
+                                                                e.preventDefault();
+                                                                // 
+                                                                var customText = document.getElementById("customTextEvent<?= $key ?>");
+                                                                var customLoading = document.getElementById("customLoadingEvent<?= $key ?>");
+
+                                                                customText.classList.add("d-none");
+                                                                customLoading.classList.remove("d-none");
+
+                                                                $.ajax({
+                                                                    url: '<?= site_url('/check') ?>',
+                                                                    type: 'POST',
+                                                                    success: function(response) {
+                                                                        if (response.status == 'Belum ada pesanan!') {
+                                                                            customText.classList.remove("d-none");
+                                                                            customLoading.classList.add("d-none");
+                                                                            window.location.href = '<?= base_url('/paket/custom/' . $paketEvent->id_paket) ?>';
+                                                                        } else if (response.status == 'Belum login!') {
+                                                                            customText.classList.remove("d-none");
+                                                                            customLoading.classList.add("d-none");
+                                                                            window.location.href = '<?= base_url('/login') ?>';
+                                                                        } else {
+                                                                            customText.classList.remove("d-none");
+                                                                            customLoading.classList.add("d-none");
+                                                                            Toastify({
+                                                                                text: response.status,
+                                                                                duration: 3000,
+                                                                                offset: {
+                                                                                    x: 50,
+                                                                                },
+                                                                            }).showToast();
+                                                                        }
+                                                                    },
+                                                                    error: function() {
+                                                                        customText.classList.remove("d-none");
+                                                                        customLoading.classList.add("d-none");
+                                                                        Toastify({
+                                                                            text: "Gagal!",
+                                                                            duration: 3000,
+                                                                            offset: {
+                                                                                x: 50,
+                                                                            },
+                                                                        }).showToast();
+                                                                    }
+                                                                });
+                                                            });
                                                             $('#pesanSekarangEvent<?= $key ?>').on('click', function(e) {
                                                                 e.preventDefault();
 
@@ -3721,7 +4207,7 @@ function shortNumber($num)
                                                                 </ul>
                                                                 <div class="portfolio-description">
                                                                     <div class="row">
-                                                                        <div class="col-4">
+                                                                        <div class="col-6">
                                                                             <a href="#" id="pesanSekarangCouple<?= $key ?>" button class="btn btn-package btn-md w-100 mb-3 mr-2">
                                                                                 <span id="pesanTextCouple<?= $key ?>">Pesan Sekarang</span>
                                                                                 <div id="pesanLoadingCouple<?= $key ?>" class="spinner-border text-light d-none" role="status">
@@ -3729,7 +4215,7 @@ function shortNumber($num)
                                                                                 </div>
                                                                             </a>
                                                                         </div>
-                                                                        <div class="col-4">
+                                                                        <div class="col-6">
                                                                             <a href="#" id="masukkanKeranjangCouple<?= $key ?>" button class="btn btn-package btn-md w-100 mb-3 mr-2">
                                                                                 <span id="keranjangTextCouple<?= $key ?>">Masukkan Keranjang</span>
                                                                                 <div id="keranjangLoadingCouple<?= $key ?>" class="spinner-border text-light d-none" role="status">
@@ -3737,8 +4223,16 @@ function shortNumber($num)
                                                                                 </div>
                                                                             </a>
                                                                         </div>
-                                                                        <div class="col-4">
-                                                                            <a href="https://wa.me/6285156443674" button class="btn btn-package btn-md w-100 mb-3 mr-2">
+                                                                        <div class="col-6">
+                                                                            <a href="#" id="customCouple<?= $key ?>" button class="btn btn-package btn-md w-100 mb-3 mr-2">
+                                                                                <span id="customTextCouple<?= $key ?>">Custom Paket Ini</span>
+                                                                                <div id="customLoadingCouple<?= $key ?>" class="spinner-border text-light d-none" role="status">
+                                                                                    <span class="sr-only"></span>
+                                                                                </div>
+                                                                            </a>
+                                                                        </div>
+                                                                        <div class="col-6">
+                                                                            <a href="https://wa.me/6285156443674" button class="btn btn-success btn-md w-100 mb-3 mr-2">
                                                                                 Konsultasi
                                                                             </a>
                                                                         </div>
@@ -3750,6 +4244,52 @@ function shortNumber($num)
                                                     <!-- js untuk pesanan -->
                                                     <script type="text/javascript">
                                                         $(document).ready(function() {
+                                                            $('#customCouple<?= $key ?>').on('click', function(e) {
+                                                                e.preventDefault();
+                                                                // 
+                                                                var customText = document.getElementById("customTextCouple<?= $key ?>");
+                                                                var customLoading = document.getElementById("customLoadingCouple<?= $key ?>");
+
+                                                                customText.classList.add("d-none");
+                                                                customLoading.classList.remove("d-none");
+
+                                                                $.ajax({
+                                                                    url: '<?= site_url('/check') ?>',
+                                                                    type: 'POST',
+                                                                    success: function(response) {
+                                                                        if (response.status == 'Belum ada pesanan!') {
+                                                                            customText.classList.remove("d-none");
+                                                                            customLoading.classList.add("d-none");
+                                                                            window.location.href = '<?= base_url('/paket/custom/' . $paketCouple->id_paket) ?>';
+                                                                        } else if (response.status == 'Belum login!') {
+                                                                            customText.classList.remove("d-none");
+                                                                            customLoading.classList.add("d-none");
+                                                                            window.location.href = '<?= base_url('/login') ?>';
+                                                                        } else {
+                                                                            customText.classList.remove("d-none");
+                                                                            customLoading.classList.add("d-none");
+                                                                            Toastify({
+                                                                                text: response.status,
+                                                                                duration: 3000,
+                                                                                offset: {
+                                                                                    x: 50,
+                                                                                },
+                                                                            }).showToast();
+                                                                        }
+                                                                    },
+                                                                    error: function() {
+                                                                        customText.classList.remove("d-none");
+                                                                        customLoading.classList.add("d-none");
+                                                                        Toastify({
+                                                                            text: "Gagal!",
+                                                                            duration: 3000,
+                                                                            offset: {
+                                                                                x: 50,
+                                                                            },
+                                                                        }).showToast();
+                                                                    }
+                                                                });
+                                                            });
                                                             $('#pesanSekarangCouple<?= $key ?>').on('click', function(e) {
                                                                 e.preventDefault();
 
@@ -4027,7 +4567,7 @@ function shortNumber($num)
                                                                 </ul>
                                                                 <div class="portfolio-description">
                                                                     <div class="row">
-                                                                        <div class="col-4">
+                                                                        <div class="col-6">
                                                                             <a href="#" id="pesanSekarangPersonal<?= $key ?>" button class="btn btn-package btn-md w-100 mb-3 mr-2">
                                                                                 <span id="pesanTextPersonal<?= $key ?>">Pesan Sekarang</span>
                                                                                 <div id="pesanLoadingPersonal<?= $key ?>" class="spinner-border text-light d-none" role="status">
@@ -4035,7 +4575,7 @@ function shortNumber($num)
                                                                                 </div>
                                                                             </a>
                                                                         </div>
-                                                                        <div class="col-4">
+                                                                        <div class="col-6">
                                                                             <a href="#" id="masukkanKeranjangPersonal<?= $key ?>" button class="btn btn-package btn-md w-100 mb-3 mr-2">
                                                                                 <span id="keranjangTextPersonal<?= $key ?>">Masukkan Keranjang</span>
                                                                                 <div id="keranjangLoadingPersonal<?= $key ?>" class="spinner-border text-light d-none" role="status">
@@ -4043,8 +4583,16 @@ function shortNumber($num)
                                                                                 </div>
                                                                             </a>
                                                                         </div>
-                                                                        <div class="col-4">
-                                                                            <a href="https://wa.me/6285156443674" button class="btn btn-package btn-md w-100 mb-3 mr-2">
+                                                                        <div class="col-6">
+                                                                            <a href="#" id="customPersonal<?= $key ?>" button class="btn btn-package btn-md w-100 mb-3 mr-2">
+                                                                                <span id="customTextPersonal<?= $key ?>">Custom Paket Ini</span>
+                                                                                <div id="customLoadingPersonal<?= $key ?>" class="spinner-border text-light d-none" role="status">
+                                                                                    <span class="sr-only"></span>
+                                                                                </div>
+                                                                            </a>
+                                                                        </div>
+                                                                        <div class="col-6">
+                                                                            <a href="https://wa.me/6285156443674" button class="btn btn-success btn-md w-100 mb-3 mr-2">
                                                                                 Konsultasi
                                                                             </a>
                                                                         </div>
@@ -4056,6 +4604,52 @@ function shortNumber($num)
                                                     <!-- js untuk pesanan -->
                                                     <script type="text/javascript">
                                                         $(document).ready(function() {
+                                                            $('#customPersonal<?= $key ?>').on('click', function(e) {
+                                                                e.preventDefault();
+                                                                // 
+                                                                var customText = document.getElementById("customTextPersonal<?= $key ?>");
+                                                                var customLoading = document.getElementById("customLoadingPersonal<?= $key ?>");
+
+                                                                customText.classList.add("d-none");
+                                                                customLoading.classList.remove("d-none");
+
+                                                                $.ajax({
+                                                                    url: '<?= site_url('/check') ?>',
+                                                                    type: 'POST',
+                                                                    success: function(response) {
+                                                                        if (response.status == 'Belum ada pesanan!') {
+                                                                            customText.classList.remove("d-none");
+                                                                            customLoading.classList.add("d-none");
+                                                                            window.location.href = '<?= base_url('/paket/custom/' . $paketPersonal->id_paket) ?>';
+                                                                        } else if (response.status == 'Belum login!') {
+                                                                            customText.classList.remove("d-none");
+                                                                            customLoading.classList.add("d-none");
+                                                                            window.location.href = '<?= base_url('/login') ?>';
+                                                                        } else {
+                                                                            customText.classList.remove("d-none");
+                                                                            customLoading.classList.add("d-none");
+                                                                            Toastify({
+                                                                                text: response.status,
+                                                                                duration: 3000,
+                                                                                offset: {
+                                                                                    x: 50,
+                                                                                },
+                                                                            }).showToast();
+                                                                        }
+                                                                    },
+                                                                    error: function() {
+                                                                        customText.classList.remove("d-none");
+                                                                        customLoading.classList.add("d-none");
+                                                                        Toastify({
+                                                                            text: "Gagal!",
+                                                                            duration: 3000,
+                                                                            offset: {
+                                                                                x: 50,
+                                                                            },
+                                                                        }).showToast();
+                                                                    }
+                                                                });
+                                                            });
                                                             $('#pesanSekarangPersonal<?= $key ?>').on('click', function(e) {
                                                                 e.preventDefault();
 
@@ -4338,7 +4932,7 @@ function shortNumber($num)
                                                                 </ul>
                                                                 <div class="portfolio-description">
                                                                     <div class="row">
-                                                                        <div class="col-4">
+                                                                        <div class="col-6">
                                                                             <a href="#" id="pesanSekarangGraduationIndoor<?= $key ?>" button class="btn btn-package btn-md w-100 mb-3 mr-2">
                                                                                 <span id="pesanTextGraduationIndoor<?= $key ?>">Pesan Sekarang</span>
                                                                                 <div id="pesanLoadingGraduationIndoor<?= $key ?>" class="spinner-border text-light d-none" role="status">
@@ -4346,7 +4940,7 @@ function shortNumber($num)
                                                                                 </div>
                                                                             </a>
                                                                         </div>
-                                                                        <div class="col-4">
+                                                                        <div class="col-6">
                                                                             <a href="#" id="masukkanKeranjangGraduationIndoor<?= $key ?>" button class="btn btn-package btn-md w-100 mb-3 mr-2">
                                                                                 <span id="keranjangTextGraduationIndoor<?= $key ?>">Masukkan Keranjang</span>
                                                                                 <div id="keranjangLoadingGraduationIndoor<?= $key ?>" class="spinner-border text-light d-none" role="status">
@@ -4354,8 +4948,16 @@ function shortNumber($num)
                                                                                 </div>
                                                                             </a>
                                                                         </div>
-                                                                        <div class="col-4">
-                                                                            <a href="https://wa.me/6285156443674" button class="btn btn-package btn-md w-100 mb-3 mr-2">
+                                                                        <div class="col-6">
+                                                                            <a href="#" id="customGraduationIndoor<?= $key ?>" button class="btn btn-package btn-md w-100 mb-3 mr-2">
+                                                                                <span id="customTextGraduationIndoor<?= $key ?>">Custom Paket Ini</span>
+                                                                                <div id="customLoadingGraduationIndoor<?= $key ?>" class="spinner-border text-light d-none" role="status">
+                                                                                    <span class="sr-only"></span>
+                                                                                </div>
+                                                                            </a>
+                                                                        </div>
+                                                                        <div class="col-6">
+                                                                            <a href="https://wa.me/6285156443674" button class="btn btn-success btn-md w-100 mb-3 mr-2">
                                                                                 Konsultasi
                                                                             </a>
                                                                         </div>
@@ -4367,6 +4969,52 @@ function shortNumber($num)
                                                     <!-- js untuk pesanan -->
                                                     <script type="text/javascript">
                                                         $(document).ready(function() {
+                                                            $('#customGraduationIndoor<?= $key ?>').on('click', function(e) {
+                                                                e.preventDefault();
+                                                                // 
+                                                                var customText = document.getElementById("customTextGraduationIndoor<?= $key ?>");
+                                                                var customLoading = document.getElementById("customLoadingGraduationIndoor<?= $key ?>");
+
+                                                                customText.classList.add("d-none");
+                                                                customLoading.classList.remove("d-none");
+
+                                                                $.ajax({
+                                                                    url: '<?= site_url('/check') ?>',
+                                                                    type: 'POST',
+                                                                    success: function(response) {
+                                                                        if (response.status == 'Belum ada pesanan!') {
+                                                                            customText.classList.remove("d-none");
+                                                                            customLoading.classList.add("d-none");
+                                                                            window.location.href = '<?= base_url('/paket/custom/' . $paketGraduationIndoor->id_paket) ?>';
+                                                                        } else if (response.status == 'Belum login!') {
+                                                                            customText.classList.remove("d-none");
+                                                                            customLoading.classList.add("d-none");
+                                                                            window.location.href = '<?= base_url('/login') ?>';
+                                                                        } else {
+                                                                            customText.classList.remove("d-none");
+                                                                            customLoading.classList.add("d-none");
+                                                                            Toastify({
+                                                                                text: response.status,
+                                                                                duration: 3000,
+                                                                                offset: {
+                                                                                    x: 50,
+                                                                                },
+                                                                            }).showToast();
+                                                                        }
+                                                                    },
+                                                                    error: function() {
+                                                                        customText.classList.remove("d-none");
+                                                                        customLoading.classList.add("d-none");
+                                                                        Toastify({
+                                                                            text: "Gagal!",
+                                                                            duration: 3000,
+                                                                            offset: {
+                                                                                x: 50,
+                                                                            },
+                                                                        }).showToast();
+                                                                    }
+                                                                });
+                                                            });
                                                             $('#pesanSekarangGraduationIndoor<?= $key ?>').on('click', function(e) {
                                                                 e.preventDefault();
 
@@ -4652,7 +5300,7 @@ function shortNumber($num)
                                                                 </ul>
                                                                 <div class="portfolio-description">
                                                                     <div class="row">
-                                                                        <div class="col-4">
+                                                                        <div class="col-6">
                                                                             <a href="#" id="pesanSekarangGraduationOutdoor<?= $key ?>" button class="btn btn-package btn-md w-100 mb-3 mr-2">
                                                                                 <span id="pesanTextGraduationOutdoor<?= $key ?>">Pesan Sekarang</span>
                                                                                 <div id="pesanLoadingGraduationOutdoor<?= $key ?>" class="spinner-border text-light d-none" role="status">
@@ -4660,7 +5308,7 @@ function shortNumber($num)
                                                                                 </div>
                                                                             </a>
                                                                         </div>
-                                                                        <div class="col-4">
+                                                                        <div class="col-6">
                                                                             <a href="#" id="masukkanKeranjangGraduationOutdoor<?= $key ?>" button class="btn btn-package btn-md w-100 mb-3 mr-2">
                                                                                 <span id="keranjangTextGraduationOutdoor<?= $key ?>">Masukkan Keranjang</span>
                                                                                 <div id="keranjangLoadingGraduationOutdoor<?= $key ?>" class="spinner-border text-light d-none" role="status">
@@ -4668,8 +5316,16 @@ function shortNumber($num)
                                                                                 </div>
                                                                             </a>
                                                                         </div>
-                                                                        <div class="col-4">
-                                                                            <a href="https://wa.me/6285156443674" button class="btn btn-package btn-md w-100 mb-3 mr-2">
+                                                                        <div class="col-6">
+                                                                            <a href="#" id="customGraduationOutdoor<?= $key ?>" button class="btn btn-package btn-md w-100 mb-3 mr-2">
+                                                                                <span id="customTextGraduationOutdoor<?= $key ?>">Custom Paket Ini</span>
+                                                                                <div id="customLoadingGraduationOutdoor<?= $key ?>" class="spinner-border text-light d-none" role="status">
+                                                                                    <span class="sr-only"></span>
+                                                                                </div>
+                                                                            </a>
+                                                                        </div>
+                                                                        <div class="col-6">
+                                                                            <a href="https://wa.me/6285156443674" button class="btn btn-success btn-md w-100 mb-3 mr-2">
                                                                                 Konsultasi
                                                                             </a>
                                                                         </div>
@@ -4681,6 +5337,52 @@ function shortNumber($num)
                                                     <!-- js untuk pesanan -->
                                                     <script type="text/javascript">
                                                         $(document).ready(function() {
+                                                            $('#customGraduationOutdoor<?= $key ?>').on('click', function(e) {
+                                                                e.preventDefault();
+                                                                // 
+                                                                var customText = document.getElementById("customTextGraduationOutdoor<?= $key ?>");
+                                                                var customLoading = document.getElementById("customLoadingGraduationOutdoor<?= $key ?>");
+
+                                                                customText.classList.add("d-none");
+                                                                customLoading.classList.remove("d-none");
+
+                                                                $.ajax({
+                                                                    url: '<?= site_url('/check') ?>',
+                                                                    type: 'POST',
+                                                                    success: function(response) {
+                                                                        if (response.status == 'Belum ada pesanan!') {
+                                                                            customText.classList.remove("d-none");
+                                                                            customLoading.classList.add("d-none");
+                                                                            window.location.href = '<?= base_url('/paket/custom/' . $paketGraduationOutdoor->id_paket) ?>';
+                                                                        } else if (response.status == 'Belum login!') {
+                                                                            customText.classList.remove("d-none");
+                                                                            customLoading.classList.add("d-none");
+                                                                            window.location.href = '<?= base_url('/login') ?>';
+                                                                        } else {
+                                                                            customText.classList.remove("d-none");
+                                                                            customLoading.classList.add("d-none");
+                                                                            Toastify({
+                                                                                text: response.status,
+                                                                                duration: 3000,
+                                                                                offset: {
+                                                                                    x: 50,
+                                                                                },
+                                                                            }).showToast();
+                                                                        }
+                                                                    },
+                                                                    error: function() {
+                                                                        customText.classList.remove("d-none");
+                                                                        customLoading.classList.add("d-none");
+                                                                        Toastify({
+                                                                            text: "Gagal!",
+                                                                            duration: 3000,
+                                                                            offset: {
+                                                                                x: 50,
+                                                                            },
+                                                                        }).showToast();
+                                                                    }
+                                                                });
+                                                            });
                                                             $('#pesanSekarangGraduationOutdoor<?= $key ?>').on('click', function(e) {
                                                                 e.preventDefault();
 
