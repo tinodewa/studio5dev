@@ -18,7 +18,10 @@ class Pesanan extends Entity
         'catatan' => null,
         'extra_waktu_kerja' => null,
         'extra_premium_magazine' => null,
-        'extra_background_dan_outfit' => null,
+        'extra_background' => null,
+        'extra_tempat' => null,
+        'extra_orang' => null,
+        'extra_wisudawan' => null,
     ];
 
 
@@ -77,9 +80,24 @@ class Pesanan extends Entity
         $this->attributes['extra_premium_magazine'] = $extra_premium_magazine;
         return $this;
     }
-    public function setextra_background_dan_outfit(string $extra_background_dan_outfit): self
+    public function setextra_background(string $extra_background): self
     {
-        $this->attributes['extra_background_dan_outfit'] = $extra_background_dan_outfit;
+        $this->attributes['extra_background'] = $extra_background;
+        return $this;
+    }
+    public function setextra_tempat(string $extra_tempat): self
+    {
+        $this->attributes['extra_tempat'] = $extra_tempat;
+        return $this;
+    }
+    public function setextra_orang(string $extra_orang): self
+    {
+        $this->attributes['extra_orang'] = $extra_orang;
+        return $this;
+    }
+    public function setextra_wisudawan(string $extra_wisudawan): self
+    {
+        $this->attributes['extra_wisudawan'] = $extra_wisudawan;
         return $this;
     }
 }

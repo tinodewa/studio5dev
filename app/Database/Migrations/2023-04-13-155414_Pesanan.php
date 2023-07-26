@@ -43,17 +43,23 @@ class Pesanan extends Migration
                 'type'           => 'INT',
                 'constraint'     => 9,
             ],
-            // magazine album 500(engagement), album magnetic(engagement) 250, premium magazine(akad) 400
             'extra_premium_magazine' => [
                 'type'           => 'INT',
                 'constraint'     => 9,
             ],
-            // prewedding indoor-maternity-wisuda-family-couple 50, personal 25
             'extra_background' => [
                 'type'           => 'INT',
                 'constraint'     => 9,
             ],
+            'extra_tempat' => [
+                'type'           => 'INT',
+                'constraint'     => 9,
+            ],
             'extra_orang' => [
+                'type'           => 'INT',
+                'constraint'     => 9,
+            ],
+            'extra_wisudawan' => [
                 'type'           => 'INT',
                 'constraint'     => 9,
             ],
