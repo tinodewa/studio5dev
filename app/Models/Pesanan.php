@@ -10,7 +10,7 @@ class Pesanan extends Model
     protected $table            = 'pesanan';
     protected $returnType = EntitiesPesanan::class;
     protected $primaryKey       = 'id_pesanan';
-    protected $allowedFields    = ['id_user', 'id_paket', 'nama_lengkap', 'tanggal', 'telp', 'alamat', 'catatan', 'extra_waktu_kerja', 'extra_premium_magazine', 'extra_background', 'extra_orang'];
+    protected $allowedFields    = ['id_user', 'id_paket', 'nama_lengkap', 'tanggal', 'telp', 'alamat', 'catatan', 'extra_waktu_kerja', 'extra_premium_magazine', 'extra_background', 'extra_tempat', 'extra_orang', 'extra_wisudawan'];
     protected $useTimestamps = true;
 
     protected $validationRules = [

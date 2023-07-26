@@ -15,56 +15,71 @@ class Ulasan extends Seeder
                 'id_paket' => 1,
                 'tanggal' => '2023-04-15',
                 'deskripsi'  => 'Foto sangat bagus dan fotografer ramah.',
-                'bintang' => 5.0,
-            ], [
+                'bintang' => 4.0,
+            ],
+            [
                 'id_ulasan' => 2,
                 'id_user' => 2,
                 'id_paket' => 2,
                 'tanggal' => '2023-04-15',
                 'deskripsi'  => 'Foto sangat bagus dan fotografer ramah.',
-                'bintang' => 5.0,
-            ], [
+                'bintang' => 4.0,
+            ],
+            [
                 'id_ulasan' => 3,
                 'id_user' => 2,
                 'id_paket' => 3,
                 'tanggal' => '2023-04-15',
                 'deskripsi'  => 'Foto sangat bagus dan fotografer ramah.',
-                'bintang' => 5.0,
-            ], [
+                'bintang' => 4.5,
+            ],
+            [
                 'id_ulasan' => 4,
                 'id_user' => 2,
                 'id_paket' => 4,
                 'tanggal' => '2023-04-15',
                 'deskripsi'  => 'Foto sangat bagus dan fotografer ramah.',
-                'bintang' => 5.0,
-            ], [
+                'bintang' => 4.5,
+            ],
+            [
                 'id_ulasan' => 5,
                 'id_user' => 2,
                 'id_paket' => 5,
                 'tanggal' => '2023-04-15',
                 'deskripsi'  => 'Foto sangat bagus dan fotografer ramah.',
-                'bintang' => 5.0,
-            ], [
+                'bintang' => 4.0,
+            ],
+            [
                 'id_ulasan' => 6,
                 'id_user' => 2,
                 'id_paket' => 6,
                 'tanggal' => '2023-04-15',
                 'deskripsi'  => 'Foto sangat bagus dan fotografer ramah.',
-                'bintang' => 5.0,
-            ], [
+                'bintang' => 4.0,
+            ],
+            [
                 'id_ulasan' => 7,
                 'id_user' => 2,
                 'id_paket' => 7,
                 'tanggal' => '2023-04-15',
                 'deskripsi'  => 'Foto sangat bagus dan fotografer ramah.',
-                'bintang' => 5.0,
-            ], [
+                'bintang' => 4.5,
+            ],
+            [
                 'id_ulasan' => 8,
                 'id_user' => 2,
                 'id_paket' => 8,
                 'tanggal' => '2023-04-15',
                 'deskripsi'  => 'Foto sangat bagus dan fotografer ramah.',
-                'bintang' => 5.0,
+                'bintang' => 4.0,
+            ],
+            [
+                'id_ulasan' => 9,
+                'id_user' => 2,
+                'id_paket' => 19,
+                'tanggal' => '2023-07-17',
+                'deskripsi'  => 'saya bahagia bisa mengabadikan momen wisuda saya :=).',
+                'bintang' => 4.5,
             ],
         ];
 

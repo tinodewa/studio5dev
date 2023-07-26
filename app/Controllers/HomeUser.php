@@ -256,6 +256,7 @@ class HomeUser extends BaseController
                     $hasilFoto = new HasilFoto();
 
                     $id_paket = $this->request->getVar('id_paket');
+                    $total_price = $this->request->getVar('total_price');
                     $nama = $this->request->getVar('nama');
                     $alamat = $this->request->getVar('alamat');
                     $tanggal = $this->request->getVar('tanggal');
@@ -264,7 +265,9 @@ class HomeUser extends BaseController
                     $extra_waktu_kerja = $this->request->getVar('extra_waktu_kerja');
                     $extra_premium_magazine = $this->request->getVar('extra_premium_magazine');
                     $extra_background = $this->request->getVar('extra_background');
+                    $extra_tempat = $this->request->getVar('extra_tempat');
                     $extra_orang = $this->request->getVar('extra_orang');
+                    $extra_wisudawan = $this->request->getVar('extra_wisudawan');
 
                     $pesanans = $pesanan->getCheckoutPesananByIduser($session->get('id_user'));
 
@@ -282,7 +285,9 @@ class HomeUser extends BaseController
                                 'extra_waktu_kerja' => $extra_waktu_kerja,
                                 'extra_premium_magazine' => $extra_premium_magazine,
                                 'extra_background' => $extra_background,
+                                'extra_tempat' => $extra_tempat,
                                 'extra_orang' => $extra_orang,
+                                'extra_wisudawan' => $extra_wisudawan,
                             ];
 
                             $pesanan->update($row->id_pesanan, $dataPesanan);
@@ -306,24 +311,10 @@ class HomeUser extends BaseController
                         //mengirim data pembayaran
                         $pakets = $paket->find($row->id_paket);
 
-                        //hitung total pesanan
-                        $harga_magazine = 0;
-                        if ($extra_premium_magazine == 1) {
-                            $harga_magazine = $harga_magazine * 250000;
-                        } else if ($extra_premium_magazine == 2) {
-                            $harga_magazine = $harga_magazine * 400000;
-                        } else if ($extra_premium_magazine == 3) {
-                            $harga_magazine = $harga_magazine * 500000;
-                        } else {
-                            $harga_magazine = 0;
-                        }
-
-                        $harga_pesanan = $pakets->harga_paket + (250000 * $extra_waktu_kerja) + $harga_magazine + (50000 * $extra_background) + (40000 * $extra_orang);
-
                         $dataPembayaran = [
                             'id_pesanan' => $row->id_pesanan,
                             'order_id' => $orderID,
-                            'jumlah_bayar' => $harga_pesanan,
+                            'jumlah_bayar' => $total_price,
                             'status' => 'pending',
                         ];
 
@@ -333,7 +324,7 @@ class HomeUser extends BaseController
                         // $params = array(
                         //     'transaction_details' => array(
                         //         'order_id' => $orderID,
-                        //         'gross_amount' => $harga_pesanan,
+                        //         'gross_amount' => $total_price,
                         //     ),
                         //     "callbacks" => array(
                         //         "finish" => "http://localhost:8080/list-pesanan",

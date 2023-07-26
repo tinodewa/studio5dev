@@ -33,8 +33,12 @@
                     <input type="text" class="form-control" id="nama" name="nama" placeholder="Nama Lengkap" value="<?= $session->get('nama_lengkap') ?>" required>
                 </div>
                 <div class="col-md-6">
+                    <label for="telp" class="form-label">Nomor Telpon*</label>
+                    <input type="text" class="form-control" id="telp" name="telp" placeholder="nomor telpon" value="<?= $session->get('no_telp') ?>" required>
+                </div>
+                <div class="col-md-6">
                     <label for="alamat" class="form-label">Alamat*</label>
-                    <input type="text" class="form-control" id="alamat" name="alamat" placeholder="Alamat" value="<?= $session->get('no_telp') ?>" required>
+                    <input type="text" class="form-control" id="alamat" name="alamat" placeholder="Alamat" required>
                 </div>
                 <div class="col-md-6">
                     <div class="row">
@@ -52,10 +56,6 @@
                             </a>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-6">
-                    <label for="telp" class="form-label">Nomor Telpon*</label>
-                    <input type="text" class="form-control" id="telp" name="telp" placeholder="nomor telpon" required>
                 </div>
                 <div class="col-md-12">
                     <label for="catatan" class="form-label">Catatan</label>
@@ -87,12 +87,54 @@
                 <?php } ?>
                 <?php if (str_contains($pesananUserPaket[0]->nama_paket, "Pre-Wedding Package Indoor") || str_contains($pesananUserPaket[0]->nama_paket, "Maternity") || str_contains($pesananUserPaket[0]->nama_paket, "Graduation") || str_contains($pesananUserPaket[0]->nama_paket, "Family") || str_contains($pesananUserPaket[0]->nama_paket, "Couple")) { ?>
                     <div class="col-md-6">
-                        <label for="extra_background" class="form-label">Penambahan Background Maks. 4 (Rp 50.000,00/tambahan)</label>
+                        <label for="extra_background" class="form-label">Penambahan Background Maks. 2 (Rp 50.000,00/tambahan)</label>
                         <div class="input-group mb-3">
                             <div class="input-group-text">
                                 <input class="form-check-input" type="checkbox" id="backgroundBox" />
                             </div>
-                            <input type="number" class="form-control" id="extra_background" name="extra_background" placeholder="0" value="0" oninput="this.value = Math.abs(this.value)" max="4" disabled>
+                            <input type="number" class="form-control" id="extra_background" name="extra_background" placeholder="0" value="0" oninput="this.value = Math.abs(this.value)" max="2" disabled>
+                        </div>
+                    </div>
+                <?php } ?>
+                <?php if (str_contains($pesananUserPaket[0]->nama_paket, "Group Package Indoor")) { ?>
+                    <div class="col-md-6">
+                        <label for="extra_orang" class="form-label">Penambahan orang (Rp 40.000,00/orang)</label>
+                        <div class="input-group mb-3 col-6">
+                            <div class="input-group-text">
+                                <input class="form-check-input" id="orangBox" type="checkbox">
+                            </div>
+                            <input type="number" class="form-control" id="extra_orang" name="extra_orang" placeholder="0" value="0" oninput="this.value = Math.abs(this.value)" max="36" disabled>
+                        </div>
+                    </div>
+                <?php } ?>
+                <?php if (str_contains($pesananUserPaket[0]->nama_paket, "Graduation Package")) { ?>
+                    <div class="col-md-6">
+                        <label for="extra_orang" class="form-label">Penambahan orang non-wisudawan (Rp 10.000,00/orang)</label>
+                        <div class="input-group mb-3 col-6">
+                            <div class="input-group-text">
+                                <input class="form-check-input" id="orangBox" type="checkbox">
+                            </div>
+                            <input type="number" class="form-control" id="extra_orang" name="extra_orang" placeholder="0" value="0" oninput="this.value = Math.abs(this.value)" max="36" disabled>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="extra_wisudawan" class="form-label">Penambahan Wisudawan (Rp 50.000,00/wisudawan)</label>
+                        <div class="input-group mb-3 col-6">
+                            <div class="input-group-text">
+                                <input class="form-check-input" id="wisudawanBox" type="checkbox">
+                            </div>
+                            <input type="number" class="form-control" id="extra_wisudawan" name="extra_wisudawan" placeholder="0" value="0" oninput="this.value = Math.abs(this.value)" max="36" disabled>
+                        </div>
+                    </div>
+                <?php } ?>
+                <?php if (str_contains($pesananUserPaket[0]->nama_paket, "Graduation Package Outdoor")) { ?>
+                    <div class="col-md-6">
+                        <label for="extra_tempat" class="form-label">Penambahan tempat (Rp 50.000,00/tempat)</label>
+                        <div class="input-group mb-3 col-6">
+                            <div class="input-group-text">
+                                <input class="form-check-input" id="tempatBox" type="checkbox">
+                            </div>
+                            <input type="number" class="form-control" id="extra_tempat" name="extra_tempat" placeholder="0" value="0" oninput="this.value = Math.abs(this.value)" max="36" disabled>
                         </div>
                     </div>
                 <?php } ?>
@@ -174,20 +216,24 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-12">
-                            Nama Paket :</br>
+                            <h6 class="mb-0">Nama Paket :</h6>
                             <h5><?= $pesananUserPaket[0]->nama_paket; ?></h5>
                         </div>
                         <div class="col-12">
-                            Harga Paket :</br>
+                            <h6 class="mb-0">Harga Paket :</h6>
                             <h5><?= number_to_currency($pesananUserPaket[0]->harga_paket, 'IDR', 'id_ID'); ?></h5>
                         </div>
                         <div class="col-12">
-                            Harga Extra :</br>
+                            <h6 class="mb-0">Harga Extra :</h6>
                             <h5 id="checkout_extra">Rp 0</h5>
                         </div>
                         <div class="col-12">
-                            Harga Total :</br>
+                            <h6 class="mb-0">Harga Total :</h6>
                             <h5 id="checkout_total">Rp 0</h5>
+                        </div>
+                        <div class="col-12">
+                            <b>Perhatian!</b>
+                            <h6>Pembayaran Gopay dengan QRIS harus segera diselesaikan & jangan menutup popup pembayaran QRIS!</h6>
                         </div>
                     </div>
                 </div>
@@ -250,10 +296,12 @@
                                                             <strong>Jumlah foto edit </strong>:
                                                             <?= $pesananUserPaket[0]->jumlah_foto_edit; ?>
                                                         </li>
-                                                        <li>
-                                                            <strong>Cetak </strong>:
-                                                            <?= $pesananUserPaket[0]->cetak_foto; ?>
-                                                        </li>
+                                                        <?php if ($pesananUserPaket[0]->cetak_foto != '') { ?>
+                                                            <li>
+                                                                <strong>Cetak </strong>:
+                                                                <?= $pesananUserPaket[0]->cetak_foto; ?>
+                                                            </li>
+                                                        <?php } ?>
                                                         <?php if ($pesananUserPaket[0]->videografi != '') { ?>
                                                             <li>
                                                                 <strong>Videografi </strong>:
@@ -295,7 +343,10 @@
         var extra_waktu = 0;
         var extra_magazine = 0;
         var extra_background = 0;
+        var extra_tempat = 0;
         var extra_orang = 0;
+        var extra_wisudawan = 0;
+        var total_harga = 0;
         var nama_paket = '<?= $pesananUserPaket[0]->nama_paket ?>';
         var status_tanggal = false;
         const myModal = new bootstrap.Modal(document.getElementById('modalKonfirmasi'));
@@ -314,8 +365,14 @@
         $('#backgroundBox').click(function() {
             document.getElementById('extra_background').disabled = !this.checked;
         });
+        $('#tempatBox').click(function() {
+            document.getElementById('extra_tempat').disabled = !this.checked;
+        });
         $('#orangBox').click(function() {
             document.getElementById('extra_orang').disabled = !this.checked;
+        });
+        $('#wisudawanBox').click(function() {
+            document.getElementById('extra_wisudawan').disabled = !this.checked;
         });
 
 
@@ -489,13 +546,34 @@
                 }
             }
 
+            //set extra tempat
+            if (nama_paket.includes("Graduation Package Outdoor")) {
+                if (document.getElementById('tempatBox').checked) {
+                    extra_tempat = document.getElementById('extra_tempat').value;
+                    extra_harga = extra_harga + (50000 * extra_tempat);
+                }
+            }
+
             //set extra orang
             if (document.getElementById('orangBox').checked) {
                 extra_orang = document.getElementById('extra_orang').value;
-                extra_harga = extra_harga + (40000 * extra_orang);
+
+                if (nama_paket.includes('Group Package Indoor')) {
+                    extra_harga = extra_harga + (40000 * extra_orang);
+                } else {
+                    extra_harga = extra_harga + (10000 * extra_orang);
+                }
             }
 
-            var total_harga = <?= $pesananUserPaket[0]->harga_paket ?> + extra_harga;
+            //set extra wisudawan
+            if (nama_paket.includes("Graduation Package")) {
+                if (document.getElementById('wisudawanBox').checked) {
+                    extra_wisudawan = document.getElementById('extra_wisudawan').value;
+                    extra_harga = extra_harga + (50000 * extra_wisudawan);
+                }
+            }
+
+            total_harga = <?= $pesananUserPaket[0]->harga_paket ?> + extra_harga;
 
             checkout_extra.textContent = extra_harga.toLocaleString("id-ID", {
                 style: "currency",
@@ -544,6 +622,31 @@
                     }
                 }
 
+                //set extra tempat
+                if (nama_paket.includes("Graduation Package Outdoor")) {
+                    if (document.getElementById('tempatBox').checked) {
+                        extra_tempat = document.getElementById('extra_tempat').value;
+                    } else {
+                        extra_tempat = 0;
+                    }
+                }
+
+                //set extra orang
+                if (document.getElementById('orangBox').checked) {
+                    extra_orang = document.getElementById('extra_orang').value;
+                } else {
+                    extra_orang = 0;
+                }
+
+                //set extra wisudawan
+                if (nama_paket.includes("Graduation Package")) {
+                    if (document.getElementById('wisudawanBox').checked) {
+                        extra_wisudawan = document.getElementById('extra_wisudawan').value;
+                    } else {
+                        extra_wisudawan = 0;
+                    }
+                }
+
                 //set extra orang
                 if (document.getElementById('orangBox').checked) {
                     extra_orang = document.getElementById('extra_orang').value;
@@ -556,16 +659,18 @@
                     type: 'POST',
                     data: {
                         id_paket: <?= $pesananUserPaket[0]->id_paket ?>,
+                        total_price: total_harga,
                         nama: document.getElementById('nama').value,
                         alamat: document.getElementById('alamat').value,
                         tanggal: document.getElementById('tanggal').value,
                         telp: document.getElementById('telp').value,
                         catatan: document.getElementById('catatan').value,
-                        total_price: <?= $pesananUserPaket[0]->harga_paket ?>,
                         extra_waktu_kerja: extra_waktu,
                         extra_premium_magazine: extra_magazine,
                         extra_background: extra_background,
+                        extra_tempat: extra_tempat,
                         extra_orang: extra_orang,
+                        extra_wisudawan: extra_wisudawan,
                     },
                     dataType: 'json',
                     success: function(response) {
