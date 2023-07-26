@@ -29,7 +29,7 @@
                 <div class="block-content block-content-full">
                     <div class="form-group row">
                         <div class="col-md-9">
-                            <a href="/admin/hasil-foto/new" class="btn btn-alt-primary">Tambah</a>
+                            <button href="/admin/hasil-foto/new" class="btn btn-alt-danger" disabled>Data Hasil Foto Tidak Dapat Dibuat Sendiri</button>
                         </div>
                     </div>
                     <!-- DataTables functionality is initialized with .js-dataTable-full class in js/pages/be_tables_datatables.min.js which was auto compiled from _es6/pages/be_tables_datatables.js -->
