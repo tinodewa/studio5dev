@@ -257,6 +257,7 @@ function shortNumber($num)
             let hasil_videografi = document.getElementById('hasil_videografi').value;
             let nama_custom = document.getElementById('namaPaketCustom');
             let harga_custom = document.getElementById('hargaPaketCustom');
+
             //set harga hasil foto edit
             if (hasil_foto_edit == 1) {
                 harga_edit_foto = 0;
@@ -310,7 +311,7 @@ function shortNumber($num)
             } else if ('<?= $paket->jumlah_foto_edit ?>' == 'All photos edited tone') {
                 harga_edit_foto_lama = 1200000;
             }
-
+            350 = (500 - 250) + 100
             harga_paket_baru = (harga_paket_baru - harga_edit_foto_lama) + harga_edit_foto;
 
             //set harga videografi
@@ -345,6 +346,7 @@ function shortNumber($num)
             }
 
             harga_paket_baru = (harga_paket_baru - harga_videografi_lama) + harga_videografi;
+
             harga_akhir = harga_paket_baru;
 
             //set nama paket di modal konfirmasi

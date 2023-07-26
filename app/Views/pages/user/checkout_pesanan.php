@@ -61,6 +61,7 @@
                     <label for="catatan" class="form-label">Catatan</label>
                     <textarea class="form-control" id="catatan" name="catatan" rows="6" placeholder="Catatan" required></textarea>
                 </div>
+                <!-- topping -->
                 <div class="col-md-6">
                     <label for="extra_waktu_kerja" class="form-label">Penambahan Waktu Kerja Maks. 4 (Rp 250.000,00/1 jam)</label>
                     <div class="input-group mb-3 col-6">
@@ -85,7 +86,7 @@
                         </div>
                     </div>
                 <?php } ?>
-                <?php if (str_contains($pesananUserPaket[0]->nama_paket, "Pre-Wedding Package Indoor") || str_contains($pesananUserPaket[0]->nama_paket, "Maternity") || str_contains($pesananUserPaket[0]->nama_paket, "Graduation") || str_contains($pesananUserPaket[0]->nama_paket, "Family") || str_contains($pesananUserPaket[0]->nama_paket, "Couple")) { ?>
+                <?php if (str_contains($pesananUserPaket[0]->nama_paket, "Pre-Wedding Package Indoor") || str_contains($pesananUserPaket[0]->nama_paket, "Maternity") || str_contains($pesananUserPaket[0]->nama_paket, "Graduation Package Indoor") || str_contains($pesananUserPaket[0]->nama_paket, "Family") || str_contains($pesananUserPaket[0]->nama_paket, "Couple")) { ?>
                     <div class="col-md-6">
                         <label for="extra_background" class="form-label">Penambahan Background Maks. 2 (Rp 50.000,00/tambahan)</label>
                         <div class="input-group mb-3">
@@ -539,7 +540,7 @@
             }
 
             //set harga extra background
-            if (nama_paket.includes("Pre-Wedding Package Indoor") || nama_paket.includes("Maternity") || nama_paket.includes("Graduation") || nama_paket.includes("Family") || nama_paket.includes("Couple")) {
+            if (nama_paket.includes("Pre-Wedding Package Indoor") || nama_paket.includes("Maternity") || nama_paket.includes("Graduation Package Indoor") || nama_paket.includes("Family") || nama_paket.includes("Couple")) {
                 if (document.getElementById('backgroundBox').checked) {
                     extra_background = document.getElementById('extra_background').value;
                     extra_harga = extra_harga + (50000 * extra_background);
@@ -614,7 +615,7 @@
                 }
 
                 //set extra background
-                if (nama_paket.includes("Pre-Wedding Package Indoor") || nama_paket.includes("Maternity") || nama_paket.includes("Graduation") || nama_paket.includes("Family") || nama_paket.includes("Couple")) {
+                if (nama_paket.includes("Pre-Wedding Package Indoor") || nama_paket.includes("Maternity") || nama_paket.includes("Graduation Package Indoor") || nama_paket.includes("Family") || nama_paket.includes("Couple")) {
                     if (document.getElementById('backgroundBox').checked) {
                         extra_background = document.getElementById('extra_background').value;
                     } else {
@@ -645,13 +646,6 @@
                     } else {
                         extra_wisudawan = 0;
                     }
-                }
-
-                //set extra orang
-                if (document.getElementById('orangBox').checked) {
-                    extra_orang = document.getElementById('extra_orang').value;
-                } else {
-                    extra_orang = 0;
                 }
 
                 $.ajax({
