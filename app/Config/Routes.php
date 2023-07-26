@@ -99,7 +99,7 @@ $routes->post('/fotografer/pesanan/(:num)/detail/simpan', 'Fotografer::pesananDe
 $routes->get('/paket/detail/(:num)', 'HomeUser::paketDetail/$1', ['filter' => 'myfilter']);
 $routes->get('/paket/detail/(:num)/checkout', 'HomeUser::paketPesan/$1');
 $routes->get('/paket/custom/(:num)', 'HomeUser::paketCustom/$1', ['filter' => 'myfilter']);
-$routes->post('/paket/custom', 'HomeUser::paketSimpanCustom', ['filter' => 'myfilter']);
+$routes->post('/paket/custom/(:num)', 'HomeUser::paketSimpanCustom/$1', ['filter' => 'myfilter']);
 $routes->post('/paket/detail', 'HomeUser::paketMasukKeranjang', ['filter' => 'myfilter']);
 $routes->post('/check', 'HomeUser::checkPesananIfExist');
 $routes->post('/check-datetime', 'HomeUser::checkPesananDatetimeIfExist');
