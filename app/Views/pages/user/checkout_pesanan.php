@@ -239,8 +239,21 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Belum</button>
-                    <button type="submit" class="btn btn-primary" id="btnSubmit">Checkout</button>
+                    <div class="col-8">
+                        <div class="row">
+                            <div class="col-6">
+                                <button type="button" class="btn btn-secondary w-100" data-bs-dismiss="modal">Belum</button>
+                            </div>
+                            <div class="col-6">
+                                <a href="#" id="btnSubmit" button class="btn btn-primary w-100">
+                                    <span id="btnSubmitText">Checkout</span>
+                                    <div id="btnSubmitLoading" class="spinner-border text-light d-none" role="status">
+                                        <span class="sr-only"></span>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -350,6 +363,8 @@
         var total_harga = 0;
         var nama_paket = '<?= $pesananUserPaket[0]->nama_paket ?>';
         var status_tanggal = false;
+        var btnSubmitText = document.getElementById("btnSubmitText");
+        var btnSubmitLoading = document.getElementById("btnSubmitLoading");
         const myModal = new bootstrap.Modal(document.getElementById('modalKonfirmasi'));
 
         // Dismiss the modal programmatically
@@ -556,13 +571,15 @@
             }
 
             //set extra orang
-            if (document.getElementById('orangBox').checked) {
-                extra_orang = document.getElementById('extra_orang').value;
+            if (nama_paket.includes("Graduation Package") || nama_paket.includes("Group Package Indoor")) {
+                if (document.getElementById('orangBox').checked) {
+                    extra_orang = document.getElementById('extra_orang').value;
 
-                if (nama_paket.includes('Group Package Indoor')) {
-                    extra_harga = extra_harga + (40000 * extra_orang);
-                } else {
-                    extra_harga = extra_harga + (10000 * extra_orang);
+                    if (nama_paket.includes('Group Package Indoor')) {
+                        extra_harga = extra_harga + (40000 * extra_orang);
+                    } else {
+                        extra_harga = extra_harga + (10000 * extra_orang);
+                    }
                 }
             }
 
@@ -598,6 +615,9 @@
                     },
                 }).showToast();
             } else {
+                btnSubmitText.classList.add("d-none");
+                btnSubmitLoading.classList.remove("d-none");
+
                 //set extra waktu
                 if (document.getElementById('waktuBox').checked) {
                     extra_waktu = document.getElementById('extra_waktu_kerja').value;
@@ -633,10 +653,12 @@
                 }
 
                 //set extra orang
-                if (document.getElementById('orangBox').checked) {
-                    extra_orang = document.getElementById('extra_orang').value;
-                } else {
-                    extra_orang = 0;
+                if (nama_paket.includes("Graduation Package") || nama_paket.includes("Group Package Indoor")) {
+                    if (document.getElementById('orangBox').checked) {
+                        extra_orang = document.getElementById('extra_orang').value;
+                    } else {
+                        extra_orang = 0;
+                    }
                 }
 
                 //set extra wisudawan
@@ -669,16 +691,22 @@
                     dataType: 'json',
                     success: function(response) {
                         if (response.status != 'Belum ada pesanan!') {
+                            btnSubmitText.classList.remove("d-none");
+                            btnSubmitLoading.classList.add("d-none");
                             var snapToken = response.snapToken;
                             console.log('Snap Token:', snapToken);
 
                             window.snap.pay(snapToken);
                         } else {
+                            btnSubmitText.classList.remove("d-none");
+                            btnSubmitLoading.classList.add("d-none");
                             console.log(response.status);
                         }
                         dismissModalKonfirmasi();
                     },
                     error: function(response) {
+                        btnSubmitText.classList.remove("d-none");
+                        btnSubmitLoading.classList.add("d-none");
                         dismissModalKonfirmasi();
                         console.log(response);
                     }
