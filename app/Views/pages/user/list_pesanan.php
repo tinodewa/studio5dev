@@ -130,7 +130,7 @@ function shortNumber($num)
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
-                                    <a href="#" id="simpanUlasan<?= $key ?>" class="btn btn-primary col-4">
+                                    <a href="#testimonials" id="simpanUlasan<?= $key ?>" class="btn btn-primary col-4">
                                         <span id="simpanText<?= $key ?>">Simpan</span>
                                         <div id="simpanLoading<?= $key ?>" class="spinner-border text-light col-4 d-none" role="status">
                                             <span class="sr-only"></span>
