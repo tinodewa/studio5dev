@@ -88,7 +88,7 @@
                 <?php } ?>
                 <?php if (str_contains($pesananUserPaket[0]->nama_paket, "Pre-Wedding Package Indoor") || str_contains($pesananUserPaket[0]->nama_paket, "Maternity") || str_contains($pesananUserPaket[0]->nama_paket, "Graduation Package Indoor") || str_contains($pesananUserPaket[0]->nama_paket, "Family") || str_contains($pesananUserPaket[0]->nama_paket, "Couple")) { ?>
                     <div class="col-md-6">
-                        <label for="extra_background" class="form-label">Penambahan Background Maks. 2 (Rp 50.000,00/tambahan)</label>
+                        <label for="extra_background" class="form-label">Penambahan Background Maks. 4 (Rp 50.000,00/tambahan)</label>
                         <div class="input-group mb-3">
                             <div class="input-group-text">
                                 <input class="form-check-input" type="checkbox" id="backgroundBox" />
