@@ -898,7 +898,6 @@ function shortNumber($num)
                                     <div class="row">
                                         <div class="col-12">
                                             <h5 class="modal-title me-4" id="exampleModalLabel">Paket Wedding (Akad)</h5>
-                                            <input id="input-rating" value="4.5" type="text" class="rating" data-theme="krajee-fas" data-min=0 data-max=5 data-step=0.5 disabled>
                                             <div class="list-group flex-row mt-4" id="list-tab" role="tablist">
                                                 <a class="list-group-item list-group-item-action list-group-item-subpackage active" id="list-controller-akad-0" data-bs-toggle="list" href="#list-akad-0" role="tab" aria-controls="list-akad-0">SIMPLE PACKAGE</a>
                                                 <a class="list-group-item list-group-item-action list-group-item-subpackage" id="list-controller-akad-1" data-bs-toggle="list" href="#list-akad-1" role="tab" aria-controls="list-akad-1">PREMIUM PACKAGE</a>
@@ -913,6 +912,11 @@ function shortNumber($num)
                                                                                     } ?>" id="list-akad-<?= $key ?>" role="tabpanel" aria-labelledby="list-akad-<?= $key ?>">
                                                         <div class="portfolio-wrap">
                                                             <div class="portfolio-info">
+                                                                <?php if ($paketAkad->rating_paket != 0) { ?>
+                                                                    <input id="input-rating" value="<?= $paketAkad->rating_paket ?>" type="text" class="rating" data-theme="krajee-fas" data-min=0 data-max=5 data-step=0.5 disabled>
+                                                                <?php } else { ?>
+                                                                    <input id="input-rating" value="4" type="text" class="rating" data-theme="krajee-fas" data-min=0 data-max=5 data-step=0.5 disabled>
+                                                                <?php } ?>
                                                                 <ul>
                                                                     <li>
                                                                         <strong>Harga </strong>:
@@ -1261,7 +1265,6 @@ function shortNumber($num)
                                     <div class="row">
                                         <div class="col-12">
                                             <h5 class="modal-title me-4" id="exampleModalLabel">Paket Resepsi</h5>
-                                            <input id="input-rating" value="4.5" type="text" class="rating" data-theme="krajee-fas" data-min=0 data-max=5 data-step=0.5 disabled>
                                             <div class="list-group flex-row mt-4" id="list-tab" role="tablist">
                                                 <a class="list-group-item list-group-item-action list-group-item-subpackage active" id="list-controller-resepsi-0" data-bs-toggle="list" href="#list-resepsi-0" role="tab" aria-controls="list-resepsi-0">BRONZE PACKAGE</a>
                                                 <a class="list-group-item list-group-item-action list-group-item-subpackage" id="list-controller-resepsi-1" data-bs-toggle="list" href="#list-resepsi-1" role="tab" aria-controls="list-resepsi-1">SILVER PACKAGE RESEPSI + TEMU</a>
@@ -1278,6 +1281,11 @@ function shortNumber($num)
                                                                                     } ?>" id="list-resepsi-<?= $key ?>" role="tabpanel" aria-labelledby="list-resepsi-<?= $key ?>">
                                                         <div class="portfolio-wrap">
                                                             <div class="portfolio-info">
+                                                                <?php if ($paketResepsi->rating_paket != 0) { ?>
+                                                                    <input id="input-rating" value="<?= $paketResepsi->rating_paket ?>" type="text" class="rating" data-theme="krajee-fas" data-min=0 data-max=5 data-step=0.5 disabled>
+                                                                <?php } else { ?>
+                                                                    <input id="input-rating" value="4" type="text" class="rating" data-theme="krajee-fas" data-min=0 data-max=5 data-step=0.5 disabled>
+                                                                <?php } ?>
                                                                 <ul>
                                                                     <li>
                                                                         <strong>Harga </strong>:
@@ -1625,7 +1633,6 @@ function shortNumber($num)
                                     <div class="row">
                                         <div class="col-12">
                                             <h5 class="modal-title me-4" id="exampleModalLabel">Paket Engagement</h5>
-                                            <input id="input-rating" value="4.5" type="text" class="rating" data-theme="krajee-fas" data-min=0 data-max=5 data-step=0.5 disabled>
                                             <div class="list-group flex-row mt-4" id="list-tab" role="tablist">
                                                 <a class="list-group-item list-group-item-action list-group-item-subpackage active" id="list-controller-engagement-0" data-bs-toggle="list" href="#list-engagement-0" role="tab" aria-controls="list-engagement-0">STANDARD PACKAGE PHOTO</a>
                                                 <a class="list-group-item list-group-item-action list-group-item-subpackage" id="list-controller-engagement-1" data-bs-toggle="list" href="#list-engagement-1" role="tab" aria-controls="list-engagement-1">GLAMOUR PACKAGE PHOTO + VIDEO</a>
@@ -1639,6 +1646,11 @@ function shortNumber($num)
                                                                                     } ?>" id="list-engagement-<?= $key ?>" role="tabpanel" aria-labelledby="list-engagement-<?= $key ?>">
                                                         <div class="portfolio-wrap">
                                                             <div class="portfolio-info">
+                                                                <?php if ($paketEngagement->rating_paket != 0) { ?>
+                                                                    <input id="input-rating" value="<?= $paketEngagement->rating_paket ?>" type="text" class="rating" data-theme="krajee-fas" data-min=0 data-max=5 data-step=0.5 disabled>
+                                                                <?php } else { ?>
+                                                                    <input id="input-rating" value="4" type="text" class="rating" data-theme="krajee-fas" data-min=0 data-max=5 data-step=0.5 disabled>
+                                                                <?php } ?>
                                                                 <ul>
                                                                     <li>
                                                                         <strong>Harga </strong>:
@@ -1980,7 +1992,6 @@ function shortNumber($num)
                                     <div class="row">
                                         <div class="col-12">
                                             <h5 class="modal-title me-4" id="exampleModalLabel">Paket Prewedding Indoor</h5>
-                                            <input id="input-rating" value="4.5" type="text" class="rating" data-theme="krajee-fas" data-min=0 data-max=5 data-step=0.5 disabled>
                                             <div class="list-group flex-row mt-4" id="list-tab" role="tablist">
                                                 <a class="list-group-item list-group-item-action list-group-item-subpackage active" id="list-controller-prewedding-indoor-0" data-bs-toggle="list" href="#list-prewedding-indoor-0" role="tab" aria-controls="list-prewedding-indoor-0">PACKAGE INDOOR</a>
                                             </div>
@@ -1993,6 +2004,11 @@ function shortNumber($num)
                                                                                     } ?>" id="list-prewedding-indoor-<?= $key ?>" role="tabpanel" aria-labelledby="list-prewedding-indoor-<?= $key ?>">
                                                         <div class="portfolio-wrap">
                                                             <div class="portfolio-info">
+                                                                <?php if ($paketPreweddingIndoor->rating_paket != 0) { ?>
+                                                                    <input id="input-rating" value="<?= $paketPreweddingIndoor->rating_paket ?>" type="text" class="rating" data-theme="krajee-fas" data-min=0 data-max=5 data-step=0.5 disabled>
+                                                                <?php } else { ?>
+                                                                    <input id="input-rating" value="4" type="text" class="rating" data-theme="krajee-fas" data-min=0 data-max=5 data-step=0.5 disabled>
+                                                                <?php } ?>
                                                                 <ul>
                                                                     <li>
                                                                         <strong>Harga </strong>:
@@ -2343,7 +2359,6 @@ function shortNumber($num)
                                     <div class="row">
                                         <div class="col-12">
                                             <h5 class="modal-title me-4" id="exampleModalLabel">Paket Prewedding Outdoor</h5>
-                                            <input id="input-rating" value="4.5" type="text" class="rating" data-theme="krajee-fas" data-min=0 data-max=5 data-step=0.5 disabled>
                                             <div class="list-group flex-row mt-4" id="list-tab" role="tablist">
                                                 <a class="list-group-item list-group-item-action list-group-item-subpackage active" id="list-controller-prewedding-outdoor-0" data-bs-toggle="list" href="#list-prewedding-outdoor-0" role="tab" aria-controls="list-prewedding-outdoor-0">OUTDOOR PACKAGE A PHOTO</a>
                                                 <a class="list-group-item list-group-item-action list-group-item-subpackage" id="list-controller-prewedding-outdoor-1" data-bs-toggle="list" href="#list-prewedding-outdoor-1" role="tab" aria-controls="list-prewedding-outdoor-1">OUTDOOR PACKAGE B PHOTO </a>
@@ -2359,6 +2374,11 @@ function shortNumber($num)
                                                                                     } ?>" id="list-prewedding-outdoor-<?= $key ?>" role="tabpanel" aria-labelledby="list-prewedding-outdoor-<?= $key ?>">
                                                         <div class="portfolio-wrap">
                                                             <div class="portfolio-info">
+                                                                <?php if ($paketPreweddingOutdoor->rating_paket != 0) { ?>
+                                                                    <input id="input-rating" value="<?= $paketPreweddingOutdoor->rating_paket ?>" type="text" class="rating" data-theme="krajee-fas" data-min=0 data-max=5 data-step=0.5 disabled>
+                                                                <?php } else { ?>
+                                                                    <input id="input-rating" value="4" type="text" class="rating" data-theme="krajee-fas" data-min=0 data-max=5 data-step=0.5 disabled>
+                                                                <?php } ?>
                                                                 <ul>
                                                                     <li>
                                                                         <strong>Harga </strong>:
@@ -2709,7 +2729,6 @@ function shortNumber($num)
                                     <div class="row">
                                         <div class="col-12">
                                             <h5 class="modal-title me-4" id="exampleModalLabel">Paket maternity</h5>
-                                            <input id="input-rating" value="4.5" type="text" class="rating" data-theme="krajee-fas" data-min=0 data-max=5 data-step=0.5 disabled>
                                             <div class="list-group flex-row mt-4" id="list-tab" role="tablist">
                                                 <a class="list-group-item list-group-item-action list-group-item-subpackage active" id="list-controller-maternity-0" data-bs-toggle="list" href="#list-maternity-0" role="tab" aria-controls="list-maternity-0">MATERNITY PACKAGE</a>
                                             </div>
@@ -2722,6 +2741,11 @@ function shortNumber($num)
                                                                                     } ?>" id="list-maternity-<?= $key ?>" role="tabpanel" aria-labelledby="list-maternity-<?= $key ?>">
                                                         <div class="portfolio-wrap">
                                                             <div class="portfolio-info">
+                                                                <?php if ($paketMaternity->rating_paket != 0) { ?>
+                                                                    <input id="input-rating" value="<?= $paketMaternity->rating_paket ?>" type="text" class="rating" data-theme="krajee-fas" data-min=0 data-max=5 data-step=0.5 disabled>
+                                                                <?php } else { ?>
+                                                                    <input id="input-rating" value="4" type="text" class="rating" data-theme="krajee-fas" data-min=0 data-max=5 data-step=0.5 disabled>
+                                                                <?php } ?>
                                                                 <ul>
                                                                     <li>
                                                                         <strong>Harga </strong>:
@@ -3065,7 +3089,6 @@ function shortNumber($num)
                                     <div class="row">
                                         <div class="col-12">
                                             <h5 class="modal-title me-4" id="exampleModalLabel">Paket Family (Indoor Only)</h5>
-                                            <input id="input-rating" value="4.5" type="text" class="rating" data-theme="krajee-fas" data-min=0 data-max=5 data-step=0.5 disabled>
                                             <div class="list-group flex-row mt-4" id="list-tab" role="tablist">
                                                 <a class="list-group-item list-group-item-action list-group-item-subpackage active" id="list-controller-family-0" data-bs-toggle="list" href="#list-family-0" role="tab" aria-controls="list-family-0">FAMILY PACKAGE</a>
                                             </div>
@@ -3078,6 +3101,11 @@ function shortNumber($num)
                                                                                     } ?>" id="list-family-<?= $key ?>" role="tabpanel" aria-labelledby="list-family-<?= $key ?>">
                                                         <div class="portfolio-wrap">
                                                             <div class="portfolio-info">
+                                                                <?php if ($paketFamily->rating_paket != 0) { ?>
+                                                                    <input id="input-rating" value="<?= $paketFamily->rating_paket ?>" type="text" class="rating" data-theme="krajee-fas" data-min=0 data-max=5 data-step=0.5 disabled>
+                                                                <?php } else { ?>
+                                                                    <input id="input-rating" value="4" type="text" class="rating" data-theme="krajee-fas" data-min=0 data-max=5 data-step=0.5 disabled>
+                                                                <?php } ?>
                                                                 <ul>
                                                                     <li>
                                                                         <strong>Harga </strong>:
@@ -3424,7 +3452,6 @@ function shortNumber($num)
                                     <div class="row">
                                         <div class="col-12">
                                             <h5 class="modal-title me-4" id="exampleModalLabel">Paket Group</h5>
-                                            <input id="input-rating" value="4.5" type="text" class="rating" data-theme="krajee-fas" data-min=0 data-max=5 data-step=0.5 disabled>
                                             <div class="list-group flex-row mt-4" id="list-tab" role="tablist">
                                                 <a class="list-group-item list-group-item-action list-group-item-subpackage active" id="list-controller-group-0" data-bs-toggle="list" href="#list-group-0" role="tab" aria-controls="list-group-0">GROUP PACKAGE INDOOR</a>
                                                 <a class="list-group-item list-group-item-action list-group-item-subpackage" id="list-controller-group-1" data-bs-toggle="list" href="#list-group-1" role="tab" aria-controls="list-group-1">GROUP PACKAGE OUTDOOR</a>
@@ -3438,6 +3465,11 @@ function shortNumber($num)
                                                                                     } ?>" id="list-group-<?= $key ?>" role="tabpanel" aria-labelledby="list-group-<?= $key ?>">
                                                         <div class="portfolio-wrap">
                                                             <div class="portfolio-info">
+                                                                <?php if ($paketGroup->rating_paket != 0) { ?>
+                                                                    <input id="input-rating" value="<?= $paketGroup->rating_paket ?>" type="text" class="rating" data-theme="krajee-fas" data-min=0 data-max=5 data-step=0.5 disabled>
+                                                                <?php } else { ?>
+                                                                    <input id="input-rating" value="4" type="text" class="rating" data-theme="krajee-fas" data-min=0 data-max=5 data-step=0.5 disabled>
+                                                                <?php } ?>
                                                                 <ul>
                                                                     <li>
                                                                         <strong>Harga </strong>:
@@ -3790,7 +3822,6 @@ function shortNumber($num)
                                     <div class="row">
                                         <div class="col-12">
                                             <h5 class="modal-title me-4" id="exampleModalLabel">Paket Event (Outdoor Only)</h5>
-                                            <input id="input-rating" value="4.5" type="text" class="rating" data-theme="krajee-fas" data-min=0 data-max=5 data-step=0.5 disabled>
                                             <div class="list-group flex-row mt-4" id="list-tab" role="tablist">
                                                 <a class="list-group-item list-group-item-action list-group-item-subpackage active" id="list-controller-event-0" data-bs-toggle="list" href="#list-event-0" role="tab" aria-controls="list-event-0">EVENT PACKAGE</a>
                                             </div>
@@ -3803,6 +3834,11 @@ function shortNumber($num)
                                                                                     } ?>" id="list-event-<?= $key ?>" role="tabpanel" aria-labelledby="list-event-<?= $key ?>">
                                                         <div class="portfolio-wrap">
                                                             <div class="portfolio-info">
+                                                                <?php if ($paketEvent->rating_paket != 0) { ?>
+                                                                    <input id="input-rating" value="<?= $paketEvent->rating_paket ?>" type="text" class="rating" data-theme="krajee-fas" data-min=0 data-max=5 data-step=0.5 disabled>
+                                                                <?php } else { ?>
+                                                                    <input id="input-rating" value="4" type="text" class="rating" data-theme="krajee-fas" data-min=0 data-max=5 data-step=0.5 disabled>
+                                                                <?php } ?>
                                                                 <ul>
                                                                     <li>
                                                                         <strong>Harga </strong>:
@@ -4134,7 +4170,6 @@ function shortNumber($num)
                                     <div class="row">
                                         <div class="col-12">
                                             <h5 class="modal-title me-4" id="exampleModalLabel">Paket Couple (Indoor Only)</h5>
-                                            <input id="input-rating" value="4.5" type="text" class="rating" data-theme="krajee-fas" data-min=0 data-max=5 data-step=0.5 disabled>
                                             <div class="list-group flex-row mt-4" id="list-tab" role="tablist">
                                                 <a class="list-group-item list-group-item-action list-group-item-subpackage active" id="list-controller-couple-0" data-bs-toggle="list" href="#list-couple-0" role="tab" aria-controls="list-couple-0">COUPLE PACKAGE</a>
                                             </div>
@@ -4147,6 +4182,11 @@ function shortNumber($num)
                                                                                     } ?>" id="list-couple-<?= $key ?>" role="tabpanel" aria-labelledby="list-couple-<?= $key ?>">
                                                         <div class="portfolio-wrap">
                                                             <div class="portfolio-info">
+                                                                <?php if ($paketCouple->rating_paket != 0) { ?>
+                                                                    <input id="input-rating" value="<?= $paketCouple->rating_paket ?>" type="text" class="rating" data-theme="krajee-fas" data-min=0 data-max=5 data-step=0.5 disabled>
+                                                                <?php } else { ?>
+                                                                    <input id="input-rating" value="4" type="text" class="rating" data-theme="krajee-fas" data-min=0 data-max=5 data-step=0.5 disabled>
+                                                                <?php } ?>
                                                                 <ul>
                                                                     <li>
                                                                         <strong>Harga </strong>:
@@ -4493,7 +4533,6 @@ function shortNumber($num)
                                     <div class="row">
                                         <div class="col-12">
                                             <h5 class="modal-title me-4" id="exampleModalLabel">Paket Personal</h5>
-                                            <input id="input-rating" value="4.5" type="text" class="rating" data-theme="krajee-fas" data-min=0 data-max=5 data-step=0.5 disabled>
                                             <div class="list-group flex-row mt-4" id="list-tab" role="tablist">
                                                 <a class="list-group-item list-group-item-action list-group-item-subpackage active" id="list-controller-personal-0" data-bs-toggle="list" href="#list-personal-0" role="tab" aria-controls="list-personal-0">PERSONAL PACKAGE INDOOR</a>
                                                 <a class="list-group-item list-group-item-action list-group-item-subpackage" id="list-controller-personal-1" data-bs-toggle="list" href="#list-personal-1" role="tab" aria-controls="list-personal-1">PERSONAL PACKAGE OUTDOOR</a>
@@ -4507,6 +4546,11 @@ function shortNumber($num)
                                                                                     } ?>" id="list-personal-<?= $key ?>" role="tabpanel" aria-labelledby="list-personal-<?= $key ?>">
                                                         <div class="portfolio-wrap">
                                                             <div class="portfolio-info">
+                                                                <?php if ($paketPersonal->rating_paket != 0) { ?>
+                                                                    <input id="input-rating" value="<?= $paketPersonal->rating_paket ?>" type="text" class="rating" data-theme="krajee-fas" data-min=0 data-max=5 data-step=0.5 disabled>
+                                                                <?php } else { ?>
+                                                                    <input id="input-rating" value="4" type="text" class="rating" data-theme="krajee-fas" data-min=0 data-max=5 data-step=0.5 disabled>
+                                                                <?php } ?>
                                                                 <ul>
                                                                     <li>
                                                                         <strong>Harga </strong>:
@@ -4859,7 +4903,6 @@ function shortNumber($num)
                                     <div class="row">
                                         <div class="col-12">
                                             <h5 class="modal-title me-4" id="exampleModalLabel">Paket Graduation Indoor</h5>
-                                            <input id="input-rating" value="4.5" type="text" class="rating" data-theme="krajee-fas" data-min=0 data-max=5 data-step=0.5 disabled>
                                             <div class="list-group flex-row mt-4" id="list-tab" role="tablist">
                                                 <a class="list-group-item list-group-item-action list-group-item-subpackage active" id="list-controller-graduation-indoor-0" data-bs-toggle="list" href="#list-graduation-indoor-0" role="tab" aria-controls="list-graduation-indoor-0">GRADUATION PACKAGE INDOOR</a>
                                             </div>
@@ -4872,6 +4915,11 @@ function shortNumber($num)
                                                                                     } ?>" id="list-graduation-indoor-<?= $key ?>" role="tabpanel" aria-labelledby="list-graduation-indoor-<?= $key ?>">
                                                         <div class="portfolio-wrap">
                                                             <div class="portfolio-info">
+                                                                <?php if ($paketGraduationIndoor->rating_paket != 0) { ?>
+                                                                    <input id="input-rating" value="<?= $paketGraduationIndoor->rating_paket ?>" type="text" class="rating" data-theme="krajee-fas" data-min=0 data-max=5 data-step=0.5 disabled>
+                                                                <?php } else { ?>
+                                                                    <input id="input-rating" value="4" type="text" class="rating" data-theme="krajee-fas" data-min=0 data-max=5 data-step=0.5 disabled>
+                                                                <?php } ?>
                                                                 <ul>
                                                                     <li>
                                                                         <strong>Harga </strong>:
@@ -5224,7 +5272,6 @@ function shortNumber($num)
                                     <div class="row">
                                         <div class="col-12">
                                             <h5 class="modal-title me-4" id="exampleModalLabel">Paket Graduation Outdoor</h5>
-                                            <input id="input-rating" value="4.5" type="text" class="rating" data-theme="krajee-fas" data-min=0 data-max=5 data-step=0.5 disabled>
                                             <div class="list-group flex-row mt-4" id="list-tab" role="tablist">
                                                 <a class="list-group-item list-group-item-action list-group-item-subpackage active" id="list-controller-graduation-outdoor-0" data-bs-toggle="list" href="#list-graduation-outdoor-0" role="tab" aria-controls="list-graduation-outdoor-0">GRADUATION OUTDOOR BASIC</a>
                                                 <a class="list-group-item list-group-item-action list-group-item-subpackage" id="list-controller-graduation-outdoor-1" data-bs-toggle="list" href="#list-graduation-outdoor-1" role="tab" aria-controls="list-graduation-outdoor-1">GRADUATION OUTDOOR PREMIUM</a>
@@ -5240,6 +5287,11 @@ function shortNumber($num)
                                                                                     } ?>" id="list-graduation-outdoor-<?= $key ?>" role="tabpanel" aria-labelledby="list-graduation-outdoor-<?= $key ?>">
                                                         <div class="portfolio-wrap">
                                                             <div class="portfolio-info">
+                                                                <?php if ($paketGraduationOutdoor->rating_paket != 0) { ?>
+                                                                    <input id="input-rating" value="<?= $paketGraduationOutdoor->rating_paket ?>" type="text" class="rating" data-theme="krajee-fas" data-min=0 data-max=5 data-step=0.5 disabled>
+                                                                <?php } else { ?>
+                                                                    <input id="input-rating" value="4" type="text" class="rating" data-theme="krajee-fas" data-min=0 data-max=5 data-step=0.5 disabled>
+                                                                <?php } ?>
                                                                 <ul>
                                                                     <li>
                                                                         <strong>Harga </strong>:

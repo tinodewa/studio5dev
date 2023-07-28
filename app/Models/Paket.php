@@ -26,4 +26,19 @@ class Paket extends Model
         'deskripsi_paket',
     ];
     protected $useTimestamps = true;
+
+    public function getPaketWithUlasan(string $id_paket_awal, string $id_paket_akhir)
+    {
+        $db = db_connect();
+
+        $builder = $db->table('paket')
+            ->select('paket.*, COALESCE((SELECT AVG(ulasan.bintang) FROM `ulasan` WHERE `ulasan`.`id_paket` = paket.id_paket), 0) AS rating_paket')
+            ->where('paket.id_paket >= ', $id_paket_awal)
+            ->where('paket.id_paket <= ', $id_paket_akhir)
+            ->groupBy('paket.id_paket')
+            ->get();
+        $result = $builder->getResult();
+
+        return $result;
+    }
 }
