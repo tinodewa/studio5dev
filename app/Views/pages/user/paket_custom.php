@@ -43,7 +43,7 @@ function shortNumber($num)
                             <option value="4" <?php if ($paket->jumlah_foto_edit == '15 foto edit') { ?> selected <?php } ?>>15 foto edit Rp 75.000,00</option>
                             <option value="5" <?php if ($paket->jumlah_foto_edit == '20 photo edited') { ?> selected <?php } ?>>20 foto edit Rp 100.000,00</option>
                             <option value="6" <?php if ($paket->jumlah_foto_edit == '50 photo edited') { ?> selected <?php } ?>>50 photo edited Rp 250.000,00</option>
-                            <?php if (str_contains($paket->jumlah_foto, "Unlimited photo") || str_contains($paket->jumlah_foto, "Unlimited")) { ?>
+                            <?php if (str_contains($paket->jumlah_foto, "Unlimited photo") || str_contains($paket->jumlah_foto, "Unlimited") || str_contains($paket->jumlah_foto, "150 photo")) { ?>
                                 <option value="7" <?php if ($paket->jumlah_foto_edit == '100 photo edited') { ?> selected <?php } ?>>100 photo edited Rp 500.000,00</option>
                                 <option value="8" <?php if ($paket->jumlah_foto_edit == '150 photo edited') { ?> selected <?php } ?>>150 photo edited Rp 750.000,00</option>
                                 <option value="9" <?php if ($paket->jumlah_foto_edit == 'All photo edited') { ?> selected <?php } ?>>All photo edited Rp 1.000.000,00</option>
@@ -311,7 +311,7 @@ function shortNumber($num)
             } else if ('<?= $paket->jumlah_foto_edit ?>' == 'All photos edited tone') {
                 harga_edit_foto_lama = 1200000;
             }
-            350 = (500 - 250) + 100
+
             harga_paket_baru = (harga_paket_baru - harga_edit_foto_lama) + harga_edit_foto;
 
             //set harga videografi
