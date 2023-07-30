@@ -50,7 +50,7 @@
 
 <!-- custom js to handle show and hide password -->
 <script type="text/javascript">
-    $(document).ready(function() {
+    jQuery(document).ready(function() {
         $('#showHidePassword').click(function(e) {
             var x = document.getElementById("password");
             var show_eye = document.getElementById("show_eye_password");

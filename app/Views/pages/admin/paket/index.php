@@ -26,12 +26,14 @@
         <div class="content">
             <!-- Dynamic Table Full -->
             <div class="block">
-                <div class="block-content block-content-full">
-                    <div class="form-group row">
-                        <div class="col-md-9">
-                            <a href="/admin/paket/new" class="btn btn-alt-primary">Tambah</a>
-                        </div>
+                <!-- <div class="form-group row">
+                    </div> -->
+                <div class="block-header block-header-default">
+                    <div class="col-md-9">
+                        <a href="/admin/paket/new" class="btn btn-alt-primary">Tambah</a>
                     </div>
+                </div>
+                <div class="block-content block-content-full">
                     <!-- DataTables functionality is initialized with .js-dataTable-full class in js/pages/be_tables_datatables.min.js which was auto compiled from _es6/pages/be_tables_datatables.js -->
                     <table class="table table-bordered table-striped table-vcenter js-dataTable-full">
                         <thead>
@@ -89,8 +91,80 @@
                                                         <div class="form-group row">
                                                             <div class="col-12">
                                                                 <div class="form-material floating">
-                                                                    <input type="text" id="warna_nama_paket" class="form-control" value="<?= $paket->warna_nama_paket ?>" disabled>
-                                                                    <label for="warna_nama_paket">Warna Nama Paket</label>
+                                                                    <input type="text" id="harga_paket" class="form-control" value="<?= number_to_currency($paket->harga_paket, 'IDR', 'id_ID'); ?>" disabled>
+                                                                    <label for="harga_paket">Harga Paket</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <div class="col-12">
+                                                                <div class="form-material floating">
+                                                                    <input type="text" id="fotografer" class="form-control" value="<?= $paket->fotografer ?> orang" disabled>
+                                                                    <label for="fotografer">Jumlah Fotografer</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <div class="col-12">
+                                                                <div class="form-material floating">
+                                                                    <input type="text" id="videografer" class="form-control" value="<?= $paket->videografer ?> orang" disabled>
+                                                                    <label for="videografer">Jumlah Videografer</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <div class="col-12">
+                                                                <div class="form-material floating">
+                                                                    <input type="text" id="videografer" class="form-control" value="<?= $paket->asisten ?> orang" disabled>
+                                                                    <label for="videografer">Jumlah Asisten</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <div class="col-12">
+                                                                <div class="form-material floating">
+                                                                    <input type="text" id="waktu" class="form-control" value="<?= $paket->waktu_kerja ?> jam" disabled>
+                                                                    <label for="waktu">Waktu Kerja</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <div class="col-12">
+                                                                <div class="form-material floating">
+                                                                    <input type="text" class="form-control" value="<?= $paket->jumlah_foto ?>" disabled>
+                                                                    <label for="kapasitas">Jumlah Hasil Foto</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <div class="col-12">
+                                                                <div class="form-material floating">
+                                                                    <input type="text" class="form-control" value="<?= $paket->jumlah_foto_edit ?>" disabled>
+                                                                    <label for="kapasitas">Jumlah Hasil Edit Foto</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <div class="col-12">
+                                                                <div class="form-material floating">
+                                                                    <input type="text" id="hasil_cetak" class="form-control" value="<?= $paket->cetak_foto ?>" disabled>
+                                                                    <label for="hasil_cetak">Hasil Cetak</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <div class="col-12">
+                                                                <div class="form-material floating">
+                                                                    <input type="text" id="hasil_videografi" class="form-control" value="<?= $paket->videografi ?>" disabled>
+                                                                    <label for="hasil_videografi">Videografi</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <div class="col-12">
+                                                                <div class="form-material floating">
+                                                                    <input type="text" id="penyimpanan" class="form-control" value="<?= $paket->penyimpanan ?>" disabled>
+                                                                    <label for="penyimpanan">Penyimpanan</label>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -99,86 +173,6 @@
                                                                 <div class="form-material floating">
                                                                     <textarea class="form-control" id="deskripsi_paket" name="deskripsi_paket" rows="8" placeholder="Please add a comment" disabled><?= $paket->deskripsi_paket ?></textarea>
                                                                     <label for="deskripsi_paket">Deskripsi Paket</label>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group row">
-                                                            <div class="col-12">
-                                                                <div class="form-material floating">
-                                                                    <input type="text" id="harga_paket" class="form-control" value="<?= $paket->harga_paket ?>" disabled>
-                                                                    <label for="harga_paket">Harga Paket</label>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group row">
-                                                            <div class="col-12">
-                                                                <div class="form-material floating">
-                                                                    <input type="text" id="kapasitas" class="form-control" value="<?= $paket->kapasitas ?>" disabled>
-                                                                    <label for="kapasitas">Jumlah Hasil Foto</label>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group row">
-                                                            <div class="col-12">
-                                                                <div class="form-material floating">
-                                                                    <input type="number" id="fotografer" class="form-control" value="<?= $paket->fotografer ?>" disabled>
-                                                                    <label for="fotografer">Jumlah Fotografer</label>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group row">
-                                                            <div class="col-12">
-                                                                <div class="form-material floating">
-                                                                    <input type="number" id="videografer" class="form-control" value="<?= $paket->videografer ?>" disabled>
-                                                                    <label for="videografer">Jumlah Videografer</label>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group row">
-                                                            <div class="col-12">
-                                                                <div class="form-material floating">
-                                                                    <input type="text" id="waktu" class="form-control" value="<?= $paket->waktu ?> jam" disabled>
-                                                                    <label for="waktu">Waktu Liputan</label>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group row">
-                                                            <div class="col-12">
-                                                                <div class="form-material floating">
-                                                                    <input type="number" id="tempat_indoor" class="form-control" value="<?= $paket->tempat_indoor ?>" disabled>
-                                                                    <label for="tempat_indoor">Jumlah Tempat Indoor</label>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group row">
-                                                            <div class="col-12">
-                                                                <div class="form-material floating">
-                                                                    <input type="number" id="tempat_outdoor" class="form-control" value="<?= $paket->tempat_outdoor ?>" disabled>
-                                                                    <label for="tempat_outdoor">Jumlah Tempat Outdoor</label>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group row">
-                                                            <div class="col-12">
-                                                                <div class="form-material floating">
-                                                                    <input type="text" id="hasil_cetak" class="form-control" value="<?= $paket->hasil_ukuran_cetak ?> cm" disabled>
-                                                                    <label for="hasil_cetak">Ukuran Foto Yang Dicetak</label>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group row">
-                                                            <div class="col-12">
-                                                                <div class="form-material floating">
-                                                                    <input type="number" id="hasil_editing" class="form-control" value="<?= $paket->hasil_editing ?>" disabled>
-                                                                    <label for="hasil_editing">Jumlah Foto Yang Diedit</label>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group row">
-                                                            <div class="col-12">
-                                                                <div class="form-material floating">
-                                                                    <input type="number" id="hasil_cinematic" class="form-control" value="<?= $paket->hasil_cinematic ?>" disabled>
-                                                                    <label for="hasil_cinematic">Video Cinematic</label>
                                                                 </div>
                                                             </div>
                                                         </div>

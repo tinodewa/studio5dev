@@ -29,7 +29,7 @@
                 <div class="block-content block-content-full">
                     <div class="form-group row">
                         <div class="col-md-9">
-                            <a href="/admin/pesanan/new" class="btn btn-alt-primary">Tambah</a>
+                            <button class="btn btn-alt-danger" disabled>Data Pesanan Tidak Dapat Dibuat Sendiri</button>
                         </div>
                     </div>
                     <!-- DataTables functionality is initialized with .js-dataTable-full class in js/pages/be_tables_datatables.min.js which was auto compiled from _es6/pages/be_tables_datatables.js -->
@@ -62,9 +62,6 @@
                                         <button type="button" class="btn btn-sm btn-secondary" title="Detail" data-toggle="modal" data-target="#modal<?= $key ?>">
                                             <i class="fa fa-info"></i>
                                         </button>
-                                        <a href="/admin/pesanan/<?= $pesanan->id_pesanan ?>/edit" class="btn btn-sm btn-secondary" title="Edit">
-                                            <i class="fa fa-pencil-square-o"></i>
-                                        </a>
                                         <button type="button" class="btn btn-sm btn-secondary" title="Hapus" data-toggle="modal" data-target="#modal-confirmation-<?= $key ?>">
                                             <i class="fa fa-trash"></i>
                                         </button>
@@ -144,28 +141,56 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <div class="form-group row">
-                                                            <div class="col-12">
-                                                                <div class="form-material floating">
-                                                                    <input type="text" id="extra_premium_magazine" class="form-control" value="<?php if ($pesanan->extra_premium_magazine == 1) { ?>
-                                                                                                                                                    'Album Magnetic'
-                                                                                                                                                <?php } else if ($pesanan->extra_premium_magazine == 2) { ?>
-                                                                                                                                                    'Premium Magazine'
-                                                                                                                                                <?php } else if ($pesanan->extra_premium_magazine == 3) { ?>
-                                                                                                                                                    'Magazine Album'
-                                                                                                                                                <?php }  ?>" disabled>
-                                                                    <label for="extra_premium_magazine">Extra Hasil Cetak</label>
+                                                        <?php if ($pesanan->extra_premium_magazine != 0) { ?>
+                                                            <div class="form-group row">
+                                                                <div class="col-12">
+                                                                    <div class="form-material floating">
+                                                                        <input type="text" id="extra_premium_magazine" class="form-control" value=<?php if ($pesanan->extra_premium_magazine == 1) { ?> "Album Magnetic" <?php } else if ($pesanan->extra_premium_magazine == 2) { ?> "Premium Magazine" <?php } else if ($pesanan->extra_premium_magazine == 3) { ?> "Magazine Album" <?php }  ?> disabled>
+                                                                        <label for="extra_premium_magazine">Extra Hasil Cetak</label>
+                                                                    </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                        <div class="form-group row">
-                                                            <div class="col-12">
-                                                                <div class="form-material floating">
-                                                                    <input type="text" id="extra_background_dan_outfit" class="form-control" value="<?= $pesanan->extra_background_dan_outfit ?> set" disabled>
-                                                                    <label for="extra_background_dan_outfit">Extra Background dan Outfit</label>
+                                                        <?php } ?>
+                                                        <?php if ($pesanan->extra_background != 0) { ?>
+                                                            <div class="form-group row">
+                                                                <div class="col-12">
+                                                                    <div class="form-material floating">
+                                                                        <input type="text" id="extra_background" class="form-control" value="<?= $pesanan->extra_background ?> set" disabled>
+                                                                        <label for="extra_background">Extra Background</label>
+                                                                    </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
+                                                        <?php } ?>
+                                                        <?php if ($pesanan->extra_tempat != 0) { ?>
+                                                            <div class="form-group row">
+                                                                <div class="col-12">
+                                                                    <div class="form-material floating">
+                                                                        <input type="text" id="extra_tempat" class="form-control" value="<?= $pesanan->extra_tempat ?> tempat" disabled>
+                                                                        <label for="extra_tempat">Extra Tempat</label>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        <?php } ?>
+                                                        <?php if ($pesanan->extra_orang != 0) { ?>
+                                                            <div class="form-group row">
+                                                                <div class="col-12">
+                                                                    <div class="form-material floating">
+                                                                        <input type="text" id="extra_orang" class="form-control" value="<?= $pesanan->extra_orang ?> orang" disabled>
+                                                                        <label for="extra_orang">Extra Orang</label>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        <?php } ?>
+                                                        <?php if ($pesanan->extra_wisudawan != 0) { ?>
+                                                            <div class="form-group row">
+                                                                <div class="col-12">
+                                                                    <div class="form-material floating">
+                                                                        <input type="text" id="extra_wisudawan" class="form-control" value="<?= $pesanan->extra_wisudawan ?> orang" disabled>
+                                                                        <label for="extra_wisudawan">Extra Wisudawan</label>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        <?php } ?>
                                                         <div class="form-group row">
                                                             <div class="col-12">
                                                                 <div class="form-material floating">

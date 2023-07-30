@@ -29,7 +29,7 @@
                 <div class="block-content block-content-full">
                     <div class="form-group row">
                         <div class="col-md-9">
-                            <button href="/admin/pembayaran/new" class="btn btn-alt-danger" disabled>Data Pembayaran Tidak Dapat Dibuat Sendiri</button>
+                            <button class="btn btn-alt-danger" disabled>Data Pembayaran Tidak Dapat Dibuat Sendiri</button>
                         </div>
                     </div>
                     <!-- DataTables functionality is initialized with .js-dataTable-full class in js/pages/be_tables_datatables.min.js which was auto compiled from _es6/pages/be_tables_datatables.js -->

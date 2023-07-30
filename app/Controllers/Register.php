@@ -16,7 +16,7 @@ class Register extends BaseController
             if ($session->get('role') == 'admin') {
                 return redirect()->to('/admin');
             } else if ($session->get('role') == 'user') {
-                return redirect()->to('/user');
+                return redirect()->to('/');
             } else if ($session->get('role') == 'fotografer') {
                 return redirect()->to('/fotografer');
             }

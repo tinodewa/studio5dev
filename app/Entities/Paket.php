@@ -7,6 +7,7 @@ use CodeIgniter\Entity\Entity;
 class Paket extends Entity
 {
     protected $attributes = [
+        'id_paket' => null,
         'nama_paket' => null,
         'harga_paket' => null,
         'fotografer' => null,
@@ -22,14 +23,19 @@ class Paket extends Entity
         'deskripsi_paket' => null,
     ];
 
-    public function setNamaPaket(string $namaPaket): self
+    public function setid_paket(string $id_paket): self
     {
-        $this->attributes['nama_paket'] = $namaPaket;
+        $this->attributes['id_paket'] = $id_paket;
         return $this;
     }
-    public function setHargaPaket(string $hargaPaket): self
+    public function setNamaPaket(string $nama_paket): self
     {
-        $this->attributes['harga_paket'] = $hargaPaket;
+        $this->attributes['nama_paket'] = $nama_paket;
+        return $this;
+    }
+    public function setHargaPaket(string $harga_paket): self
+    {
+        $this->attributes['harga_paket'] = $harga_paket;
         return $this;
     }
     public function setFotografer(string $fotografer): self

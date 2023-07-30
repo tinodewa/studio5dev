@@ -399,6 +399,42 @@ function shortNumber($num)
                         }
                     </script>
                 </div>
+                <!-- card untuk paket baru -->
+                <?php foreach ($paketsBaru as $key => $paketBaru) : ?>
+                    <div class="col-lg-3 col-md-6" data-aos="zoom-in" data-aos-delay="100">
+                        <div class="box">
+                            <h3 style="color: #A55474;"><?= $paketBaru->nama_paket; ?></h3>
+                            <img src="/assets/img/package/custom.png" class="img-fluid" alt="">
+                            <!-- Button trigger modal -->
+                            <button type="button" id="paketBaruButton<?= $key ?>" class="btn btn-buy">
+                                Detail paket
+                            </button>
+                        </div>
+                        <script>
+                            // Check if the user is already logged in
+                            var isLoggedIn = false;
+
+                            <?php if (isset($_SESSION['logged_in'])) { ?>
+                                isLoggedIn = true;
+                            <?php } ?>
+
+                            // Update button behavior based on login status
+                            var modalButton = document.getElementById('paketBaruButton<?= $key ?>');
+                            if (isLoggedIn) {
+                                modalButton.addEventListener('click', function() {
+                                    // Show the modal if the user is already logged in
+                                    var loginModal = new bootstrap.Modal(document.getElementById('modalBaru<?= $key ?>'));
+                                    loginModal.show();
+                                });
+                            } else {
+                                modalButton.addEventListener('click', function() {
+                                    // Redirect to the login page if the user is not logged in
+                                    window.location.href = '/login';
+                                });
+                            }
+                        </script>
+                    </div>
+                <?php endforeach; ?>
             </div>
         </div>
     </section>
@@ -848,7 +884,6 @@ function shortNumber($num)
             </div>
         </div>
     </div>
-
 
     <!-- list submodal -->
     <!-- Modal Akad -->
@@ -5597,6 +5632,365 @@ function shortNumber($num)
             </div>
         </div>
     </div>
+
+    <!-- Modal Paket Baru -->
+    <?php foreach ($paketsBaru as $key => $paketBaru) : ?>
+        <div class="modal fade" id="modalBaru<?= $key ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header" style="border:none;">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- ======= Portfolio Details Section ======= -->
+                        <section id="portfolio-details" class="portfolio-details" style="padding-top:0;">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <div class="portfolio-details-slider swiper">
+                                            <div class="swiper-wrapper align-items-center">
+                                                <div class="swiper-slide">
+                                                    <img src="/assets/img/detailpaket/akad-1.jpg" alt="">
+                                                </div>
+                                                <div class="swiper-slide">
+                                                    <img src="/assets/img/detailpaket/akad-2.jpg" alt="">
+                                                </div>
+                                                <div class="swiper-slide">
+                                                    <img src="/assets/img/detailpaket/akad-3.jpg" alt="">
+                                                </div>
+                                                <div class="swiper-slide">
+                                                    <img src="/assets/img/detailpaket/akad-4.jpg" alt="">
+                                                </div>
+                                                <div class="swiper-slide">
+                                                    <img src="/assets/img/detailpaket/akad-5.jpg" alt="">
+                                                </div>
+                                                <div class="swiper-slide">
+                                                    <img src="/assets/img/detailpaket/akad-6.jpg" alt="">
+                                                </div>
+                                                <div class="swiper-slide">
+                                                    <img src="/assets/img/detailpaket/akad-7.jpg" alt="">
+                                                </div>
+                                                <div class="swiper-slide">
+                                                    <img src="/assets/img/detailpaket/akad-8.jpg" alt="">
+                                                </div>
+                                            </div>
+                                            <div class="swiper-pagination"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-8">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <h5 class="modal-title me-4" id="exampleModalLabel"><?= $paketBaru->nama_paket ?></h5>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="tab-content" id="nav-tabContent">
+                                                    <div class="portfolio-wrap">
+                                                        <div class="portfolio-info">
+                                                            <?php if ($paketBaru->rating_paket != 0) { ?>
+                                                                <input id="input-rating" value="<?= $paketBaru->rating_paket ?>" type="text" class="rating" data-theme="krajee-fas" data-min=0 data-max=5 data-step=0.5 disabled>
+                                                            <?php } else { ?>
+                                                                <input id="input-rating" value="4" type="text" class="rating" data-theme="krajee-fas" data-min=0 data-max=5 data-step=0.5 disabled>
+                                                            <?php } ?>
+                                                            <ul>
+                                                                <li>
+                                                                    <strong>Harga </strong>:
+                                                                    <?=
+                                                                    helper('number');
+                                                                    echo number_to_currency($paketBaru->harga_paket, 'IDR', 'id_ID');
+                                                                    ?>
+                                                                </li>
+                                                                <li><strong>Tenaga Kerja </strong>:
+
+                                                                    <?php if ($paketBaru->fotografer != 0) {
+                                                                        echo $paketBaru->fotografer ?>
+                                                                        Fotografer
+                                                                        <?php if ($paketBaru->videografer != 0) { ?>
+                                                                            <?= $paketBaru->videografer ?> Videografer
+                                                                        <?php } ?>
+                                                                    <?php } ?>
+                                                                    <?php if ($paketBaru->asisten != 0) {
+                                                                        echo $paketBaru->asisten ?>
+                                                                        Asisten
+                                                                    <?php } ?>
+                                                                </li>
+                                                                <li>
+                                                                    <strong>Waktu kerja </strong>:
+                                                                    <?= $paketBaru->waktu_kerja; ?>
+                                                                </li>
+                                                                <li>
+                                                                    <strong>Jumlah foto </strong>:
+                                                                    <?= $paketBaru->jumlah_foto; ?>
+                                                                </li>
+                                                                <li>
+                                                                    <strong>Jumlah foto edit </strong>:
+                                                                    <?= $paketBaru->jumlah_foto_edit; ?>
+                                                                </li>
+                                                                <li>
+                                                                    <strong>Cetak </strong>:
+                                                                    <?= $paketBaru->cetak_foto; ?>
+                                                                </li>
+                                                                <?php if ($paketBaru->videografi != '') { ?>
+                                                                    <li>
+                                                                        <strong>Videografi </strong>:
+                                                                        <?= $paketBaru->videografi; ?>
+                                                                    </li>
+                                                                <?php } ?>
+                                                                <li>
+                                                                    <strong>Penyimpanan </strong>:
+                                                                    <?= $paketBaru->penyimpanan; ?>
+                                                                </li>
+                                                                <li>
+                                                                    <strong>Deskripsi Paket </strong>:
+                                                                    <?= $paketBaru->deskripsi_paket; ?>
+                                                                </li>
+                                                            </ul>
+                                                            <div class="portfolio-description">
+                                                                <div class="row">
+                                                                    <div class="col-6">
+                                                                        <a href="#" id="pesanSekarangPaketBaru<?= $key ?>" button class="btn btn-package btn-md w-100 mb-3 mr-2">
+                                                                            <span id="pesanTextPaketBaru<?= $key ?>">Pesan Sekarang</span>
+                                                                            <div id="pesanLoadingPaketBaru<?= $key ?>" class="spinner-border text-light d-none" role="status">
+                                                                                <span class="sr-only"></span>
+                                                                            </div>
+                                                                        </a>
+                                                                    </div>
+                                                                    <div class="col-6">
+                                                                        <a href="#" id="masukkanKeranjangPaketBaru<?= $key ?>" button class="btn btn-package btn-md w-100 mb-3 mr-2">
+                                                                            <span id="keranjangTextPaketBaru<?= $key ?>">Masukkan Keranjang</span>
+                                                                            <div id="keranjangLoadingPaketBaru<?= $key ?>" class="spinner-border text-light d-none" role="status">
+                                                                                <span class="sr-only"></span>
+                                                                            </div>
+                                                                        </a>
+                                                                    </div>
+                                                                    <div class="col-6">
+                                                                        <a href="#" id="customPaketBaru<?= $key ?>" button class="btn btn-package btn-md w-100 mb-3 mr-2">
+                                                                            <span id="customTextPaketBaru<?= $key ?>">Custom Paket Ini</span>
+                                                                            <div id="customLoadingPaketBaru<?= $key ?>" class="spinner-border text-light d-none" role="status">
+                                                                                <span class="sr-only"></span>
+                                                                            </div>
+                                                                        </a>
+                                                                    </div>
+                                                                    <div class="col-6">
+                                                                        <a href="https://wa.me/6285156443674" button class="btn btn-success btn-md w-100 mb-3 mr-2">
+                                                                            Konsultasi
+                                                                        </a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- js untuk pesanan -->
+                                                <script type="text/javascript">
+                                                    $(document).ready(function() {
+                                                        $('#customPaketBaru<?= $key ?>').on('click', function(e) {
+                                                            e.preventDefault();
+                                                            // 
+                                                            var customText = document.getElementById("customTextPaketBaru<?= $key ?>");
+                                                            var customLoading = document.getElementById("customLoadingPaketBaru<?= $key ?>");
+
+                                                            customText.classList.add("d-none");
+                                                            customLoading.classList.remove("d-none");
+
+                                                            $.ajax({
+                                                                url: '<?= site_url('/check') ?>',
+                                                                type: 'POST',
+                                                                success: function(response) {
+                                                                    if (response.status == 'Belum ada pesanan!') {
+                                                                        customText.classList.remove("d-none");
+                                                                        customLoading.classList.add("d-none");
+                                                                        window.location.href = '<?= base_url('/paket/custom/' . $paketBaru->id_paket) ?>';
+                                                                    } else if (response.status == 'Belum login!') {
+                                                                        customText.classList.remove("d-none");
+                                                                        customLoading.classList.add("d-none");
+                                                                        window.location.href = '<?= base_url('/login') ?>';
+                                                                    } else {
+                                                                        customText.classList.remove("d-none");
+                                                                        customLoading.classList.add("d-none");
+                                                                        Toastify({
+                                                                            text: response.status,
+                                                                            duration: 3000,
+                                                                            offset: {
+                                                                                x: 50,
+                                                                            },
+                                                                        }).showToast();
+                                                                    }
+                                                                },
+                                                                error: function() {
+                                                                    customText.classList.remove("d-none");
+                                                                    customLoading.classList.add("d-none");
+                                                                    Toastify({
+                                                                        text: "Gagal!",
+                                                                        duration: 3000,
+                                                                        offset: {
+                                                                            x: 50,
+                                                                        },
+                                                                    }).showToast();
+                                                                }
+                                                            });
+                                                        });
+                                                        $('#pesanSekarangPaketBaru<?= $key ?>').on('click', function(e) {
+                                                            e.preventDefault();
+
+                                                            var pesanText = document.getElementById("pesanTextPaketBaru<?= $key ?>");
+                                                            var pesanLoading = document.getElementById("pesanLoadingPaketBaru<?= $key ?>");
+
+                                                            pesanText.classList.add("d-none");
+                                                            pesanLoading.classList.remove("d-none");
+
+                                                            $.ajax({
+                                                                url: '<?= site_url('/check') ?>',
+                                                                type: 'POST',
+                                                                success: function(response) {
+                                                                    if (response.status == 'Belum ada pesanan!') {
+                                                                        $.ajax({
+                                                                            url: '<?= site_url('/paket/detail') ?>',
+                                                                            type: 'POST',
+                                                                            data: {
+                                                                                id_paket: <?= $paketBaru->id_paket ?>,
+                                                                                type: 'pesan',
+                                                                            },
+                                                                            success: function(response) {
+                                                                                pesanText.classList.remove("d-none");
+                                                                                pesanLoading.classList.add("d-none");
+                                                                                Toastify({
+                                                                                    text: "Berhasil!",
+                                                                                    duration: 3000,
+                                                                                    offset: {
+                                                                                        x: 50,
+                                                                                    },
+                                                                                }).showToast();
+                                                                                window.location.href = '<?= base_url('/checkout') ?>';
+                                                                            },
+                                                                            error: function() {
+                                                                                pesanText.classList.remove("d-none");
+                                                                                pesanLoading.classList.add("d-none");
+                                                                                Toastify({
+                                                                                    text: "Gagal!",
+                                                                                    duration: 3000,
+                                                                                    offset: {
+                                                                                        x: 50,
+                                                                                    },
+                                                                                }).showToast();
+                                                                            }
+                                                                        });
+                                                                    } else if (response.status == 'Belum login!') {
+                                                                        pesanText.classList.remove("d-none");
+                                                                        pesanLoading.classList.add("d-none");
+                                                                        window.location.href = '<?= base_url('/login') ?>';
+                                                                    } else {
+                                                                        pesanText.classList.remove("d-none");
+                                                                        pesanLoading.classList.add("d-none");
+                                                                        Toastify({
+                                                                            text: response.status,
+                                                                            duration: 3000,
+                                                                            offset: {
+                                                                                x: 50,
+                                                                            },
+                                                                        }).showToast();
+                                                                    }
+                                                                },
+                                                                error: function() {
+                                                                    pesanText.classList.remove("d-none");
+                                                                    pesanLoading.classList.add("d-none");
+                                                                    Toastify({
+                                                                        text: "Gagal!",
+                                                                        duration: 3000,
+                                                                        offset: {
+                                                                            x: 50,
+                                                                        },
+                                                                    }).showToast();
+                                                                }
+                                                            });
+                                                        });
+                                                        $('#masukkanKeranjangPaketBaru<?= $key ?>').on('click', function(e) {
+                                                            e.preventDefault();
+
+                                                            var keranjangText = document.getElementById("keranjangTextPaketBaru<?= $key ?>");
+                                                            var keranjangLoading = document.getElementById("keranjangLoadingPaketBaru<?= $key ?>");
+
+                                                            keranjangText.classList.add("d-none");
+                                                            keranjangLoading.classList.remove("d-none");
+
+                                                            const anchorBtn = document.getElementById('masukkanKeranjangPaketBaru<?= $key ?>');
+                                                            anchorBtn.disabled = true;
+                                                            // perform AJAX request here
+                                                            $.ajax({
+                                                                url: '<?= site_url('/check') ?>',
+                                                                type: 'POST',
+                                                                success: function(response) {
+                                                                    if (response.status == 'Belum ada pesanan!') {
+                                                                        $.ajax({
+                                                                            url: '<?= site_url('/paket/detail') ?>',
+                                                                            type: 'POST',
+                                                                            data: {
+                                                                                id_paket: <?= $paketBaru->id_paket ?>,
+                                                                                type: 'keranjang',
+                                                                            },
+                                                                            success: function(response) {
+                                                                                keranjangText.classList.remove("d-none");
+                                                                                keranjangLoading.classList.add("d-none");
+                                                                                Toastify({
+                                                                                    text: "Berhasil!",
+                                                                                    duration: 3000,
+                                                                                    offset: {
+                                                                                        x: 50,
+                                                                                    },
+                                                                                }).showToast();
+                                                                            },
+                                                                            error: function() {
+                                                                                Toastify({
+                                                                                    text: "Gagal!",
+                                                                                    duration: 3000,
+                                                                                    offset: {
+                                                                                        x: 50,
+                                                                                    },
+                                                                                }).showToast();
+                                                                            }
+                                                                        });
+                                                                    } else if (response.status == 'Belum login!') {
+                                                                        keranjangText.classList.remove("d-none");
+                                                                        keranjangLoading.classList.add("d-none");
+                                                                        window.location.href = '<?= base_url('/login') ?>';
+                                                                    } else {
+                                                                        keranjangText.classList.remove("d-none");
+                                                                        keranjangLoading.classList.add("d-none");
+                                                                        Toastify({
+                                                                            text: response.status,
+                                                                            duration: 3000,
+                                                                            offset: {
+                                                                                x: 50,
+                                                                            },
+                                                                        }).showToast();
+                                                                    }
+                                                                },
+                                                                error: function() {
+                                                                    keranjangText.classList.remove("d-none");
+                                                                    keranjangLoading.classList.add("d-none");
+                                                                    Toastify({
+                                                                        text: "Gagal!",
+                                                                        duration: 3000,
+                                                                        offset: {
+                                                                            x: 50,
+                                                                        },
+                                                                    }).showToast();
+                                                                }
+                                                            });
+                                                        });
+                                                    });
+                                                </script>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                        <!-- End Portfolio Details Section -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- <?php endforeach; ?> -->
 </main>
 <!-- End #main -->
 

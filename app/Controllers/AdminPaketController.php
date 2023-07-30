@@ -18,6 +18,7 @@ class AdminPaketController extends BaseController
             //cek position dari session
             if ($session->get('role') == 'admin') {
                 $data['title'] = 'Paket';
+                helper('number');
                 $paket = new ModelsPaket();
                 $data['pakets'] = $paket->orderBy('id_paket', 'ASC')->findAll();
 
@@ -62,45 +63,32 @@ class AdminPaketController extends BaseController
             if ($session->get('role') == 'admin') {
                 $paket = new ModelsPaket();
                 $nama_paket = $this->request->getVar('nama_paket');
-                $jumlah_fotografer = $this->request->getVar('jumlah_fotografer');
-                $jumlah_videografer = $this->request->getVar('jumlah_videografer');
-                $waktu_liputan = $this->request->getVar('waktu_liputan');
-                $jumlah_indoor = $this->request->getVar('jumlah_indoor');
-                $jumlah_outdoor = $this->request->getVar('jumlah_outdoor');
-                $hasil_jumlah = $this->request->getVar('hasil_jumlah');
-                $hasil_editing = $this->request->getVar('hasil_editing');
+                $harga_paket = $this->request->getVar('harga_paket');
+                $waktu_kerja = $this->request->getVar('waktu_kerja');
+                $deskripsi_paket = $this->request->getVar('deskripsi_paket');
+                $fotografer = $this->request->getVar('fotografer');
+                $videografer = $this->request->getVar('videografer');
+                $asisten = $this->request->getVar('asisten');
+                $jumlah_foto = $this->request->getVar('jumlah_foto');
+                $jumlah_edit = $this->request->getVar('jumlah_edit');
+                $hasil_cetak = $this->request->getVar('hasil_cetak');
+                $hasil_videografi = $this->request->getVar('hasil_videografi');
 
-                $harga_fotografer = 400000 * $jumlah_fotografer;
-                $harga_videografer = 500000 * $jumlah_videografer;
-                $harga_liputan_perjam = 100000 * $waktu_liputan;
-                $harga_indoor = 50000 * $jumlah_indoor;
-                $harga_outdoor = 100000 * $jumlah_outdoor;
-                $harga_jumlah_cetak = 50000 * $hasil_jumlah;
-                $harga_jumlah_editing = 20000 * $hasil_editing;
-
-                $harga_paket_custom = $harga_fotografer + $harga_videografer + $harga_liputan_perjam + $harga_indoor + $harga_outdoor + $harga_jumlah_cetak + $harga_jumlah_editing;
 
                 $dataPaket = [
                     'nama_paket' => $nama_paket,
-                    'warna_nama_paket' => '#0abde3',
-                    'gambar_paket' => 'pexels-camera.jpg',
-                    'harga_paket' => $harga_paket_custom,
-                    'keterangan_harga_paket' => 1,
-                    'status_paket' => 0,
-                    'fotografer' => $jumlah_fotografer,
-                    'videografer' => $jumlah_videografer,
-                    'waktu' => $waktu_liputan,
-                    'dua_tempat' => false,
-                    'tempat_indoor' => $jumlah_indoor,
-                    'tempat_outdoor' => $jumlah_outdoor,
-                    'hasil_jumlah' => $hasil_jumlah,
-                    'hasil_ukuran_cetak' => '30 x 40',
-                    'hasil_editing' => $hasil_editing,
-                    'hasil_cinematic' => false,
-                    'kapasitas' => 'Unlimited soft file mentah dikirim Gdrive.',
-                    'deskripsi_paket' => 'Paket Custom Sesuai Dengan Kebutuhan Kamu',
+                    'harga_paket' => $harga_paket,
+                    'fotografer' => $fotografer,
+                    'videografer' => $videografer,
+                    'asisten' => $asisten,
+                    'waktu_kerja' => $waktu_kerja,
+                    'jumlah_foto' => $jumlah_foto,
+                    'jumlah_foto_edit' => $jumlah_edit,
+                    'cetak_foto' => $hasil_cetak,
+                    'videografi' => $hasil_videografi,
+                    'penyimpanan' => 'All softfile via Gdrive',
+                    'deskripsi_paket' => $deskripsi_paket,
                 ];
-
                 $paket->insert($dataPaket);
 
                 return redirect()->to('/admin/paket');
@@ -128,11 +116,6 @@ class AdminPaketController extends BaseController
                 $paket = new ModelsPaket();
                 $data['paket'] = $paket->find($id_paket);
 
-                // get pesanan
-                // $pesanan = new Pesanan();
-                // $data['pesanans'] = $pesanan->orderBy('id_pesanan', 'ASC')->findAll();
-
-
                 return view('pages/admin/paket/edit', $data);
             } else if ($session->get('role') == 'user') {
                 return redirect()->to('/');
@@ -155,44 +138,33 @@ class AdminPaketController extends BaseController
                 $paket = new ModelsPaket();
 
                 $id_paket = $this->request->getVar('id');
+
                 $nama_paket = $this->request->getVar('nama_paket');
-                $jumlah_fotografer = $this->request->getVar('jumlah_fotografer');
-                $jumlah_videografer = $this->request->getVar('jumlah_videografer');
-                $waktu_liputan = $this->request->getVar('waktu_liputan');
-                $jumlah_indoor = $this->request->getVar('jumlah_indoor');
-                $jumlah_outdoor = $this->request->getVar('jumlah_outdoor');
-                $hasil_jumlah = $this->request->getVar('hasil_jumlah');
-                $hasil_editing = $this->request->getVar('hasil_editing');
+                $harga_paket = $this->request->getVar('harga_paket');
+                $waktu_kerja = $this->request->getVar('waktu_kerja');
+                $deskripsi_paket = $this->request->getVar('deskripsi_paket');
+                $fotografer = $this->request->getVar('fotografer');
+                $videografer = $this->request->getVar('videografer');
+                $asisten = $this->request->getVar('asisten');
+                $jumlah_foto = $this->request->getVar('jumlah_foto');
+                $jumlah_edit = $this->request->getVar('jumlah_edit');
+                $hasil_cetak = $this->request->getVar('hasil_cetak');
+                $hasil_videografi = $this->request->getVar('hasil_videografi');
 
-                $harga_fotografer = 400000 * $jumlah_fotografer;
-                $harga_videografer = 500000 * $jumlah_videografer;
-                $harga_liputan_perjam = 100000 * $waktu_liputan;
-                $harga_indoor = 50000 * $jumlah_indoor;
-                $harga_outdoor = 100000 * $jumlah_outdoor;
-                $harga_jumlah_cetak = 50000 * $hasil_jumlah;
-                $harga_jumlah_editing = 20000 * $hasil_editing;
-
-                $harga_paket_custom = $harga_fotografer + $harga_videografer + $harga_liputan_perjam + $harga_indoor + $harga_outdoor + $harga_jumlah_cetak + $harga_jumlah_editing;
 
                 $dataPaket = [
                     'nama_paket' => $nama_paket,
-                    'warna_nama_paket' => '#0abde3',
-                    'gambar_paket' => 'pexels-camera.jpg',
-                    'harga_paket' => $harga_paket_custom,
-                    'keterangan_harga_paket' => 1,
-                    'status_paket' => 0,
-                    'fotografer' => $jumlah_fotografer,
-                    'videografer' => $jumlah_videografer,
-                    'waktu' => $waktu_liputan,
-                    'dua_tempat' => false,
-                    'tempat_indoor' => $jumlah_indoor,
-                    'tempat_outdoor' => $jumlah_outdoor,
-                    'hasil_jumlah' => $hasil_jumlah,
-                    'hasil_ukuran_cetak' => '30 x 40',
-                    'hasil_editing' => $hasil_editing,
-                    'hasil_cinematic' => false,
-                    'kapasitas' => 'Unlimited soft file mentah dikirim Gdrive.',
-                    'deskripsi_paket' => 'Paket Custom Sesuai Dengan Kebutuhan Kamu',
+                    'harga_paket' => $harga_paket,
+                    'fotografer' => $fotografer,
+                    'videografer' => $videografer,
+                    'asisten' => $asisten,
+                    'waktu_kerja' => $waktu_kerja,
+                    'jumlah_foto' => $jumlah_foto,
+                    'jumlah_foto_edit' => $jumlah_edit,
+                    'cetak_foto' => $hasil_cetak,
+                    'videografi' => $hasil_videografi,
+                    'penyimpanan' => 'All softfile via Gdrive',
+                    'deskripsi_paket' => $deskripsi_paket,
                 ];
 
                 $paket->update($id_paket, $dataPaket);
@@ -209,7 +181,7 @@ class AdminPaketController extends BaseController
     }
 
     // delete
-    public function delete($id_paket = null)
+    public function delete()
     {
         $session = session();
 
@@ -218,7 +190,7 @@ class AdminPaketController extends BaseController
             if ($session->get('role') == 'admin') {
                 try {
                     $paket = new ModelsPaket();
-                    $id_paket = $this->request->getVar('$id_paket');
+                    $id_paket = $this->request->getVar('id_paket');
 
                     $deleted = $paket->where('id_paket', $id_paket)->delete();
 

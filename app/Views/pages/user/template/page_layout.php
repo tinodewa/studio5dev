@@ -27,8 +27,8 @@
   <?= link_tag('assets/library/swiper/swiper-bundle.min.css') ?>
   <?= link_tag('assets/library/glightbox/css/glightbox.min.css') ?>
   <?= link_tag('assets/library/rating/css/star-rating.css') ?>
-  <?= link_tag('assets/library/themes/krajee-fas/theme.css') ?>
-  <?= link_tag('assets/library/themes/krajee-svg/theme.css') ?>
+  <?= link_tag('assets/library/rating/themes/krajee-fas/theme.css') ?>
+  <?= link_tag('assets/library/rating/themes/krajee-svg/theme.css') ?>
   <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
 
   <!-- rating -->
@@ -39,7 +39,6 @@
 
   <!-- Template Main CSS File -->
   <?= link_tag('assets/css/style.css') ?>
-  <?= link_tag('css/custom.css') ?>
 
   <?= $this->renderSection('head_resource') ?>
   <!-- =======================================================

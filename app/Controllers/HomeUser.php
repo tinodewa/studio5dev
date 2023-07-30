@@ -42,6 +42,7 @@ class HomeUser extends BaseController
         $data['paketsEvent'] = $paket->getPaketWithUlasan(25, 25);
         $data['paketsCouple'] = $paket->getPaketWithUlasan(28, 28);
         $data['paketsPersonal'] = $paket->getPaketWithUlasan(14, 15);
+        $data['paketsBaru'] = $paket->getNewPaketWithUlasan();
         $data['ulasanUserPakets'] = $ulasanUserPaket->getUlasanWithUserAndPaket();
 
         if ($session->has('logged_in')) {

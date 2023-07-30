@@ -7,7 +7,6 @@ use CodeIgniter\Entity\Entity;
 class Pesanan extends Entity
 {
     protected $attributes = [
-        'id' => null,
         'id_pesanan' => null,
         'id_user' => null,
         'id_paket' => null,
@@ -24,12 +23,6 @@ class Pesanan extends Entity
         'extra_wisudawan' => null,
     ];
 
-
-    public function setId(string $id): self
-    {
-        $this->attributes['id'] = $id;
-        return $this;
-    }
     public function setIdPesanan(string $id_pesanan): self
     {
         $this->attributes['id_pesanan'] = $id_pesanan;

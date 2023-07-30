@@ -20,7 +20,7 @@ class Pembayaran extends Model
         $builder = $db->table('pembayaran')
             ->selectSum('jumlah_bayar')
             ->where('status LIKE ', '%proses%')
-            ->where('status LIKE', '%done%')
+            ->orWhere('status LIKE ', '%done%')
             ->get();
         $result = $builder->getResult();
 
