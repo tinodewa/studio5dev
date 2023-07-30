@@ -31,7 +31,8 @@ function shortNumber($num)
             <div class="row gy-4">
                 <div class="col-md-12">
                     <label class="form-label">Nama Paket</label>
-                    <input type="text" class="form-control" id="nama_paket" name="nama_paket" placeholder="Nama Paket" <?php if ($paket->nama_paket != null) { ?> value="Custom <?= $paket->nama_paket ?>" <?php } else { ?> value="" <?php } ?> required>
+                    <input type="text" class="form-control d-none" id="nama_paket" name="nama_paket" placeholder="Nama Paket" <?php if ($paket->nama_paket != null) { ?> value="Custom <?= $paket->nama_paket ?>" <?php } else { ?> value="" <?php } ?> required>
+                    <input type="text" class="form-control" id="nama_paket_show" name="nama_paket_show" placeholder="Nama Paket" <?php if ($paket->nama_paket != null) { ?> value="Custom <?= $paket->nama_paket ?>" <?php } else { ?> value="" <?php } ?> disabled>
                 </div>
                 <div class="col-md-6">
                     <label for="hasil_foto_edit" class="form-label">Hasil Edit Foto</label>

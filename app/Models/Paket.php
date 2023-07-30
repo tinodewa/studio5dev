@@ -50,6 +50,7 @@ class Paket extends Model
         $builder = $db->table('paket')
             ->select('paket.*, COALESCE((SELECT AVG(ulasan.bintang) FROM `ulasan` WHERE `ulasan`.`id_paket` = paket.id_paket), 0) AS rating_paket')
             ->where('paket.id_paket > ', 28)
+            ->notLike('nama_paket', 'custom')
             ->groupBy('paket.id_paket')
             ->get();
         $result = $builder->getResult();
