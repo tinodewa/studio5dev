@@ -556,13 +556,16 @@
             }
 
             //set extra orang
-            if (document.getElementById('orangBox').checked) {
-                extra_orang = document.getElementById('extra_orang').value;
-
-                if (nama_paket.includes('Group Package Indoor')) {
-                    extra_harga = extra_harga + (40000 * extra_orang);
-                } else {
-                    extra_harga = extra_harga + (10000 * extra_orang);
+            
+            if (nama_paket.includes("Graduation Package") || nama_paket.includes("Group Package Indoor")) {
+                if (document.getElementById('orangBox').checked) {
+                    extra_orang = document.getElementById('extra_orang').value;
+    
+                    if (nama_paket.includes('Group Package Indoor')) {
+                        extra_harga = extra_harga + (40000 * extra_orang);
+                    } else {
+                        extra_harga = extra_harga + (10000 * extra_orang);
+                    }
                 }
             }
 
