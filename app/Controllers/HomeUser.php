@@ -318,26 +318,10 @@ class HomeUser extends BaseController
                         $pembayaran->insert($dataPembayaran);
 
                         // Item details production
-                        $params = array(
-                            'transaction_details' => array(
-                                'order_id' => $orderID,
-                                'gross_amount' => $total_price,
-                            ),
-                            "callbacks" => array(
-                                "finish" => "http://localhost:8080/list-pesanan",
-                            ),
-                            'customer_details' => array(
-                                'first_name' => $nama,
-                                'email' => $session->get('email'),
-                                'phone' => $telp,
-                            )
-                        );
-
-                        // Item details testing
                         // $params = array(
                         //     'transaction_details' => array(
                         //         'order_id' => $orderID,
-                        //         'gross_amount' => 1,
+                        //         'gross_amount' => $total_price,
                         //     ),
                         //     "callbacks" => array(
                         //         "finish" => "http://localhost:8080/list-pesanan",
@@ -346,8 +330,24 @@ class HomeUser extends BaseController
                         //         'first_name' => $nama,
                         //         'email' => $session->get('email'),
                         //         'phone' => $telp,
-                        //     ),
+                        //     )
                         // );
+
+                        // Item details testing
+                        $params = array(
+                            'transaction_details' => array(
+                                'order_id' => $orderID,
+                                'gross_amount' => 1,
+                            ),
+                            "callbacks" => array(
+                                "finish" => "http://localhost:8080/list-pesanan",
+                            ),
+                            'customer_details' => array(
+                                'first_name' => $nama,
+                                'email' => $session->get('email'),
+                                'phone' => $telp,
+                            ),
+                        );
 
                         //Generate Snap token
                         $snapToken = Snap::getSnapToken($params);
