@@ -28,7 +28,7 @@
             <div class="block">
                 <!-- <div class="form-group row">
                     </div> -->
-                <div class="block-header block-header-default">
+                    <div class="block-header block-header-default">
                     <div class="col-md-9">
                         <a href="/admin/paket/new" class="btn btn-alt-primary">Tambah</a>
                     </div>

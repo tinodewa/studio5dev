@@ -475,7 +475,7 @@ function shortNumber($num)
                 </div>
                 <div class="col-lg-4 col-md-6 portfolio-item filter-engagement">
                     <div class="portfolio-wrap">
-                        <img src="/assets/img/portfolio/4.png" class="img-fluid" alt="">
+                        <img src="/assets/img/detailpaket/Engagement-1.jpg" class="img-fluid" alt="">
                         <div class="portfolio-info">
                             <h4>Engagement</h4>
                         </div>
@@ -505,11 +505,11 @@ function shortNumber($num)
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6 portfolio-item filter-personal">
+                <div class="col-lg-4 col-md-6 portfolio-item filter-event">
                     <div class="portfolio-wrap">
                         <img src="/assets/img/portfolio/11.png" class="img-fluid" alt="">
                         <div class="portfolio-info">
-                            <h4>Birthday</h4>
+                            <h4>Event</h4>
                         </div>
                     </div>
                 </div>
@@ -561,11 +561,27 @@ function shortNumber($num)
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6 portfolio-item filter-couple">
+                <div class="col-lg-4 col-md-6 portfolio-item filter-engagement">
                     <div class="portfolio-wrap">
-                        <img src="/assets/img/Prewedding/pw-1.jpg" class="img-fluid" alt="">
+                        <img src="/assets/img/detailpaket/Engagement-4.jpg" class="img-fluid" alt="">
                         <div class="portfolio-info">
                             <h4>Couple</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 portfolio-item filter-personal">
+                    <div class="portfolio-wrap">
+                        <img src="/assets/img/detailpaket/per-3.jpg" class="img-fluid" alt="">
+                        <div class="portfolio-info">
+                            <h4>Personal</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 portfolio-item filter-family">
+                    <div class="portfolio-wrap">
+                        <img src="/assets/img/detailpaket/fam-6.jpg" class="img-fluid" alt="">
+                        <div class="portfolio-info">
+                            <h4>Family</h4>
                         </div>
                     </div>
                 </div>
@@ -694,7 +710,6 @@ function shortNumber($num)
                                     <?php if ($ulasanUserPaket->foto_profil != "") { ?>
                                         <img src=" uploads/<?= $ulasanUserPaket->foto_profil ?>" class="testimonial-img" alt="">
                                     <?php } else { ?>
-                                        <img src="assets/img/testimonials/profil.jpeg" class="testimonial-img" alt="">
                                         <img src="/assets/admin/media/avatars/avatar15.jpg" class="testimonial-img" alt="">
                                     <?php } ?>
                                     <h3><?= $ulasanUserPaket->nama_lengkap ?></h3>
