@@ -112,7 +112,7 @@ class Fotografer extends BaseController
 
                 $hasilFoto->update($idHasilFoto, $dataHasilFoto);
 
-                return redirect()->to('/fotografer/pesanan/' . $id_pesanan . '/detail');
+                return redirect()->to('/fotografer');
             }
         }
         return redirect()->to('/login');
