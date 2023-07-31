@@ -706,34 +706,46 @@ class HomeUser extends BaseController
             if ($session->get('role') == 'admin') {
                 return redirect()->to('/admin');
             } else if ($session->get('role') == 'user') {
-                if ($this->request->getFile('foto')->isValid()) {
-                    $user = new User();
 
-                    $iduser = $session->get('id_user');
-                    $nama = $this->request->getVar('nama');
-                    $telp = $this->request->getVar('telp');
-                    $fileFoto = $this->request->getFile('foto');
+                $user = new User();
 
-                    // Generate a new file name to avoid potential conflicts
-                    $newName = $fileFoto->getRandomName();
+                $iduser = $session->get('id_user');
+                $nama = $this->request->getVar('nama');
+                $telp = $this->request->getVar('telp');
 
-                    // Move the uploaded file to the public/uploads directory
-                    $fileFoto->move(ROOTPATH . 'public/uploads', $newName);
+                if ($this->request->getFile('foto')->isFile()) {
+                    if ($this->request->getFile('foto')->isValid()) {
+                        $fileFoto = $this->request->getFile('foto');
+                        // Generate a new file name to avoid potential conflicts
+                        $newName = $fileFoto->getRandomName();
 
-                    // Optionally, you can store the file details in a database or do other processing here
-                    $dataUser = [
-                        'nama_lengkap' => $nama,
-                        'no_telp' => $telp,
-                        'foto_profil' => $newName,
-                    ];
+                        // Move the uploaded file to the public/uploads directory
+                        $fileFoto->move(ROOTPATH . 'public/uploads', $newName);
 
-                    $user->update($iduser, $dataUser);
-                    return redirect()->to('/profil');
-                } else {
-                    // Handle the file upload error
-                    $error = $this->request->getFile('userfile')->getError();
-                    return redirect()->back()->with('error', $error);
+                        // Optionally, you can store the file details in a database or do other processing here
+                        $dataUser = [
+                            'nama_lengkap' => $nama,
+                            'no_telp' => $telp,
+                            'foto_profil' => $newName,
+                        ];
+
+                        $user->update($iduser, $dataUser);
+                        return redirect()->to('/profil');
+                    } else {
+                        // Handle the file upload error
+                        $error = $this->request->getFile('userfile')->getError();
+                        return redirect()->back()->with('error', $error);
+                    }
                 }
+
+                // Optionally, you can store the file details in a database or do other processing here
+                $dataUser = [
+                    'nama_lengkap' => $nama,
+                    'no_telp' => $telp,
+                ];
+
+                $user->update($iduser, $dataUser);
+                return redirect()->to('/profil');
             } else if ($session->get('role') == 'fotografer') {
                 return redirect()->to('/fotografer');
             }
