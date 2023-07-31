@@ -92,6 +92,8 @@ $routes->post('/admin/hasil-foto/remove', 'AdminHasilFotoController::delete');
 //fotografer route
 $routes->get('/fotografer', 'Fotografer::index', ['filter' => 'myfilter']);
 $routes->get('/fotografer/profil', 'Fotografer::profilFotografer', ['filter' => 'myfilter']);
+$routes->get('/fotografer/profil/edit', 'Fotografer::profilEdit');
+$routes->post('/fotografer/profil/edit', 'Fotografer::profilEditSimpan');
 $routes->get('/fotografer/pesanan/(:num)/detail', 'Fotografer::pesananDetail/$1', ['filter' => 'myfilter']);
 $routes->post('/fotografer/pesanan/(:num)/detail/simpan', 'Fotografer::pesananDetailSimpanHasilFoto/$1', ['filter' => 'myfilter']);
 

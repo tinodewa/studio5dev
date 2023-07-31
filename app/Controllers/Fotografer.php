@@ -139,4 +139,83 @@ class Fotografer extends BaseController
         }
         return redirect()->to('/login');
     }
+
+    public function profilEdit()
+    {
+        $session = session();
+
+        if ($session->has('logged_in')) {
+            //cek position dari session
+            if ($session->get('role') == 'admin') {
+                return redirect()->to('/admin');
+            } else if ($session->get('role') == 'user') {
+                return redirect()->to('/');
+            } else if ($session->get('role') == 'fotografer') {
+                $data['title'] = 'Profil';
+
+                $user = new User();
+                $data['user'] = $user->find($session->get('id_user'));
+
+                return view('pages/fotografer/profil_edit', $data);
+            }
+        }
+        $data['title'] = 'Beranda';
+        return view('pages/user/index', $data);
+    }
+
+    public function profilEditSimpan()
+    {
+        $session = session();
+
+        if ($session->has('logged_in')) {
+            //cek position dari session
+            if ($session->get('role') == 'admin') {
+                return redirect()->to('/admin');
+            } else if ($session->get('role') == 'user') {
+                return redirect()->to('/');
+            } else if ($session->get('role') == 'fotografer') {
+                $user = new User();
+
+                $iduser = $session->get('id_user');
+                $nama = $this->request->getVar('nama');
+                $telp = $this->request->getVar('telp');
+
+                if ($this->request->getFile('foto')->isFile()) {
+                    if ($this->request->getFile('foto')->isValid()) {
+                        $fileFoto = $this->request->getFile('foto');
+                        // Generate a new file name to avoid potential conflicts
+                        $newName = $fileFoto->getRandomName();
+
+                        // Move the uploaded file to the public/uploads directory
+                        $fileFoto->move(ROOTPATH . 'public/uploads', $newName);
+
+                        // Optionally, you can store the file details in a database or do other processing here
+                        $dataUser = [
+                            'nama_lengkap' => $nama,
+                            'no_telp' => $telp,
+                            'foto_profil' => $newName,
+                        ];
+
+                        $user->update($iduser, $dataUser);
+                        return redirect()->to('/fotografer/profil');
+                    } else {
+                        // Handle the file upload error
+                        $error = $this->request->getFile('userfile')->getError();
+                        return redirect()->back()->with('error', $error);
+                    }
+                }
+
+                // Optionally, you can store the file details in a database or do other processing here
+                $dataUser = [
+                    'nama_lengkap' => $nama,
+                    'no_telp' => $telp,
+                ];
+
+                $user->update($iduser, $dataUser);
+                return redirect()->to('/fotografer/profil');
+            }
+        }
+        $data['title'] = 'Beranda';
+        return view('pages/user/index', $data);
+    }
 }
