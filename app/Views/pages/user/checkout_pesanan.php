@@ -382,10 +382,6 @@
             minTime: '9:00',
             maxTime: '21:00',
             minDate: 0,
-            onGenerate: function(ct) {
-                jQuery(this).find('.xdsoft_date.xdsoft_weekend')
-                    .addClass('xdsoft_disabled');
-            },
         });
 
         $('#waktuBox').click(function() {

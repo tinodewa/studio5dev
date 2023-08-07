@@ -2209,7 +2209,7 @@ body .xdsoft_datetimepicker .xdsoft_calendar td.xdsoft_disabled:hover, body .xds
   cursor: default !important;
 }
 
-.xdsoft_weekend {
+/* .xdsoft_weekend {
   opacity: .5 !important;
   -ms-filter: "alpha(opacity=50)" !important;
   cursor: default !important;
@@ -2224,4 +2224,4 @@ body .xdsoft_datetimepicker .xdsoft_calendar td.xdsoft_disabled.xdsoft_weekend:h
   opacity: .5 !important;
   -ms-filter: "alpha(opacity=50)" !important;
   cursor: default !important;
-}
+} */
