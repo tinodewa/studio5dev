@@ -92,8 +92,12 @@ function shortNumber($num)
                     </div>
                 <?php } ?>
                 <div class="col-md-6">
-                    <label class="form-label">Tanggal</label>
-                    <input type="text" class="form-control" name="tanggal" placeholder="Tanggal" value="<?= $detailPesanan[0]->tanggal ?>" disabled>
+                    <label class="form-label">Tanggal Mulai</label>
+                    <input type="text" class="form-control" name="tanggal_mulai" placeholder="Tanggal Mulai" value="<?= $detailPesanan[0]->tanggal_mulai ?>" disabled>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Tanggal Selesai</label>
+                    <input type="text" class="form-control" name="tanggal_selesai" placeholder="Tanggal Selesai" value="<?= $detailPesanan[0]->tanggal_selesai ?>" disabled>
                 </div>
                 <div class="col-md-6">
                     <label class="form-label">Waktu Kerja</label>

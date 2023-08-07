@@ -10,7 +10,7 @@ class Pesanan extends Model
     protected $table            = 'pesanan';
     protected $returnType = EntitiesPesanan::class;
     protected $primaryKey       = 'id_pesanan';
-    protected $allowedFields    = ['id_user', 'id_paket', 'nama_lengkap', 'tanggal', 'telp', 'alamat', 'catatan', 'extra_waktu_kerja', 'extra_premium_magazine', 'extra_background', 'extra_tempat', 'extra_orang', 'extra_wisudawan'];
+    protected $allowedFields    = ['id_user', 'id_paket', 'nama_lengkap', 'tanggal_mulai', 'tanggal_selesai', 'telp', 'alamat', 'catatan', 'extra_waktu_kerja', 'extra_premium_magazine', 'extra_background', 'extra_tempat', 'extra_orang', 'extra_wisudawan'];
     protected $useTimestamps = true;
 
     protected $validationRules = [
@@ -36,7 +36,18 @@ class Pesanan extends Model
         return $query->getResult();
     }
 
+    public function getCountTanggalPesanan()
+    {
+        $db = db_connect();
 
+        // Your raw SQL query
+        $sql = "SELECT DATE(tanggal_mulai) AS tanggal, COUNT(DATE(tanggal_mulai)) AS jumlah_tanggal FROM pesanan WHERE nama_lengkap != '' GROUP BY DATE(tanggal_mulai)";
+
+        // Execute the query and get the result object
+        $result = $db->query($sql);
+
+        return $result->getResult();
+    }
     public function getCountPesananByDateStartAndEnd(string $dateStart, string $dateEnd)
     {
         $db = db_connect();

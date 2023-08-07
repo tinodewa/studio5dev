@@ -5,6 +5,13 @@
 <!-- Include Snap.js library -->
 <script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="SB-Mid-client-vr-SIa3W6nh_dkMD"></script>
 
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
+<script type="text/javascript" src="https://code.jquery.com/ui/1.13.0/jquery-ui.min.js"></script>
+
+<!-- timepicker -->
+<!-- Include Datetimepicker CSS and JS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js"></script>
 <?= $this->endSection() ?>
 
 <?= $this->section('content') ?>
@@ -32,32 +39,19 @@
                     <label for="nama" class="form-label">Nama Lengkap*</label>
                     <input type="text" class="form-control" id="nama" name="nama" placeholder="Nama Lengkap" value="<?= $session->get('nama_lengkap') ?>" required>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-3">
                     <label for="telp" class="form-label">Nomor Telpon*</label>
                     <input type="text" class="form-control" id="telp" name="telp" placeholder="nomor telpon" value="<?= $session->get('no_telp') ?>" required>
                 </div>
+                <div class="col-md-3">
+                    <label for="tanggal" class="form-label">Tanggal*</label>
+                    <input type="text" class="form-control" id="tanggal" name="tanggal" required>
+                </div>
                 <div class="col-md-6">
                     <label for="alamat" class="form-label">Alamat*</label>
-                    <input type="text" class="form-control" id="alamat" name="alamat" placeholder="Alamat" required>
+                    <textarea class="form-control" id="alamat" name="alamat" rows="3" placeholder="Alamat" required></textarea>
                 </div>
                 <div class="col-md-6">
-                    <div class="row">
-                        <div class="col-8">
-                            <label for="tanggal" class="form-label">Tanggal*</label>
-                            <input type="datetime-local" class="form-control" id="tanggal" name="tanggal" required>
-                        </div>
-                        <div class="col-4">
-                            <label class="form-label">Cek Tanggal</label>
-                            <a href="#" id="cekTanggal" button class="btn btn-package btn-md w-100 mb-3 mr-2">
-                                <span id="cekTanggalText">Cek</span>
-                                <div id="cekTanggalLoading" class="spinner-border text-light d-none" role="status">
-                                    <span class="sr-only"></span>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-12">
                     <label for="catatan" class="form-label">Catatan</label>
                     <textarea class="form-control" id="catatan" name="catatan" rows="6" placeholder="Catatan" required></textarea>
                 </div>
@@ -183,17 +177,17 @@
                 </div>
                 <div class="col-md-12 text-center">
                     <div class="row">
-                        <div class="col-4">
+                        <div class="col-md-4 mt-4">
                             <button class="btn btn-warning btn-submit w-100" id="btnCancel">
                                 Kembali
                             </button>
                         </div>
-                        <div class="col-4">
+                        <div class="col-md-4 mt-4">
                             <button class="btn btn-danger btn-submit w-100" id="btnCancelAndDelete">
-                                Batal & Hapus Pesanan
+                                Hapus Pesanan
                             </button>
                         </div>
-                        <div class="col-4">
+                        <div class="col-md-4 mt-4">
                             <button class="btn btn-primary btn-submit w-100" id="btnCheckout" data-bs-toggle="modal" data-bs-target="#modalKonfirmasi">
                                 Checkout
                             </button>
@@ -362,7 +356,6 @@
         var extra_wisudawan = 0;
         var total_harga = 0;
         var nama_paket = '<?= $pesananUserPaket[0]->nama_paket ?>';
-        var status_tanggal = false;
         var btnSubmitText = document.getElementById("btnSubmitText");
         var btnSubmitLoading = document.getElementById("btnSubmitLoading");
         const myModal = new bootstrap.Modal(document.getElementById('modalKonfirmasi'));
@@ -371,6 +364,29 @@
         function dismissModalKonfirmasi() {
             myModal.hide();
         }
+
+        //menyiapkan tanggal pesanan yang sudah penuh / lebih dari 4
+        var disabledDateTimePicker = ['00.00.0000'];
+        var listCountTanggal = <?= $countTanggalPesanan ?>;
+        listCountTanggal.forEach(countTanggal => {
+            if (countTanggal.jumlah_tanggal >= 4) {
+                disabledDateTimePicker.push(convertSQLDatetimeToJqueryDatetimepicker(countTanggal.tanggal));
+            }
+        });
+
+        //menampilkan datetimepicker dengan tanggal yang sudah di disable saat penuh
+        $("#tanggal").datetimepicker({
+            disabledDates: disabledDateTimePicker,
+            formatTime: 'H:i',
+            formatDate: 'd.m.Y',
+            minTime: '9:00',
+            maxTime: '21:00',
+            minDate: 0,
+            onGenerate: function(ct) {
+                jQuery(this).find('.xdsoft_date.xdsoft_weekend')
+                    .addClass('xdsoft_disabled');
+            },
+        });
 
         $('#waktuBox').click(function() {
             document.getElementById('extra_waktu_kerja').disabled = !this.checked;
@@ -390,146 +406,6 @@
         $('#wisudawanBox').click(function() {
             document.getElementById('extra_wisudawan').disabled = !this.checked;
         });
-
-
-        $('#cekTanggal').click(function() {
-            var tanggal_mulai = '';
-            var tanggal_selesai = '';
-            status_tanggal = false;
-            tanggal_mulai = new Date(document.getElementById('tanggal').value);
-            tanggal_selesai = new Date(document.getElementById('tanggal').value);
-            tanggal_sekarang = new Date();
-
-            if (tanggal_mulai.toString != "Invalid Date" && !isNaN(tanggal_mulai)) {
-                if (tanggal_mulai > tanggal_sekarang) {
-                    var extra_waktu = 0;
-                    var durasi = 0;
-                    var cekText = document.getElementById("cekTanggalText");
-                    var cekLoading = document.getElementById("cekTanggalLoading");
-
-                    cekText.classList.add("d-none");
-                    cekLoading.classList.remove("d-none");
-                    var waktuKerja = '<?= $pesananUserPaket[0]->waktu_kerja; ?>';
-                    //set durasi paket
-                    if (waktuKerja == '8 working hours') {
-                        durasi = 8;
-                    } else if (waktuKerja == '7 working hours') {
-                        durasi = 7;
-                    } else if (waktuKerja == '6 working hours') {
-                        durasi = 6;
-                    } else if (waktuKerja == '5 working hours') {
-                        durasi = 5;
-                    } else if (waktuKerja == '4 working hours') {
-                        durasi = 4;
-                    } else if (waktuKerja == '3 working hours') {
-                        durasi = 3;
-                    } else {
-                        durasi = 2;
-                    }
-
-                    //set extra waktu
-                    if (document.getElementById('waktuBox').checked) {
-                        extra_waktu = document.getElementById('extra_waktu_kerja').value;
-                    }
-
-                    //set total durasi
-                    durasi = durasi + extra_waktu;
-
-                    //kalkulasi tanggal dan jam mulai dari pesanan ini
-                    tanggal_mulai.setHours(tanggal_mulai.getHours() - durasi);
-
-                    //kalkulasi tanggal dan jam selesai dari pesanan ini
-                    tanggal_selesai.setHours(tanggal_selesai.getHours() + durasi);
-
-                    //convert local datetime ke format sql
-                    tanggal_mulai = convertToSQLDatetime(tanggal_mulai);
-                    tanggal_selesai = convertToSQLDatetime(tanggal_selesai);
-
-                    $.ajax({
-                        url: '<?= site_url('/check-datetime') ?>',
-                        type: 'POST',
-                        data: {
-                            tanggalMulai: tanggal_mulai,
-                            tanggalSelesai: tanggal_selesai,
-                        },
-                        dataType: 'json',
-                        success: function(response) {
-                            if (response.status == 'Penuh!') {
-                                console.log(tanggal_mulai);
-                                console.log(tanggal_selesai);
-                                console.log(response.data);
-                                cekText.classList.remove("d-none");
-                                cekLoading.classList.add("d-none");
-                                Toastify({
-                                    text: response.status,
-                                    duration: 3000,
-                                    offset: {
-                                        x: 50,
-                                    },
-                                }).showToast();
-                            } else if (response.status == 'Belum penuh!') {
-                                console.log(tanggal_mulai);
-                                console.log(tanggal_selesai);
-                                console.log(response.data);
-                                status_tanggal = true;
-                                cekText.classList.remove("d-none");
-                                cekLoading.classList.add("d-none");
-                                Toastify({
-                                    text: 'Tanggal bisa diambil!',
-                                    duration: 3000,
-                                    offset: {
-                                        x: 50,
-                                    },
-                                }).showToast();
-                            } else {
-                                console.log(tanggal_mulai);
-                                console.log(tanggal_selesai);
-                                console.log(response.data);
-                                cekText.classList.remove("d-none");
-                                cekLoading.classList.add("d-none");
-                                Toastify({
-                                    text: 'Coba lagi nanti!',
-                                    duration: 3000,
-                                    offset: {
-                                        x: 50,
-                                    },
-                                }).showToast();
-                            }
-                        },
-                        error: function(e) {
-                            console.log(tanggal_mulai);
-                            console.log(tanggal_selesai);
-                            console.log(e);
-                            cekText.classList.remove("d-none");
-                            cekLoading.classList.add("d-none");
-                            Toastify({
-                                text: "Gagal!",
-                                duration: 3000,
-                                offset: {
-                                    x: 50,
-                                },
-                            }).showToast();
-                        }
-                    });
-                } else {
-                    Toastify({
-                        text: "Tanggal telah terlewati!",
-                        duration: 3000,
-                        offset: {
-                            x: 50,
-                        },
-                    }).showToast();
-                }
-            } else {
-                Toastify({
-                    text: "Pilih tanggal dahulu!",
-                    duration: 3000,
-                    offset: {
-                        x: 50,
-                    },
-                }).showToast();
-            }
-        })
 
         $('#btnCheckout').click(function() {
             var extra_harga = 0;
@@ -605,7 +481,7 @@
             });
         });
         $('#btnSubmit').click(function() {
-            if (document.getElementById('nama').value == '' || document.getElementById('alamat').value == '' || document.getElementById('tanggal').value == '' || document.getElementById('telp').value == '' || status_tanggal == false) {
+            if (document.getElementById('nama').value == '' || document.getElementById('alamat').value == '' || document.getElementById('tanggal').value == '' || document.getElementById('telp').value == '') {
                 dismissModalKonfirmasi();
                 Toastify({
                     text: "Mohon lengkapi data dan cek tanggal!",
@@ -620,7 +496,12 @@
 
                 //set extra waktu
                 if (document.getElementById('waktuBox').checked) {
-                    extra_waktu = document.getElementById('extra_waktu_kerja').value;
+                    if (document.getElementById('extra_waktu_kerja').value > 0) {
+                        extra_waktu = document.getElementById('extra_waktu_kerja').value;
+                    } else {
+                        extra_waktu = 0;
+                    }
+
                 } else {
                     extra_waktu = 0;
                 }
@@ -670,6 +551,40 @@
                     }
                 }
 
+                //get tanggal jam pesanan mulai dan selesai
+                var tanggal_mulai = new Date(document.getElementById('tanggal').value);
+                var tanggal_selesai = new Date(document.getElementById('tanggal').value);
+                var durasi = 0;
+                var waktuKerja = '<?= $pesananUserPaket[0]->waktu_kerja; ?>';
+
+                //set durasi paket
+                if (waktuKerja == '8 working hours') {
+                    durasi = 8;
+                } else if (waktuKerja == '7 working hours') {
+                    durasi = 7;
+                } else if (waktuKerja == '6 working hours') {
+                    durasi = 6;
+                } else if (waktuKerja == '5 working hours') {
+                    durasi = 5;
+                } else if (waktuKerja == '4 working hours') {
+                    durasi = 4;
+                } else if (waktuKerja == '3 working hours') {
+                    durasi = 3;
+                } else {
+                    durasi = 2;
+                }
+
+                //set total durasi
+                durasi = parseInt(durasi) + parseInt(extra_waktu);
+
+
+                //kalkulasi tanggal dan jam selesai dari pesanan
+                tanggal_selesai.setHours(tanggal_selesai.getHours() + durasi);
+
+                //convert local datetime ke format sql
+                tanggal_mulai = convertToSQLDatetime(tanggal_mulai);
+                tanggal_selesai = convertToSQLDatetime(tanggal_selesai);
+
                 $.ajax({
                     url: '<?= site_url('/checkout') ?>',
                     type: 'POST',
@@ -678,7 +593,8 @@
                         total_price: total_harga,
                         nama: document.getElementById('nama').value,
                         alamat: document.getElementById('alamat').value,
-                        tanggal: document.getElementById('tanggal').value,
+                        tanggal_mulai: tanggal_mulai,
+                        tanggal_selesai: tanggal_selesai,
                         telp: document.getElementById('telp').value,
                         catatan: document.getElementById('catatan').value,
                         extra_waktu_kerja: extra_waktu,
@@ -732,6 +648,7 @@
             });
         });
 
+        //untuk mengubah format lokal ke format mysql database
         function convertToSQLDatetime(inputDatetime) {
             const datetime = new Date(inputDatetime);
             if (isNaN(datetime)) {
@@ -746,6 +663,20 @@
             const seconds = String(datetime.getSeconds()).padStart(2, "0");
 
             return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+        }
+
+        //untuk merubah format mysql database ke format tanggal untuk library jquery datetimepicker
+        function convertSQLDatetimeToJqueryDatetimepicker(inputDatetime) {
+            const datetime = new Date(inputDatetime);
+            if (isNaN(datetime)) {
+                return "Invalid Date";
+            }
+
+            const year = datetime.getFullYear();
+            const month = String(datetime.getMonth() + 1).padStart(2, "0");
+            const day = String(datetime.getDate()).padStart(2, "0");
+
+            return `${day}.${month}.${year}`;
         }
     });
 </script>

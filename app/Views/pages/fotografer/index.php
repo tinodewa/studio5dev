@@ -68,7 +68,7 @@ function shortNumber($num)
                                                         </span>
                                                     </td>
                                                     <td class="align-middle">
-                                                        <?= $listPesanan->tanggal; ?>
+                                                        <?= $listPesanan->tanggal_mulai; ?>
                                                     </td>
                                                     <td class="align-middle">
                                                         <?php if (str_contains($listPesanan->status, "sudah review")) { ?>
