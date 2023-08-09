@@ -11,7 +11,8 @@ class Pesanan extends Entity
         'id_user' => null,
         'id_paket' => null,
         'nama_lengkap' => null,
-        'tanggal' => null,
+        'tanggal_mulai' => null,
+        'tanggal_selesai' => null,
         'telp' => null,
         'alamat'  => null,
         'catatan' => null,
@@ -43,9 +44,14 @@ class Pesanan extends Entity
         $this->attributes['nama_lengkap'] = $nama_lengkap;
         return $this;
     }
-    public function setTanggal(string $tanggal): self
+    public function setTanggalMulai(string $tanggal_mulai): self
     {
-        $this->attributes['tanggal'] = $tanggal;
+        $this->attributes['tanggal_mulai'] = $tanggal_mulai;
+        return $this;
+    }
+    public function setTanggalSelesai(string $tanggal_selesai): self
+    {
+        $this->attributes['tanggal_selesai'] = $tanggal_selesai;
         return $this;
     }
     public function setTelp(string $telp): self

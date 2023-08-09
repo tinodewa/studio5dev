@@ -77,8 +77,16 @@
                                 <div class="form-group row">
                                     <div class="col-md-9">
                                         <div class="form-material">
-                                            <input type="date" id="input-tanggal" name="tanggal" class="form-control" value="" required>
-                                            <label for="input-tanggal">Tanggal</label>
+                                            <input type="date" id="input-tanggal-mulai" name="tanggal_mulai" class="form-control" value="" required>
+                                            <label for="input-tanggal-mulai">Tanggal Mulai</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-md-9">
+                                        <div class="form-material">
+                                            <input type="date" id="input-tanggal-selesai" name="tanggal_selesai" class="form-control" value="" required>
+                                            <label for="input-tanggal-selesai">Tanggal Selesai</label>
                                         </div>
                                     </div>
                                 </div>

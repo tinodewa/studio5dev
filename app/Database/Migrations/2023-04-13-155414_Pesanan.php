@@ -26,7 +26,10 @@ class Pesanan extends Migration
                 'type'       => 'VARCHAR',
                 'constraint' => '255',
             ],
-            'tanggal' => [
+            'tanggal_mulai' => [
+                'type'       => 'DATETIME',
+            ],
+            'tanggal_selesai' => [
                 'type'       => 'DATETIME',
             ],
             'telp' => [

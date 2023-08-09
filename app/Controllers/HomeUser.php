@@ -228,6 +228,9 @@ class HomeUser extends BaseController
                 $pesananUserPaket = new PesananWithUserAndPaket();
                 $data['pesananUserPaket'] = $pesananUserPaket->getPesananWithUserAndPaketInCartByIduser($session->get('id_user'));
 
+                $pesanan = new Pesanan();
+                $data['countTanggalPesanan'] = json_encode($pesanan->getCountTanggalPesanan());
+
                 if ($data['pesananUserPaket'] == null) {
                     return redirect()->to('/');
                 }
@@ -259,7 +262,8 @@ class HomeUser extends BaseController
                     $total_price = $this->request->getVar('total_price');
                     $nama = $this->request->getVar('nama');
                     $alamat = $this->request->getVar('alamat');
-                    $tanggal = $this->request->getVar('tanggal');
+                    $tanggal_mulai = $this->request->getVar('tanggal_mulai');
+                    $tanggal_selesai = $this->request->getVar('tanggal_selesai');
                     $telp = $this->request->getVar('telp');
                     $catatan = $this->request->getVar('catatan');
                     $extra_waktu_kerja = $this->request->getVar('extra_waktu_kerja');
@@ -278,7 +282,8 @@ class HomeUser extends BaseController
                                 'id_user' => $session->get('id_user'),
                                 'id_paket' => $id_paket,
                                 'nama_lengkap' => $nama,
-                                'tanggal' => $tanggal,
+                                'tanggal_mulai' => $tanggal_mulai,
+                                'tanggal_selesai' => $tanggal_selesai,
                                 'telp' => $telp,
                                 'alamat' => $alamat,
                                 'catatan' => $catatan,
@@ -364,10 +369,6 @@ class HomeUser extends BaseController
                 } catch (\Exception $e) {
                     return $this->response->setJSON(['error' => $e]);
                 }
-
-
-                // return redirect()->to('/payment');
-                // return redirect()->to('/list-pesanan');
             } else if ($session->get('role') == 'fotografer') {
                 return redirect()->to('/fotografer');
             }

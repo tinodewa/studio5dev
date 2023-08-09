@@ -46,7 +46,8 @@ function shortNumber($num)
                                                     <th sortable="false">ID</th>
                                                     <th sortable="false">Paket</th>
                                                     <th sortable="false">Harga</th>
-                                                    <th sortable="false">Tanggal</th>
+                                                    <th sortable="false">Tanggal Mulai</th>
+                                                    <th sortable="false">Tanggal Selesai</th>
                                                     <th sortable="false" class="text-center">Status</th>
                                                     <th sortable="false" class="text-center">Kontrol</th>
                                                 </tr>
@@ -71,7 +72,10 @@ function shortNumber($num)
                                                             </span>
                                                         </td>
                                                         <td class="align-middle">
-                                                            <?= $listPesanan->tanggal; ?>
+                                                            <?= $listPesanan->tanggal_mulai; ?>
+                                                        </td>
+                                                        <td class="align-middle">
+                                                            <?= $listPesanan->tanggal_selesai; ?>
                                                         </td>
                                                         <td class="align-middle text-center">
                                                             <?php if (str_contains($listPesanan->status, "sudah review")) { ?>

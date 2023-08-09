@@ -1,7 +1,7 @@
 langkah install project di lokal :
 1. run "composer install"
 2. buat database kosong dengan nama studiojingga
-3. run "php spark migrate"
+3. run "php spark migrate", jika sudah ada db run "php spark migrate:refresh" untuk reset db
 4. run "php spark db:seed ManageSeeder"
 5. untuk menjalankan project, run "php spark serve"
 

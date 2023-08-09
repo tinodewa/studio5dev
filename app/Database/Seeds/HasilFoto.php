@@ -26,6 +26,30 @@ class HasilFoto extends Seeder
                 'id_fotografer' => 3,
                 'id_pesanan'  => 5,
                 'hasil_foto' => '',
+            ],
+            [
+                'id_hasil_foto' => 4,
+                'id_fotografer' => 3,
+                'id_pesanan'  => 12,
+                'hasil_foto' => '',
+            ],
+            [
+                'id_hasil_foto' => 5,
+                'id_fotografer' => 3,
+                'id_pesanan'  => 13,
+                'hasil_foto' => '',
+            ],
+            [
+                'id_hasil_foto' => 6,
+                'id_fotografer' => 3,
+                'id_pesanan'  => 14,
+                'hasil_foto' => '',
+            ],
+            [
+                'id_hasil_foto' => 7,
+                'id_fotografer' => 3,
+                'id_pesanan'  => 15,
+                'hasil_foto' => '',
             ]
         ];
 
