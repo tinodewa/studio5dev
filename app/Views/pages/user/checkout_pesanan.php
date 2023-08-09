@@ -63,7 +63,7 @@
                 </div>
                 <!-- topping -->
                 <div class="col-md-6">
-                    <label for="extra_waktu_kerja" class="form-label">Penambahan Waktu Kerja Maks. 4 (Rp 250.000,00/1 jam)</label>
+                    <label for="extra_waktu_kerja" class="form-label">Penambahan Waktu Kerja Maks. 4 (Rp 100.000,00/1 jam)</label>
                     <div class="input-group mb-3 col-6">
                         <div class="input-group-text">
                             <input class="form-check-input" id="waktuBox" type="checkbox">
@@ -537,7 +537,7 @@
             //set harga extra waktu
             if (document.getElementById('waktuBox').checked) {
                 extra_waktu = document.getElementById('extra_waktu_kerja').value;
-                extra_harga = extra_harga + (250000 * extra_waktu);
+                extra_harga = extra_harga + (100000 * extra_waktu);
             }
 
             //set harga extra magazine
