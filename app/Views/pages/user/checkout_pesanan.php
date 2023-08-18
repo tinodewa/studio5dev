@@ -57,7 +57,7 @@
                 </div>
                 <!-- topping -->
                 <div class="col-md-6">
-                    <label for="extra_waktu_kerja" class="form-label">Penambahan Waktu Kerja Maks. 4 (Rp 100.000,00/1 jam)</label>
+                    <label for="extra_waktu_kerja" class="form-label">Penambahan Waktu Kerja Maks. 4 (Rp 250.000,00/1 jam)</label>
                     <div class="input-group mb-3 col-6">
                         <div class="input-group-text">
                             <input class="form-check-input" id="waktuBox" type="checkbox">
@@ -82,12 +82,12 @@
                 <?php } ?>
                 <?php if (str_contains($pesananUserPaket[0]->nama_paket, "Pre-Wedding Package Indoor") || str_contains($pesananUserPaket[0]->nama_paket, "Maternity") || str_contains($pesananUserPaket[0]->nama_paket, "Graduation Package Indoor") || str_contains($pesananUserPaket[0]->nama_paket, "Family") || str_contains($pesananUserPaket[0]->nama_paket, "Couple")) { ?>
                     <div class="col-md-6">
-                        <label for="extra_background" class="form-label">Penambahan Background Maks. 4 (Rp 50.000,00/tambahan)</label>
+                        <label for="extra_background" class="form-label">Penambahan Background Maks. 9 (Rp 50.000,00/tambahan)</label>
                         <div class="input-group mb-3">
                             <div class="input-group-text">
                                 <input class="form-check-input" type="checkbox" id="backgroundBox" />
                             </div>
-                            <input type="number" class="form-control" id="extra_background" name="extra_background" placeholder="0" value="0" oninput="this.value = Math.abs(this.value)" max="4" disabled>
+                            <input type="number" class="form-control" id="extra_background" name="extra_background" placeholder="0" value="0" oninput="this.value = Math.abs(this.value)" max="9" disabled>
                         </div>
                     </div>
                 <?php } ?>
@@ -409,7 +409,7 @@
             //set harga extra waktu
             if (document.getElementById('waktuBox').checked) {
                 extra_waktu = document.getElementById('extra_waktu_kerja').value;
-                extra_harga = extra_harga + (100000 * extra_waktu);
+                extra_harga = extra_harga + (250000 * extra_waktu);
             }
 
             //set harga extra magazine
