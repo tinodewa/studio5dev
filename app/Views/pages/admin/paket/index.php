@@ -26,13 +26,12 @@
         <div class="content">
             <!-- Dynamic Table Full -->
             <div class="block">
-                <!-- <div class="form-group row">
-                    </div> -->
-                    <div class="block-header block-header-default">
-                    <div class="col-md-9">
-                        <a href="/admin/paket/new" class="btn btn-alt-primary">Tambah</a>
+                <div class="block-content block-content-full">
+                    <div class="form-group row">
+                        <div class="col-md-9">
+                            <button class="btn btn-alt-danger" disabled>Data Paket Tidak Dapat Dibuat Sendiri</button>
+                        </div>
                     </div>
-                </div>
                 <div class="block-content block-content-full">
                     <!-- DataTables functionality is initialized with .js-dataTable-full class in js/pages/be_tables_datatables.min.js which was auto compiled from _es6/pages/be_tables_datatables.js -->
                     <table class="table table-bordered table-striped table-vcenter js-dataTable-full">
